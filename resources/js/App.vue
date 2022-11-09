@@ -1,13 +1,16 @@
 <template>
-    <div>
-        <h1 class="text-gray-500">Hello Vue</h1>
-
-    </div>
+    <nav>
+        <router-view />
+        <Footer />
+    </nav>
 </template>
 
 <script>
+import Footer from './Components/Footer.vue'
+
 export default {
     name: "App.vue",
+    components: { Footer },
     mounted() {
         console.log("coucou vue test");
     },
