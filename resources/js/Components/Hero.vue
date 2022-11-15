@@ -1,10 +1,13 @@
 <template>
-    <p>{{hero}}</p>
-    <p>{{hero.media_url}}</p>
-    <div class="bg-[url({{hero.media_url}})]">
-        <h2>{{hero.title}}</h2>
-        <h4>{{hero.subtitle}}</h4>
+
+    <div :style="{backgroundImage: `url(${hero.media_url}`}" class="bg-cover bg-center h-screen p-24">
+        <h1 class="text-white text-6xl font-playfair font-bold">{{hero.title}}</h1>
+        <h2 class="text-white text-3xl font-semibold mt-4 font-montserrat">{{hero.subtitle}}</h2>
+        <button class="bg-white mt-8 px-4 py-2 border-arth border-2">Découvrir</button>
     </div>
+
+<!--    <img :src="hero.media_url" />-->
+
 
 </template>
 
@@ -15,9 +18,9 @@
                 hero: {}
             }
         },
-        mounted() {
-            axios.get('api/home/hero')
-                .then(response => this.hero = {...response.data})
+        async mounted() {
+            const response = await axios.get('api/home/hero');
+            this.hero = {...response.data};
         }
     }
 </script>
