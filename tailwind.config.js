@@ -15,6 +15,11 @@ module.exports = {
             'arth-grey': '#C7CFCA',
             'arth-dark-yellow': '#E0C64D',
             'arth-yellow': '#FFD15A'
+        },
+        fontFamily: {
+            'playfair': ['Playfair Display', 'serif'],
+            'montserrat': ['Montserrat', 'sans-serif'],
+            'tinos': ['Tinos', 'serif']
         }
     },
   },
