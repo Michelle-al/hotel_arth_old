@@ -11,4 +11,6 @@ class Hero extends Model
 
 //    To stop Laravel from creating updated_at and created_at fields while populating the db with a seeder
     public $timestamps = false;
+
+    public $fillable = ['title', 'title_english', 'media_url', 'subtitle', 'subtitle_english'];
 }
