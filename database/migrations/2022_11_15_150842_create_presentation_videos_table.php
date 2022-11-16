@@ -13,9 +13,9 @@ class CreatePresentationVideosTable extends Migration
      */
     public function up()
     {
-        Schema::create('presentation__videos', function (Blueprint $table) {
+        Schema::create('presentation_videos', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
+            $table->string('video_url');
             $table->string('title');
             $table->string('title_english');
             $table->string('description');
@@ -30,6 +30,6 @@ class CreatePresentationVideosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('presentation__videos');
+        Schema::dropIfExists('presentation_videos');
     }
 }

@@ -13,6 +13,6 @@ class PresentationVideoSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Presentation_Video::factory()->create();
+        \App\Models\PresentationVideo::factory()->create();
     }
 }
