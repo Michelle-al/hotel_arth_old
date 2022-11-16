@@ -30,8 +30,8 @@ Route::get('/home/promotional_banner', [Promotional_bannerController::class, 'in
 Route::get('/home/promotional_banner', [Promotional_bannerController::class, 'edit']);
 
 # Presentation-video API routes
-Route::get('/home/presentation-video', [VideoController::class, 'index']);
-Route::put('/home/presentation-video', [VideoController::class, 'index']);
+Route::get('/home/presentation-video', [PresentationVideoController::class, 'index']);
+Route::put('/home/presentation-video', [PresentationVideoController::class, 'index']);
 
 
 
