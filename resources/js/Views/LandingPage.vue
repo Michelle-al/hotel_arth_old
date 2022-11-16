@@ -1,18 +1,18 @@
 <template>
     <h1>I'm the landing page</h1>
     <Hero />
-    <Promotional_banner />
+    <PromotionalBanner />
 </template>
 
 <script>
 import Hero from '../Components/Hero'
-import Promotional_banner from "../Components/Promotional_banner"
+import PromotionalBanner from "../Components/PromotionalBanner"
 
     export default {
         name: 'landingPage',
         components: {
             Hero,
-            Promotional_banner
+            PromotionalBanner
         }
     }
 </script>

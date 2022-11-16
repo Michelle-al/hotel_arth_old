@@ -26,7 +26,8 @@ Route::get('/home/hero', [HeroController::class, 'index']);
 Route::put('/home/hero', [HeroController::class, 'edit']);
 
 # Promotionnal Banner API routes
-
+Route::get('/home/promotional_banner', [Promotional_bannerController::class, 'index']);
+Route::get('/home/promotional_banner', [Promotional_bannerController::class, 'edit']);
 
 # Presentation-video API routes
 Route::get('/home/presentation-video', [VideoController::class, 'index']);
