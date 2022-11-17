@@ -1,7 +1,7 @@
 <template>
     <h1>I'm the landing page</h1>
     <Hero />
-    <Promotional_banner />
+    <PromotionalBanner />
     <VideoSection />
 </template>
 
