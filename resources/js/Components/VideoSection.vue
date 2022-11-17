@@ -1,17 +1,30 @@
 <template>
-    <div class="section--video">
-        <h2 class="video--h2">{{ promesse }}</h2>
-        <h3 class="video--h3">{{ subPromesse }}</h3>
-        <video class="video--media" controls autoplay="false" preload="auto">
+    <div class="section--video"> <!-- BEM Syntax for -->
+        <div>
+            <h2 class="video--h2">{{ presentationVideo.title }}</h2>
+            <h3 class="video--h3">{{ presentationVideo.description }}</h3>
+        </div>
 
-<!--           TODO- la video chargée ne fonctionne pas, trouver une autre vidéo-->
+        <iframe
+            class="video--media"
+            src="https://www.youtube-nocookie.com/embed/DYMmMoJAfbw"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+            name="vidéo de présentation de l'hôtel Arth"
+        >
+        </iframe>
+
+<!--        <video class="video&#45;&#45;media" controls preload="auto">-->
 <!--            <source-->
 <!--                src="/public/storage/video/presentation_video.mp4"-->
-<!--                            :src="presentationVideo.dynamicSrc"-->
-<!--                            :type="presentationVideo.type"-->
 <!--            >-->
-            <p>Votre navigateur ne prend pas en charge les vidéos HTML5.</p>
-        </video>
+<!--            <source-->
+<!--                src="storage/app/public/video/presentation_video.mp4" >-->
+<!--            <p>Vidéo de Denys Gromov: https://www.pexels.com/fr-fr/video/assiette-salade-sain-bois-5223106/</p>-->
+<!--            <p>Votre navigateur ne prend pas en charge les vidéos HTML5.</p>-->
+<!--        </video>-->
     </div>
 
 </template>
@@ -22,18 +35,13 @@ export default {
     name: "VideoSection.vue",
     data() {
         return {
-            promesse : "Séjour de rêve",
-            subPromesse : "Découvrez les différentes activités aux alentours de l'hôtel Arth.",
-            presentationVideo : {
-                dynamicSrc: {},
-                type: "video/mp4",
-
-            }
+            presentationVideo: {}
         }
     },
     async mounted() {
         const response = await axios.get('api/home/presentation-video');
         this.presentationVideo = {...response.data};
+        console.log("je suis une video");
     }
 }
 </script>
@@ -54,5 +62,7 @@ export default {
     .video--media {
         @apply w-96 m-auto;
     }
+
+
 
 </style>
