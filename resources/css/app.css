@@ -9,7 +9,7 @@
 /* Définition des valeurs globales utilisées dans tout le projet */
 
 h1 {
-    @apply font-playfair font-bold text-4xl m-auto;
+    @apply font-playfair font-bold text-4xl m-auto text-center;
 }
 
 h2,
@@ -21,11 +21,11 @@ h6 {
 }
 
 h2 {
-    @apply font-bold text-3xl m-auto py-2 text-center;
+    @apply text-3xl mx-auto my-4 py-3 text-center;
 }
 
 h3 {
-    @apply font-semibold text-2xl m-auto py-2 text-center;
+    @apply text-2xl mx-auto my-4 py-3 text-center;
 }
 
 
