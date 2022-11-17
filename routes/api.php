@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\PresentationVideoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +21,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+# Hero API routes
 Route::get('/home/hero', [HeroController::class, 'index']);
-Route::post('/home/hero', [HeroController::class, 'update']);
+Route::put('/home/hero', [HeroController::class, 'update']);
+
+# Promotionnal Banner API routes
+Route::get('/home/promotional_banner', [Promotional_bannerController::class, 'index']);
+Route::put('/home/promotional_banner', [Promotional_bannerController::class, 'update']);
+
+# Presentation-video API routes
+Route::get('/home/presentation-video', [PresentationVideoController::class, 'index']);
+Route::put('/home/presentation-video', [PresentationVideoController::class, 'update']);
+
+
+

@@ -2,11 +2,11 @@
 
     <div :style="{backgroundImage: `url(${hero.media_url}`}" class="bg-cover bg-center h-screen p-24">
         <div>
-            <h1 class="text-white text-6xl font-playfair font-bold">{{hero.title}}</h1>
-            <h2 class="text-white text-3xl font-semibold mt-4 font-montserrat mb-12">{{hero.subtitle}}</h2>
+            <h1 class="text-white lg:text-6xl">{{hero.title}}</h1>
+            <h2 class="text-white mt-4 font-semibold mb-12 lg:text-3xl">{{hero.subtitle}}</h2>
         </div>
 
-        <button class="bg-white mt-8 px-4 py-2 border-arth-light-blue border-2">Découvrir</button>
+        <button class="border-arth-light-blue">Découvrir</button>
     </div>
 
 <!--    <img :src="hero.media_url" />-->

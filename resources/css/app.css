@@ -5,3 +5,33 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+/* Définition des valeurs globales utilisées dans tout le projet */
+
+h1 {
+    @apply font-playfair font-bold text-4xl m-auto text-center;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply font-montserrat;
+}
+
+h2 {
+    @apply text-2xl mx-auto my-4 py-3 text-center;
+}
+
+h3 {
+    @apply text-xl mx-auto my-4 py-3 text-center;
+}
+
+p{
+    @apply font-tinos;
+}
+
+button {
+    @apply bg-white mt-8 px-4 py-2 border-2;
+}
