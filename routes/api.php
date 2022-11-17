@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/home/hero', [HeroController::class, 'index']);
 Route::put('/home/hero', [HeroController::class, 'update']);
 
-# Promotionnal Banner API routes
+# Promotional Banner API routes
 Route::get('/home/promotional_banner', [PromotionalBannerController::class, 'index']);
 Route::put('/home/promotional_banner', [PromotionalBannerController::class, 'update']);
 
