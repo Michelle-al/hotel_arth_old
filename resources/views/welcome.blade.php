@@ -15,14 +15,16 @@
     </style>
 
     <style>
-        body {
-            font-family: 'Nunito', sans-serif;
+        html, body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
     </style>
 
 </head>
 <body class="antialiased">
-<div id="app"></div>
+<div id="app" class="app"></div>
 <script src="/js/app.js"></script>
 </body>
 </html>

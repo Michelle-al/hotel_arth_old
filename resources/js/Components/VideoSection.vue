@@ -49,7 +49,7 @@ export default {
 <style scoped>
 
     .section--video {
-
+        min-height: 100vh;
     }
     .video--h2 {
         /*@apply ;*/
@@ -60,7 +60,7 @@ export default {
     }
 
     .video--media {
-        @apply w-96 m-auto;
+        @apply w-80 m-auto;
     }
 
 
