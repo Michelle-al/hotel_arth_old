@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Promotional_banner;
 use Illuminate\Http\Request;
 
-class Promotional_bannerController extends Controller
+class PromotionalBannerController extends Controller
 {
     /**
      * Display a listing of the resource.
