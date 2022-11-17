@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Hero;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class HeroController extends Controller
 {
@@ -64,12 +66,28 @@ class HeroController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hero  $hero
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hero $hero)
+    public function update(Request $request)
     {
+        $hero = Hero::all()->first();
+        if ($request->hasFile('media_url')) {
+             // Getting the sent file
+            $file = $request->file('media_url');
+            // Minimal sanitizing of the file name (deleting all whitespace)
+            $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
+            // Putting the file in said directory with said filename
+            Storage::putFileAs('public/hero', $file, $file_name);
+            // Swapping file to path
+            $request->media_url = '/storage/hero/' . $file_name;
 
+
+            // TODO: deleting old file, update all the fields.
+        }
+
+        $hero = Hero::all()->first();
+        Storage::delete( str_replace('storage/hero', '', $hero->media_url));
+//        $hero->update($request->all());
     }
 
     /**
