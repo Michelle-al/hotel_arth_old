@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/home/hero', [HeroController::class, 'index']);
-Route::put('/home/hero', [HeroController::class, 'edit']);
+Route::post('/home/hero', [HeroController::class, 'update']);

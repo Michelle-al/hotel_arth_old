@@ -71,6 +71,7 @@ class HeroController extends Controller
     public function update(Request $request)
     {
         $hero = Hero::all()->first();
+
         if ($request->hasFile('media_url')) {
              // Getting the sent file
             $file = $request->file('media_url');
@@ -80,14 +81,23 @@ class HeroController extends Controller
             Storage::putFileAs('public/hero', $file, $file_name);
             // Swapping file to path
             $request->media_url = '/storage/hero/' . $file_name;
-
-
-            // TODO: deleting old file, update all the fields.
+            // Modifies the file path in order to find it in the storage/public/hero
+            $filepath = str_replace('storage/', 'public/', $hero->media_url);
+            Storage::delete( $filepath );
         }
 
-        $hero = Hero::all()->first();
-        Storage::delete( str_replace('storage/hero', '', $hero->media_url));
-//        $hero->update($request->all());
+        // Updating database data : array_filter discard all empty fields beforehand.
+        $hero->update(
+            array_filter(
+                [
+            'title' => $request->title,
+            'title_english' => $request->title_english,
+            'media_url' => $request->media_url,
+            'subtitle' => $request-> subtitle,
+            'subtitle_english' => $request->subtitle_english
+                ]
+            )
+        );
     }
 
     /**
