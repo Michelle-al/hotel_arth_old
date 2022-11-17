@@ -25,11 +25,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/home/hero', [HeroController::class, 'index']);
 Route::put('/home/hero', [HeroController::class, 'update']);
 
-# Promotionnal Banner API routes
+# Promotional Banner API routes
 Route::get('/home/promotional_banner', [Promotional_bannerController::class, 'index']);
 Route::put('/home/promotional_banner', [Promotional_bannerController::class, 'update']);
 
-# Presentation-video API routes
+# Presentation Video API routes
 Route::get('/home/presentation-video', [PresentationVideoController::class, 'index']);
 Route::put('/home/presentation-video', [PresentationVideoController::class, 'update']);
 
