@@ -856,3 +856,85 @@ p{
   }
 }
 
+/* Définition des valeurs globales utilisées dans tout le projet */
+
+h1{
+  margin: auto;
+  font-family: Playfair Display, serif;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6{
+  font-family: Montserrat, sans-serif;
+}
+
+h2{
+  margin: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+h3{
+  margin: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+}
+
+
+p{
+  font-family: Tinos, serif;
+}
+
+
+@media (prefers-color-scheme: dark){
+
+  .dark\:bg-gray-900{
+    --tw-bg-opacity: 1;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  }
+}
+
+
+@media (min-width: 640px){
+
+  .sm\:items-center{
+    align-items: center;
+  }
+
+  .sm\:justify-start{
+    justify-content: flex-start;
+  }
+
+  .sm\:px-6{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:pt-0{
+    padding-top: 0px;
+  }
+}
+
+
+@media (min-width: 1024px){
+
+  .lg\:px-8{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
