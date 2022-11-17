@@ -1,5 +1,4 @@
 <template>
-
     <div :style="{backgroundImage: `url(${hero.media_url}`}" class="bg-cover bg-center h-screen p-24">
         <div>
             <h1 class="text-white text-6xl font-playfair font-bold">{{hero.title}}</h1>

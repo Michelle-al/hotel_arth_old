@@ -1,13 +1,13 @@
 <template>
     <h1>I'm the landing page</h1>
     <Hero />
-    <Promotional_banner />
+    <PromotionalBanner />
     <VideoSection />
 </template>
 
 <script>
-import Hero from '../Components/Hero'
-import PromotionalBanner from "../Components/PromotionalBanner"
+import Hero from '../Components/Hero';
+import PromotionalBanner from "../Components/PromotionalBanner";
 import VideoSection from "../Components/VideoSection";
 
 
