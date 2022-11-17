@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Presentation_Video;
+use App\Models\PresentationVideo;
 use Illuminate\Http\Request;
 
 class PresentationVideoController extends Controller
@@ -14,7 +14,7 @@ class PresentationVideoController extends Controller
      */
     public function index()
     {
-        return Presentation_Video::all()->first();
+        return PresentationVideo::all()->first();
     }
 
     /**
