@@ -24,15 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 # Hero API routes
 Route::get('/home/hero', [HeroController::class, 'index']);
-Route::put('/home/hero', [HeroController::class, 'update']);
+Route::post('/home/hero', [HeroController::class, 'update']);
 
 # Promotional Banner API routes
 Route::get('/home/promotional_banner', [PromotionalBannerController::class, 'index']);
-Route::put('/home/promotional_banner', [PromotionalBannerController::class, 'update']);
+Route::put('/home/promotional_banner/{id}', [PromotionalBannerController::class, 'update']);
 
 # Presentation-video API routes
 Route::get('/home/presentation_video', [PresentationVideoController::class, 'index']);
-Route::put('/home/presentation_video', [PresentationVideoController::class, 'update']);
+Route::post('/home/presentation_video', [PresentationVideoController::class, 'update']);
 
 
 

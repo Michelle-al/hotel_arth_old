@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Promotional_banner;
+use App\Models\PromotionalBanner;
 use Illuminate\Http\Request;
 
 class PromotionalBannerController extends Controller
@@ -14,7 +14,8 @@ class PromotionalBannerController extends Controller
      */
     public function index()
     {
-        return Promotional_banner::all()->first();
+        return PromotionalBanner::all()->first();
+
     }
 
     /**
@@ -64,12 +65,20 @@ class PromotionalBannerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $banner =  PromotionalBanner::query()->find($id);
+
+        $banner->text_french = $request->input('text_french');
+        $banner->text_english = $request->input('text_english');
+
+        dd($banner );
+        $banner->update(
+            $request->all()
+        );
+
     }
 
     /**

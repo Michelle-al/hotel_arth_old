@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Promotional_banner extends Model
+class PromotionalBanner extends Model
 {
     use HasFactory;
 
@@ -15,4 +15,5 @@ class Promotional_banner extends Model
      * @var bool
      */
     public $timestamps = false;
+
 }
