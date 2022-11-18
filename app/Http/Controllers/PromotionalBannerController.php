@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Promotional_banner;
+use App\Models\PromotionalBanner;
 use Illuminate\Http\Request;
 
-class Promotional_bannerController extends Controller
+class PromotionalBannerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class Promotional_bannerController extends Controller
      */
     public function index()
     {
-        return Promotional_banner::all()->first();
+        return PromotionalBanner::all()->first();
     }
 
     /**
