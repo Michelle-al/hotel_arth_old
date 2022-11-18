@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\PresentationVideoController;
+use App\Http\Controllers\PromotionalBannerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
