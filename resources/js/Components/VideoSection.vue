@@ -1,31 +1,36 @@
 <template>
-    <div class="section--video"> <!-- BEM Syntax for -->
-        <div>
-            <h2 class="video--h2">{{ presentationVideo.title }}</h2>
-            <h3 class="video--h3">{{ presentationVideo.description }}</h3>
+    <div class="section--video"> <!-- BEM Syntax for classes -->
+        <div class="section--video-content">
+            <div class="section--video-text">
+                <h2 class="video--h2">{{ presentationVideo.title }}</h2>
+                <h3 class="video--h3">{{ presentationVideo.description }}</h3>
+            </div>
+
+            <iframe
+                class="video--media"
+                src="https://www.youtube-nocookie.com/embed/DYMmMoJAfbw"
+                title="Vidéo de présentation de l'hôtel Arth"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+                name="Vidéo de présentation de l'hôtel Arth"
+            >
+            </iframe>
+        </div>
+            <button class="video--button-reservation">Réserver</button>
+
+            <!--        <video class="video&#45;&#45;media" controls preload="auto">-->
+            <!--            <source-->
+            <!--                src="/public/storage/video/presentation_video.mp4"-->
+            <!--            >-->
+            <!--            <source-->
+            <!--                src="storage/app/public/video/presentation_video.mp4" >-->
+            <!--            <p>Vidéo de Denys Gromov: https://www.pexels.com/fr-fr/video/assiette-salade-sain-bois-5223106/</p>-->
+            <!--            <p>Votre navigateur ne prend pas en charge les vidéos HTML5.</p>-->
+            <!--        </video>-->
+
         </div>
 
-        <iframe
-            class="video--media"
-            src="https://www.youtube-nocookie.com/embed/DYMmMoJAfbw"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            loading="lazy"
-            name="vidéo de présentation de l'hôtel Arth"
-        >
-        </iframe>
-
-<!--        <video class="video&#45;&#45;media" controls preload="auto">-->
-<!--            <source-->
-<!--                src="/public/storage/video/presentation_video.mp4"-->
-<!--            >-->
-<!--            <source-->
-<!--                src="storage/app/public/video/presentation_video.mp4" >-->
-<!--            <p>Vidéo de Denys Gromov: https://www.pexels.com/fr-fr/video/assiette-salade-sain-bois-5223106/</p>-->
-<!--            <p>Votre navigateur ne prend pas en charge les vidéos HTML5.</p>-->
-<!--        </video>-->
-    </div>
 
 </template>
 
@@ -47,22 +52,32 @@ export default {
 </script>
 
 <style scoped>
-
     .section--video {
+        @apply flex flex-col lg:mx-6 my-6;
+    }
 
+    .section--video-content {
+        @apply flex flex-col lg:flex-row-reverse my-3 justify-around;
     }
     .video--h2 {
-        /*@apply ;*/
+        @apply text-3xl ;
     }
 
     .video--h3 {
-        /*@apply ;*/
+        @apply text-xl ;
+    }
+
+    .section--video-text {
+        @apply flex flex-col align-middle justify-center;
     }
 
     .video--media {
-        @apply w-96 m-auto;
+        @apply w-max lg:mx-6 w-full aspect-video;
+        max-height: 400px;
     }
 
-
+    .video--button-reservation {
+        @apply mx-auto
+    }
 
 </style>

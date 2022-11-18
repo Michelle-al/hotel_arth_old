@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             HeroSeeder::class,
             PresentationVideoSeeder::class,
-            Promotional_bannerSeeder::class,
+            PromotionalBannerSeeder::class,
         ]);
     }
 }
