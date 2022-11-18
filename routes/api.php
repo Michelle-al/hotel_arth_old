@@ -28,8 +28,8 @@ Route::get('/home/hero', [HeroController::class, 'index']);
 Route::post('/home/hero', [HeroController::class, 'update']);
 
 # Promotional Banner API routes
-Route::get('/home/promotional_banner', [Promotional_bannerController::class, 'index']);
-Route::put('/home/promotional_banner', [Promotional_bannerController::class, 'update']);
+Route::get('/home/promotional_banner', [PromotionalBannerController::class, 'index']);
+Route::put('/home/promotional_banner', [PromotionalBannerController::class, 'update']);
 
 # Presentation Video API routes
 Route::get('/home/presentation_video', [PresentationVideoController::class, 'index']);
