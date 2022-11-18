@@ -30,4 +30,15 @@
     - **Make sure you did a checkout to your branch** ;
     - This file is the only one you're allowed to commit directly to the dev branch.
 
+- API Uri's naming convention :
+  - For this project we have decided to continue using under_score, ex: 
+  ```
+    Route::get('/home/presentation_video', [PresentationVideoController::class, 'index']);
+    Route::put('/home/presentation_video', [PresentationVideoController::class, 'update']);
+    ```
+  - This is not a problem, but it is recommended to use the kebab-case for readability reasons (because underscores 
+    are covered by the blue underlining of link).
+  
 **Happy coding !**
+
+
