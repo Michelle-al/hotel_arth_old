@@ -15,6 +15,7 @@ class PromotionalBannerController extends Controller
     public function index()
     {
         return PromotionalBanner::all()->first();
+
     }
 
     /**
@@ -69,7 +70,16 @@ class PromotionalBannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $banner =  PromotionalBanner::query()->find($id);
+
+        $banner->text_french = $request->input('text_french');
+        $banner->text_english = $request->input('text_english');
+
+        dd($banner );
+        $banner->update(
+            $request->all()
+        );
+
     }
 
     /**
