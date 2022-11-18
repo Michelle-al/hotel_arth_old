@@ -2,33 +2,17 @@
     <div class="section--video"> <!-- BEM Syntax for classes -->
         <div class="section--video-content">
             <div class="section--video-text">
+<!--                TODO - Add v-if v_else for languages Fr - En-->
                 <h2 class="video--h2">{{ presentationVideo.title }}</h2>
                 <h3 class="video--h3">{{ presentationVideo.description }}</h3>
             </div>
 
-            <iframe
-                class="video--media"
-                src="https://www.youtube-nocookie.com/embed/DYMmMoJAfbw"
-                title="Vidéo de présentation de l'hôtel Arth"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                loading="lazy"
-                name="Vidéo de présentation de l'hôtel Arth"
-            >
-            </iframe>
+            <video class="video--media" :src="presentationVideo.video_url" controls preload="auto">
+                <p>Vidéo de Denys Gromov: https://www.pexels.com/fr-fr/video/assiette-salade-sain-bois-5223106/</p>
+                <p>Votre navigateur ne prend pas en charge les vidéos HTML5.</p>
+            </video>
         </div>
             <button class="video--button-reservation">Réserver</button>
-
-            <!--        <video class="video&#45;&#45;media" controls preload="auto">-->
-            <!--            <source-->
-            <!--                src="/public/storage/video/presentation_video.mp4"-->
-            <!--            >-->
-            <!--            <source-->
-            <!--                src="storage/app/public/video/presentation_video.mp4" >-->
-            <!--            <p>Vidéo de Denys Gromov: https://www.pexels.com/fr-fr/video/assiette-salade-sain-bois-5223106/</p>-->
-            <!--            <p>Votre navigateur ne prend pas en charge les vidéos HTML5.</p>-->
-            <!--        </video>-->
-
         </div>
 
 
@@ -44,9 +28,9 @@ export default {
         }
     },
     async mounted() {
-        const response = await axios.get('api/home/presentation-video');
+        const response = await axios.get('api/home/presentation_video');
         this.presentationVideo = {...response.data};
-        console.log("je suis une video");
+        console.log(this.presentationVideo);
     }
 }
 </script>
@@ -57,7 +41,7 @@ export default {
     }
 
     .section--video-content {
-        @apply flex flex-col lg:flex-row-reverse my-3 justify-around;
+        @apply flex flex-col lg:flex-row-reverse my-3 justify-around lg:mx-6 my-6;
     }
     .video--h2 {
         @apply text-3xl ;
@@ -77,7 +61,7 @@ export default {
     }
 
     .video--button-reservation {
-        @apply mx-auto
+        /*@apply mx-auto*/
     }
 
 </style>
