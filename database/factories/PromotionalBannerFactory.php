@@ -14,7 +14,7 @@ class PromotionalBannerFactory extends Factory
     public function definition()
     {
         return [
-
+            //
         ];
     }
 }
