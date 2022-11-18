@@ -5,11 +5,8 @@
             <h2 class="text-white mt-4 font-semibold mb-12 lg:text-3xl">{{hero.subtitle}}</h2>
         </div>
 
-        <button class="border-arth-light-blue">Découvrir</button>
+        <button class="border-arth-light-blue justify-center font-tinos">Découvrir</button>
     </div>
-
-<!--    <img :src="hero.media_url" />-->
-
 
 </template>
 
