@@ -14,12 +14,12 @@ class CreatePresentationVideosTable extends Migration
     public function up()
     {
         Schema::create('presentation_videos', function (Blueprint $table) {
-            $table->id();
-            $table->string('video_url');
-            $table->string('title');
-            $table->string('title_english');
-            $table->string('description');
-            $table->string('description_english');
+            $table->id()->nullable(false);
+            $table->string('video_url')->nullable(false);
+            $table->string('title')->nullable(false);
+            $table->string('title_english')->nullable(false);
+            $table->string('description')->nullable(false);
+            $table->string('description_english')->nullable(false);
         });
     }
 
