@@ -1,5 +1,5 @@
 <template>
-    <h1>I'm the NavBar</h1>
+    <Navbar />
     <Hero />
     <PromotionalBanner />
     <VideoSection />
@@ -9,11 +9,13 @@
 import Hero from '../Components/Hero';
 import PromotionalBanner from "../Components/PromotionalBanner";
 import VideoSection from "../Components/VideoSection";
+import Navbar from "../Components/Navbar";
 
 
     export default {
         name: 'landingPage',
         components: {
+            Navbar,
             Hero,
             PromotionalBanner,
             VideoSection,
