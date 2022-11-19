@@ -1,5 +1,5 @@
 <template>
-    <div :style="{backgroundImage: `url(${hero.media_url}`}" class="bg-cover bg-center h-screen p-24">
+    <div :style="{backgroundImage: `url(${hero.media_url})`}" class="flex flex-col bg-cover bg-center h-screen p-24 items-center">
         <div>
             <h1 class="text-white lg:text-6xl">{{hero.title}}</h1>
             <h2 class="text-white mt-4 font-semibold mb-12 lg:text-3xl">{{hero.subtitle}}</h2>
