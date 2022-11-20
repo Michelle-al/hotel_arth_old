@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             HeroSeeder::class,
             PresentationVideoSeeder::class,
             PromotionalBannerSeeder::class,
+            RoomCategorySeeder::class
         ]);
     }
 }
