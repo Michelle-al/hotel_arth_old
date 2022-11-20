@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             // RoomsSeeder::class,
             // AvantagesSeeder::class,
             CustomerSeeder::class,
-            // ReviewSeeder::class,
+            ReviewSeeder::class,
 
         ]);
     }
