@@ -67,9 +67,9 @@ class CustomerController extends Controller
      *
      * @param  \App\Http\Requests\UpdateCustomerRequest  $request
      * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateCustomerRequest $request, Customer $customer)
+    public function update(UpdateCustomerRequest $request, $id)
     {
         $customer = Customer::query()->find($id);
         $dataToUpdate = $request->all();
@@ -83,7 +83,7 @@ class CustomerController extends Controller
                 // Puts the file in the storage directory
                 Storage::putFileAs('public/avatars', $file, $file_name);
                 // Stocker l'url de l'ancienne video dans une variable
-                $old_avatar_url = $avatar->avatar_url;
+                $old_avatar_url = $customer->avatar_url;
                 // Stocker le chemin vers la nouvelle video dans une variable
                 $new_avatar_url = '/storage/avatars/' . $file_name;
                 // indiquer la colonne à modifier en BD et ce qu'on y stocke
@@ -94,6 +94,12 @@ class CustomerController extends Controller
                 Storage::delete($filepath);
             }
         };
+
+        // Envoyer les données mises à jour vers la DB
+        $customer->update($dataToUpdate);
+
+        // Retourner le résultat de la réponse au format JSON
+        return response()->json($customer);
     }
 
     /**
