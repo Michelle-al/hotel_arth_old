@@ -66,7 +66,7 @@ class PresentationVideoController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      * https://laravel.com/docs/8.x/eloquent#updates
      */
 
@@ -74,38 +74,49 @@ class PresentationVideoController extends Controller
     {
 // TODO - Vérification des users input
 
-        // récupérer les informations en DB
+        // Retrieves information stored in DB for video corresponding to the id passed as a parameter of the request.
         $presentation_video = PresentationVideo::query()->find($id);
-        // Stocker le contenu de la requête dans une variable
+        // Stores the content of the request body in a variable.
         $dataToUpdate = $request->all();
-//        dd($dataToUpdate);
+        // Display then die : displays information then stop code execution. Equal to console.log. ONLY FOR
+        // DEVELOPMENT !!!
+        //dd($dataToUpdate);
 
-        // Si la requête contient un fichier, vérifier sa validité
+        // If the request contains a file, check its validity then store it in the storage folder before sending it
+        // to the DB.
         if ($request->hasFile('video')) {
             if ($request->file('video')->isValid()) {
+
                 // Gets sent file
                 $file = $request->file('video');
+
                 // Removes whitespaces
                 $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
+
                 // Puts the file in the storage directory
                 Storage::putFileAs('public/presentation_video', $file, $file_name);
-                // Stocker l'url de l'ancienne video dans une variable
+
+                // Store the old video's url in a variable
                 $old_video_url = $presentation_video->video_url;
-                // Stocker le chemin vers la nouvelle video dans une variable
+
+                // Store the new video's url in a variable
                 $new_video_url = '/storage/presentation_video/' . $file_name;
-                // indiquer la colonne à modifier en BD et ce qu'on y stocke
+
+                // Indicates the column to be modified in DB and what is stored in it
                 $dataToUpdate['video_url'] = $new_video_url;
+
                 // Modifies the file path in order to allow the server to find the video in the storage/public/hero
                 $filepath = str_replace('storage/', 'public/', $old_video_url);
-                // Supprimer le lien vers l'ancienne vidéo
+
+                // Deletes old video's filepath
                 Storage::delete($filepath);
             }
         };
 
-        // Envoyer les données mises à jour vers la DB
+        // Send updated datas to DB
         $presentation_video->update($dataToUpdate);
 
-        // Retourner le résultat de la réponse au format JSON
+        // Return response content in JSON format
         return response()->json($presentation_video);
 
     }

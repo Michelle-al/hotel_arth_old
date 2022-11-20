@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class HeroSeeder extends Seeder
 {
@@ -13,12 +14,13 @@ class HeroSeeder extends Seeder
      */
     public function run()
     {
+        // TODO - Retirer les valeurs "TEST pour Emi" nécessaires pour faire fonctionner la commande php artisan migrate:fresh --seed
         DB::table('heroes')->insert([
-            'title' => ,
-            'title_english' => ,
+            'title' => 'TEST pour Emi',
+            'title_english' => '',
             'media_url' => '/storage/hero/hotel-room-g512f9f1ee_1920.jpg',
-            'subtitle' => ,
-            'subtitle_english' => ,
+            'subtitle' => 'TEST pour Emi',
+            'subtitle_english' => '',
         ]);
     }
 }

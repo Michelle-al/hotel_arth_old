@@ -11,7 +11,7 @@ class PresentationVideoFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition() :array
     {
         return [
             'video_url' => 'storage/video/presentation_video.mp4',
