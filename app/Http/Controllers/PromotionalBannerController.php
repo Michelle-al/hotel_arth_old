@@ -69,17 +69,16 @@ class PromotionalBannerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Get the data from the DB
         $banner =  PromotionalBanner::query()->find($id);
 
-        $banner->text_french = $request->input('text_french');
-        $banner->text_english = $request->input('text_english');
+        // Update the data in the DB
+        $banner->update($request->all());
 
-        dd($banner );
-        $banner->update(
-            $request->all()
-        );
-
+        // Return the result of the response in JSON
+        return response()->json($banner);
     }
+        //dd($request);
 
     /**
      * Remove the specified resource from storage.
