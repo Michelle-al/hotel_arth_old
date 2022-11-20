@@ -9,12 +9,18 @@
 @import "tailwindcss/utilities";
 
 /* Definition of global values used throughout the project */
+
+/* Reset du CSS */
 html,
 body,
 .app {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    @apply font-tinos;
 }
 
 h1 {

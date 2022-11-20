@@ -15,6 +15,7 @@ class HeroSeeder extends Seeder
      */
     public function run()
     {
+        // TODO - Retirer les valeurs "TEST pour Emi" nécessaires pour faire fonctionner la commande php artisan migrate:fresh --seed
         DB::table('heroes')->insert([
             'title' => Str::random(10),
             'title_english' => '',

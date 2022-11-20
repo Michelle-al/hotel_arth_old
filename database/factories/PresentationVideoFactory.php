@@ -11,6 +11,7 @@ class PresentationVideoFactory extends Factory
      *
      * @return array
      */
+
     public function definition(): array
     {
         return [
