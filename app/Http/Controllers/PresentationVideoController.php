@@ -66,7 +66,7 @@ class PresentationVideoController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      * https://laravel.com/docs/8.x/eloquent#updates
      */
 
