@@ -11,14 +11,15 @@ class PresentationVideoFactory extends Factory
      *
      * @return array
      */
-    public function definition() :array
+
+    public function definition(): array
     {
         return [
             'video_url' => 'storage/video/presentation_video.mp4',
-            'title' => $this->faker->text(50),
-            'title_english' => $this->faker->text(50),
-            'description' => $this->faker->text(500),
-            'description_english' => $this->faker->text(500),
+            'title' => $this->faker->title(30),
+            'title_english' => $this->faker->title(50),
+            'description' => $this->faker->text(200),
+            'description_english' => $this->faker->text(200),
         ];
     }
 }
