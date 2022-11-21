@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PromotionalBanner;
-use Illuminate\Http\Request;
+use App\Models\Review;
+use App\Http\Requests\StoreReviewRequest;
+use App\Http\Requests\UpdateReviewRequest;
 
-class PromotionalBannerController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class PromotionalBannerController extends Controller
      */
     public function index()
     {
-        return PromotionalBanner::all()->first();
-
+        Review::all();
     }
 
     /**
@@ -31,10 +31,10 @@ class PromotionalBannerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreReviewRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReviewRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class PromotionalBannerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Review $review)
     {
         //
     }
@@ -53,10 +53,10 @@ class PromotionalBannerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Review $review)
     {
         //
     }
@@ -64,31 +64,22 @@ class PromotionalBannerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateReviewRequest  $request
+     * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateReviewRequest $request, Review $review)
     {
-        $banner =  PromotionalBanner::query()->find($id);
-
-        $banner->text_french = $request->input('text_french');
-        $banner->text_english = $request->input('text_english');
-
-        dd($banner );
-        $banner->update(
-            $request->all()
-        );
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Review $review)
     {
         //
     }
