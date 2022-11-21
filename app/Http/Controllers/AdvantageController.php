@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Avantage;
+use App\Models\Advantage;
 use Illuminate\Http\Request;
 
 class AdvantageController extends Controller
@@ -14,7 +14,7 @@ class AdvantageController extends Controller
      */
     public function index()
     {
-        return Avantage::all()->first();
+        return Advantage::all();
     }
 
     /**

@@ -1,17 +1,24 @@
 <template>
+    <div v-for="advantage in advantages" :key="advantage.id">
+        <AdvantageItem :advantage="advantage" />
+    </div>
 
 </template>
 
 <script>
+import AdvantageItem from "./AdvantageItem";
 export default {
+    components: {
+        AdvantageItem
+    },
     data() {
         return {
-            advantage: {}
+            advantages: []
         }
     },
     async mounted() {
         const response = await axios.get('api/home/advantages');
-        this.advantage = {...response.data};
+        this.advantages.push(...response.data) ;
     }
 }
 </script>
