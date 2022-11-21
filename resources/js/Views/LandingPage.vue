@@ -3,12 +3,14 @@
     <Hero />
     <PromotionalBanner />
     <VideoSection />
+    <RoomCategory />
 </template>
 
 <script>
 import Hero from '../Components/Hero';
 import PromotionalBanner from "../Components/PromotionalBanner";
 import VideoSection from "../Components/VideoSection";
+import RoomCategories from "../Components/RoomCategories"
 import Navbar from "../Components/Navbar";
 
 
@@ -19,6 +21,7 @@ import Navbar from "../Components/Navbar";
             Hero,
             PromotionalBanner,
             VideoSection,
+            RoomCategories
         }
     }
 </script>
