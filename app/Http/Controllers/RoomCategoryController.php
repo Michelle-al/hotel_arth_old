@@ -16,7 +16,7 @@ class RoomCategoryController extends Controller
      */
     public function index()
     {
-        RoomCategory::all()->get();
+        return RoomCategory::all();
     }
 
 
@@ -24,7 +24,6 @@ class RoomCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RoomCategory  $roomCategory
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
