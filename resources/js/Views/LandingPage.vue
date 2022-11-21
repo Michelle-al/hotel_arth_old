@@ -1,7 +1,7 @@
 <template>
     <Hero />
     <PromotionalBanner />
-    <div class="max-w-screen-xl mx-auto">
+    <div class="max-w-screen-xl lg:mx-auto">
         <VideoSection />
         <RoomCategories />
     </div>
