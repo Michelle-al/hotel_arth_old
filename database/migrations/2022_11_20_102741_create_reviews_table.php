@@ -20,7 +20,7 @@ class CreateReviewsTable extends Migration
                 ->nullable(false)
                 //->constrained()
                 ->onUpdate('cascade')
-                ->onDelete('cascade');;
+                ->onDelete('cascade');
             $table->tinyInteger('rating');
             $table->string('title');
             $table->mediumText('body');
