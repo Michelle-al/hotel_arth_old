@@ -18,7 +18,7 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->foreignIdFor(Customer::class)
                 ->nullable(false)
-//                ->constrained()
+                //->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');;
             $table->tinyInteger('rating');
