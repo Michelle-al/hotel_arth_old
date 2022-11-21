@@ -1,7 +1,10 @@
 <template>
-    <div v-for="advantage in advantages" :key="advantage.id">
-        <AdvantageItem :advantage="advantage" />
+    <div  class="flex flex-wrap">
+        <div v-for="advantage in advantages" :key="advantage.id" class="w-1/3">
+            <AdvantageItem :advantage="advantage" />
+        </div>
     </div>
+
 
 </template>
 

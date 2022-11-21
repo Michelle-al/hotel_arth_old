@@ -12,7 +12,7 @@ class AdvantageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): string
     {
         return Advantage::all();
     }
