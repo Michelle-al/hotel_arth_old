@@ -31,7 +31,7 @@
 
                 <!-- START - CTA toogle languages and Reservation-->
                 <div class="hidden items-center justify-end gap-10 md:gap-4 xl:gap-10 lg:flex lg:flex-1 lg:w-0">
-                    <Languages />
+                    <LanguagesToggleButton/>
                     <a href="#"
                         class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-4 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
                     >Me connecter
@@ -54,7 +54,7 @@
                                 <img class="h-20 w-auto" src="/storage/pictures/Logo.svg" alt="Hôtel Arth" />
                             </div>
                             <div>
-                                <Languages />
+                                <LanguagesToggleButton />
                             </div>
                             <div class="-mr-2">
                                 <PopoverButton
@@ -110,12 +110,12 @@ import {
 } from '@heroicons/vue/24/outline'
 
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
-import Languages from "./Languages"
+import LanguagesToggleButton from "./LanguagesToggleButton"
 
 export default {
     name: "NavBar.vue",
     components: {
-        Languages,
+        LanguagesToggleButton,
         Popover,
         PopoverButton,
         PopoverGroup,

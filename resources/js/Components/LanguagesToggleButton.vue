@@ -16,7 +16,7 @@
 
 <script>
 export default {
-    name: "Languages.vue",
+    name: "LanguagesToggleButton.vue",
     data() {
         return {
             isFrench: true,
