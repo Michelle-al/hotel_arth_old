@@ -43,7 +43,7 @@ export default {
         @apply flex flex-col lg:flex-row-reverse my-3 justify-around lg:mx-6 my-6;
     }
     .video__h2 {
-        @apply text-3xl ;
+        /*@apply ;*/
     }
 
     .video__h3 {
