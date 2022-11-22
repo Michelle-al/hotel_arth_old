@@ -49,11 +49,11 @@ export default {
     /*@apply w-1/12;*/
 }
 .navbar__button{
-    @apply px-6 py-2;
+    @apply px-0 py-0;
 }
 
 .navbar__flag {
-    @apply mt-0 max-h-3 h-auto;
+    @apply mt-0 max-h-5 h-auto;
 }
 .navbar__flag--french {
     /*@apply ;*/
