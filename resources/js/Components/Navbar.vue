@@ -3,13 +3,13 @@
         <div class="mx-auto max-w-8xl px-4 sm:px-6">
             <div
                 class="flex items-center justify-between border-b-2 border-gray-100 py-2 lg:justify-start md:space-x-10 z-2">
-
                 <div class="flex justify-start">
                     <a href="#">
                         <span class="sr-only">Hotel Arth</span>
                         <img class="h-20 w-auto" src="/storage/pictures/Logo.png" alt="Hotel Arth" />
                     </a>
                 </div>
+                <!-- START - Open button for small and medium devices -->
                 <div class="-my-2 -mr-2 lg:hidden">
                     <PopoverButton
                         class="inline-flex items-center justify-center rounded-md bg-white mt-0 p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-arth-dark-blue">
@@ -17,25 +17,28 @@
                         <Bars3Icon class="h-6 w-6" aria-hidden="true" />
                     </PopoverButton>
                 </div>
-                <PopoverGroup as="nav" class="hidden space-x-6 lg:space-x-10 lg:flex items-center ml-0">
+                <!-- STOP - Open button for small and medium devices -->
 
+                <!-- START - Nav links for large devices -->
+                <PopoverGroup as="nav" class="hidden space-x-6 lg:space-x-10 lg:flex items-center ml-0">
                     <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Nos chambres</a>
                     <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Nos avantages</a>
                     <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Avis de nos
                         clients</a>
                     <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Notre actualité</a>
                 </PopoverGroup>
+                <!-- STOP - Nav links for large devices -->
 
-<!--                TODO - REPLACER LA DIV SUIVANTE AU BON ENDROIT DANS LE CODE-->
+                <!-- START - CTA toogle languages and Reservation-->
                 <div class="hidden items-center justify-end gap-10 md:gap-4 xl:gap-10 lg:flex lg:flex-1 lg:w-0">
                     <Languages />
                     <a href="#"
-                       class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white">Réserver</a>
+                        class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white">Réserver</a>
                 </div>
-<!--                TODO - REPLACER LA DIV  PRECEDENTE AU BON ENDROIT DANS LE CODE-->
+                <!-- END - CTA toogle languages and Reservation-->
             </div>
         </div>
-
+        <!-- START - Display for small and medium devices -->
         <transition enter-active-class="duration-200 ease-out" enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100" leave-active-class="duration-100 ease-in" leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
             <PopoverPanel focus class="absolute inset-x-0 top-0 origin-top-right transform p-2 transition lg:hidden">
                 <div class="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
@@ -101,6 +104,7 @@
                 </div>
             </PopoverPanel>
         </transition>
+        <!-- STOP - Display for small and medium devices -->
     </Popover>
 </template>
 
