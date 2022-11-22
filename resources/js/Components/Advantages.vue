@@ -1,7 +1,7 @@
 <template>
 
     <div class="mt-20" id="advantages">
-        <h2 class="uppercase mb-0 pb-0">Ce que l'Hôtel Arth vous propose</h2>
+        <h2 class="mb-0 pb-0">Ce que l'Hôtel Arth vous propose</h2>
         <div  class="lg:flex lg:flex-wrap">
             <div v-for="advantage in advantages" :key="advantage.id" class="lg:w-1/3">
                 <AdvantageItem :advantage="advantage" />
