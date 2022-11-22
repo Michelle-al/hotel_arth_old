@@ -49,4 +49,14 @@ class Customer extends Model
      * protected $casts = [
         'email_verified_at' => 'datetime',
     ];*/
+
+
+    // TODO - Faire la fonction pour récupérer avatar, nom et prénom de l'utilisateur ( Attention : Créer la collection)
+    /**
+     * Get the comments for the blog post.
+     */
+    /*public function review()
+    {
+        return $this->hasMany(Review::class);
+    }*/
 }
