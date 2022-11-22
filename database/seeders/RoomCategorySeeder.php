@@ -23,14 +23,14 @@ class RoomCategorySeeder extends Seeder
             "description_english" => "A suite perfectly suited for your honeymoon, and which can also satisfy your fanciest desires."
         ],
         [
-            "url" => "storage/room_categories/arth_chambre_luxe.jpg",
+            "url" => "storage/room_categories/arth_chambre_luxe.jpeg",
             "title_french" => "La chambre de luxe",
             "title_english" => "Luxury Room",
             "description_french" => "Vous préférez les draps en soie et un mini-bar plus remplie dans votre chambre ? Nos chambres de luxe sont faites pour vous !",
             "description_english" => "Your heart goes to silk sheets and a full mini-bar in your room? The luxury room is made for you!"
         ],
         [
-            "url" => "storage/room_categories/art_chambre_classique.jpg",
+            "url" => "storage/room_categories/arth_chambre_classique.jpeg",
             "title_french" => "La chambre classique",
             "title_english" => "The Classic",
             "description_french" => "Nous faisons attention à ce que nos chambres soient spacieuses et aérées afin de vous offrir une respiration pendant votre séjour.",
