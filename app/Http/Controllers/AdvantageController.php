@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Advantage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdvantageController extends Controller
 {
@@ -69,8 +70,55 @@ class AdvantageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Retrieves information stored in DB for video corresponding to the id passed as a parameter of the request.
+        $advantage = Advantage::query()->find($id);
+
+        // Stores the content of the request body in a variable.
+        $dataToUpdate = $request->all();
+        // Display then die : displays information then stop code execution. Equal to console.log. ONLY FOR
+        // DEVELOPMENT !!!
+        //dd($dataToUpdate);
+
+        // If the request contains a file, check its validity then store it in the storage folder before sending it
+        // to the DB.
+        if ($request->hasFile('icon_url')) {
+            if ($request->file('icon_url')->isValid()) {
+
+                // Gets sent file
+                $file = $request->file('icon_url');
+
+                // Removes whitespaces and get file name
+                $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
+
+                // Puts the file in the storage directory
+                Storage::putFileAs('public/advantages', $file, $file_name);
+
+                // Store the old icon's url in a variable
+                $old_icon_url = $advantage->icon_url;
+
+                // Store the new icon's url in a variable
+                $new_icon_url = 'storage/advantages/' . $file_name;
+
+                // Indicates the column to be modified in DB and what is stored in it
+                $dataToUpdate['icon_url'] = $new_icon_url;
+
+                // Modifies the file path in order to allow the server to find the icon in the storage/public/advantages
+                $filepath = str_replace('storage/', 'public/', $old_icon_url);
+
+                // Deletes old video's filepath
+                Storage::delete($filepath);
+            }
+        }
+
+        // Send updated datas to DB
+        $advantage->update($dataToUpdate);
+
+        // Return response content in JSON format
+        return response()->json($advantage);
+
     }
+
+
 
     /**
      * Remove the specified resource from storage.

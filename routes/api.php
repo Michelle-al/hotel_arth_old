@@ -44,7 +44,7 @@ Route::post('home/room_category/{id}', [RoomCategoryController::class, 'update']
 
 # advantages API routes
 Route::get('/home/advantages', [AdvantageController::class, 'index']);
-Route::post('/home/advantages/{id}', [AdvantageController::class, 'update ']);
+Route::post('/home/advantages/{id}', [AdvantageController::class, 'update']);
 //Route::delete('/home/advantages/{id}', [AdvantageController::class, 'destroy']);
 
 # Customers API routes

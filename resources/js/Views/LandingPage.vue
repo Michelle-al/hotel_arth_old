@@ -4,6 +4,7 @@
     <div class="max-w-screen-xl lg:mx-auto">
         <VideoSection />
         <RoomCategories />
+        <Advantages />
     </div>
 </template>
 
