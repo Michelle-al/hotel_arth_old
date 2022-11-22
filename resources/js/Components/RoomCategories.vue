@@ -1,10 +1,10 @@
 <template>
-    <div class="flex flex-col lg:bg-arth-dark-blue flex-items-center">
-        <h1 class="p-12 text-white font-semibold">Nos chambres</h1>
+    <div class="md:mt-20 flex flex-col lg:bg-arth-dark-blue flex-items-center">
+        <h1 class="p-12 lg:text-white font-semibold uppercase">Nos chambres</h1>
          <div v-for="category in roomCategories" :key="category.id">
              <Room :room="category"/>
          </div>
-        <div class="p-8 flex">
+        <div class="p-12 flex">
             <button class="mt-0">Réserver</button>
         </div>
     </div>

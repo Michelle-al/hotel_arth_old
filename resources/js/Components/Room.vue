@@ -11,7 +11,7 @@
             <p>{{room.description_french}}</p>
             <button v-if="room.id == 1" class="border-arth-yellow">Découvrir</button>
             <button v-if="room.id == 2" class="border-arth-light-blue">Découvrir</button>
-            <button v-else class="border-arth-dark-blue">Découvrir</button>
+            <button v-if="room.id == 3" class="border-arth-dark-blue">Découvrir</button>
         </div>
     </div>
 
