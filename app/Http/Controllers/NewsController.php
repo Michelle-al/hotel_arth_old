@@ -6,6 +6,7 @@ use App\Http\Resources\NewsResource;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class NewsController extends Controller
 {
@@ -54,17 +55,6 @@ class NewsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\News  $news
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(News $news)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -75,6 +65,17 @@ class NewsController extends Controller
     {
         $resource = NewsResource::make(News::findOrFail($id));
 
+        /*        $validator = Validator::make($request->all(), [
+            'url' => 'nullable|file',
+            'title' => 'nullable|json',
+            "description" => 'nullable|json'
+        ]);
+
+        /*dd($request->validate([
+            'url' => 'nullable|file',
+            'title' => 'nullable|json',
+            "description" => 'nullable|json'
+        ]));*/
 
         if ($request->hasFile('url')) {
             // Getting the sent file
@@ -91,16 +92,10 @@ class NewsController extends Controller
         }
 
         // Updating database data : array_filter discard all empty fields beforehand.
-        $resource->update(
-            array_filter(
-                [
-                    'title' => $resource->setTranslation('title', $request->title),
-                    'description' => $resource->setTranslation('description', $request-> subtitle),
-                ]
-            )
-        );
-
-        dd($resource);
+        $request->title = json_decode($request->title, true);
+        $request->description = json_decode($request->description, true);
+        dd($request->all(), $request->url);
+        $resource->update($request->all());
     }
 
     /**
