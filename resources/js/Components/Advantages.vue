@@ -1,5 +1,5 @@
 <template>
-    <div  class="flex flex-wrap">
+    <div  class="flex flex-wrap" id="advantages">
         <div v-for="advantage in advantages" :key="advantage.id" class="w-1/3">
             <AdvantageItem :advantage="advantage" />
         </div>
