@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             PresentationVideoSeeder::class,
             PromotionalBannerSeeder::class,
             RoomCategorySeeder::class,
-            // AvantagesSeeder::class,
+            AdvantageSeeder::class,
             CustomerSeeder::class,
             ReviewSeeder::class,
 

@@ -48,5 +48,5 @@ p{
 }
 
 button {
-    @apply bg-white mt-8 px-4 py-2 border-2 mx-auto;
+    @apply bg-white px-4 py-2 border-2 mx-auto;
 }

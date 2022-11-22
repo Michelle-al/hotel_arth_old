@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- TODO Meta descrition--}}
     <title>Hôtel Arth</title>
     <link rel="icon" href="{{ asset('storage/pictures/Logo.svg') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

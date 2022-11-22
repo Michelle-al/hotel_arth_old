@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
     .section__video {
-        @apply flex flex-col lg:mx-6 my-6;
+        @apply flex flex-col lg:mx-6 my-6 lg:mb-10;
     }
 
     .section__video-content {
@@ -60,7 +60,7 @@ export default {
     }
 
     .video__button-reservation {
-        /*@apply mx-auto*/
+        @apply my-10 hover:bg-arth-grey
     }
 
 </style>
