@@ -21,11 +21,11 @@
 
                 <!-- START - Nav links for large devices -->
                 <PopoverGroup as="nav" class="hidden space-x-6 lg:space-x-10 lg:flex items-center ml-0">
-                    <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Nos chambres</a>
-                    <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Nos avantages</a>
-                    <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Avis de nos
+                    <a href="#rooms" class="font-medium text-gray-500 hover:text-gray-900">Nos chambres</a>
+                    <a href="#advantages" class="font-medium text-gray-500 hover:text-gray-900">Nos avantages</a>
+                    <a href="#reviews" class="font-medium text-gray-500 hover:text-gray-900">Avis de nos
                         clients</a>
-                    <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Notre actualité</a>
+                    <a href="#news" class="font-medium text-gray-500 hover:text-gray-900">Notre actualité</a>
                 </PopoverGroup>
                 <!-- STOP - Nav links for large devices -->
 
