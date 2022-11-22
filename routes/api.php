@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvantageController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\PromotionalBannerController;
@@ -41,13 +42,10 @@ Route::post('/home/presentation_video/{id}', [PresentationVideoController::class
 Route::get('/home/room_category', [RoomCategoryController::class, 'index']);
 Route::post('home/room_category/{id}', [RoomCategoryController::class, 'update']);
 
-
-
-# Avantages API routes
-
-
-
-
+# advantages API routes
+Route::get('/home/advantages', [AdvantageController::class, 'index']);
+Route::post('/home/advantages/{id}', [AdvantageController::class, 'update ']);
+//Route::delete('/home/advantages/{id}', [AdvantageController::class, 'destroy']);
 
 # Customers API routes
 Route::post('/home/customers', [CustomerController::class, 'create']);
