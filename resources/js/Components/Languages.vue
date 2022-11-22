@@ -1,6 +1,6 @@
 <template>
     <div class="section__navbar">
-        <button @click="isFrench = !isFrench">
+        <button @click="isFrench = !isFrench" class="navbar__button">
             <img v-if="isFrench"
                  :src="french.image.source"
                  class="navbar__flag navbar__flag--french"
@@ -44,13 +44,22 @@ export default {
 </script>
 
 <style scoped>
-/*.section__navbar {*/
-/*    !*@apply w-1/12;*!*/
-/*}*/
+
+.section__navbar {
+    /*@apply w-1/12;*/
+}
+.navbar__button{
+    @apply px-6 py-2;
+}
+
 .navbar__flag {
     @apply mt-0 max-h-3 h-auto;
 }
 .navbar__flag--french {
+    /*@apply ;*/
+}
 
+.navbar__flag--english {
+    /*@apply ;*/
 }
 </style>
