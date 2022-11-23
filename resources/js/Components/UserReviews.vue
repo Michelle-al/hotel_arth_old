@@ -60,7 +60,8 @@ export default {
     // computed: {
     //     slideNumber() {
     //         return this.reviews.id + 1
-    //     }
+    //     },
+
     // },
     async mounted() {
         const response = await axios.get('api/home/reviews');

@@ -2,24 +2,22 @@
         <div class="review__card card">
             <div class="review__card--header">
                 <figure>
-                    <img src="https://placeimg.com/90/90/arch" alt="Shoes" />
-<!--                    <img :src="review.customer_id.avatar" alt="customer_avatar" />-->
-<!--                    <img :src="/storage/avatars/avatar1.png" alt="customer_avatar" />-->
+                    <img :src="review.customer.avatar" class="card__header--img" alt="customer_avatar" />
                 </figure>
                 <div class="card__header--text">
                     {{ review.rating }}
-                    <h2>Nom</h2>
+                    <p>{{ review.customer.firstname}} {{review.customer
+                        .lastname}}</p>
                 </div>
             </div>
             <div class="card-body">
-                <h2 class="card-title">
+                <p class="card-title">
                     {{ review.title }}
-                </h2>
+                </p>
                 <p>{{ formatDate }}</p>
                 <p>{{  review.body }}</p>
                 <div class="card-actions justify-end">
-                    <div class="badge badge-secondary">NEW</div>
-                    <div class="badge badge-outline">Products</div>
+                    <div class="badge">Client vérifié</div>
                 </div>
             </div>
         </div>
@@ -45,25 +43,41 @@ export default {
         }
     },
     mounted() {
-        console.log(this.review)
+        // console.log(this.review)
     }
 }
 </script>
 
 <style scoped>
     .review__card {
-        @apply w-10/12 h-max bg-base-100 shadow-xl m-10
+        @apply w-11/12 h-max bg-base-100 shadow-xl mx-auto my-8 border border-arth-yellow
     }
 
     .review__card--header {
-        @apply flex justify-between pt-6 px-8
+        @apply flex justify-between pt-6 px-8 space-x-10
+    }
+
+    .card__header--img{
+        @apply h-4/5 w-auto
     }
 
     .card__header--text {
-        @apply flex flex-col justify-items-center
+        @apply flex flex-col justify-items-center justify-evenly
     }
 
-    .card__header--text>h2 {
-        @apply my-0
+    .card__header--text>p {
+        @apply my-0 text-xl
+    }
+
+    .card-body {
+        @apply pt-0
+    }
+
+    .card-title {
+        @apply text-2xl font-bold
+    }
+
+    .badge {
+        @apply uppercase border border-arth-yellow bg-white text-black
     }
 </style>
