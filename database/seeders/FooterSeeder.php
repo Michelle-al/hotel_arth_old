@@ -25,6 +25,11 @@ class FooterSeeder extends Seeder
                 "entry_name" => json_encode(["fr" => "A propos", "en" => "About"]),
                 "url_redirection" => "/about",
             ],
+            [
+                "column_number" => 2,
+                "entry_name" => json_encode(["fr" => "Promotions", "en" => "Sales"]),
+                "url_redirection" => "/sales",
+            ],
         ]);
     }
 }
