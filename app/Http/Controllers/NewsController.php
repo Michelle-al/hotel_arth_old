@@ -65,37 +65,37 @@ class NewsController extends Controller
     {
         $resource = NewsResource::make(News::findOrFail($id));
 
-        /*        $validator = Validator::make($request->all(), [
-            'url' => 'nullable|file',
-            'title' => 'nullable|json',
-            "description" => 'nullable|json'
-        ]);
-
         /*dd($request->validate([
             'url' => 'nullable|file',
             'title' => 'nullable|json',
             "description" => 'nullable|json'
         ]));*/
 
-        if ($request->hasFile('url')) {
+        $validatedData = $request->post();
+
+        if ($request->hasFile('media_url')) {
             // Getting the sent file
-            $file = $request->file('url');
+            $file = $request->file('media_url');
             // Minimal sanitizing of the file name (deleting all whitespace)
             $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
+
+            $validatedData['media_url'] = '/storage/hero/' . $file_name;
+
             // Putting the file in said directory with said filename
             Storage::putFileAs('public/news', $file, $file_name);
-            // Swapping file to path
-            $request->url = '/storage/news/' . $file_name;
             // Modifies the file path in order to find it in the storage/public/hero
-            $filepath = str_replace('storage/', 'public/', $resource->url);
-            Storage::delete( $filepath );
+            $old_filepath = str_replace('storage/', 'public/', $resource->url);
+            Storage::delete( $old_filepath );
         }
 
-        // Updating database data : array_filter discard all empty fields beforehand.
-        $request->title = json_decode($request->title, true);
-        $request->description = json_decode($request->description, true);
-        dd($request->all(), $request->url);
-        $resource->update($request->all());
+        $resource
+            ->fill($validatedData)
+            ->setTranslations('title', $request->post('title'))
+            ->setTranslations('description', $request->post('description'));
+
+        $resource->update();
+
+        return response()->json($resource);
     }
 
     /**

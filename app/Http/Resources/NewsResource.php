@@ -17,7 +17,7 @@ class NewsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'url' => $this->url,
+            'url' => $this->media_url,
             'title' => $this->getTranslations('title', [App::getLocale()]),
             'description' => $this->getTranslations('description', [App::getLocale()])
         ];

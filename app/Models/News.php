@@ -11,8 +11,7 @@ class News extends Model
     use HasFactory, HasTranslations;
 
     public $translatable = ['title', 'description'];
-
     public $timestamps = true;
-
     public $guarded = [];
+    public $fillable = ['title'];
 }
