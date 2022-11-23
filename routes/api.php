@@ -63,5 +63,5 @@ Route::put('/home/reviews/{id}', [ReviewController::class, 'update']);
 # News
 Route::get('/home/news', [NewsController::class, 'index']);
 Route::post('/home/news/{id}', [NewsController::class, 'update']);
-
+Route::post('/home/news', [NewsController::class, 'store']);
 #Admin API routes
