@@ -1,6 +1,6 @@
 <template>
     <div class="md:mt-20 flex flex-col lg:bg-arth-dark-blue flex-items-center" id="rooms">
-        <h2 class="p-12 lg:text-white font-semibold uppercase">Nos chambres</h2>
+        <h2 class="p-12 lg:text-white lg:font-semibold">Nos chambres</h2>
          <div v-for="category in roomCategories" :key="category.id">
              <Room :room="category"/>
          </div>
