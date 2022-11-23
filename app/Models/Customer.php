@@ -51,12 +51,13 @@ class Customer extends Model
     ];*/
 
 
-    // TODO - Faire la fonction pour récupérer avatar, nom et prénom de l'utilisateur ( Attention : Créer la collection)
+    // TODO - Créer la fonction si nécessaire pour récupérer le/les commentaires d'un utilisateur
     /**
-     * Get the comments for the blog post.
+     * Get the review(s) send by a customer.
      */
-    /*public function review()
+    /*public function reviews()
     {
         return $this->hasMany(Review::class);
     }*/
+
 }
