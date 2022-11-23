@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AdvantageResource;
 use App\Models\Advantage;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Storage;
 
 class AdvantageController extends Controller
@@ -13,9 +15,9 @@ class AdvantageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(): string
+    public function index() : AnonymousResourceCollection
     {
-        return Advantage::all();
+        return AdvantageResource::collection(Advantage::all());
     }
 
     /**
@@ -51,39 +53,26 @@ class AdvantageController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         // Retrieves information stored in DB for video corresponding to the id passed as a parameter of the request.
-        $advantage = Advantage::query()->find($id);
+        $resource = AdvantageResource::make(Advantage::findOrFail($id));
 
         // Stores the content of the request body in a variable.
-        $dataToUpdate = $request->all();
+        $validatedData = $request->post();
         // Display then die : displays information then stop code execution. Equal to console.log. ONLY FOR
         // DEVELOPMENT !!!
         //dd($dataToUpdate);
 
         // If the request contains a file, check its validity then store it in the storage folder before sending it
         // to the DB.
-        if ($request->hasFile('icon_url')) {
-            if ($request->file('icon_url')->isValid()) {
-
+        if ($request->hasFile('icon_url') && $request->file('icon_url')->isValid()) {
                 // Gets sent file
                 $file = $request->file('icon_url');
 
@@ -93,28 +82,26 @@ class AdvantageController extends Controller
                 // Puts the file in the storage directory
                 Storage::putFileAs('public/advantages', $file, $file_name);
 
-                // Store the old icon's url in a variable
-                $old_icon_url = $advantage->icon_url;
-
                 // Store the new icon's url in a variable
-                $new_icon_url = 'storage/advantages/' . $file_name;
-
-                // Indicates the column to be modified in DB and what is stored in it
-                $dataToUpdate['icon_url'] = $new_icon_url;
+                $validatedData['icon_url'] = 'storage/advantages/' . $file_name;
 
                 // Modifies the file path in order to allow the server to find the icon in the storage/public/advantages
-                $filepath = str_replace('storage/', 'public/', $old_icon_url);
+                $old_filepath = str_replace('storage/', 'public/', $old_icon_url);
 
                 // Deletes old video's filepath
-                Storage::delete($filepath);
-            }
+                Storage::delete($old_filepath);
         }
 
         // Send updated datas to DB
-        $advantage->update($dataToUpdate);
+        $resource
+            ->fill($validatedData)
+            ->setTranslations('title', $request->post('title'))
+            ->setTranslations('description', $request->post('subtitle'));
+
+        $resource->update();
 
         // Return response content in JSON format
-        return response()->json($advantage);
+        return response()->json($resource);
 
     }
 
