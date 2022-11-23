@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Review extends Model
 {
@@ -21,4 +22,14 @@ class Review extends Model
         'body',
         'is_displayed',
     ];
+
+
+    /**
+     * Get the content of the table customers where customer_id = customer.id
+     */
+    public function customer(): HasOne
+    {
+        return $this->hasOne(Customer::class, 'id', 'customer_id');
+    }
+
 }
