@@ -22,9 +22,6 @@
 <script>
     export default {
         name: 'Room',
-        props: ['room'],
-        mounted() {
-            console.log(this.room)
-        }
+        props: ['room']
     }
 </script>

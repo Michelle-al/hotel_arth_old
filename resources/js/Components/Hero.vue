@@ -19,7 +19,9 @@
         },
         async mounted() {
             const response = await axios.get('api/home/hero');
-            this.hero = {...response.data};
+            console.log(response.data);
+            this.hero = {...response.data['data']};
+            console.log(this.hero);
         }
     }
 </script>

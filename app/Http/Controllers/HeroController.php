@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\HeroResource;
+use App\Http\Resources\NewsResource;
 use App\Models\Hero;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -16,51 +19,9 @@ class HeroController extends Controller
      */
     public function index()
     {
-        return Hero::all()->first();
+        return HeroResource::make(Hero::first());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Hero  $hero
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Hero $hero)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Hero  $hero
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Hero $hero)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -68,9 +29,11 @@ class HeroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, int $id)
     {
-        $hero = Hero::all()->first();
+        $resource = HeroResource::make(Hero::findOrFail($id));
+
+        $validatedData = $request->post();
 
         if ($request->hasFile('media_url')) {
              // Getting the sent file
@@ -80,24 +43,21 @@ class HeroController extends Controller
             // Putting the file in said directory with said filename
             Storage::putFileAs('public/hero', $file, $file_name);
             // Swapping file to path
-            $request->media_url = '/storage/hero/' . $file_name;
+            $validatedData['media_url'] = '/storage/hero/' . $file_name;
             // Modifies the file path in order to find it in the storage/public/hero
-            $filepath = str_replace('storage/', 'public/', $hero->media_url);
+            $filepath = str_replace('storage/', 'public/', $resource->media_url);
             Storage::delete( $filepath );
         }
 
         // Updating database data : array_filter discard all empty fields beforehand.
-        $hero->update(
-            array_filter(
-                [
-            'title' => $request->title,
-            'title_english' => $request->title_english,
-            'media_url' => $request->media_url,
-            'subtitle' => $request-> subtitle,
-            'subtitle_english' => $request->subtitle_english
-                ]
-            )
-        );
+        $resource
+            ->fill($validatedData)
+            ->setTranslations('title', $request->post('title'))
+            ->setTranslations('subtitle', $request->post('subtitle'));
+
+        $resource->update();
+
+        return response()->json();
     }
 
     /**
