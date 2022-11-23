@@ -24,7 +24,7 @@
         name: 'Room',
         props: ['room'],
         mounted() {
-            console.log(this.room)
+            // console.log(this.room)
         }
     }
 </script>
