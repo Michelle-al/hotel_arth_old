@@ -15,11 +15,9 @@
                 <h2 class="card-title">
                     {{ review.title }}
                 </h2>
-                <p>{{ review.created_at }}</p>
+                <p>{{ formatDate }}</p>
                 <p>{{  review.body }}</p>
                 <div class="card-actions justify-end">
-<!--                    <p>{{ formatDate }}</p>-->
-
                     <div class="badge badge-secondary">NEW</div>
                     <div class="badge badge-outline">Products</div>
                 </div>
@@ -42,8 +40,8 @@ export default {
     },
     computed: {
         formatDate() { // TODO - BUGFIX Ne fonctionne pas
-            const date = this.review.created_at
-            return date.toDateString()
+            const date = new Date(this.review.created_at)
+            return date.toLocaleDateString()
         }
     },
     mounted() {
