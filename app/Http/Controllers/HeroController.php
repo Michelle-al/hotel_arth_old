@@ -45,8 +45,8 @@ class HeroController extends Controller
             // Swapping file to path
             $validatedData['media_url'] = '/storage/hero/' . $file_name;
             // Modifies the file path in order to find it in the storage/public/hero
-            $filepath = str_replace('storage/', 'public/', $resource->media_url);
-            Storage::delete( $filepath );
+            $old_filepath = str_replace('storage/', 'public/', $resource->media_url);
+            Storage::delete( $old_filepath );
         }
 
         // Updating database data : array_filter discard all empty fields beforehand.
