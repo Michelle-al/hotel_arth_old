@@ -73,7 +73,7 @@ export default {
 
 <style scoped>
 .section__reviews {
-    @apply flex flex-col mx-auto
+    @apply flex flex-col mx-auto my-10
 }
 .reviews__title {
     /*@apply;*/
