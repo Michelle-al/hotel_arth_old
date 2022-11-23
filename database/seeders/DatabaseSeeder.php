@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             AdvantageSeeder::class,
             CustomerSeeder::class,
             ReviewSeeder::class,
-
+            NewsSeeder::class
         ]);
     }
 }

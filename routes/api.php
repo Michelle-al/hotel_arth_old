@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdvantageController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PromotionalBannerController;
 use App\Http\Controllers\PresentationVideoController;
 use App\Http\Controllers\ReviewController;
@@ -58,5 +59,9 @@ Route::post('/home/reviews', [ReviewController::class, 'create']);
 Route::get('/home/reviews', [ReviewController::class, 'index']);
 Route::put('/home/reviews/{id}', [ReviewController::class, 'update']);
 //Route::delete('/home/reviews/{id}', [ReviewController::class, 'destroy']);
+
+# News
+Route::get('/home/news', [NewsController::class, 'index']);
+Route::post('/home/news/{id}', [NewsController::class, 'update']);
 
 #Admin API routes
