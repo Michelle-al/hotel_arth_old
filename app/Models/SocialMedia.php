@@ -22,4 +22,6 @@ class SocialMedia extends Model
      * @var array
      */
     protected $guarded = [];
+
+    protected $table= "social_medias";
 }
