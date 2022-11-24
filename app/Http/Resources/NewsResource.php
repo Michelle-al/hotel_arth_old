@@ -18,8 +18,8 @@ class NewsResource extends JsonResource
         return [
             'id' => $this->id,
             'url' => $this->media_url,
-            'title' => $this->getTranslations('title', [App::getLocale()]),
-            'description' => $this->getTranslations('description', [App::getLocale()])
+            'title' => $this->getTranslation('title', App::getLocale()),
+            'description' => $this->getTranslation('description', App::getLocale())
         ];
     }
 
