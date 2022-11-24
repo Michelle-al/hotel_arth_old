@@ -16,9 +16,9 @@ class PresentationVideoSeeder extends Seeder
     {
 
         DB::table('presentation_videos') -> insert([
-            "title" => "Séjour de rêve",
-            "title_english" => "Dream stay",
-            "description" => "Découvrez les délices de notre chef au restaurant de l'hôtel Arth.",
+            "title" => "Une expérience unique dans une ambiance relaxante",
+            "title_english" => "A unique experience in a relaxing atmosphere",
+            "description" => "Découvrez les délices de notre Chef au restaurant de l'hôtel Arth.",
             "description_english" => "Discover the delights of our chef at the restaurant of the Hotel Arth.",
             "video_url" => "storage/video/presentation_video.mp4",
         ]);
