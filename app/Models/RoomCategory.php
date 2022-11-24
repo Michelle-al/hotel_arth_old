@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class RoomCategory extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
 //    To stop Laravel from creating updated_at and created_at fields while populating the db with a seeder
     public $timestamps = false;
 
-    public $fillable = ['url', 'title_french', 'title_english', 'description_french', 'description_english'];
+    public $translatable = ['title', 'description'];
+
+    public $fillable = ['media_url', 'title', 'description'];
 }

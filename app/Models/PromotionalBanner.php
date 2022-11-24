@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class PromotionalBanner extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     /**
      * Indicates if the model should be timestamped.
@@ -16,6 +17,8 @@ class PromotionalBanner extends Model
      */
     public $timestamps = false;
 
+    public $translatable = ['text'];
+    public $fillable = ['text'];
     /**
      * The attributes that aren't mass assignable.
      *

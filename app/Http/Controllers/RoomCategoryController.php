@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PresentationVideo;
+use App\Http\Resources\RoomCategoryResource;
 use App\Models\RoomCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +16,7 @@ class RoomCategoryController extends Controller
      */
     public function index()
     {
-        return RoomCategory::all();
+        return RoomCategoryResource::collection(RoomCategory::all());
     }
 
 
@@ -29,17 +29,15 @@ class RoomCategoryController extends Controller
     public function update(Request $request, int $id)
     {
         // Retrieves information stored in DB for video corresponding to the id passed as a parameter of the request.
-        $roomCategory = RoomCategory::query()->find($id);
+        $resource = RoomCategoryResource::make(RoomCategory::findOrFail($id));
         // Stores the content of the request body in a variable.
-        $dataToUpdate = $request->all();
+        $validatedData = $request->post();
 
         // If the request contains a file, check its validity then store it in the storage folder before sending it
         // to the DB.
-        if ($request->hasFile('url')) {
-            if ($request->file('url')->isValid()) {
-
+        if ($request->hasFile('media_url') && $request->file('url')->isValid()) {
                 // Gets sent file
-                $file = $request->file('url');
+                $file = $request->file('media_url');
 
                 // Removes whitespaces
                 $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
@@ -47,28 +45,26 @@ class RoomCategoryController extends Controller
                 // Puts the file in the storage directory
                 Storage::putFileAs('public/room_categories', $file, $file_name);
 
-                // Store the old video's url in a variable
-                $oldVideoUrl = $roomCategory->url;
-
-                // Store the new video's url in a variable
-                $newRoomUrl = '/storage/room_categories/' . $file_name;
-
                 // Indicates the column to be modified in DB and what is stored in it
-                $dataToUpdate['url'] = $newRoomUrl;
+                $validatedData['media_url'] = '/storage/room_categories/' . $file_name;
 
                 // Modifies the file path in order to allow the server to find the video in the storage/public/hero
-                $filepath = str_replace('storage/', 'public/', $oldVideoUrl);
+                $old_filepath = str_replace('storage/', 'public/', $resource->media_url);
 
                 // Deletes old video's filepath
-                Storage::delete($filepath);
-            }
+                Storage::delete($old_filepath);
         };
 
         // Send updated datas to DB
-        $roomCategory->update($dataToUpdate);
+        $resource
+        ->fill($validatedData)
+        ->setTranslations('title', $request->post('title'))
+        ->setTranslations('description', $request->post('description'));
+
+        $resource->update();
 
         // Return response content in JSON format
-        return response()->json($roomCategory);
+        return response()->json($resource);
     }
 
 }

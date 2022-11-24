@@ -34,13 +34,12 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'media_url' => 'required|file',
             'title' => 'required|array',
             'description' => 'required|array'
         ]);
-
-        dd($validatedData);
+        $validatedData = $validator->validate();
 
         if ($request->hasFile('media_url')) {
             // Getting the sent file
@@ -56,10 +55,12 @@ class NewsController extends Controller
         }
 
         $news = new News();
+        $news->media_url = $validatedData['media_url'];
         $news
             ->fill($validatedData)
             ->setTranslations('title', $request->post('title'))
-            ->setTranslations('description', $request->post('description'));
+            ->setTranslations('description', $request->post('description'))
+            ->save();
 
         return new NewsResource($news);
     }

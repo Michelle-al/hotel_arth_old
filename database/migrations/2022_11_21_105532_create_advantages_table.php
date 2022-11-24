@@ -16,10 +16,8 @@ class CreateAdvantagesTable extends Migration
         Schema::create('advantages', function (Blueprint $table) {
             $table->id();
             $table->string('icon_url');
-            $table->string('title_french');
-            $table->string('title_english');
-            $table->string('description_french');
-            $table->string('description_english');
+            $table->json('title');
+            $table->json('description');
         });
     }
 
