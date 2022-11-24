@@ -3,6 +3,7 @@
         <h2 class="reviews__title">Voyez ce que disent nos clients</h2>
         <div class="reviews__cards" >
             <div v-for="review in reviews" :key="review.id">
+<!--                <div  v-if="review.is_displayed == 1"></div>-->
                 <UserReviewItem :review="review"/>
             </div>
         </div>
@@ -73,7 +74,7 @@ export default {
 
 <style scoped>
 .section__reviews {
-    @apply flex flex-col mx-auto my-10 py-10 lg:bg-arth-light-blue
+    @apply flex flex-col mx-auto my-10 py-10 md:bg-arth-light-blue
 }
 .reviews__title {
     /*@apply;*/
