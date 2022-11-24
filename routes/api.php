@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\AdvantageController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PromotionalBannerController;
 use App\Http\Controllers\PresentationVideoController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomCategoryController;
+use App\Http\Controllers\SocialMediaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -64,4 +66,17 @@ Route::put('/home/reviews/{id}', [ReviewController::class, 'update']);
 Route::get('/home/news', [NewsController::class, 'index']);
 Route::post('/home/news/{id}', [NewsController::class, 'update']);
 Route::post('/home/news', [NewsController::class, 'store']);
+
+# Footer API routes
+Route::get('/home/footer', [FooterController::class, 'index']);
+Route::post('/home/footer/{id}', [FooterController::class, 'update']);
+Route::delete('/home/footer/{id}', [FooterController::class, 'destroy']);
+Route::post('/home/footer', [FooterController::class, 'store']);
+
+# Social Media API routes
+Route::get('/home/social_medias', [SocialMediaController::class, 'index']);
+Route::post('/home/social_medias/{id}', [SocialMediaController::class, 'update']);
+Route::delete('/home/social_medias/{id}', [SocialMediaController::class, 'destroy']);
+Route::post('/home/social_medias', [SocialMediaController::class, 'store']);
+
 #Admin API routes

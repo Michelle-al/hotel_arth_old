@@ -17,7 +17,7 @@
                 <p>{{ formatDate }}</p>
                 <p>{{  review.body }}</p>
                 <div class="card-actions justify-end">
-                    <div class="badge">Client vérifié</div>
+                    <div class="badge"><p>Client vérifié</p></div>
                 </div>
             </div>
         </div>
@@ -78,6 +78,10 @@ export default {
     }
 
     .badge {
-        @apply uppercase border border-arth-yellow bg-white text-black
+        @apply  border border-arth-yellow bg-white m-2 p-4 uppercase text-black
+    }
+
+    .badge>p {
+        /*@apply */
     }
 </style>

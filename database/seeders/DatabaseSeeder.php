@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             AdvantageSeeder::class,
             CustomerSeeder::class,
             ReviewSeeder::class,
-            NewsSeeder::class
+            NewsSeeder::class,
+            SocialMediaSeeder::class,
+            FooterSeeder::class
         ]);
     }
 }

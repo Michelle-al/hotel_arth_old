@@ -1,13 +1,13 @@
 <template>
-    <div class="md:mt-24 md:px-12" id="advantages">
-        <h2>Ce que l'Hôtel Arth vous propose</h2>
-        <div  class="grid md:grid-cols-2 lg:grid-cols-3 md:gap-4">
+    <div class="md:mt-24 md:mb-24 md:px-12" id="advantages">
+        <h2 class="mx-4">Ce que l'Hôtel Arth vous propose</h2>
+        <div  class="grid md:grid-cols-2 lg:grid-cols-3 md:gap-4 mb-8">
             <div v-for="advantage in advantages" :key="advantage.id">
                 <AdvantageItem :advantage="advantage" />
             </div>
         </div>
         <div class="flex">
-            <button class="border-arth-dark-blue justify-center font-tinos">Réserver</button>
+            <button class="border-arth-dark-blue justify-center font-tinos hover:bg-arth-dark-blue hover:text-white">Réserver</button>
         </div>
     </div>
 
