@@ -5,6 +5,41 @@
                     <img :src="review.customer.avatar" class="card__header--img" alt="customer_avatar" />
                 </figure>
                 <div class="card__header--text">
+                    <div class="header__text--rating" v-if="review.rating == '1'">
+                        <img src="/storage/pictures/Star_full.png" alt="">
+                        <img src="/storage/pictures/Star_empty.png" alt="">
+                        <img src="/storage/pictures/Star_empty.png" alt="">
+                        <img src="/storage/pictures/Star_empty.png" alt="">
+                        <img src="/storage/pictures/Star_empty.png" alt="">
+                    </div>
+                    <div class="header__text--rating" v-if="review.rating == '2'">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                    </div>
+                    <div class="header__text--rating" v-if="review.rating == '3'">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                    </div>
+                    <div class="header__text--rating" v-if="review.rating == '4'">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                    </div>
+                    <div class="header__text--rating" v-if="review.rating == '5'">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                    </div>
                     {{ review.rating }}
                     <p>{{ review.customer.firstname}} {{review.customer
                         .lastname}}</p>
@@ -27,13 +62,19 @@
 export default {
     data() {
         return {
-            reviews: {}
+            reviews: {},
+
         }
     },
     props:{
         review: {
             type: Object,
             default: () => {}
+        }
+    },
+    methods: {
+        addStars() {
+
         }
     },
     computed: {
@@ -67,6 +108,10 @@ export default {
 
     .card__header--text>p {
         @apply my-0 text-xl
+    }
+
+    .header__text--rating {
+        @apply flex
     }
 
     .card-body {
