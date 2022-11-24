@@ -40,7 +40,6 @@ import { XMarkIcon } from '@heroicons/vue/24/outline'
         methods: {
             closeBanner (){
                 this.close = true
-                console.log(this.close)
             }
         }
 
