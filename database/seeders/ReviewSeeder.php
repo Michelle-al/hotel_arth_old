@@ -26,7 +26,7 @@ class ReviewSeeder extends Seeder
             'customer_id' => random_int(1, 100),
             'rating' => random_int(1,5),
             'title' => Str::random(20),
-            'body' => Str::words(Str::random(10), 50),
+            'body' => Str::words(Str::random(10), 40),
             'is_displayed' => random_int(0, 1),
         //TODO - Après les tests remettre is_displayed à false (0) par défaut pour les vrais avis clients.
         ]);*/

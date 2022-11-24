@@ -65,6 +65,7 @@ Route::put('/home/reviews/{id}', [ReviewController::class, 'update']);
 # News
 Route::get('/home/news', [NewsController::class, 'index']);
 Route::post('/home/news/{id}', [NewsController::class, 'update']);
+Route::post('/home/news', [NewsController::class, 'store']);
 
 # Footer API routes
 Route::get('/home/footer', [FooterController::class, 'index']);

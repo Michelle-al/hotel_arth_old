@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReviewResource;
 use App\Models\Review;
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
@@ -15,8 +16,13 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return Review::all();
+        return ReviewResource::collection(
+            Review::query()
+                ->with('customer')
+                ->get()
+        );
     }
+    // query() method allows to pass other methods (ex: relation with another table) before launching the get() request
 
     /**
      * Show the form for creating a new resource.

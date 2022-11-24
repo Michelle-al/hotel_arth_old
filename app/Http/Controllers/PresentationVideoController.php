@@ -100,7 +100,7 @@ class PresentationVideoController extends Controller
                 $old_video_url = $presentation_video->video_url;
 
                 // Store the new video's url in a variable
-                $new_video_url = '/storage/presentation_video/' . $file_name;
+                $new_video_url = 'storage/presentation_video/' . $file_name;
 
                 // Indicates the column to be modified in DB and what is stored in it
                 $dataToUpdate['video_url'] = $new_video_url;
