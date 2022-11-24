@@ -79,7 +79,7 @@
                         <div>
                             <a href="#"
                                 class="flex w-full items-center justify-center  border border-transparent bg-arth-dark-blue hover:bg-white hover:text-black hover:border-arth-dark-blue my-6 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700">Réserver</a>
-                            <p class="mt-6 text-center   font-medium text-gray-500">
+                            <p class="mt-6 text-center font-medium text-gray-500">
                                 J'ai déjà un compte ?
                                 {{ ' ' }}
                                 <a href="#" class="text-arth-dark-blue hover:text-arth-green">Me connecter</a>

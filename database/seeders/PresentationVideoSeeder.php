@@ -16,12 +16,10 @@ class PresentationVideoSeeder extends Seeder
     {
 
         DB::table('presentation_videos') -> insert([
-            "title" => "Séjour de rêve",
-            "title_english" => "Dream stay",
-            "description" => "Découvrez les délices de notre chef au restaurant de l'hôtel Arth.",
-            "description_english" => "Discover the delights of our chef at the restaurant of the Hotel Arth.",
+            "title" => json_encode(["fr" => "Séjour de rêve", "en" => "Dream stay"]),
+            "description" => json_encode(["fr" => "Découvrez les délices de notre chef au restaurant de l'hôtel Arth.",
+            "en" => "Discover the delights of our chef at the restaurant of the Hotel Arth."]),
             "video_url" => "storage/video/presentation_video.mp4",
         ]);
-    //        \App\Models\PresentationVideo::factory()->create();
     }
 }

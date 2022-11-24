@@ -16,9 +16,11 @@ class CustomerResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'avatar' => $this->avatar, // Indicates the fields of the table customers we want to retrieve.
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
+
         ];
     }
 }

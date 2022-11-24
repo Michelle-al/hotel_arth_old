@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PromotionalBannerResource;
 use App\Models\PromotionalBanner;
 use Illuminate\Http\Request;
 
@@ -14,51 +15,8 @@ class PromotionalBannerController extends Controller
      */
     public function index()
     {
-        return PromotionalBanner::all()->first();
+        return PromotionalBannerResource::make(PromotionalBanner::first());
 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -70,24 +28,13 @@ class PromotionalBannerController extends Controller
     public function update(Request $request, $id)
     {
         //Get the data from the DB
-        $banner =  PromotionalBanner::query()->find($id);
+        $resource =  PromotionalBannerResource::make(PromotionalBanner::findOrFail($id));
 
         // Update the data in the DB
-        $banner->update($request->all());
+        $resource->update($request->all());
 
         // Return the result of the response in JSON
-        return response()->json($banner);
+        return response()->json($resource);
     }
-        //dd($request);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

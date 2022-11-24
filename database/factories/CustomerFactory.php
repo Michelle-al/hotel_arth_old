@@ -24,7 +24,6 @@ class CustomerFactory extends Factory
             'password' => $this->faker->password(),
 //            'remember_token' => Str::random(10), // TODO - Enable ?
 
-
         ];
     }
 

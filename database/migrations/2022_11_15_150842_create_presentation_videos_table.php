@@ -16,10 +16,8 @@ class CreatePresentationVideosTable extends Migration
         Schema::create('presentation_videos', function (Blueprint $table) {
             $table->id()->nullable(false);
             $table->string('video_url')->nullable(false);
-            $table->string('title')->nullable(false);
-            $table->string('title_english')->nullable(false);
-            $table->mediumText('description')->nullable(false);
-            $table->mediumText('description_english')->nullable(false);
+            $table->json('title')->nullable(false);
+            $table->json('description')->nullable(false);
         });
     }
 
