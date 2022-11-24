@@ -40,7 +40,7 @@
                         <img src="storage/pictures/Star_full.png" alt="">
                         <img src="storage/pictures/Star_full.png" alt="">
                     </div>
-                    {{ review.rating }}
+<!--                    {{ review.rating }}-->
                     <p>{{ review.customer.firstname}} {{review.customer
                         .lastname}}</p>
                 </div>

@@ -73,7 +73,7 @@ export default {
 
 <style scoped>
 .section__reviews {
-    @apply flex flex-col mx-auto my-10
+    @apply flex flex-col mx-auto my-10 py-10 lg:bg-arth-light-blue
 }
 .reviews__title {
     /*@apply;*/
