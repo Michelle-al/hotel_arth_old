@@ -16,8 +16,8 @@ class PresentationVideoSeeder extends Seeder
     {
 
         DB::table('presentation_videos') -> insert([
-            "title" => json_encode(["fr" => "Séjour de rêve", "en" => "Dream stay"]),
-            "description" => json_encode(["fr" => "Découvrez les délices de notre chef au restaurant de l'Hôtel Arth.",
+            "title" => json_encode(["fr" => "Une expérience unique dans une ambiance relaxante", "en" => "A unique experience in a relaxing atmosphere"]),
+            "description" => json_encode(["fr" => "Découvrez les délices de notre Chef au restaurant de l'Hôtel Arth.",
             "en" => "Discover the delights of our chef at the Hotel Arth's restaurant."]),
             "video_url" => "storage/video/presentation_video.mp4",
         ]);
