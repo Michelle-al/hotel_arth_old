@@ -5,7 +5,7 @@
              <Room :room="category"/>
          </div>
         <div class="p-12 flex">
-            <button class="mt-0">Réserver</button>
+            <button class="mt-0 hover:bg-arth-dark-blue hover:text-white">Réserver</button>
         </div>
     </div>
 </template>
