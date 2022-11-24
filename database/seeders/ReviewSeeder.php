@@ -2,14 +2,20 @@
 
 namespace Database\Seeders;
 
+use App\Http\Resources\CustomerResource;
+use App\Models\Customer;
 use App\Models\Review;
 use Faker\Core\Number;
+use Faker\Provider\fr_FR\Text;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ReviewSeeder extends Seeder
 {
+    private $customer;
+    private $faker;
+
     /**
      * Run the database seeds.
      *
@@ -17,19 +23,80 @@ class ReviewSeeder extends Seeder
      */
     public function run(): void
     {
-        Review::factory()
+        /*Review::factory()
             ->count(6)
-            ->create();
+            ->create();*/
 
-        // TODO - Faire corriger le code suivant après intégration des vraies données.
-        /*DB::table('reviews')->insert([
-            'customer_id' => random_int(1, 100),
-            'rating' => random_int(1,5),
-            'title' => Str::random(20),
-            'body' => Str::words(Str::random(10), 40),
-            'is_displayed' => random_int(0, 1),
+        // TODO - Faire corriger le code suivant après intégration des vraies données (customer_id =>).
+        DB::table('reviews')->insert([
+            [
+                'customer_id' => 1,
+                'rating' => random_int(3,5),
+                'title' => json_encode(['fr' => "Un séjour merveilleux", 'en' => "A wonderful stay"]),
+                'body' => json_encode([
+                    'fr' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+                    'en' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "
+                ]),
+                'is_displayed' => 1,
+                "created_at" => date("Y-m-d H:i:s"),
+                "updated_at" => date("Y-m-d H:i:s")
+            ],
+            [
+                'customer_id' => 2,
+                'rating' => random_int(3,5),
+                'title' => json_encode(['fr' => "Ambiance et accueil impeccable !", 'en' => "Impeccable atmosphere and hospitality!"]),
+                'body' => json_encode([
+                    'fr' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+                    'en' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "
+                ]),
+                'is_displayed' => 1,
+                "created_at" => date("Y-m-d H:i:s"),
+                "updated_at" => date("Y-m-d H:i:s")
+            ],
+            [
+                'customer_id' => 3,
+                'rating' => random_int(3,5),
+                'title' => json_encode(['fr' => "J'ai adoré le rooftop !", 'en' => "I loved the rooftop!"]),
+                'body' => json_encode([
+                    'fr' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                    'en' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "]),
+                'is_displayed' => 1,
+                "created_at" => date("Y-m-d H:i:s"),
+                "updated_at" => date("Y-m-d H:i:s")
+            ],
+            [
+                'customer_id' => 4,
+                'rating' => random_int(3,5),
+                'title' => json_encode(['fr' => "Propreté irréprochable", 'en' => "Impeccable cleanliness"]),
+                'body' => json_encode([
+                    'fr' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ", 'en' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "]),
+                'is_displayed' => 1,
+                "created_at" => date("Y-m-d H:i:s"),
+                "updated_at" => date("Y-m-d H:i:s")
+            ],
+            [
+                'customer_id' => 5,
+                'rating' => random_int(3,5),
+                'title' => json_encode(['fr' => "Une suite très confortable", 'en' => "A very comfortable suite"]),
+                'body' => json_encode([
+                    'fr' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ", 'en' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "
+                    ]),
+                'is_displayed' => 1,
+                "created_at" => date("Y-m-d H:i:s"),
+                "updated_at" => date("Y-m-d H:i:s")
+            ],[
+                'customer_id' => 6,
+                'rating' => random_int(3,5),
+                'title' => json_encode(['fr' => "Un dîner en amoureux inoubliable", 'en' => "An unforgettable romantic dinner"]),
+                'body' => json_encode(['fr' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ", 'en' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "]),
+                'is_displayed' => 1,
+                "created_at" => date("Y-m-d H:i:s"),
+                "updated_at" => date("Y-m-d H:i:s")
+            ],
+
+
         //TODO - Après les tests remettre is_displayed à false (0) par défaut pour les vrais avis clients.
-        ]);*/
+        ]);
 
 
     }
