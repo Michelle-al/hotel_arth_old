@@ -40,7 +40,7 @@
                         <img src="storage/pictures/Star_full.png" alt="">
                         <img src="storage/pictures/Star_full.png" alt="">
                     </div>
-                    {{ review.rating }}
+<!--                    {{ review.rating }}-->
                     <p>{{ review.customer.firstname}} {{review.customer
                         .lastname}}</p>
                 </div>
@@ -50,7 +50,7 @@
                     {{ review.title }}
                 </p>
                 <p>{{ formatDate }}</p>
-                <p>{{  review.body }}</p>
+                <blockquote>{{  review.body }}</blockquote>
                 <div class="card-actions justify-end">
                     <div class="badge"><p>Client vérifié</p></div>
                 </div>
@@ -91,7 +91,7 @@ export default {
 
 <style scoped>
     .review__card {
-        @apply w-11/12 h-max bg-base-100 shadow-xl mx-auto my-8 border border-arth-yellow
+        @apply w-11/12 h-full bg-base-100 shadow-xl mx-auto my-8 border border-arth-yellow
     }
 
     .review__card--header {
@@ -107,7 +107,7 @@ export default {
     }
 
     .card__header--text>p {
-        @apply my-0 text-xl
+        @apply mt-0 mb-3 text-xl
     }
 
     .header__text--rating {
@@ -115,7 +115,7 @@ export default {
     }
 
     .card-body {
-        @apply pt-0
+        @apply pt-0 h-80
     }
 
     .card-title {

@@ -18,7 +18,7 @@ class HeroSeeder extends Seeder
         DB::table('heroes')->insert([
             'title' => json_encode(["fr" => "Hôtel Arth", "en" => "Hôtel Arth"]),
             'media_url' => '/storage/hero/hotel-room-g512f9f1ee_1920.jpg',
-            'subtitle' => json_encode(["fr" => "Un hôtel où revenir", "en" => "A hotel where you come back"])
+            'subtitle' => json_encode(["fr" => "Un hôtel où revenir", "en" => "An hotel where you come back"])
         ]);
     }
 }
