@@ -85,6 +85,6 @@ export default {
 }
 
 .section__reviews--CTA-SeeMore {
-    @apply border-arth-yellow
+    @apply border-arth-yellow mt-16 hover:bg-arth-yellow hover:text-black
 }
 </style>

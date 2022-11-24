@@ -31,18 +31,19 @@ class ReviewSeeder extends Seeder
         DB::table('reviews')->insert([
             [
                 'customer_id' => 1,
-                'rating' => random_int(3,5),
+                'rating' => random_int(4,5),
                 'title' => "Un séjour merveilleux",
-                'body' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                'body' => "Excellent séjour à l'hôtel Arth lors de notre venue en ce mois de novembre 2022. De l'accueil en passant par la restauration, tout a été parfait. Le personnel est aux petits soins, disponible, très souriant et avenant. Nous le recommandons chaudement.",
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
                 "updated_at" => date("Y-m-d H:i:s")
             ],
             [
                 'customer_id' => 2,
-                'rating' => random_int(3,5),
+                'rating' => random_int(4,5),
                 'title' => "Ambiance et accueil impeccable !",
-                'body' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+                'body' => "Les chambres de luxe sont très bien. Nous étions 5 dont des \"enfants\" de 20,20 et 16 ans. Les
+        hôtesses de la réception sont géniales (nous avons eu besoin d'assistance médicale et elles se sont occupées de tout) . Le restaurant est un ravissement avec une ambiance d'équipe incroyable ! De la bonne humeur à volonté !",
 
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
@@ -50,35 +51,39 @@ class ReviewSeeder extends Seeder
             ],
             [
                 'customer_id' => 3,
-                'rating' => random_int(3,5),
+                'rating' => random_int(4,5),
                 'title' => "J'ai adoré le rooftop !",
-                'body' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                'body' => "L'atmosphère et la décoration du rooftop invitent à la détente. La vue sur le lac est magnifique. Parfait pour une séance de méditation le matin ou pour admirer les étoiles en fin de soirée.",
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
                 "updated_at" => date("Y-m-d H:i:s")
             ],
             [
                 'customer_id' => 4,
-                'rating' => random_int(3,5),
+                'rating' => random_int(4,5),
                 'title' => "Propreté irréprochable",
-                'body' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+                'body' => "Séjour parfait. Chambre et espaces communs calmes, d'une propreté irréprochable.
+                            Petit déjeuner parfait. Dîner au top, sincèrement très bon.
+                            Hall de l hôtel joliment décoré, cheminée superbe.
+                            Personnellement agréable et souriant.
+                            Tout était parfait !",
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
                 "updated_at" => date("Y-m-d H:i:s"),
             ],
             [
                 'customer_id' => 5,
-                'rating' => random_int(3,5),
+                'rating' => random_int(4,5),
                 'title' => "Une suite très confortable",
-                'body' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+                'body' => "L’accueil, l’âme et la décoration de cet endroit sont exceptionnels. Si vous aimez tout ce qui touche à la décoration (intérieur et extérieur)! Vous adorerez cet endroit! Notre suite était si agréable et spacieuse que j'aurais volontier prolongé mon séjour.",
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
                 "updated_at" => date("Y-m-d H:i:s")
             ],[
                 'customer_id' => 6,
-                'rating' => random_int(3,5),
+                'rating' => random_int(4,5),
                 'title' => "Un dîner en amoureux inoubliable",
-                'body' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+                'body' => "Un menu orgasmique à un prix plus que raisonnable. Les qualités organoleptiques sont là. Très bon accueil, serveurs et serveuses agréables. Difficile de choisir tant la carte est alléchante. Très bonne carte des vins. Atmosphère délicieuse en amoureux. Je recommande.",
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
                 "updated_at" => date("Y-m-d H:i:s")
