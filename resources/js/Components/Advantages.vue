@@ -1,6 +1,6 @@
 <template>
     <div class="md:mt-24 md:mb-24 md:px-12" id="advantages">
-        <h2>Ce que l'Hôtel Arth vous propose</h2>
+        <h2 class="mx-4">Ce que l'Hôtel Arth vous propose</h2>
         <div  class="grid md:grid-cols-2 lg:grid-cols-3 md:gap-4 mb-8">
             <div v-for="advantage in advantages" :key="advantage.id">
                 <AdvantageItem :advantage="advantage" />
@@ -26,7 +26,7 @@ export default {
     },
     async mounted() {
         const response = await axios.get('api/home/advantages');
-        this.advantages.push(...response.data) ;
+        this.advantages.push(...response.data['data']) ;
     }
 }
 </script>

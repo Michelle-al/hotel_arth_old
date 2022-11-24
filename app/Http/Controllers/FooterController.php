@@ -11,12 +11,11 @@ class FooterController extends Controller
     /**
      * Display a listing of the resource.
      *
-     *  @return \Illuminate\Http\Response
-     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return FooterResource::make(Footer::all());
+        return FooterResource::collection(Footer::all());
     }
 
     /**

@@ -60,29 +60,31 @@ export default {
     // computed: {
     //     slideNumber() {
     //         return this.reviews.id + 1
-    //     }
+    //     },
+
     // },
     async mounted() {
         const response = await axios.get('api/home/reviews');
-        this.reviews.push(...response.data);
+        // this.reviews.push(...response.data);
+        this.reviews.push(...response.data['data']);
     }
 }
 </script>
 
 <style scoped>
-    .section__reviews {
-        @apply flex flex-col mx-auto
-    }
-    .reviews__title {
-        /*@apply;*/
-    }
+.section__reviews {
+    @apply flex flex-col mx-auto my-10
+}
+.reviews__title {
+    /*@apply;*/
+}
 
-    .reviews__cards {
-        @apply md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 gap-4 mx-auto
-        /*@apply flex flex-col lg:flex-row lg:flex-wrap lg:w-1/3 mx-auto*/
-    }
+.reviews__cards {
+    @apply md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 gap-4 mx-auto
+    /*@apply flex flex-col lg:flex-row lg:flex-wrap lg:w-1/3 mx-auto*/
+}
 
-    .section__reviews--CTA-SeeMore {
-        @apply border-arth-yellow
-    }
+.section__reviews--CTA-SeeMore {
+    @apply border-arth-yellow
+}
 </style>

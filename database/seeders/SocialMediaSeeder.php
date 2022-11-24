@@ -16,15 +16,15 @@ class SocialMediaSeeder extends Seeder
     {
         DB::table('social_medias')->insert([
             [
-                'logo_url' => "storage/socialMedias/logo-instagram.png",
+                'logo_url' => "storage/social_medias/logo-instagram.png",
                 'social_url' => "https://www.instagram.com"
             ],
             [
-                'logo_url' => "storage/socialMedias/logo-facebook.png",
+                'logo_url' => "storage/social_medias/logo-facebook.png",
                 'social_url' => "https://fr-fr.facebook.com/"
             ],
             [
-                'logo_url' => "storage/socialMedias/logo-twitter.png",
+                'logo_url' => "storage/social_medias/logo-twitter.png",
                 'social_url' => "https://twitter.com/"
             ],
 

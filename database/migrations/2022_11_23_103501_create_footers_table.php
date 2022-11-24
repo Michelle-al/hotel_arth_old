@@ -15,7 +15,7 @@ class CreateFootersTable extends Migration
     {
         Schema::create('footers', function (Blueprint $table) {
             $table->id();
-            $table->enum('column_number', ['1', '2']);
+            $table->enum('column_number', ['1', '2', '3']);
             $table->json('entry_name');
             $table->string('url_redirection');
         });

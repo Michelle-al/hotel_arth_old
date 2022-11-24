@@ -29,7 +29,7 @@ export default {
     },
     async mounted() {
         const response = await axios.get('api/home/presentation_video');
-        this.presentationVideo = {...response.data};
+        this.presentationVideo = {...response.data['data']};
     }
 }
 </script>

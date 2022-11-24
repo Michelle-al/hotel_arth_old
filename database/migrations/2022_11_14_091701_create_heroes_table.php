@@ -15,11 +15,10 @@ class CreateHeroesTable extends Migration
     {
         Schema::create('heroes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('title_english');
+            $table->json('title');
             $table->string('media_url');
-            $table->string('subtitle');
-            $table->string('subtitle_english');
+            $table->json('subtitle');
+
         });
     }
 

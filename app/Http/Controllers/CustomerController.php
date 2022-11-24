@@ -76,20 +76,28 @@ class CustomerController extends Controller
 
         if ($request->hasFile('avatar')) {
             if ($request->file('avatar')->isValid()) {
+
                 // Gets sent file
                 $file = $request->file('avatar');
+
                 // Removes whitespaces
                 $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
+
                 // Puts the file in the storage directory
                 Storage::putFileAs('public/avatars', $file, $file_name);
+
                 // Stocker l'url de l'ancienne video dans une variable
                 $old_avatar_url = $customer->avatar_url;
+
                 // Stocker le chemin vers la nouvelle video dans une variable
-                $new_avatar_url = '/storage/avatars/' . $file_name;
+                $new_avatar_url = 'storage/avatars/' . $file_name;
+
                 // indiquer la colonne à modifier en BD et ce qu'on y stocke
                 $dataToUpdate['avatar'] = $new_avatar_url;
+
                 // Modifies the file path in order to allow the server to find the video in the storage/public/hero
                 $filepath = str_replace('storage/', 'public/', $old_avatar_url);
+
                 // Supprimer le lien vers l'ancienne vidéo
                 Storage::delete($filepath);
             }

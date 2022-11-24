@@ -34,7 +34,35 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'media_url' => 'required|file',
+            'title' => 'required|array',
+            'description' => 'required|array'
+        ]);
+        $validatedData = $validator->validate();
+
+        if ($request->hasFile('media_url')) {
+            // Getting the sent file
+            $file = $request->file('media_url');
+            // Minimal sanitizing of the file name (deleting all whitespace)
+            $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
+
+            $validatedData['media_url'] = '/storage/news/' . $file_name;
+
+            // Putting the file in said
+            // directory with said filename
+            Storage::putFileAs('public/news', $file, $file_name);
+        }
+
+        $news = new News();
+        $news->media_url = $validatedData['media_url'];
+        $news
+            ->fill($validatedData)
+            ->setTranslations('title', $request->post('title'))
+            ->setTranslations('description', $request->post('description'))
+            ->save();
+
+        return new NewsResource($news);
     }
 
     /**
@@ -79,7 +107,7 @@ class NewsController extends Controller
             // Minimal sanitizing of the file name (deleting all whitespace)
             $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
 
-            $validatedData['media_url'] = '/storage/hero/' . $file_name;
+            $validatedData['media_url'] = '/storage/news/' . $file_name;
 
             // Putting the file in said directory with said filename
             Storage::putFileAs('public/news', $file, $file_name);

@@ -15,13 +15,10 @@ class HeroSeeder extends Seeder
      */
     public function run()
     {
-        // TODO - Retirer les valeurs "TEST pour Emi" nécessaires pour faire fonctionner la commande php artisan migrate:fresh --seed
         DB::table('heroes')->insert([
-            'title' => Str::random(10),
-            'title_english' => '',
+            'title' => json_encode(["fr" => "Hôtel Arth", "en" => "Hôtel Arth"]),
             'media_url' => '/storage/hero/hotel-room-g512f9f1ee_1920.jpg',
-            'subtitle' => Str::random(20),
-            'subtitle_english' => '',
+            'subtitle' => json_encode(["fr" => "Un hôtel où revenir", "en" => "A hotel where you come back"])
         ]);
     }
 }

@@ -19,7 +19,8 @@ module.exports = {
         fontFamily: {
             'playfair': ['Playfair Display', 'serif'],
             'montserrat': ['Montserrat', 'sans-serif'],
-            'tinos': ['Tinos', 'serif']
+            'tinos': ['Tinos', 'serif'],
+            'poiret': ['Poiret One', 'serif']
         }
     },
   },

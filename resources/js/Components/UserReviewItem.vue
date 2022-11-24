@@ -2,26 +2,57 @@
         <div class="review__card card">
             <div class="review__card--header">
                 <figure>
-                    <img src="https://placeimg.com/90/90/arch" alt="Shoes" />
-<!--                    <img :src="review.customer_id.avatar" alt="customer_avatar" />-->
-<!--                    <img :src="/storage/avatars/avatar1.png" alt="customer_avatar" />-->
+                    <img :src="review.customer.avatar" class="card__header--img" alt="customer_avatar" />
                 </figure>
                 <div class="card__header--text">
+                    <div class="header__text--rating" v-if="review.rating == '1'">
+                        <img src="/storage/pictures/Star_full.png" alt="">
+                        <img src="/storage/pictures/Star_empty.png" alt="">
+                        <img src="/storage/pictures/Star_empty.png" alt="">
+                        <img src="/storage/pictures/Star_empty.png" alt="">
+                        <img src="/storage/pictures/Star_empty.png" alt="">
+                    </div>
+                    <div class="header__text--rating" v-if="review.rating == '2'">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                    </div>
+                    <div class="header__text--rating" v-if="review.rating == '3'">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                    </div>
+                    <div class="header__text--rating" v-if="review.rating == '4'">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_empty.png" alt="">
+                    </div>
+                    <div class="header__text--rating" v-if="review.rating == '5'">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img src="storage/pictures/Star_full.png" alt="">
+                    </div>
                     {{ review.rating }}
-                    <h2>Nom</h2>
+                    <p>{{ review.customer.firstname}} {{review.customer
+                        .lastname}}</p>
                 </div>
             </div>
             <div class="card-body">
-                <h2 class="card-title">
+                <p class="card-title">
                     {{ review.title }}
-                </h2>
-                <p>{{ review.created_at }}</p>
+                </p>
+                <p>{{ formatDate }}</p>
                 <p>{{  review.body }}</p>
                 <div class="card-actions justify-end">
-<!--                    <p>{{ formatDate }}</p>-->
-
-                    <div class="badge badge-secondary">NEW</div>
-                    <div class="badge badge-outline">Products</div>
+                    <div class="badge"><p>Client vérifié</p></div>
                 </div>
             </div>
         </div>
@@ -31,7 +62,8 @@
 export default {
     data() {
         return {
-            reviews: {}
+            reviews: {},
+
         }
     },
     props:{
@@ -40,10 +72,15 @@ export default {
             default: () => {}
         }
     },
+    methods: {
+        addStars() {
+
+        }
+    },
     computed: {
         formatDate() { // TODO - BUGFIX Ne fonctionne pas
-            const date = this.review.created_at
-            return date.toDateString()
+            const date = new Date(this.review.created_at)
+            return date.toLocaleDateString()
         }
     },
     mounted() {
@@ -54,18 +91,42 @@ export default {
 
 <style scoped>
     .review__card {
-        @apply w-10/12 h-max bg-base-100 shadow-xl m-10
+        @apply w-11/12 h-max bg-base-100 shadow-xl mx-auto my-8 border border-arth-yellow
     }
 
     .review__card--header {
-        @apply flex justify-between pt-6 px-8
+        @apply flex justify-between pt-6 px-8 space-x-10
+    }
+
+    .card__header--img{
+        @apply h-4/5 w-auto
     }
 
     .card__header--text {
-        @apply flex flex-col justify-items-center
+        @apply flex flex-col justify-items-center justify-evenly
     }
 
-    .card__header--text>h2 {
-        @apply my-0
+    .card__header--text>p {
+        @apply my-0 text-xl
+    }
+
+    .header__text--rating {
+        @apply flex
+    }
+
+    .card-body {
+        @apply pt-0
+    }
+
+    .card-title {
+        @apply text-2xl font-bold
+    }
+
+    .badge {
+        @apply  border border-arth-yellow bg-white m-2 p-4 uppercase text-black
+    }
+
+    .badge>p {
+        /*@apply */
     }
 </style>

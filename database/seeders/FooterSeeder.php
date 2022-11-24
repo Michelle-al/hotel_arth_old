@@ -17,7 +17,7 @@ class FooterSeeder extends Seeder
         DB::table('footers')->insert([
             [
                 "column_number" => 1,
-                "entry_name" => json_encode(["fr" => "Nous contacter", "en" => "contact us"]),
+                "entry_name" => json_encode(["fr" => "Nous contacter", "en" => "Contact us"]),
                 "url_redirection" => "/contact",
             ],
             [
@@ -29,6 +29,11 @@ class FooterSeeder extends Seeder
                 "column_number" => 2,
                 "entry_name" => json_encode(["fr" => "Promotions", "en" => "Sales"]),
                 "url_redirection" => "/sales",
+            ],
+            [
+                "column_number" => 3,
+                "entry_name" => json_encode(["fr" => "Nous rejoindre :", "en" => "Join us :"]),
+                "url_redirection" => "",
             ],
         ]);
     }

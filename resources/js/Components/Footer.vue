@@ -1,34 +1,33 @@
 <template>
-<!--    <div class="grid md:grid-cols-2 lg:grid-cols-3 md:gap-4 mb-8 bg-arth-dark-blue">-->
-<!--        <div>-->
-<!--            <h3 class=" text-white">Hôtel ARTH</h3>-->
-<!--            <div v-for="link in footer" :key="link.id">{{ link.entry_name }}</div>-->
-<!--            <p>Nous contacter</p>-->
-<!--        </div>-->
-
-<!--    </div>-->
-    <div class=" p-10 bg-arth-dark-blue">
-        <h3 class=" text-white text-start">Hôtel ARTH</h3>
-        <div class="grid grid-flow-row-dense grid-cols-3">
-
-            <div>
-                <p ><a class="link link-hover text-white">Nous contacter</a></p>
-                <p class="text-white">Coucou</p>
-            </div>
-
-            <div>
-                <a class="link link-hover">A propos</a>
-            </div>
-            <div>
-                <p><a class="link link-hover">Social Media</a></p>
+    <footer>
+        <div class=" px-10 pt-0 pb-10 bg-arth-dark-blue flex flex-col md:block">
+            <h3 class="text-white text-start font-poiret text-4xl">Hôtel ARTH</h3>
+            <div class="flex flex-col md:flex-row justify-around mx-auto md:m-0">
+                <div class="flex flex-col" >
+                    <div v-for="link in footer" :key="link.id">
+                        <p><a v-if="link.column_number == 1">{{ link.entry_name }}</a></p>
+                    </div>
+                </div>
+                <div class="flex flex-col" >
+                    <div v-for="link in footer" :key="link.id">
+                        <p><a v-if="link.column_number == 2">{{ link.entry_name }}</a></p>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <div v-for="link in footer" :key="link.id">
+                        <p><a v-if="link.column_number == 3">{{ link.entry_name }}</a></p>
+                    </div>
+                    <SocialMedia />
+                </div>
             </div>
         </div>
-    </div>
-
+    </footer>
 </template>
 
 <script>
+import SocialMedia from "./SocialMedia";
 export default {
+    components: {SocialMedia},
     data() {
         return {
             footer: {}
@@ -37,6 +36,9 @@ export default {
     async mounted() {
         const response = await axios.get('api/home/footer');
         this.footer = {...response.data['data']};
+    },
+    methods: {
+
     }
 }
 </script>
@@ -44,5 +46,8 @@ export default {
 <style scoped>
 a{
     @apply text-white;
+}
+p{
+    @apply text-lg;
 }
 </style>
