@@ -2,12 +2,16 @@
     <div class="section__reviews">
         <h2 class="reviews__title">Voyez ce que disent nos clients</h2>
         <div class="reviews__cards" >
-            <div v-for="review in reviews" :key="review.id">
-<!--                <div  v-if="review.is_displayed == 1"></div>-->
+            <div v-for="review in reviews" :key="review.id" v-show="review.is_displayed === 1 && review.id <= 3">
                 <UserReviewItem :review="review"/>
             </div>
         </div>
-        <button class="section__reviews--CTA-SeeMore">Voir plus</button>
+        <button class="section__reviews--CTA-SeeMore" @click="isHidden = !isHidden">Voir plus</button>
+        <div class="reviews__cards" v-if="!isHidden" >
+            <div v-for="review in reviews" :key="review.id" v-show="review.is_displayed === 1 && review.id > 3">
+                <UserReviewItem :review="review"/>
+            </div>
+        </div>
 
         <!-- START : Carousel -->
         <!--
@@ -55,15 +59,19 @@ export default {
     },
     data() {
         return {
-            reviews: []
+            reviews: [],
+            isHidden: true,
         }
     },
-    // computed: {
-    //     slideNumber() {
-    //         return this.reviews.id + 1
-    //     },
+    methods: {
+        //
+    },
+    /*computed: {
+        slideNumber() {
+            return this.reviews.id + 1
+        },
 
-    // },
+    },*/
     async mounted() {
         const response = await axios.get('api/home/reviews');
         // this.reviews.push(...response.data);
@@ -86,6 +94,7 @@ export default {
 }
 
 .section__reviews--CTA-SeeMore {
-    @apply border-arth-yellow mt-16 hover:bg-arth-yellow hover:text-black
+    @apply border-arth-yellow mt-16 text-black hover:bg-arth-yellow
 }
+
 </style>
