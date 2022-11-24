@@ -3,7 +3,7 @@
         <input type="checkbox" class="peer" />
         <div class="collapse-title  pr-9 bg-arth-light-blue md:bg-white text-black-content peer-checked:arth-light-blue peer-checked:text-black-content">
             <div class="flex flex-row md:flex-col">
-                <div class="mb-4 w-1/4 md:w-full h-14"><img alt class="m-auto" :src=advantage.icon_url></div>
+                <div class="mb-4 w-1/4 md:w-full h-14"><img alt class="m-auto" :src="advantage.icon_url"></div>
                 <div class="text-center w-3/4 md:w-full ">{{ advantage.title }}</div>
             </div>
 

@@ -86,7 +86,7 @@ class AdvantageController extends Controller
                 $validatedData['icon_url'] = 'storage/advantages/' . $file_name;
 
                 // Modifies the file path in order to allow the server to find the icon in the storage/public/advantages
-                $old_filepath = str_replace('storage/', 'public/', $old_icon_url);
+                $old_filepath = str_replace('storage/', 'public/', $resource->icon_url);
 
                 // Deletes old video's filepath
                 Storage::delete($old_filepath);
@@ -96,7 +96,7 @@ class AdvantageController extends Controller
         $resource
             ->fill($validatedData)
             ->setTranslations('title', $request->post('title'))
-            ->setTranslations('description', $request->post('subtitle'));
+            ->setTranslations('description', $request->post('description'));
 
         $resource->update();
 

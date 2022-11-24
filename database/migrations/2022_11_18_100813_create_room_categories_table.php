@@ -15,11 +15,9 @@ class CreateRoomCategoriesTable extends Migration
     {
         Schema::create('room_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('url')->nullable(false);
-            $table->string('title_french')->nullable(false);
-            $table->string('title_english')->nullable(false);
-            $table->string('description_french')->nullable(false);
-            $table->string('description_english')->nullable(false);
+            $table->string('media_url')->nullable(false);
+            $table->json('title')->nullable(false);
+            $table->json('description')->nullable(false);
         });
     }
 
