@@ -2,7 +2,6 @@
     <div class="section__video"> <!-- BEM Syntax for classes -->
         <div class="section__video-content">
             <div class="section__video-text">
-<!--                TODO - Add v-if v_else for languages Fr - En-->
                 <h2 class="video__h2">{{ presentationVideo.title }}</h2>
                 <h3 class="video__h3">{{ presentationVideo.description }}</h3>
             </div>
