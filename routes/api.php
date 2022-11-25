@@ -51,15 +51,15 @@ Route::post('/home/advantages/{id}', [AdvantageController::class, 'update']);
 //Route::delete('/home/advantages/{id}', [AdvantageController::class, 'destroy']);
 
 # Customers API routes
-Route::post('/home/customers', [CustomerController::class, 'create']);
+//Route::post('/home/customers', [CustomerController::class, 'create']);
 Route::get('/home/customers', [CustomerController::class, 'index']);
-Route::put('/home/customers/{id}', [CustomerController::class, 'update']);
+//Route::put('/home/customers/{id}', [CustomerController::class, 'update']);
 //Route::delete('/home/customers/{id}', [CustomerController::class, 'destroy']);
 
 # Reviews API routes
-Route::post('/home/reviews', [ReviewController::class, 'create']);
+//Route::post('/home/reviews', [ReviewController::class, 'create']);
 Route::get('/home/reviews', [ReviewController::class, 'index']);
-Route::put('/home/reviews/{id}', [ReviewController::class, 'update']);
+//Route::put('/home/reviews/{id}', [ReviewController::class, 'update']);
 //Route::delete('/home/reviews/{id}', [ReviewController::class, 'destroy']);
 
 # News
