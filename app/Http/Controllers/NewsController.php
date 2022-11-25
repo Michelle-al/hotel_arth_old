@@ -112,7 +112,7 @@ class NewsController extends Controller
             // Putting the file in said directory with said filename
             Storage::putFileAs('public/news', $file, $file_name);
             // Modifies the file path in order to find it in the storage/public/hero
-            $old_filepath = str_replace('storage/', 'public/', $resource->url);
+            $old_filepath = str_replace('storage/', 'public/', $resource->media_url);
             Storage::delete( $old_filepath );
         }
 

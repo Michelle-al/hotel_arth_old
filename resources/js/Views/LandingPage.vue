@@ -6,6 +6,7 @@
         <RoomCategories />
         <Advantages />
         <UserReviews />
+        <News />
     </div>
 </template>
 
@@ -16,6 +17,7 @@ import VideoSection from '../Components/VideoSection';
 import Advantages from '../Components/Advantages';
 import RoomCategories from '../Components/RoomCategories';
 import UserReviews from '../Components/UserReviews';
+import News from '../Components/News';
 
     export default {
         name: 'landingPage',
@@ -26,6 +28,7 @@ import UserReviews from '../Components/UserReviews';
             Advantages,
             RoomCategories,
             UserReviews,
+            News
         }
     }
 </script>
