@@ -11,9 +11,7 @@
     ```
   - During development, we're only using sqlite, since it doesn't change anything with Eloquent requests.
     ```
-    DB_CONNECTION=sqlite
-    DB_HOST=127.0.0.1
-    DB_PORT=5432
+    DB_CONNECTION=sqlite`
     DB_DATABASE=database/db.sqlite
     ```
   - Remember to change your database setup for production:
@@ -22,7 +20,22 @@
     DB_HOST=127.0.0.1
     DB_PORT=5432
     ```
+- Create and load your tables:
 
+  ```
+  php artisan migrate:fresh --seed
+  ```
+- To create a link to the Laravel storage : 
+  ```
+  php artisan storage:link
+  ```
+- In order to run the site, launch in two terminals
+  ```
+  php artisan serve
+  ```
+  ```
+  npm run watch
+  ```  
 - API Uri's naming convention :
   - For this project we have decided to continue using under_score, ex: 
   ```
