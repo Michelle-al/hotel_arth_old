@@ -1,15 +1,15 @@
 <template>
-    <h2>Actualités</h2>
+    <h2 class="my-10 py-10">Actualités</h2>
     <div class="flex">
 <!--        <div class="w-2/12 flex items-center">-->
 <!--            <div class="w-2/12 flex items-center">Prev</div>-->
 <!--        </div>-->
 
-        <div id="sliderContainer" class="w-full w-10/12 h-96 overflow-x-auto">
-            <div id="slider" class="flex w-full">
+        <div id="sliderContainer" class="w-full w-10/12 ">
+            <div id="slider" class="flex flex-col md:flex-row w-full">
                 <div class="w-96 p-5"
                     v-for="newsArticle in news" :key="newsArticle.id">
-                    <NewsCard class="border border-arth-dark-blue p-5"
+                    <NewsCard class="border border-arth-dark-blue border-2 p-5"
                               :newsArticle="newsArticle"/>
                 </div>
             </div>
