@@ -115,7 +115,7 @@ export default {
     }
 
     .card-body {
-        @apply pt-0 h-80
+        @apply pt-0 h-max
     }
 
     .card-title {
