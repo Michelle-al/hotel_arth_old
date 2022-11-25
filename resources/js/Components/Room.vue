@@ -22,3 +22,11 @@
         props: ['room']
     }
 </script>
+
+<style scoped>
+
+button {
+    @apply mt-6 lg:mt-0
+}
+
+</style>
