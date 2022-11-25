@@ -8,7 +8,7 @@
 
         <div class="flex flex-col p-8 justify-around lg:basis-1/3">
             <h2>{{room.title}}</h2>
-            <p>{{room.description}}</p>
+            <p class="text-justify">{{room.description}}</p>
             <button v-if="room.id == 1" class="border-arth-yellow hover:bg-arth-yellow">Découvrir</button>
             <button v-if="room.id == 2" class="border-arth-light-blue hover:bg-arth-light-blue">Découvrir</button>
             <button v-if="room.id == 3" class="border-arth-dark-blue hover:bg-arth-dark-blue hover:text-white">Découvrir</button>
