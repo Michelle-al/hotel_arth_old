@@ -8,10 +8,8 @@
 
 <script>
     export default {
-        props: {
-            newsArticle: {
-                type: Object
-            }
-        }
+        name: 'NewsCard',
+        props:
+            ['newsArticle']
     }
 </script>
