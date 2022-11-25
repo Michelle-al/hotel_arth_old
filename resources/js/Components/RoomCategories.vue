@@ -1,0 +1,28 @@
+<template>
+    <div class="md:mt-20 flex flex-col lg:bg-arth-dark-blue flex-items-center" id="rooms">
+        <h2 class="p-12 lg:text-white lg:font-semibold">Nos chambres</h2>
+         <div v-for="category in roomCategories" :key="category.id">
+             <Room :room="category"/>
+         </div>
+        <div class="p-12 flex">
+            <button class="mt-0 hover:bg-arth-dark-blue hover:text-white">Réserver</button>
+        </div>
+    </div>
+</template>
+
+<script>
+import Room from './Room';
+
+    export default {
+        components: {Room},
+        data() {
+            return {
+                roomCategories: []
+            }
+        },
+        async mounted() {
+            const response = await axios.get('/api/home/room_category');
+            this.roomCategories.push(...response.data['data']);
+        }
+    }
+</script>
