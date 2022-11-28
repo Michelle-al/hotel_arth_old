@@ -111,6 +111,9 @@ import {
 
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import LanguagesToggleButton from "./LanguagesToggleButton"
+import { mapStores } from 'pinia';
+import {useLangStore} from "../store/langStore";
+import {mapActions} from "pinia";
 
 export default {
     name: "NavBar.vue",
@@ -138,11 +141,11 @@ export default {
             //
         }
     },
-    methods: {
-        //
-    },
     mounted() {
         //
+    },
+    computed: {
+        ...mapStores(useLangStore)
     }
 }
 

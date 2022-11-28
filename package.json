@@ -22,6 +22,7 @@
         "@headlessui/vue": "^1.7.4",
         "@heroicons/vue": "^2.0.13",
         "daisyui": "^2.41.0",
+        "pinia": "^2.0.27",
         "vue": "^3.2.41",
         "vue-router": "^4.1.6",
         "vuex": "^4.1.0"

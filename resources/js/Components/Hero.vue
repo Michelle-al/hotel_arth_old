@@ -12,14 +12,20 @@
 
 <script>
     export default {
+        async mounted() {
+            const userLocale = navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language;
+            const response = await axios.get('api/home/hero', {
+                headers: {
+                    "Accept-Language": userLocale
+                }
+            }
+        );
+            this.hero = {...response.data['data']};
+        },
         data() {
             return {
                 hero: {}
             }
-        },
-        async mounted() {
-            const response = await axios.get('api/home/hero');
-            this.hero = {...response.data['data']};
         }
     }
 </script>
