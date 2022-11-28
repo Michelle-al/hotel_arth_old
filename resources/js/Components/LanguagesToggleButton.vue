@@ -12,13 +12,13 @@
 <!--        </button>-->
         <select name="lang" v-model="lang" @change="switchLocale(lang)" class="navbar__button">
             <option selected="selected" value="fr">
-            <img v-if="isFrench"
+            <img
                  :src="french.image.source"
                  class="navbar__flag navbar__flag--french"
                  :alt="french.image.alt">
             </option>
             <option value="en">
-            <img v-else
+            <img
                  :src="english.image.source"
                  class="navbar__flag navbar__flag--english"
                  :alt="english.image.alt">
@@ -62,7 +62,7 @@ export default {
         ...mapStores(useLangStore)
     },
     methods: {
-        ...mapActions(useLangStore, ['switchLocale']);
+        ...mapActions(useLangStore, ['switchLocale'])
     },
 
 }
