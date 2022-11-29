@@ -10,6 +10,7 @@ createApp(App).use(router)
     .use(createPinia())
     .mount('#app')
 
+// Axios interceptor modifies HTTP header before the request is sent back to Laravel
 axios.interceptors.request.use(
     function (config) {
         const langStore = useLangStore();
