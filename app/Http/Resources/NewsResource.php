@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\News;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\App;
 
+/**
+ * @mixin News
+ */
 class NewsResource extends JsonResource
 {
     /**

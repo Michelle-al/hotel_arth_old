@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
 /**
+ * @property int id
  * @property string title
+ * @property string subtitle
  * @property string media_url
+ * @property string slug
  */
 class Hero extends Model
 {

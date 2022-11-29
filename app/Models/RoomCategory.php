@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @property int id
+ * @property string media_url
+ * @property string title
+ * @property string description
+ */
 class RoomCategory extends Model
 {
     use HasFactory, HasTranslations;

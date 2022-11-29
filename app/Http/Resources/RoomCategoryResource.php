@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\RoomCategory;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\App;
 
+/***
+ * @mixin RoomCategory
+ */
 class RoomCategoryResource extends JsonResource
 {
     /**

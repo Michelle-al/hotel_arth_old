@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\RoomCategoryResource;
 use App\Models\RoomCategory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class RoomCategoryController extends Controller
@@ -12,7 +14,7 @@ class RoomCategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResource
      */
     public function index()
     {
@@ -23,8 +25,9 @@ class RoomCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return Response
      */
     public function update(Request $request, int $id)
     {
@@ -53,15 +56,10 @@ class RoomCategoryController extends Controller
 
                 // Deletes old video's filepath
                 Storage::delete($old_filepath);
-        };
+        }
 
         // Send updated datas to DB
-        $resource
-        ->fill($validatedData)
-        ->setTranslations('title', $request->post('title'))
-        ->setTranslations('description', $request->post('description'));
-
-        $resource->update();
+        $resource->update($validatedData);
 
         // Return response content in JSON format
         return response()->json($resource);

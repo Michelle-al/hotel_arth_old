@@ -49,8 +49,7 @@ class HeroController extends Controller
             Storage::delete( $old_filepath );
         }
 
-        // Updating database data : array_filter discard all empty fields beforehand.
-
+        // Updating database data
         $resource->update($validatedData);
 
         return response()->json($resource);
