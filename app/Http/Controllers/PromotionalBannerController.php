@@ -31,7 +31,7 @@ class PromotionalBannerController extends Controller
         $resource =  PromotionalBannerResource::make(PromotionalBanner::findOrFail($id));
 
         // Update the data in the DB
-        $resource->update($request->all());
+        $resource->update($request->post());
 
         // Return the result of the response in JSON
         return response()->json($resource);

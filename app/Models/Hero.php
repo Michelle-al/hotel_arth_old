@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @property string title
+ * @property string media_url
+ */
 class Hero extends Model
 {
     use HasFactory, HasTranslations;

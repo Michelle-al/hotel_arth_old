@@ -29,14 +29,14 @@ class HeroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, string $slug)
     {
-        $resource = HeroResource::make(Hero::findOrFail($id));
+          $resource = HeroResource::make(Hero::where('slug', $slug)->firstOrFail());
 
-        $validatedData = $request->post();
+          $validatedData = $request->post();
 
         if ($request->hasFile('media_url')) {
-             // Getting the sent file
+            // Getting the sent file
             $file = $request->file('media_url');
             // Minimal sanitizing of the file name (deleting all whitespace)
             $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
@@ -50,14 +50,10 @@ class HeroController extends Controller
         }
 
         // Updating database data : array_filter discard all empty fields beforehand.
-        $resource
-            ->fill($validatedData)
-            ->setTranslations('title', $request->post('title'))
-            ->setTranslations('subtitle', $request->post('subtitle'));
 
-        $resource->update();
+        $resource->update($validatedData);
 
-        return response()->json();
+        return response()->json($resource);
     }
 
     /**

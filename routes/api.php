@@ -32,7 +32,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('setLocale')->prefix('home')->group(function () {
     # Hero API routes
     Route::get('/hero', [HeroController::class, 'index']);
-    Route::post('/hero/{id}', [HeroController::class, 'update']);
+    Route::post('/hero/{slug}', [HeroController::class, 'update']);
 
 # Promotional Banner API routes
     Route::get('/promotional_banner', [PromotionalBannerController::class, 'index']);
