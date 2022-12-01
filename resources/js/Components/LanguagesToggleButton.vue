@@ -10,34 +10,21 @@
 <!--                 class="navbar__flag navbar__flag&#45;&#45;english"-->
 <!--                 :alt="english.image.alt">-->
 <!--        </button>-->
-        <select name="lang" v-model="lang" @change="switchLocale(lang)" class="navbar__button">
-            <option selected="selected" value="fr">
-            <img
-                 :src="french.image.source"
-                 class="navbar__flag navbar__flag--french"
-                 :alt="french.image.alt">
-            </option>
-            <option value="en">
-            <img
-                 :src="english.image.source"
-                 class="navbar__flag navbar__flag--english"
-                 :alt="english.image.alt">
-            </option>
+        <select name="lang" v-model="lang" @change="switchLocale(lang)" class="navbar__button appearance-none bg-white text-2xl">
+            <option value="fr">🇨🇵</option>
+            <option value="en">🇬🇧</option>
         </select>
     </div>
 
 </template>
 
 <script>
-import { mapStores } from 'pinia';
-import {useLangStore} from "../store/langStore";
-import {mapActions} from "pinia";
-
 export default {
     name: "LanguagesToggleButton.vue",
     data() {
         return {
             lang: "",
+            // selected: ,
             isFrench: true,
             french:
                 {
@@ -56,14 +43,30 @@ export default {
                     alt: "Drapeau Anglais"
                 },
             },
+            customStyle: {
+                backgroundImage: "url(/storage/pictures/flag-english.jpg)",
+                height: "100px",
+                width: "100px",
+            }
         }
     },
     computed: {
-        ...mapStores(useLangStore)
+        isSelected() {
+            return this.lang == localStorage.lang
+        }
     },
     methods: {
-        ...mapActions(useLangStore, ['switchLocale'])
+        // ...mapActions(useLangStore, ['switchLocale'])
+
+        switchLocale() {
+            this.$i18n.locale = this.lang
+            localStorage.lang = this.lang
+            window.location.reload();
+        }
     },
+    mounted() {
+        this.lang = localStorage.lang || 'fr';
+    }
 
 }
 </script>

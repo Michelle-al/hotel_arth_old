@@ -21,7 +21,7 @@
 
                 <!-- START - Nav links for large devices -->
                 <PopoverGroup as="nav" class="hidden space-x-6 lg:space-x-10 lg:flex items-center ml-0">
-                    <a href="#rooms" class="font-medium text-gray-500 hover:text-gray-900">Nos chambres</a>
+                    <a href="#rooms" class="font-medium text-gray-500 hover:text-gray-900">{{$t("navbar.rooms")}}</a>
                     <a href="#advantages" class="font-medium text-gray-500 hover:text-gray-900">Nos avantages</a>
                     <a href="#reviews" class="font-medium text-gray-500 hover:text-gray-900">Avis de nos
                         clients</a>
@@ -111,9 +111,6 @@ import {
 
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import LanguagesToggleButton from "./LanguagesToggleButton"
-import { mapStores } from 'pinia';
-import {useLangStore} from "../store/langStore";
-import {mapActions} from "pinia";
 
 export default {
     name: "NavBar.vue",
@@ -142,10 +139,8 @@ export default {
         }
     },
     mounted() {
-        //
     },
     computed: {
-        ...mapStores(useLangStore)
     }
 }
 
