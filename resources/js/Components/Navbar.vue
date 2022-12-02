@@ -21,11 +21,10 @@
 
                 <!-- START - Nav links for large devices -->
                 <PopoverGroup as="nav" class="hidden space-x-6 lg:space-x-10 lg:flex items-center ml-0">
-                    <a href="#rooms" class="font-medium text-gray-500 hover:text-gray-900">Nos chambres</a>
-                    <a href="#advantages" class="font-medium text-gray-500 hover:text-gray-900">Nos avantages</a>
-                    <a href="#reviews" class="font-medium text-gray-500 hover:text-gray-900">Avis de nos
-                        clients</a>
-                    <a href="#news" class="font-medium text-gray-500 hover:text-gray-900">Notre actualité</a>
+                    <a href="#rooms" class="font-medium text-gray-500 hover:text-gray-900">{{$t("navbar.rooms")}}</a>
+                    <a href="#advantages" class="font-medium text-gray-500 hover:text-gray-900">{{ $t("navbar.advantages")}}</a>
+                    <a href="#reviews" class="font-medium text-gray-500 hover:text-gray-900">{{ $t("navbar.reviews") }}</a>
+                    <a href="#news" class="font-medium text-gray-500 hover:text-gray-900">{{  $t("navbar.news") }}</a>
                 </PopoverGroup>
                 <!-- STOP - Nav links for large devices -->
 
@@ -34,11 +33,10 @@
                     <LanguagesToggleButton/>
                     <a href="#"
                         class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-4 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
-                    >Me connecter
-                    </a>
+                    >{{ $t("buttons.connect")}}</a>
                     <a href="#"
                         class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
-                    >Réserver
+                    >{{ $t("buttons.reservation") }}
                     </a>
                 </div>
                 <!-- END - CTA toogle languages and Reservation-->
@@ -68,21 +66,21 @@
                     <!-- START - Main Code for small devices -->
                     <div class="space-y-6 py-6 px-5">
                         <div class="grid grid-cols-2 gap-y-4 gap-x-8">
-                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">Nos chambres</a>
-                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">Nos avantages</a>
+                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">{{$t("navbar.rooms")}}</a>
+                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">{{ $t("navbar.advantages")}}</a>
 
-                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">Avis de nos clients</a>
-                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">Notre actualité</a>
+                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">{{ $t("navbar.reviews") }}</a>
+                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">{{  $t("navbar.news") }}</a>
 <!--                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">Nous contacter</a>-->
                             <!-- STOP - Main Code for small devices -->
                         </div>
                         <div>
                             <a href="#"
-                                class="flex w-full items-center justify-center  border border-transparent bg-arth-dark-blue hover:bg-white hover:text-black hover:border-arth-dark-blue my-6 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700">Réserver</a>
+                                class="flex w-full items-center justify-center  border border-transparent bg-arth-dark-blue hover:bg-white hover:text-black hover:border-arth-dark-blue my-6 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700">{{ $t("buttons.reservation")}}</a>
                             <p class="mt-6 text-center font-medium text-gray-500">
-                                J'ai déjà un compte ?
+                                {{ $t("navbar.alreadyHaveAccount") }}
                                 {{ ' ' }}
-                                <a href="#" class="text-arth-dark-blue hover:text-arth-green">Me connecter</a>
+                                <a href="#" class="text-arth-dark-blue hover:text-arth-green">{{$t("buttons.connect")}}</a>
                             </p>
                         </div>
                     </div>
@@ -138,11 +136,9 @@ export default {
             //
         }
     },
-    methods: {
-        //
-    },
     mounted() {
-        //
+    },
+    computed: {
     }
 }
 

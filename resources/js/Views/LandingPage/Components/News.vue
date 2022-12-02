@@ -1,5 +1,5 @@
 <template>
-    <h2 class="my-10 py-10">Actualités</h2>
+    <h2 class="my-10 py-10">{{ $t("news.heading") }}</h2>
     <div class="flex justify-center">
 <!--        <div class="w-2/12 flex items-center">-->
 <!--            <div class="w-2/12 flex items-center">Prev</div>-->

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import SocialMedia from "./SocialMedia";
+import SocialMedia from "../Views/LandingPage/Components/SocialMedia";
 export default {
     components: {SocialMedia},
     data() {
