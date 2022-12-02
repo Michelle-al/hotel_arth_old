@@ -1,11 +1,11 @@
 <template>
     <div class="md:mt-20 flex flex-col lg:bg-arth-dark-blue flex-items-center" id="rooms">
-        <h2 class="p-12 lg:text-white lg:font-semibold">Nos chambres</h2>
+        <h2 class="p-12 lg:text-white lg:font-semibold">{{ $t("rooms.heading") }}</h2>
          <div v-for="category in roomCategories" :key="category.id">
              <Room :room="category"/>
          </div>
         <div class="p-12 flex">
-            <button class="mt-0 hover:bg-arth-dark-blue hover:text-white">Réserver</button>
+            <button class="mt-0 hover:bg-arth-dark-blue hover:text-white">{{ $t("buttons.reservation") }}</button>
         </div>
     </div>
 </template>
