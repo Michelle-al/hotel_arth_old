@@ -25,6 +25,9 @@ export const translations = {
         news: {
             heading: "Latest News"
         },
+         footer : {
+            joinUs : 'Join us'
+        }
     },
     fr: {
         buttons: {
@@ -52,5 +55,8 @@ export const translations = {
         news: {
             heading: "Notre actualité"
         },
+        footer : {
+            joinUs : 'Nous rejoindre'
+        }
     }
 }

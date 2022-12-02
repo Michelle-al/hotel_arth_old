@@ -38,7 +38,22 @@ class FooterController extends Controller
      */
     public function store(Request $request)
     {
+        //Data validation
+        $validator = Validator::make($request->all(), [
+            'column_number' => 'required|in:1,2',
+            'entry_name' => 'required|array|min:2',
+            'url_redirection' => 'required|url'
+        ]);
+        $validatedData = $validator->validate();
 
+        // Create a new instance of footer
+        $footer = new Footer();
+
+        //Fill $footer with validated data and save
+        $footer->fill($validatedData)
+               ->save();
+
+        return new FooterResource($footer);
 
     }
 
@@ -68,12 +83,16 @@ class FooterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $footer = FooterResource::make(Footer::query()->findOrFail($id));
+
+        // Update data in database
+        $footer->update($request->post());
+        return response()->json($footer);
     }
 
     /**
@@ -84,6 +103,7 @@ class FooterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Footer::destroy($id);
+
     }
 }
