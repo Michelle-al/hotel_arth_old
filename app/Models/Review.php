@@ -10,6 +10,9 @@ class Review extends Model
 {
     use HasFactory;
 
+    public $timestamps = ["created_at"]; // We only want to use created_at column
+    const UPDATED_AT = null; // updated_at column will be set to null by default
+
     /**
      * The attributes that are mass assignable.
      *
