@@ -4,7 +4,7 @@
             <h1 class="text-white lg:text-6xl">{{hero.title}}</h1>
             <h2 class="text-white mt-4 font-semibold  lg:text-3xl">{{hero.subtitle}}</h2>
         </div>
-        <button class="border-arth-light-blue justify-center font-tinos mb-16">Découvrir</button>
+        <button class="border-arth-light-blue justify-center font-tinos mb-16">{{ $t("buttons.discover") }}</button>
 
     </div>
 

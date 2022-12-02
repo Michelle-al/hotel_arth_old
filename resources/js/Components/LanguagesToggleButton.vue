@@ -11,8 +11,8 @@
 <!--                 :alt="english.image.alt">-->
 <!--        </button>-->
         <select name="lang" v-model="lang" @change="switchLocale(lang)" class="navbar__button appearance-none bg-white text-2xl">
-            <option value="fr">🇨🇵</option>
-            <option value="en">🇬🇧</option>
+            <option value="fr" :alt=french.image.alt>🇨🇵</option>
+            <option value="en" :alt=english.image.alt>🇬🇧</option>
         </select>
     </div>
 
@@ -24,12 +24,10 @@ export default {
     data() {
         return {
             lang: "",
-            // selected: ,
             isFrench: true,
             french:
                 {
                     name: 'Français',
-                    href: '#',
                     image: {
                         source: '/storage/pictures/flag-french.jpg',
                         alt: "Drapeau Français"
@@ -37,16 +35,10 @@ export default {
                 },
             english: {
                 name: 'English',
-                href: '#',
                 image: {
                     source: '/storage/pictures/flag-english.jpg',
-                    alt: "Drapeau Anglais"
+                    alt: "British Flag"
                 },
-            },
-            customStyle: {
-                backgroundImage: "url(/storage/pictures/flag-english.jpg)",
-                height: "100px",
-                width: "100px",
             }
         }
     },
