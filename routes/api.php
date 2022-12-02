@@ -69,8 +69,9 @@ Route::post('/home/news', [NewsController::class, 'store']);
 
 # Footer API routes
 Route::get('/home/footer', [FooterController::class, 'index']);
-Route::post('/home/footer/{id}', [FooterController::class, 'update']);
+Route::put('/home/footer/{id}', [FooterController::class, 'update']);
 Route::delete('/home/footer/{id}', [FooterController::class, 'destroy']);
+# Ajouter un nouveau lien au footer
 Route::post('/home/footer', [FooterController::class, 'store']);
 
 # Social Media API routes
