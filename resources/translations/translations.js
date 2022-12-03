@@ -11,7 +11,7 @@ export const translations = {
             advantages: "Our advantages",
             reviews: "Clients reviews",
             news: "Our news",
-            alreadyHaveAccount: "I already have an account"
+            alreadyHaveAccount: "I already have an account ?"
         },
         rooms: {
             heading: "Our rooms"
@@ -26,7 +26,7 @@ export const translations = {
             heading: "Latest News"
         },
          footer : {
-            joinUs : 'Join us'
+            joinUs : 'Join us :'
         }
     },
     fr: {
@@ -56,7 +56,7 @@ export const translations = {
             heading: "Notre actualité"
         },
         footer : {
-            joinUs : 'Nous rejoindre'
+            joinUs: 'Nous rejoindre :'
         }
     }
 }
