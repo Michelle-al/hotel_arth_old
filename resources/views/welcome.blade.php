@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{-- TODO Meta descrition--}}
     <title>Hôtel Arth</title>
-    <link rel="icon" href="{{ asset('storage/pictures/Logo.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('storage/pictures/favicon.png') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Styles -->
