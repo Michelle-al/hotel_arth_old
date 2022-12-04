@@ -69,11 +69,11 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
     Route::post('/news', [NewsController::class, 'store']);
 
 # Footer API routes
-Route::get('/footer', [FooterController::class, 'index']);
-Route::put('/footer/{id}', [FooterController::class, 'update']);
-Route::delete('/footer/{id}', [FooterController::class, 'destroy']);
-# Ajouter un nouveau lien au footer
-Route::post('/footer', [FooterController::class, 'store']);
+    Route::get('/footer', [FooterController::class, 'index']);
+    Route::put('/footer/{id}', [FooterController::class, 'update']);
+    Route::delete('/footer/{id}', [FooterController::class, 'destroy']);
+    # Ajouter un nouveau lien au footer
+    Route::post('/footer', [FooterController::class, 'store']);
 
 # Social Media API routes
     Route::get('/social_medias', [SocialMediaController::class, 'index']);

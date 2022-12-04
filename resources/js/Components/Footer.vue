@@ -15,7 +15,7 @@
                 </div>
                 <div class="flex flex-col">
                     <div>
-                        <p>{{$t("footer.joinUs")}}</p>
+                        <p class="text-white">{{$t("footer.joinUs")}}</p>
                     </div>
                     <SocialMedia />
                 </div>

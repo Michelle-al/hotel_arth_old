@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\FooterResource;
 use Illuminate\Http\Request;
 use App\Models\Footer;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class FooterController extends Controller
@@ -13,11 +12,12 @@ class FooterController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
         return FooterResource::collection(Footer::all());
+
     }
 
     /**
@@ -42,10 +42,10 @@ class FooterController extends Controller
         $validator = Validator::make($request->all(), [
             'column_number' => 'required|in:1,2',
             'entry_name' => 'required|array|min:2',
-            'url_redirection' => 'required|url'
+            'url_redirection' => 'required'
         ]);
         $validatedData = $validator->validate();
-
+//        dd($validatedData);
         // Create a new instance of footer
         $footer = new Footer();
 
