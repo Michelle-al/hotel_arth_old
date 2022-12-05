@@ -10,6 +10,7 @@ use App\Http\Controllers\PresentationVideoController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\SocialMediaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,15 +54,21 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 
 # Customers API routes
 //Route::post('/customers', [CustomerController::class, 'create']);
-    Route::get('/customers', [CustomerController::class, 'index']);
+//    Route::get('/customers', [CustomerController::class, 'index']);
 //Route::put('/customers/{id}', [CustomerController::class, 'update']);
 //Route::delete('/customers/{id}', [CustomerController::class, 'destroy']);
 
+# Users API routes
+    Route::post('/users', [UserController::class, 'create']);
+    Route::get('/users', [UserController::class, 'index']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
 # Reviews API routes
-//Route::post('/reviews', [ReviewController::class, 'create']);
+    Route::post('/reviews', [ReviewController::class, 'create']);
     Route::get('/reviews', [ReviewController::class, 'index']);
-//Route::put('/reviews/{id}', [ReviewController::class, 'update']);
-//Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
+    Route::put('/reviews/{id}', [ReviewController::class, 'update']);
+    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
 
 # News
     Route::get('/news', [NewsController::class, 'index']);

@@ -2,7 +2,7 @@
         <div class="review__card card">
             <div class="review__card--header">
                 <figure>
-                    <img :src="review.customer.avatar" class="card__header--img" alt="customer_avatar" />
+                    <img :src="review.user.avatar" class="card__header--img" alt="user_avatar" />
                 </figure>
                 <div class="card__header--text">
                     <div class="header__text--rating" v-if="review.rating == '1'">
@@ -41,8 +41,7 @@
                         <img src="storage/pictures/Star_full.png" alt="">
                     </div>
 <!--                    {{ review.rating }}-->
-                    <p>{{ review.customer.firstname}} {{review.customer
-                        .lastname}}</p>
+                    <p>{{ review.user.firstname}} {{review.user.lastname}}</p>
                 </div>
             </div>
             <div class="card-body">

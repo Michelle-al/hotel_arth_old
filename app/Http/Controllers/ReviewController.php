@@ -16,11 +16,15 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return ReviewResource::collection(
+//        return ReviewResource::collection(
+//            Review::query()
+//                ->with('user')
+//                ->get()
+//        );
+        dd(ReviewResource::collection(
             Review::query()
-                ->with('customer')
-                ->get()
-        );
+                ->with('user')
+                ->get()));
     }
     // query() method allows to pass other methods (ex: relation with another table) before launching the get() request
 
