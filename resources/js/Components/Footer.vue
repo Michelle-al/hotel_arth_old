@@ -14,8 +14,8 @@
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <div v-for="link in footer" :key="link.id">
-                        <p><a v-if="link.column_number === '3'">{{ link.entry_name }}</a></p>
+                    <div>
+                        <p class="text-white">{{$t("footer.joinUs")}}</p>
                     </div>
                     <SocialMedia />
                 </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import SocialMedia from "./SocialMedia";
+import SocialMedia from "../Views/LandingPage/Components/SocialMedia";
 export default {
     components: {SocialMedia},
     data() {
