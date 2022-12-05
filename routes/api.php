@@ -52,10 +52,11 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 //Route::delete('/advantages/{id}', [AdvantageController::class, 'destroy']);
 
 # Customers API routes
-//Route::post('/customers', [CustomerController::class, 'create']);
-    Route::get('/customers', [CustomerController::class, 'index']);
-//Route::put('/customers/{id}', [CustomerController::class, 'update']);
-//Route::delete('/customers/{id}', [CustomerController::class, 'destroy']);
+//Route::post('/home/customers/create', [CustomerController::class, 'create']);
+Route::get('/home/customers', [CustomerController::class, 'index']);
+//Route::put('/home/customers/{id}', [CustomerController::class, 'update']);
+//Route::delete('/home/customers/{id}', [CustomerController::class, 'destroy']);
+
 
 # Reviews API routes
 //Route::post('/reviews', [ReviewController::class, 'create']);
