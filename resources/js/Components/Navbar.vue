@@ -31,9 +31,9 @@
                 <!-- START - CTA toogle languages and Reservation-->
                 <div class="hidden items-center justify-end gap-10 md:gap-4 xl:gap-10 lg:flex lg:flex-1 lg:w-0">
                     <LanguagesToggleButton/>
-                    <a href="#"
+                    <router-link :to="{ name: 'login' }"
                         class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-4 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
-                    >{{ $t("buttons.connect")}}</a>
+                    >{{ $t("buttons.connect")}}</router-link>
                     <a href="#"
                         class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
                     >{{ $t("buttons.reservation") }}

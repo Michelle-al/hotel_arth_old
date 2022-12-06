@@ -11,7 +11,7 @@ export const translations = {
             advantages: "Our advantages",
             reviews: "Clients reviews",
             news: "Our news",
-            alreadyHaveAccount: "I already have an account ?"
+            alreadyHaveAccount: "Already have an account ?"
         },
         rooms: {
             heading: "Our rooms"
@@ -27,6 +27,10 @@ export const translations = {
         },
          footer : {
             joinUs : 'Join us :'
+        },
+        login: {
+            title: 'Login',
+            password: 'Password'
         }
     },
     fr: {
@@ -57,6 +61,10 @@ export const translations = {
         },
         footer : {
             joinUs: 'Nous rejoindre :'
+        },
+        login: {
+            title: 'Connexion',
+            password: 'Mot de passe'
         }
     }
 }
