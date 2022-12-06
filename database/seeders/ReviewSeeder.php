@@ -36,7 +36,6 @@ class ReviewSeeder extends Seeder
                 'body' => "Excellent séjour à l'hôtel Arth lors de notre venue en ce mois de novembre 2022. De l'accueil en passant par la restauration, tout a été parfait. Le personnel est aux petits soins, disponible, très souriant et avenant. Nous le recommandons chaudement.",
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
-                "updated_at" => date("Y-m-d H:i:s")
             ],
             [
                 'user_id' => 2,
@@ -47,7 +46,6 @@ class ReviewSeeder extends Seeder
 
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
-                "updated_at" => date("Y-m-d H:i:s")
             ],
             [
                 'user_id' => 3,
@@ -56,7 +54,6 @@ class ReviewSeeder extends Seeder
                 'body' => "L'atmosphère et la décoration du rooftop invitent à la détente. La vue sur le lac est magnifique. Parfait pour une séance de méditation le matin ou pour admirer les étoiles en fin de soirée.",
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
-                "updated_at" => date("Y-m-d H:i:s")
             ],
             [
                 'user_id' => 4,
@@ -69,7 +66,6 @@ class ReviewSeeder extends Seeder
                             Tout était parfait !",
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
-                "updated_at" => date("Y-m-d H:i:s"),
             ],
             [
                 'user_id' => 5,
@@ -78,7 +74,6 @@ class ReviewSeeder extends Seeder
                 'body' => "L’accueil, l’âme et la décoration de cet endroit sont exceptionnels. Si vous aimez tout ce qui touche à la décoration (intérieur et extérieur)! Vous adorerez cet endroit! Notre suite était si agréable et spacieuse que j'aurais volontier prolongé mon séjour.",
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
-                "updated_at" => date("Y-m-d H:i:s")
             ],[
                 'user_id' => 6,
                 'rating' => random_int(4,5),
@@ -86,10 +81,10 @@ class ReviewSeeder extends Seeder
                 'body' => "Un menu orgasmique à un prix plus que raisonnable. Les qualités organoleptiques sont là. Très bon accueil, serveurs et serveuses agréables. Difficile de choisir tant la carte est alléchante. Très bonne carte des vins. Atmosphère délicieuse en amoureux. Je recommande.",
                 'is_displayed' => 1,
                 "created_at" => date("Y-m-d H:i:s"),
-                "updated_at" => date("Y-m-d H:i:s")
             ],
-        /*TODO - Mettre is_displayed à false (0) par défaut pour les nouveaux avis clients ( là ou dans la fonction
-        create du controller.
+        /*
+         * TODO - Mettre is_displayed à false (0) par défaut pour les nouveaux avis clients ( là ou dans la fonction
+         * create du controller).
         */
         ]);
 
