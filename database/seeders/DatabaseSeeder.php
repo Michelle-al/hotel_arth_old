@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             RoomCategorySeeder::class,
             AdvantageSeeder::class,
             CustomerSeeder::class,
+            UserSeeder::class,
             ReviewSeeder::class,
             NewsSeeder::class,
             SocialMediaSeeder::class,

@@ -19,7 +19,7 @@ class Review extends Model
      * @var array<int, string>
      */
     public $fillable = [
-        'customer_id',
+        'user_id',
         'rating',
         'title',
         'body',
@@ -28,11 +28,11 @@ class Review extends Model
 
 
     /**
-     * Get the content of the table customers where customer_id = customer.id
+     * Get the content of the table users where user_id = user.id
      */
-    public function customer(): HasOne
+    public function user(): HasOne
     {
-        return $this->hasOne(Customer::class, 'id', 'customer_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
 }

@@ -21,8 +21,9 @@ class ReviewResource extends JsonResource
             'rating' => $this->rating,
             'title' => $this->title,
             'created_at' => $this->created_at,
-            'customer' => CustomerResource::make($this->customer) // Utilise CustomerResource pour associer les
-            // champs de la table customer.
+            'updated_at' => $this->updated_at,
+            'user' => UserResource::make($this->user) // Utilise UserResource pour associer les
+            // champs de la table user.
         ];
     }
 }
