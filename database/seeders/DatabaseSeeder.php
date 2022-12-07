@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             PromotionalBannerSeeder::class,
             RoomCategorySeeder::class,
             AdvantageSeeder::class,
-            CustomerSeeder::class,
             UserSeeder::class,
             ReviewSeeder::class,
             NewsSeeder::class,

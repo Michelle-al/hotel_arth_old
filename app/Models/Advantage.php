@@ -17,7 +17,7 @@ class Advantage extends Model
      */
     public $timestamps = false;
 
-    public $translatable = ['title', 'description'];
+    public $translatable = ['title', 'description', 'icon_alt'];
 
     /**
      * The attributes that aren't mass assignable.

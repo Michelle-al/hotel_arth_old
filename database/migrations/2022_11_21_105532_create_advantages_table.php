@@ -18,6 +18,7 @@ class CreateAdvantagesTable extends Migration
             $table->string('icon_url');
             $table->json('title');
             $table->json('description');
+            $table->json('icon_alt');
         });
     }
 

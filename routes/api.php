@@ -26,14 +26,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+# Login route
+Route::post('/login', [UserController::class, 'login']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
+
+# Routes '/api/users'
+# Users API routes
+Route::post('/users', [UserController::class, 'create']);
+Route::get('/users', [UserController::class, 'index']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
 
+Route::post('/register', [UserController::class, 'register']);
+
+
+
+
+
+Route::middleware('authenticate')->prefix('users')->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
+});
+
+
+# Routes '/api/home/'
 Route::middleware('setLocale')->prefix('home')->group(function () {
     # Hero API routes
     Route::get('/hero', [HeroController::class, 'index']);
     Route::post('/hero/{id}', [HeroController::class, 'update']);
+
 
 # Promotional Banner API routes
     Route::get('/promotional_banner', [PromotionalBannerController::class, 'index']);
@@ -45,24 +69,12 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 
 # RoomCategory API routes
     Route::get('/room_category', [RoomCategoryController::class, 'index']);
-    Route::post('home/room_category/{id}', [RoomCategoryController::class, 'update']);
+    Route::post('/room_category/{id}', [RoomCategoryController::class, 'update']);
 
 # advantages API routes
     Route::get('/advantages', [AdvantageController::class, 'index']);
     Route::post('/advantages/{id}', [AdvantageController::class, 'update']);
 //Route::delete('/advantages/{id}', [AdvantageController::class, 'destroy']);
-
-# Customers API routes
-//Route::post('/customers', [CustomerController::class, 'create']);
-//    Route::get('/customers', [CustomerController::class, 'index']);
-//Route::put('/customers/{id}', [CustomerController::class, 'update']);
-//Route::delete('/customers/{id}', [CustomerController::class, 'destroy']);
-
-# Users API routes
-    Route::post('/users', [UserController::class, 'create']);
-    Route::get('/users', [UserController::class, 'index']);
-    Route::put('/users/{id}', [UserController::class, 'update']);
-    Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 # Reviews API routes
     Route::post('/reviews', [ReviewController::class, 'create']);

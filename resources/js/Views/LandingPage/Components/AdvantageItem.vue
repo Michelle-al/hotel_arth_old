@@ -7,7 +7,7 @@
                 <div class="lg:mb-4 w-1/4 md:w-full h-14">
                     <img class="m-auto"
                          :src="advantage.icon_url"
-                         alt=""
+                         :alt="advantage.icon_alt"
                     >
                 </div>
                 <div class="w-3/4 md:w-full ">
@@ -46,13 +46,9 @@
                 type: Object,
                 default: () => {}
             }
+        },
+        mounted() {
+            console.log(this.advantage);
         }
     }
 </script>
-
-<style scoped>
-    .arrow-down {
-        height: 30px;
-        width: auto;
-    }
-</style>
