@@ -76,12 +76,6 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
     Route::post('/advantages/{id}', [AdvantageController::class, 'update']);
 //Route::delete('/advantages/{id}', [AdvantageController::class, 'destroy']);
 
-# Customers API routes
-//Route::post('/customers', [CustomerController::class, 'create']);
-//    Route::get('/customers', [CustomerController::class, 'index']);
-//Route::put('/customers/{id}', [CustomerController::class, 'update']);
-//Route::delete('/customers/{id}', [CustomerController::class, 'destroy']);
-
 # Reviews API routes
     Route::post('/reviews', [ReviewController::class, 'create']);
     Route::get('/reviews', [ReviewController::class, 'index']);
