@@ -22,11 +22,15 @@ class UserSeeder extends Seeder
 
 //        DB::table('users') -> insert([
 //            [
+//                "gender" => "Monsieur",
+//                "personal_address" => json_encode(["address" => "51 route de la ligne", "zip_code" => "75015",  "city" => "Paris"]),
+//                "enterprise_name" => "Le Campus numérique",
+//                "professional_address" => json_encode(["address" => "1 Esplanade Augustin Aussedat", "zip_code" => "74000",  "city" => "Annecy"]),
 //                "firstname" => "Kaley",
 //                "lastname" => "King",
 //                "email" => "k.king@example.net",
 //                "phone" => "1-281-295-6068",
-//                "avatar" => "storage/avatars/avatar1.png",
+//                "avatar_url" => "storage/avatars/avatar1.png",
 //                "password" => "P1vt7%63Hn#LoR'",
 //            ],
 //            [
@@ -34,7 +38,7 @@ class UserSeeder extends Seeder
 //                "lastname" => "Glloq",
 //                "email" => "J.glloq@example.net",
 //                "phone" => "854-862-2256",
-//                "avatar" => "storage/avatars/avatar1.png",
+//                "avatar_url" => "storage/avatars/avatar1.png",
 //                "password" => "mM:w`,v,?%%%K9'o",
 //            ],
 //            [
@@ -42,7 +46,7 @@ class UserSeeder extends Seeder
 //                "lastname" => "Longueville",
 //                "email" => "m.longueville@example.com",
 //                "phone" => "+15209556585",
-//                "avatar" => "storage/avatars/avatar1.png",
+//                "avatar_url" => "storage/avatars/avatar1.png",
 //                "password" => "2wtZ0Q,o1hR",
 //            ],
 //            [
@@ -50,7 +54,7 @@ class UserSeeder extends Seeder
 //                "lastname" => "Patchez",
 //                "email" => "e.patchez@example.com",
 //                "phone" => "+19542804851",
-//                "avatar" => "storage/avatars/avatar1.png",
+//                "avatar_url" => "storage/avatars/avatar1.png",
 //                "password" => "CWsA5>80'",
 //            ],
 //            [
@@ -58,7 +62,7 @@ class UserSeeder extends Seeder
 //                "lastname" => "Carter",
 //                "email" => "j.carter@example.com",
 //                "phone" => "(985) 918-6629",
-//                "avatar" => "storage/avatars/avatar1.png",
+//                "avatar_url" => "storage/avatars/avatar1.png",
 //                "password" => "Onf3cfxEUi8dmUq3}Uj",
 //            ],
 //            [
@@ -66,7 +70,7 @@ class UserSeeder extends Seeder
 //                "lastname" => "Rogahn",
 //                "email" => "a.roghan@example.com",
 //                "phone" => "+33698011350",
-//                "avatar" => "storage/avatars/avatar1.png",
+//                "avatar_url" => "storage/avatars/avatar1.png",
 //                "password" => ",*1iAy5KEUK&-`3&0$2",
 //            ],
 //        ]);
@@ -74,7 +78,7 @@ class UserSeeder extends Seeder
             "lastname" => Str::random(8),
             "email" => Str::random(10).'@example.com',
             "phone" => Int::random(10),
-            "avatar" => "storage/avatars/avatar1.png",
+            "avatar_url" => "storage/avatars/avatar1.png",
             "password"=> Hash::make('password'),
         */
 

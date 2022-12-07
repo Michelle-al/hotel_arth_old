@@ -16,12 +16,17 @@ class UserFactory extends Factory
     {
         return [
             'firstname' => $this->faker->firstName(),
+            'gender' => $this->faker->randomElement(['Madame', 'Monsieur']),
             'lastname'  => $this->faker->lastName(),
             'email'  => $this->faker->unique()->safeEmail(),
             //'email_verified_at' => now(), // TODO - Enable ?
             'phone' => $this->faker->phoneNumber(),
-            'avatar' => 'storage/avatars/avatar1.png',
+            'avatar_url' => 'storage/avatars/avatar1.png',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'personal_address' => json_encode(["address" => "260 rue de l'Artichaut", "zip_code" => "74000", "city" => "Annecy"]),
+            'enterprise_name' =>  'La Tortue',
+            'professional_address' =>  json_encode(["address" => "18 Chemin du Moulin", "zip_code" => "74000", "city" => "Annecy"]),
+            'role' => $this->faker->randomElement(['Customer', 'Admin']),
             'remember_token' => Str::random(10), //TODO - Enable ?
         ];
     }
