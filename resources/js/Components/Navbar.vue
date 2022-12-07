@@ -1,5 +1,5 @@
 <template>
-    <Popover class="section__navbar absolute w-full bg-white">
+    <Popover class="section__navbar absolute w-full bg-white" :class="isHomeView() ? 'absolute' : 'relative'">
         <div class="mx-auto max-w-8xl px-4 sm:px-6">
             <div
                 class="flex items-center justify-between border-b-2 border-gray-100 py-2 lg:justify-start md:space-x-10 z-2">
@@ -139,6 +139,12 @@ export default {
     mounted() {
     },
     computed: {
+    },
+    methods: {
+        isHomeView() {
+            // console.log(this.$router.currentRoute.value);
+            return this.$router.currentRoute.value.name === 'landingPage';
+        }
     }
 }
 

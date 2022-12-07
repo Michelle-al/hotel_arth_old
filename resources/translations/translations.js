@@ -29,8 +29,16 @@ export const translations = {
             joinUs : 'Join us :'
         },
         login: {
-            title: 'Login',
-            password: 'Password'
+            title: 'Log In',
+            password: 'Password',
+            dontHaveAccount: 'You don\'t have an account ?'
+        },
+        signUp: {
+            title: 'Sign Up',
+            password: 'Password',
+            confirmPassword: 'Confirm your password',
+            haveAccount: 'I already have an account',
+            button: 'Sign Up'
         }
     },
     fr: {
@@ -64,7 +72,15 @@ export const translations = {
         },
         login: {
             title: 'Connexion',
-            password: 'Mot de passe'
+            password: 'Mot de passe',
+            dontHaveAccount: 'Pas encore de compte ?'
+        },
+        signUp: {
+            title: 'Inscription',
+            password: 'Mot de passe',
+            confirmPassword: 'Confirmez votre mot de passe',
+            haveAccount: 'J\'ai déjà un compte',
+            button: 'S\'inscrire'
         }
     }
 }
