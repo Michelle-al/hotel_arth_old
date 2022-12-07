@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -42,14 +43,19 @@ class UserController extends Controller
     public function login(Request $request)
     {
 
-        $user = User::where('email', $request['email'])->firstOrFail();
+
+        try
+        {
+            $user = User::where('email', $request['email'])->firstOrFail();
+        }
+        catch(ModelNotFoundException $e){
+            return false;
+        }
 
         $token = $user->createToken('auth_token')->plainTextToken;
-
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-
         ]);
 
 
