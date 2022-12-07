@@ -13,7 +13,7 @@ class RoomCategory extends Model
 //    To stop Laravel from creating updated_at and created_at fields while populating the db with a seeder
     public $timestamps = false;
 
-    public $translatable = ['title', 'description'];
+    public $translatable = ['title', 'description', 'media_alt'];
 
     public $fillable = ['media_url', 'title', 'description'];
 }

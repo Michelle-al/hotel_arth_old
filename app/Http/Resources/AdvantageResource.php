@@ -19,7 +19,8 @@ class AdvantageResource extends JsonResource
             'id' => $this->id,
             'icon_url' => $this->icon_url,
             'title' => $this->getTranslation('title', App::getLocale()),
-            'description' => $this->getTranslation('description', App::getLocale())
+            'description' => $this->getTranslation('description', App::getLocale()),
+            'icon_alt' => $this->getTranslation('icon_alt', App::getLocale())
         ];
     }
 }
