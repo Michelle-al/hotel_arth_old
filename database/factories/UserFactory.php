@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'enterprise_name' =>  'La Tortue',
             'professional_address' =>  json_encode(["address" => "18 Chemin du Moulin", "zip_code" => "74000", "city" => "Annecy"]),
             'role' => $this->faker->randomElement(['Customer', 'Admin']),
-            'remember_token' => Str::random(10), //TODO - Enable ?
+            'remember_token' => Str::random(10),
         ];
     }
 
