@@ -55,7 +55,7 @@ Route::middleware('authenticate')->prefix('users')->group(function () {
 # Routes '/api/home/'
 Route::middleware('setLocale')->prefix('home')->group(function () {
     # Hero API routes
-    Route::get('/hero', [HeroController::class, 'index'])->middleware('auth:sanctum');
+    Route::get('/hero', [HeroController::class, 'index']);
     Route::post('/hero/{id}', [HeroController::class, 'update']);
 
 
