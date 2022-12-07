@@ -36,11 +36,11 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 
 # Promotional Banner API routes
     Route::get('/promotional_banner', [PromotionalBannerController::class, 'index']);
-    Route::put('/promotional_banner/{id}', [PromotionalBannerController::class, 'update']);
+    Route::put('/promotional_banner/{slug}', [PromotionalBannerController::class, 'update']);
 
 # Presentation Video API routes
     Route::get('/presentation_video', [PresentationVideoController::class, 'index']);
-    Route::post('/presentation_video/{id}', [PresentationVideoController::class, 'update']);
+    Route::post('/presentation_video/{slug}', [PresentationVideoController::class, 'update']);
 
 # RoomCategory API routes
     Route::get('/room_category', [RoomCategoryController::class, 'index']);
