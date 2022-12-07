@@ -27,7 +27,7 @@ export default {
         }
     },
     async mounted() {
-        const response = await axios.get('api/home/presentation_video');
+        const response = await axios.get('api/home/presentation_video/video_restaurant');
         this.presentationVideo = {...response.data['data']};
     }
 }

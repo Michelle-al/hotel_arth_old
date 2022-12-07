@@ -41,6 +41,7 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 
 # Presentation Video API routes
     Route::get('/presentation_video', [PresentationVideoController::class, 'index']);
+    Route::get('/presentation_video', [PresentationVideoController::class, 'show']);
     Route::post('/presentation_video/{slug}', [PresentationVideoController::class, 'update']);
 
 # RoomCategory API routes

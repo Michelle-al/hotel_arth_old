@@ -22,5 +22,5 @@ class Hero extends Model
 
     public $translatable = ['title', 'subtitle'];
 
-    public $fillable = ['title', 'media_url', 'subtitle'];
+    public $fillable = ['title', 'media_url', 'subtitle', 'slug'];
 }

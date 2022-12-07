@@ -18,6 +18,7 @@ class CreatePresentationVideosTable extends Migration
             $table->string('video_url')->nullable(false);
             $table->json('title')->nullable(false);
             $table->json('description')->nullable(false);
+            $table->string('slug')->nullable(false);
         });
     }
 

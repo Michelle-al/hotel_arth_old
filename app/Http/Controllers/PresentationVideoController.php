@@ -43,21 +43,21 @@ class PresentationVideoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  string  $slug
+     * @return PresentationVideoResource
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        return PresentationVideoResource::make(PresentationVideo::findOrFail($slug));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
         //
     }
@@ -66,17 +66,17 @@ class PresentationVideoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\JsonResponse
      * https://laravel.com/docs/8.x/eloquent#updates
      */
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
 // TODO - Vérification des users input
 
         // Retrieves information stored in DB for video corresponding to the id passed as a parameter of the request.
-        $resource= PresentationVideoResource::make(PresentationVideo::findOrFail($id));
+        $resource= PresentationVideoResource::make(PresentationVideo::findOrFail($slug));
         // Stores the content of the request body in a variable.
         $validatedData = $request->post();
         // Display then die : displays information then stop code execution. Equal to console.log. ONLY FOR

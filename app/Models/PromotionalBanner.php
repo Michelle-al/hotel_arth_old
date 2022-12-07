@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @property int id
+ * @property string text
+ * @property string slug
+ */
 class PromotionalBanner extends Model
 {
     use HasFactory, HasTranslations;
@@ -18,7 +23,7 @@ class PromotionalBanner extends Model
     public $timestamps = false;
 
     public $translatable = ['text'];
-    public $fillable = ['text'];
+    public $fillable = ['text', 'slug'];
     /**
      * The attributes that aren't mass assignable.
      *

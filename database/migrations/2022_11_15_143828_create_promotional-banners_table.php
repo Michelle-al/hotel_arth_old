@@ -16,6 +16,7 @@ class CreatePromotionalBannersTable extends Migration
         Schema::create('promotional_banners', function (Blueprint $table) {
             $table->id();
             $table->json('text');
+            $table->string('slug');
         });
     }
 
