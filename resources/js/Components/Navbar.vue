@@ -142,7 +142,6 @@ export default {
     },
     methods: {
         isHomeView() {
-            // console.log(this.$router.currentRoute.value);
             return this.$router.currentRoute.value.name === 'landingPage';
         }
     }

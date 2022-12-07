@@ -19,7 +19,8 @@ class RoomCategoryResource extends JsonResource
             'id' => $this->id,
             'media_url' => $this->media_url,
             'title' => $this->getTranslation('title', App::getLocale()),
-            'description' => $this->getTranslation('description', App::getLocale())
+            'description' => $this->getTranslation('description', App::getLocale()),
+            'media_alt' => $this->getTranslation('media_alt', App::getLocale())
         ];
     }
 }

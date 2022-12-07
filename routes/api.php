@@ -45,7 +45,7 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 
 # RoomCategory API routes
     Route::get('/room_category', [RoomCategoryController::class, 'index']);
-    Route::post('home/room_category/{id}', [RoomCategoryController::class, 'update']);
+    Route::post('/room_category/{id}', [RoomCategoryController::class, 'update']);
 
 # advantages API routes
     Route::get('/advantages', [AdvantageController::class, 'index']);

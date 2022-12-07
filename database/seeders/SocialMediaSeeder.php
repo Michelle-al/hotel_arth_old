@@ -17,15 +17,18 @@ class SocialMediaSeeder extends Seeder
         DB::table('social_medias')->insert([
             [
                 'logo_url' => "storage/social_medias/logo-instagram.png",
-                'social_url' => "https://www.instagram.com"
+                'social_url' => "https://www.instagram.com",
+                "logo_alt" => "Instagram logo"
             ],
             [
                 'logo_url' => "storage/social_medias/logo-facebook.png",
-                'social_url' => "https://fr-fr.facebook.com/"
+                'social_url' => "https://fr-fr.facebook.com/",
+                "logo_alt" => "Facebook logo"
             ],
             [
                 'logo_url' => "storage/social_medias/logo-twitter.png",
-                'social_url' => "https://twitter.com/"
+                'social_url' => "https://twitter.com/",
+                "logo_alt" => "Twitter logo"
             ],
 
         ]);
