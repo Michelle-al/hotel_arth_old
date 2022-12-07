@@ -23,9 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable(false);
             $table->string('avatar_url')->nullable(false);
             $table->string('password')->nullable(false); // TODO - Remplacer le password par son hash
-            $table->json('personal_address')->nullable(false);;
-            $table->string('enterprise_name');
-            $table->json('professional_address');
+            $table->json('personal_address')->nullable(false);
+            $table->string('enterprise_name')->nullable(true);;
+            $table->json('professional_address')->nullable(true);;
             $table->enum('role', ['Customer', 'Admin'])->default('Customer');
             $table->rememberToken(); // TODO - Ask if this line is compulsory there and in the CustomerFactory
         });
