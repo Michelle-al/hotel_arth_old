@@ -21,6 +21,9 @@ module.exports = {
             'montserrat': ['Montserrat', 'sans-serif'],
             'tinos': ['Tinos', 'serif'],
             'poiret': ['Poiret One', 'serif']
+        },
+        padding: {
+            '98px': '98px'
         }
     },
   },
