@@ -73,7 +73,7 @@ class AdvantageSeeder extends Seeder
             [
                 'icon_url' => "storage/advantages/airplane-outline.png",
                 'title' => json_encode(["fr" => "Un avion à prendre ?",
-                    "en" => "a plane to catch ?"]),
+                    "en" => "A plane to catch ?"]),
                 'description' => json_encode(["fr" => "Soyez sûrs de ne pas le rater grâce à notre équipe qui s’occupera de vous réveiller avec une chanson de Carlos et de vous trouver un taxi !",
                     "en" => "Be sure not to miss it thanks to our team who will wake you up with a song of Carlos and will find you a taxi."]),
                 "icon_alt" => json_encode([
