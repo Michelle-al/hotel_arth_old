@@ -3,10 +3,12 @@
         <div class="banner-text">
             <div class="flex flex-wrap items-center justify-between">
                 <div class="flex w-0 flex-1 items-center justify-around">
-                    <p class="mx-4 mb-4 sm:mb-0 text-xl lg:text-2xl  text-center">{{ promotionalBanner.text }}</p>
+                    <p class="mx-4 mb-4 sm:mb-0 text-xl lg:text-2xl text-arth-dark-blue text-center">{{ promotionalBanner.text
+                        }}</p>
                 </div>
                 <div class="order-3 mt-2 w-full flex-shrink-0 sm:order-2 sm:mt-0 sm:w-auto">
-                    <button class=" flex items-center justify-center bg-white px-4 mt-0 py-2 border-arth-green hover:bg-arth-green">
+                    <button
+                        class=" flex items-center justify-center bg-white text-arth-dark-blue hover:text-white px-4 mt-0 py-2 border-arth-green hover:bg-arth-green">
                         {{ $t("buttons.reservation") }}</button>
                 </div>
                 <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
