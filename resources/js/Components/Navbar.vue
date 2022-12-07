@@ -1,5 +1,5 @@
 <template>
-    <Popover class="section__navbar absolute w-full bg-white">
+    <Popover class="section__navbar absolute w-full bg-white" :class="isHomeView() ? 'absolute' : 'relative'">
         <div class="mx-auto max-w-8xl px-4 sm:px-6">
             <div
                 class="flex items-center justify-between border-b-2 border-gray-100 py-2 lg:justify-start md:space-x-10 z-2">
@@ -31,9 +31,9 @@
                 <!-- START - CTA toogle languages and Reservation-->
                 <div class="hidden items-center justify-end gap-10 md:gap-4 xl:gap-10 lg:flex lg:flex-1 lg:w-0">
                     <LanguagesToggleButton/>
-                    <a href="#"
+                    <router-link :to="{ name: 'login' }"
                         class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-4 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
-                    >{{ $t("buttons.connect")}}</a>
+                    >{{ $t("buttons.connect")}}</router-link>
                     <a href="#"
                         class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
                     >{{ $t("buttons.reservation") }}
@@ -139,6 +139,12 @@ export default {
     mounted() {
     },
     computed: {
+    },
+    methods: {
+        isHomeView() {
+            // console.log(this.$router.currentRoute.value);
+            return this.$router.currentRoute.value.name === 'landingPage';
+        }
     }
 }
 
