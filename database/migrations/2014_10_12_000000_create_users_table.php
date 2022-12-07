@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable(false);
             $table->string('avatar')->nullable(false);
             $table->string('password')->nullable(false); // TODO - Remplacer le password par son hash
-            //$table->rememberToken(); // TODO - Ask if this line is compulsory there and in the CustomerFactory
+            $table->rememberToken(); // TODO - Ask if this line is compulsory there and in the CustomerFactory
         });
     }
 

@@ -22,7 +22,7 @@ class UserFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'avatar' => 'storage/avatars/avatar1.png',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            //'remember_token' => Str::random(10), TODO - Enable ?
+            'remember_token' => Str::random(10), //TODO - Enable ?
         ];
     }
 

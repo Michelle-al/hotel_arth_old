@@ -26,18 +26,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+# Login route
+Route::post('/login', [UserController::class, 'login']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
+
+# Routes '/api/users'
+# Users API routes
+Route::post('/users', [UserController::class, 'create']);
+Route::get('/users', [UserController::class, 'index']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
 
 Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
 
+
+
+
+
+Route::middleware('authenticate')->prefix('users')->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
+});
+
+
+# Routes '/api/home/'
 Route::middleware('setLocale')->prefix('home')->group(function () {
     # Hero API routes
-    Route::get('/hero', [HeroController::class, 'index']);
+    Route::get('/hero', [HeroController::class, 'index'])->middleware('auth:sanctum');
     Route::post('/hero/{id}', [HeroController::class, 'update']);
+
 
 # Promotional Banner API routes
     Route::get('/promotional_banner', [PromotionalBannerController::class, 'index']);
@@ -61,12 +81,6 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 //    Route::get('/customers', [CustomerController::class, 'index']);
 //Route::put('/customers/{id}', [CustomerController::class, 'update']);
 //Route::delete('/customers/{id}', [CustomerController::class, 'destroy']);
-
-# Users API routes
-    Route::post('/users', [UserController::class, 'create']);
-    Route::get('/users', [UserController::class, 'index']);
-    Route::put('/users/{id}', [UserController::class, 'update']);
-    Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 # Reviews API routes
     Route::post('/reviews', [ReviewController::class, 'create']);

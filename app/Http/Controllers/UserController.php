@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -42,13 +43,13 @@ class UserController extends Controller
     {
 
         $user = User::where('email', $request['email'])->firstOrFail();
-//        dd($user->createToken('auth_token')->plainTextToken);
-        $token = $user->createToken('auth_token')->plainTextToken;
 
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
+
         ]);
 
 
