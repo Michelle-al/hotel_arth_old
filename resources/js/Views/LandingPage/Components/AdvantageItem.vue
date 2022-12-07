@@ -28,7 +28,7 @@
                     <img class="m-auto" :src="advantage.icon_url" alt="">
                 </div>
                 <div class="md:w-full ">
-                    <p class="text-center font-bold align-middle ">{{ advantage.title }}</p>
+                    <p class="text-center align-middle ">{{ advantage.title }}</p>
                 </div>
             </div>
         </div>
