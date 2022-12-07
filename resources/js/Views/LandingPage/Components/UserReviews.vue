@@ -1,12 +1,12 @@
 <template>
     <div class="section__reviews">
-        <h2 class="reviews__title">Voyez ce que disent nos clients</h2>
+        <h2 class="reviews__title">{{ $t("reviews.heading") }}</h2>
         <div class="reviews__cards" >
             <div v-for="review in reviews" :key="review.id" v-show="review.is_displayed === 1 && review.id <= 3">
                 <UserReviewItem :review="review"/>
             </div>
         </div>
-        <button class="section__reviews--CTA-SeeMore" @click="isHidden = !isHidden">Voir plus</button>
+        <button class="section__reviews--CTA-SeeMore" @click="isHidden = !isHidden">{{ $t("buttons.more") }}</button>
         <div class="reviews__cards" v-if="!isHidden" >
             <div v-for="review in reviews" :key="review.id" v-show="review.is_displayed === 1 && review.id > 3">
                 <UserReviewItem :review="review"/>

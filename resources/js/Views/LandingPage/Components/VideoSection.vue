@@ -11,7 +11,7 @@
                 <p>Votre navigateur ne prend pas en charge les vidéos HTML5.</p>
             </video>
         </div>
-            <button class="video__button-reservation">Réserver</button>
+            <button class="video__button-reservation">{{ $t("buttons.reservation") }}</button>
         </div>
 
 

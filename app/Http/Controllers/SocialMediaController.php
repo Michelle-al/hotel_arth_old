@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\SocialMedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class SocialMediaController extends Controller
 {
@@ -35,29 +37,37 @@ class SocialMediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        //Data validation
+        $validatedData = $request->validate([
+            'logo_url' => 'required|image|mimes:jpg,jpeg,png',
+            'social_url' => 'url'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        if ($request->hasFile('logo_url')) {
+            // Getting the sent file
+            $file = $request->file('logo_url');
+            // Minimal sanitizing of the file name (deleting all whitespace)
+            $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+            $validatedData['logo_url'] = 'storage/social_medias/' . $file_name;
+
+            // Putting the file in said
+            // directory with said filename
+            Storage::putFileAs('public/social_medias', $file, $file_name);
+        }
+
+
+//        dd($validatedData);
+        // Create a new instance of social media
+        $socialM = new SocialMedia();
+
+        //Fill $socialM with validated data and save
+        $socialM->fill($validatedData)
+                ->save();
+
+        return response()->json($socialM);
+
+//        return new SocialMedia($socialM);
     }
 
     /**
@@ -69,7 +79,34 @@ class SocialMediaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'logo_url' => 'image|image|mimes:jpg,jpeg,png',
+            'social_url' => 'url'
+        ]);
+
+        $socialM = SocialMedia::query()->findOrFail($id);
+
+        if ($request->hasFile('logo_url')) {
+            // Getting the sent file
+            $file = $request->file('logo_url');
+            // Minimal sanitizing of the file name (deleting all whitespace)
+            $file_name = preg_replace('/\s+/', '', $file->getClientOriginalName());
+//            dd( $socialM->social_url);
+            $validatedData['logo_url'] = 'storage/social_medias/' . $file_name;
+
+            // Putting the file in said directory with said filename
+            Storage::putFileAs('public/social_medias', $file, $file_name);
+
+            // Modification of the file path in order to find it in the storage/public/social_medias
+            $old_filepath = str_replace('storage/', 'public/', $socialM->logo_url);
+            Storage::delete( $old_filepath );
+        }
+
+        // Updating data in database
+        $socialM->update($validatedData);
+
+
+        return response()->json($socialM);
     }
 
     /**
@@ -80,6 +117,7 @@ class SocialMediaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SocialMedia::destroy($id);
+        return response()->json(SocialMedia::all());
     }
 }

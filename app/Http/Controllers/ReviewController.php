@@ -18,7 +18,7 @@ class ReviewController extends Controller
     {
         return ReviewResource::collection(
             Review::query()
-                ->with('customer')
+                ->with('user')
                 ->get()
         );
     }

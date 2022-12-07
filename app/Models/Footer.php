@@ -23,5 +23,6 @@ class Footer extends Model
      * @var array
      */
     protected $guarded = [];
+//    public $fillable = ['column_number','entry_name',' url_redirection'];
     public $translatable = ['entry_name'];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,14 +13,20 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    //    To stop Laravel from creating updated_at and created_at fields while populating the db with a seeder
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
+        'phone',
+        'avatar',
         'password',
     ];
 
@@ -30,7 +37,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token', // TODO - Enable ?
     ];
 
     /**
@@ -38,7 +45,19 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    /* TODO - Enable ?
+     * protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
+    ];*/
+
+
+    // TODO - Créer la fonction si nécessaire pour récupérer le/les commentaires d'un utilisateur
+    /**
+     * Get the review(s) send by a customer.
+     */
+    /*public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }*/
+
 }
