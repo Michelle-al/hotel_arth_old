@@ -7,6 +7,7 @@ use App\Http\Controllers\HeroController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PromotionalBannerController;
 use App\Http\Controllers\PresentationVideoController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\SocialMediaController;
@@ -43,6 +44,8 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 Route::post('/register', [UserController::class, 'register']);
 
+Route::get('/reservations/{id}', [ReservationController::class, 'show']);
+Route::put('/reservations/{id}', [ReservationController::class, 'update']);
 
 
 

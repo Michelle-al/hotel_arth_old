@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReservationResource;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller
 {
@@ -35,29 +37,27 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function show(Reservation $reservation)
+    public function show(int $id)
     {
-        //
+        return ReservationResource::make(Reservation::findOrFail($id));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reservation $reservation)
+    public function edit(Request $request, int $id)
     {
-        //
+
     }
 
     /**
@@ -67,9 +67,20 @@ class ReservationController extends Controller
      * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(Request $request, int $id)
     {
-        //
+        $validator = Validator::make($request->post(), [
+            'status' => 'string|in:validated,cancelled,no-show,terminated'
+                ]
+        );
+
+        $validated = $validator->validated();
+
+        $resource = ReservationResource::make(Reservation::findOrFail($id));
+
+        $resource->update($validated);
+
+        return response()->json($resource);
     }
 
     /**

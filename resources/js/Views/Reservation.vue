@@ -22,16 +22,16 @@
         <div class="form-control w-full max-w-xs mx-auto mt-12">
             <div class="flex">
                 <div class="flex-col mr-4 lg:mr-6">
-                    <label for="arrival" class="label">
+                    <label for="checkin" class="label">
                         <span class="label-text">{{ $t('reservation.arrival')}}</span>
                     </label>
-                    <input type="Date" id="arrival" name="arrival" v-model="form.arrival">
+                    <input type="Date" id="checkin" name="checkin" v-model="form.checkin">
                 </div>
                 <div class="flex-col">
-                    <label for="departure" class="label">
+                    <label for="checkout" class="label">
                         <span class="label-text">{{ $t('reservation.departure')}}</span>
                     </label>
-                    <input type="Date" id="departure" name="departure" v-model="form.departure">
+                    <input type="Date" id="checkout" name="checkout" v-model="form.checkout">
                 </div>
             </div>
 
@@ -71,8 +71,8 @@
         data() {
             return {
                 form: {
-                    arrival: '',
-                    departure: '',
+                    checkin: '',
+                    checkout: '',
                     roomCategory: '',
                     numberOfRooms: 1,
                     numberOfPeople: 1
