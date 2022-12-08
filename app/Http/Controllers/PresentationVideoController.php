@@ -37,7 +37,7 @@ class PresentationVideoController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO - Implementer la fonction
+        //
     }
 
     /**
@@ -48,7 +48,7 @@ class PresentationVideoController extends Controller
      */
     public function show($id)
     {
-        // TODO - Implementer la fonction
+        return new PresentationVideoResource(PresentationVideo::findOrFail($id)); // TEST BARRE URL OK
     }
 
     /**
