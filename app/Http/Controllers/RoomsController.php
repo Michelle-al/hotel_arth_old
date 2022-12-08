@@ -65,10 +65,7 @@ class RoomsController extends Controller
      */
     public function show(int $room_number) // TEST BARRE URL OK
     {
-        return Rooms::query()->where([
-                'room_number' => $room_number
-            ])
-            ->get();
+        return RoomsResource::make(Rooms::where('room_number', $room_number))->firstOrFail();
     }
 
     /**
