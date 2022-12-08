@@ -39,6 +39,15 @@ export const translations = {
             confirmPassword: 'Confirm your password',
             haveAccount: 'I already have an account',
             button: 'Sign Up'
+        },
+        reservation: {
+            title: "Reservation",
+            arrival: "Arrival",
+            departure: "Departure",
+            numberOfPeople: "Number of people",
+            numberOfRooms: 'Number of rooms',
+            roomCategory: 'Type of room',
+            button: 'Next'
         }
     },
     fr: {
@@ -81,6 +90,15 @@ export const translations = {
             confirmPassword: 'Confirmez votre mot de passe',
             haveAccount: 'J\'ai déjà un compte',
             button: 'S\'inscrire'
+        },
+        reservation: {
+            title: "Réservation",
+            arrival: "Arrivée",
+            departure: "Départ",
+            numberOfPeople: "Nombre de personnes",
+            numberOfRooms: 'Nombre de chambres',
+            roomCategory: 'Type de chambre',
+            button: 'Poursuivre'
         }
     }
 }
