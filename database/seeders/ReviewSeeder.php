@@ -83,7 +83,7 @@ class ReviewSeeder extends Seeder
                 "created_at" => date("Y-m-d H:i:s"),
             ],
         /*
-         * TODO - Mettre is_displayed à false (0) par défaut pour les nouveaux avis clients ( là ou dans la fonction
+         * TODO - Mettre is_displayed à false (0) par défaut pour les nouveaux avis clients (là ou dans la fonction
          * create du controller).
         */
         ]);
