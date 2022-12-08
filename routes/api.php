@@ -9,6 +9,7 @@ use App\Http\Controllers\PromotionalBannerController;
 use App\Http\Controllers\PresentationVideoController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomCategoryController;
+use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -65,6 +66,7 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 
 # Presentation Video API routes
     Route::get('/presentation_video', [PresentationVideoController::class, 'index']);
+    Route::get('/presentation_video/{id}', [PresentationVideoController::class, 'show']);
     Route::post('/presentation_video/{id}', [PresentationVideoController::class, 'update']);
 
 # RoomCategory API routes
@@ -80,7 +82,7 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
     Route::post('/reviews', [ReviewController::class, 'create']);
     Route::get('/reviews', [ReviewController::class, 'index']);
     Route::put('/reviews/{id}', [ReviewController::class, 'update']);
-    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
+//    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
 
 # News
     Route::get('/news', [NewsController::class, 'index']);
@@ -101,4 +103,9 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
     Route::post('/social_medias', [SocialMediaController::class, 'store']);
 });
 
-#Admin API routes
+# Rooms API routes
+    Route::get('/rooms', [RoomsController::class, 'index']);
+    Route::get('rooms/{room_number}', [RoomsController::class, 'show']);
+    Route::post('/rooms/', [RoomsController::class, 'store']);
+    Route::put('rooms/{room_number}', [RoomsController::class, 'update']);
+    Route::delete('rooms/{room_number}', [RoomsController::class, 'destroy']);
