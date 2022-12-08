@@ -44,8 +44,8 @@ class RoomsController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'room_number' => 'required|int',
-            'style' => 'required|array',
-            'price' => 'required|array'
+            'style' => 'required|string',
+            'price' => 'required|int'
         ]);
 
         $validatedData = $validator->validate();
