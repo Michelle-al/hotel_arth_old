@@ -29,27 +29,27 @@ use Illuminate\Support\Facades\Route;
 # Login route
 Route::post('/login', [UserController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-
-
-# Routes '/api/users'
-# Users API routes
-Route::post('/users', [UserController::class, 'create']);
-Route::get('/users', [UserController::class, 'index']);
-Route::put('/users/{id}', [UserController::class, 'update']);
-Route::delete('/users/{id}', [UserController::class, 'destroy']);
-});
-
+# Register route
 Route::post('/register', [UserController::class, 'register']);
 
-
-
-
-
-Route::middleware('authenticate')->prefix('users')->group(function () {
-    Route::get('/users', [UserController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
+
+Route::middleware('auth:sanctum')->prefix('user')->group(function () {
+    # Users API routes
+    //Route::post('/users', [UserController::class, 'signUp']);
+    Route::get('display/{id}', [UserController::class, 'index']);
+    Route::put('update/{id}', [UserController::class, 'update']);
+    Route::delete('delete/users/{id}', [UserController::class, 'destroy']);
+});
+
+
+
+
+Route::post('/user', [UserController::class, 'user'])->middleware('auth:sanctum');
+
+
 
 
 # Routes '/api/home/'
