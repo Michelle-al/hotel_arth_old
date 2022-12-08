@@ -14,9 +14,7 @@ class Rooms extends Model
 
     public $fillable = [
         'room_number',
-        'stye',
+        'style',
         'price',
     ];
-
-    public $translatable = ['style'];
 }
