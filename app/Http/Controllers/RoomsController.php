@@ -6,6 +6,7 @@ use App\Http\Resources\RoomsResource;
 use App\Http\Requests\StoreRoomsRequest;
 use App\Http\Requests\UpdateRoomsRequest;
 use App\Models\Rooms;
+use Illuminate\Support\Facades\Validator;
 
 class RoomsController extends Controller
 {
@@ -14,7 +15,7 @@ class RoomsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() // TEST BARRE URL OK
     {
         return RoomsResource::collection(
             Rooms::query()
@@ -30,38 +31,54 @@ class RoomsController extends Controller
      */
     public function create()
     {
-        //
+        // TODO - Implementer la fonction
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreRoomsRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return RoomsResource
      */
     public function store(StoreRoomsRequest $request)
     {
         // TODO - Implementer la fonction
+        $validator = Validator::make($request->all(), [
+            'room_number' => 'required|int',
+            'style' => 'required|array',
+            'price' => 'required|array'
+        ]);
+
+        $validatedData = $validator->validate();
+
+        $room = new Rooms();
+        $room->fill($validatedData)
+            ->save();
+
+        return new RoomsResource($room);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Rooms  $room_number
-     * @return \Illuminate\Http\Response
+     * @param  int $room_number
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function show(Rooms $room_number)
+    public function show(int $room_number) // TEST BARRE URL OK
     {
-        //// TODO - Implementer la fonction
+        return Rooms::query()->where([
+                'room_number' => $room_number
+            ])
+            ->get();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Rooms  $room_number
+     * @param  int $room_number
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rooms $room_number)
+    public function edit(int $room_number)
     {
         //
     }
@@ -70,22 +87,25 @@ class RoomsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateRoomsRequest  $request
-     * @param  \App\Models\Rooms  $room_number
-     * @return \Illuminate\Http\Response
+     * @param  int $room_number
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateRoomsRequest $request, Rooms $room_number)
+    public function update(UpdateRoomsRequest $request, int $room_number)
     {
-        // TODO - Implementer la fonction : L'admin doit au moins pouvoir changer le prix des chambres.
+        $room = RoomsResource::make(Rooms::query()->firstOrFail($room_number));
+        $room->update($request->post());
+
+        return response()->json($room);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rooms $room_number
+     * @param  int $room_number
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rooms $room_number)
+    public function destroy($room_number)
     {
-        //// TODO - Implementer la fonction
+        Rooms::destroy($room_number);
     }
 }

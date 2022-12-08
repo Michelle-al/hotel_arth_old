@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdvantageController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\NewsController;
@@ -79,7 +78,7 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 //Route::delete('/advantages/{id}', [AdvantageController::class, 'destroy']);
 
 # Reviews API routes
-    Route::post('/reviews', [ReviewController::class, 'create']);
+    Route::post('/reviews', [ReviewController::class, 'store']);
     Route::get('/reviews', [ReviewController::class, 'index']);
     Route::put('/reviews/{id}', [ReviewController::class, 'update']);
 //    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
@@ -103,9 +102,12 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
     Route::post('/social_medias', [SocialMediaController::class, 'store']);
 });
 
+
+Route::middleware('setLocale')->prefix('rooms')->group(function () {
 # Rooms API routes
-    Route::get('/rooms', [RoomsController::class, 'index']);
-    Route::get('rooms/{room_number}', [RoomsController::class, 'show']);
-    Route::post('/rooms/', [RoomsController::class, 'store']);
-    Route::put('rooms/{room_number}', [RoomsController::class, 'update']);
-    Route::delete('rooms/{room_number}', [RoomsController::class, 'destroy']);
+    Route::get('/', [RoomsController::class, 'index']);
+    Route::get('/{room_number}', [RoomsController::class, 'show']);
+    Route::post('/', [RoomsController::class, 'store']);
+    Route::put('/{room_number}', [RoomsController::class, 'update']);
+    Route::delete('/{room_number}', [RoomsController::class, 'destroy']);
+});
