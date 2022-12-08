@@ -31,7 +31,7 @@ class RoomsController extends Controller
      */
     public function create()
     {
-        // TODO - Implementer la fonction
+        //
     }
 
     /**
@@ -42,7 +42,6 @@ class RoomsController extends Controller
      */
     public function store(StoreRoomsRequest $request)
     {
-        // TODO - Implementer la fonction
         $validator = Validator::make($request->all(), [
             'room_number' => 'required|int',
             'style' => 'required|array',
