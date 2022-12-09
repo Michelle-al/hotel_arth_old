@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             SocialMediaSeeder::class,
             FooterSeeder::class,
             RoomsSeeder::class,
-            ReservationSeeder::class
+            ReservationSeeder::class,
+            ReservationRoomSeeder::class
         ]);
     }
 }

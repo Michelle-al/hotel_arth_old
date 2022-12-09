@@ -46,6 +46,7 @@ Route::post('/register', [UserController::class, 'register']);
 
 Route::get('/reservations/{id}', [ReservationController::class, 'show']);
 Route::put('/reservations/{id}', [ReservationController::class, 'update']);
+Route::get('/reservations/availability', [ReservationController::class, 'isAvailable']);
 
 
 

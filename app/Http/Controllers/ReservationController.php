@@ -74,6 +74,31 @@ class ReservationController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @mixin Reservation
+     * @return void
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function isAvailable(Request $request)
+    {
+        $validator = Validator::make($request->post(), [
+                'checkin' => 'date_format:Y-m-d|after:today',
+                'checkout' => 'date_format:Y-m-d|after:checkin',
+                'number_of_rooms' => 'integer|min:1'
+            ]
+        );
+
+        $validated = $validator->validate();
+
+        $reservations = Reservation::where('checkin', $validated->checkin);
+
+        return $reservations;
+
+
+
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Reservation  $reservation
