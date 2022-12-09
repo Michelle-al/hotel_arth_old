@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\RoomsResource;
+use App\Http\Resources\RoomResource;
 use App\Http\Requests\StoreRoomsRequest;
-use App\Http\Requests\UpdateRoomsRequest;
-use App\Models\Rooms;
+use App\Http\Requests\UpdateRoomRequest;
+use App\Models\Room;
 use Illuminate\Support\Facades\Validator;
 
-class RoomsController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index() // TEST BARRE URL OK
     {
-        return RoomsResource::collection(
-            Rooms::query()
+        return RoomResource::collection(
+            Room::query()
                 ->get()
         );
     }
@@ -38,7 +38,7 @@ class RoomsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreRoomsRequest  $request
-     * @return RoomsResource
+     * @return RoomResource
      */
     public function store(StoreRoomsRequest $request)
     {
@@ -50,11 +50,11 @@ class RoomsController extends Controller
 
         $validatedData = $validator->validate();
 
-        $room = new Rooms();
+        $room = new Room();
         $room->fill($validatedData)
             ->save();
 
-        return new RoomsResource($room);
+        return new RoomResource($room);
     }
 
     /**
@@ -65,7 +65,7 @@ class RoomsController extends Controller
      */
     public function show(int $room_number) // TEST BARRE URL OK
     {
-        return RoomsResource::make(Rooms::where('room_number', $room_number))->firstOrFail();
+        return RoomResource::make(Room::where('room_number', $room_number))->firstOrFail();
     }
 
     /**
@@ -82,13 +82,13 @@ class RoomsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateRoomsRequest  $request
+     * @param  \App\Http\Requests\UpdateRoomRequest  $request
      * @param  int $room_number
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateRoomsRequest $request, int $room_number)
+    public function update(UpdateRoomRequest $request, int $room_number)
     {
-        $room = RoomsResource::make(Rooms::query()->firstOrFail($room_number));
+        $room = RoomResource::make(Room::query()->firstOrFail($room_number));
         $room->update($request->post());
 
         return response()->json($room);
@@ -102,6 +102,6 @@ class RoomsController extends Controller
      */
     public function destroy($room_number)
     {
-        Rooms::destroy($room_number);
+        Room::destroy($room_number);
     }
 }

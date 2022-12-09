@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Rooms;
+use App\Models\Room;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RoomsSeeder extends Seeder
+class RoomSeeder extends Seeder
 {
     /**
      * Run the database seeds.
