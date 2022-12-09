@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Nette\Schema\ValidationException;
 
 class UserController extends Controller
 {
@@ -18,40 +21,68 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:8|confirmed',
         ]);
+
 
         $user = User::create([
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
         ]);
 
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);
+
+//        try
+//        {
+//            $validatedData = $request->validate([
+//                'email' => 'required|string|email|max:255|unique:users',
+//                'password' => 'required|string|min:8|confirmed',
+//            ]);
+//            $user = User::create([
+//                'email' => $validatedData['email'],
+//                'password' => Hash::make($validatedData['password']),
+//            ]);
+//            $token = $user->createToken('auth_token')->plainTextToken;
+//
+//            return response()->json([
+//                'access_token' => $token,
+//                'token_type' => 'Bearer',
+//            ]);
+//        }
+//        catch(\Exception $e){
+//            return $e;
+//        }
+
+
     }
 
     /**
      * Display a user.
      ** @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return string
      */
     public function login(Request $request)
     {
 
-        $user = User::where('email', $request['email'])->firstOrFail();
+        try
+        {
+            $user = User::where('email', $request['email'])->firstOrFail();
+        }
+        catch(ValidationException $e){
+            return 'Email et/ ou mot de passe incorrect';
+        }
 
         $token = $user->createToken('auth_token')->plainTextToken;
-
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-
         ]);
-
 
     }
 
@@ -60,9 +91,22 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function user(Request $request)
     {
-        return User::all();
+        $user = User::where('email', $request['email'])->firstOrFail();
+
+        return response()->json($user);
+
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+
     }
 
     /**

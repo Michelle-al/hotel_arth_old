@@ -12,14 +12,15 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
         return ReviewResource::collection(
             Review::query()
                 ->with('user')
-                ->get()
+                ->paginate(9)
+//                ->get()
         );
     }
     // query() method allows to pass other methods (ex: relation with another table) before launching the get() request
@@ -42,8 +43,30 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'user_id'=> 'required|int',
+            'rating' => 'required|int|min:1|max:5',
+            'title' => 'required|string|max:255',
+            'body' => 'required|string|max:500',
+            'is_displayed' => ['required', new Boolean],
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('home/')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $validatedData = $validator->validate();
+
+        $review = new Review();
+        $review->fill($validatedData)
+            ->save();
+
+        return new RoomsResource($review);
     }
+
 
     /**
      * Display the specified resource.
@@ -72,11 +95,14 @@ class ReviewController extends Controller
      *
      * @param  \App\Http\Requests\UpdateReviewRequest  $request
      * @param  \App\Models\Review  $review
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateReviewRequest $request, Review $review)
     {
-        //
+        $review = ReviewResource::make(Review::query()->firstOrFail($review));
+        $review->update($request->post());
+
+        return response()->json($review);
     }
 
     /**

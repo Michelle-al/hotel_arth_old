@@ -8,7 +8,8 @@
         </div>
         <button class="section__reviews--CTA-SeeMore" @click="isHidden = !isHidden">{{ $t("buttons.more") }}</button>
         <div class="reviews__cards" v-if="!isHidden" >
-            <div v-for="review in reviews" :key="review.id" v-show="review.is_displayed === 1 && review.id > 3">
+            <div v-for="review in reviews" :key="review.id" v-show="review.is_displayed === 1 && review.id > 3 &&
+            review.id < 7">
                 <UserReviewItem :review="review"/>
             </div>
         </div>
@@ -33,7 +34,6 @@ export default {
     },
     async mounted() {
         const response = await axios.get('api/home/reviews');
-        // this.reviews.push(...response.data);
         this.reviews.push(...response.data['data']);
     }
 }

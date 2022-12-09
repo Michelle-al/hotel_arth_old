@@ -40,7 +40,6 @@
                         <img src="storage/pictures/Star_full.png" alt="">
                         <img src="storage/pictures/Star_full.png" alt="">
                     </div>
-<!--                    {{ review.rating }}-->
                     <p>{{ review.user.firstname}} {{review.user.lastname}}</p>
                 </div>
             </div>
@@ -72,18 +71,16 @@ export default {
         }
     },
     methods: {
-        addStars() {
-
-        }
+        //
     },
     computed: {
-        formatDate() { // TODO - BUGFIX Ne fonctionne pas
+        formatDate() {
             const date = new Date(this.review.created_at)
             return date.toLocaleDateString()
         }
     },
     mounted() {
-        // console.log(this.review)
+        console.log(this.review)
     }
 }
 </script>
