@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Nette\Schema\ValidationException;
 
 class UserController extends Controller
@@ -19,45 +20,29 @@ class UserController extends Controller
      */
     public function register(Request $request)
     {
-        $validatedData = $request->validate([
+
+        $validatedData = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+        if ($validatedData->fails())
+        {
+            return response()->json([
+                'message' => $validatedData->errors(),
+            ]);
+        }
 
         $user = User::create([
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
         ]);
-
-
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);
-
-//        try
-//        {
-//            $validatedData = $request->validate([
-//                'email' => 'required|string|email|max:255|unique:users',
-//                'password' => 'required|string|min:8|confirmed',
-//            ]);
-//            $user = User::create([
-//                'email' => $validatedData['email'],
-//                'password' => Hash::make($validatedData['password']),
-//            ]);
-//            $token = $user->createToken('auth_token')->plainTextToken;
-//
-//            return response()->json([
-//                'access_token' => $token,
-//                'token_type' => 'Bearer',
-//            ]);
-//        }
-//        catch(\Exception $e){
-//            return $e;
-//        }
 
 
     }
@@ -70,19 +55,48 @@ class UserController extends Controller
     public function login(Request $request)
     {
 
-        try
-        {
-            $user = User::where('email', $request['email'])->firstOrFail();
-        }
-        catch(ValidationException $e){
-            return 'Email et/ ou mot de passe incorrect';
-        }
+//    dd(Auth::attempt(['email' => $request['email'], 'password' => $request['password']]));
+//        try
+//        {
+//            $user = User::where('email', $request['email'])->firstOrFail();
+//
+//        }
+//        catch(ValidationException $e){
+//            return 'Email et/ ou mot de passe incorrect';
+//        }
+//
+//        $token = $user->createToken('auth_token')->plainTextToken;
+//        return response()->json([
+//            'access_token' => $token,
+//            'token_type' => 'Bearer',
+//        ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
+        $validatedData = Validator::make($request->all(), [
+            'email' => 'required|string|email',
+            'password' => 'required|string',
         ]);
+
+        if ($validatedData->fails())
+        {
+            return response()->json([
+                'message' => $validatedData->errors(),
+            ]);
+        }
+        if (!Auth::attempt(['email' => $request['email'], 'password' => $request['password']])){
+            try
+            {
+                $user = User::where('email', $request['email'])->firstOrFail();
+                $token = $user->createToken('auth_token')->plainTextToken;
+                return response()->json([
+                    'access_token' => $token,
+                    'token_type' => 'Bearer',
+                ]);
+            }
+            catch(ModelNotFoundException $e){
+//                dd($e->getMessage());
+                $e->getMessage();
+            }
+        }
 
     }
 

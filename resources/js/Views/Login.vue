@@ -15,6 +15,7 @@
                     <span class="label-text">{{ $t("login.password") }}</span>
                 </label>
                 <input type="password" placeholder="Password" v-model="password" id="password" autocomplete="off"/>
+                <span class="text-red-500 text-sm">{{ message_password}}</span>
                 <p class="mt-6 text-arth-green text-center"><router-link :to="{ name: 'signUp'}">{{
                         $t('login.dontHaveAccount')
                     }}</router-link></p>
@@ -36,17 +37,23 @@
             return {
                 email: '',
                 password: '',
+                message_password: '',
                 errorMessage: ''
             }
         },
         methods: {
-            async checkUser(){
-                const response = await axios.post('api/login', {
-                    email: this.email,
-                    password: this.password
-                })
-                this.errorMessage = response.data
-            }
+                async checkUser() {
+                    try {
+                    const response = await axios.post('api/login', {
+                        email: this.email,
+                        password: this.password
+                    })
+                        console.log(response)
+                    }catch (error) {
+                        // this.message_password = response.data.message.password.join()
+                        console.log(error)
+                    }
+                }
         }
     }
 </script>
