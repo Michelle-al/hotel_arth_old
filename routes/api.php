@@ -45,12 +45,20 @@ Route::middleware('auth:sanctum')->prefix('user')->group(function () {
     Route::delete('delete/users/{id}', [UserController::class, 'destroy']);
 });
 
+Route::post('/register', [UserController::class, 'register']);
 
-
+Route::middleware('setLocale')->prefix('reservations')->group(function () {
+    Route::put('/{id}', [ReservationController::class, 'update']);
+    Route::post('/availability', [ReservationController::class, 'isAvailable']);
+    Route::get('/{id}', [ReservationController::class, 'show']);
+});
 
 Route::post('/user', [UserController::class, 'user'])->middleware('auth:sanctum');
 
 
+Route::middleware('authenticate')->prefix('users')->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
+});
 
 
 # Routes '/api/home/'
