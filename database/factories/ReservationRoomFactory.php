@@ -19,7 +19,7 @@ class ReservationRoomFactory extends Factory
         $room_number = Rooms::all()->pluck('room_number')->toArray();
         return [
             'reservation_id' => $this->faker->randomElement($reservation_id),
-            'room_number' => $this->faker->randomElement($room_number)
+            'room_number' => $this->faker->unique()->randomElement($room_number)
         ];
     }
 }

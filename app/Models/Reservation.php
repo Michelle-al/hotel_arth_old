@@ -22,4 +22,11 @@ class Reservation extends Model
 
     public $timestamps = false;
 
+    /**
+     * Get rooms for reservations.
+     */
+    public function rooms()
+    {
+        return $this->hasMany(ReservationRoom::class, 'room_id');
+    }
 }

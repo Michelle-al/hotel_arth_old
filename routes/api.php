@@ -44,10 +44,11 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 Route::post('/register', [UserController::class, 'register']);
 
-Route::get('/reservations/{id}', [ReservationController::class, 'show']);
-Route::put('/reservations/{id}', [ReservationController::class, 'update']);
-Route::get('/reservations/availability', [ReservationController::class, 'isAvailable']);
-
+Route::middleware('setLocale')->prefix('reservations')->group(function () {
+    Route::put('/{id}', [ReservationController::class, 'update']);
+    Route::post('/availability', [ReservationController::class, 'isAvailable']);
+    Route::get('/{id}', [ReservationController::class, 'show']);
+});
 
 
 

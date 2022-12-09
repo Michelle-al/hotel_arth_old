@@ -18,8 +18,8 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->nullable(false);
             $table->TinyInteger('number_of_people')->nullable(false);
-            $table->timestamp('checkin')->nullable(false);
-            $table->timestamp('checkout')->nullable(false);
+            $table->date('checkin')->nullable(false);
+            $table->date('checkout')->nullable(false);
             $table->boolean('has_options')->nullable(false);
             $table->float('price')->nullable(false);
             $table->enum('stay_type', ['pro', 'personal'])->nullable(false);

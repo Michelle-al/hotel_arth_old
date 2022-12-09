@@ -17,4 +17,12 @@ class Rooms extends Model
         'style',
         'price',
     ];
+
+    /**
+     * Get reservations that owns the rooms
+     */
+    public function hasReservation()
+    {
+        return $this->belongsTo(ReservationRoom::class);
+    }
 }
