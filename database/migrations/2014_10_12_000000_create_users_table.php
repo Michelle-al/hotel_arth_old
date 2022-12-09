@@ -27,7 +27,6 @@ class CreateUsersTable extends Migration
             $table->string('enterprise_name');
             $table->json('professional_address');
             $table->enum('role', ['Customer', 'Admin'])->default('Customer');
-            $table->rememberToken(); // TODO - Ask if this line is compulsory there and in the CustomerFactory
         });
     }
 

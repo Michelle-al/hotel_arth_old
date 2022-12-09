@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             SocialMediaSeeder::class,
             FooterSeeder::class,
+            RoomsSeeder::class,
             ReservationSeeder::class
         ]);
     }

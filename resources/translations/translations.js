@@ -61,7 +61,7 @@ export const translations = {
             rooms: "Nos chambres",
             advantages: "Nos avantages",
             reviews: "Avis de nos clients",
-            news: "Notre actualités",
+            news: "Notre actualité",
             alreadyHaveAccount: "J'ai déjà un compte ?"
         },
         rooms: {
