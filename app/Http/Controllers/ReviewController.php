@@ -6,13 +6,16 @@ use App\Http\Resources\ReviewResource;
 use App\Models\Review;
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
@@ -38,8 +41,8 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreReviewRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreReviewRequest $request
+     * @return ReviewResource
      */
     public function store(StoreReviewRequest $request)
     {
@@ -64,7 +67,7 @@ class ReviewController extends Controller
         $review->fill($validatedData)
             ->save();
 
-        return new RoomsResource($review);
+        return new ReviewResource($review);
     }
 
 
@@ -93,13 +96,13 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateReviewRequest  $request
-     * @param  \App\Models\Review  $review
-     * @return \Illuminate\Http\JsonResponse
+     * @param UpdateReviewRequest $request
+     * @param  int $id
+     * @return JsonResponse
      */
-    public function update(UpdateReviewRequest $request, Review $review)
+    public function update(UpdateReviewRequest $request, int $id)
     {
-        $review = ReviewResource::make(Review::query()->firstOrFail($review));
+        $review = ReviewResource::make(Review::query()->findOrFail($id));
         $review->update($request->post());
 
         return response()->json($review);
@@ -108,10 +111,10 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Review  $review
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(int $id)
     {
         //
     }

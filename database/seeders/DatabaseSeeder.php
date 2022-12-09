@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Option;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,7 +25,8 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             SocialMediaSeeder::class,
             FooterSeeder::class,
-            RoomsSeeder::class,
+            RoomSeeder::class,
+            OptionSeeder::class,
         ]);
     }
 }
