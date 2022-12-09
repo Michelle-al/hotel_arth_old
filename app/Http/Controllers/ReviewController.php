@@ -12,14 +12,15 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
         return ReviewResource::collection(
             Review::query()
                 ->with('user')
-                ->get()
+                ->paginate(9)
+//                ->get()
         );
     }
     // query() method allows to pass other methods (ex: relation with another table) before launching the get() request
