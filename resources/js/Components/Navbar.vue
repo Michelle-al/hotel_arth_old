@@ -84,7 +84,9 @@
                             <p class="mt-6 text-center font-medium text-gray-500">
                                 {{ $t("navbar.alreadyHaveAccount") }}
                                 {{ ' ' }}
-                                <a href="#" class="text-arth-dark-blue hover:text-arth-green">{{$t("buttons.connect")}}</a>
+                                <router-link :to="{ name: 'login' }"
+                                    class="text-arth-dark-blue hover:text-arth-green">{{$t("buttons.connect")}}
+                                </router-link>
                             </p>
                         </div>
                     </div>

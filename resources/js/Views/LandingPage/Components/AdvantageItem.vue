@@ -48,7 +48,7 @@
             }
         },
         mounted() {
-            console.log(this.advantage);
+            //
         }
     }
 </script>

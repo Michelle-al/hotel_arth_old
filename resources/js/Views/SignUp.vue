@@ -1,34 +1,52 @@
 <template>
     <div>
-        <h1>{{ $t("signUp.title")}}</h1>
+        <h1 @click="createUser">{{ $t("signUp.title")}}</h1>
+        <form v-on:submit.prevent="createUser">
+            <div class="form-control w-full max-w-xs mx-auto mt-12">
+                <label class="label">
+                    <span class="label-text">Email</span>
+                </label>
+                <input type="text" placeholder="Type here" v-model="email" id="email"/>
 
-        <div class="form-control w-full max-w-xs mx-auto mt-12">
-            <label class="label">
-                <span class="label-text">Email</span>
-            </label>
-            <input type="text" placeholder="Type here"/>
+                <label class="label">
+                    <span class="label-text">{{ $t("signUp.password") }}</span>
+                </label>
+                <input type="password" placeholder="Type here" v-model="password" id="password" autocomplete="off"/>
 
-            <label class="label">
-                <span class="label-text">{{ $t("signUp.password") }}</span>
-            </label>
-            <input type="password" placeholder="Type here"/>
+                <label class="label">
+                    <span class="label-text">{{ $t("signUp.confirmPassword") }}</span>
+                </label>
+                <input type="password" placeholder="Type here" id="password_confirmation" autocomplete="off"/>
+                <p class="mt-6 text-center text-arth-green"><router-link :to="{ name: 'login'}">{{  $t('signUp.haveAccount') }}</router-link></p>
+            </div>
 
-            <label class="label">
-                <span class="label-text">{{ $t("signUp.confirmPassword") }}</span>
-            </label>
-            <input type="password" placeholder="Type here" />
-            <p class="mt-6 text-center text-arth-green"><router-link :to="{ name: 'login'}">{{  $t('signUp.haveAccount') }}</router-link></p>
-        </div>
-
-        <div class="flex mx-auto mt-12">
-            <button class="bg-arth-green">{{ $t("signUp.button") }}</button>
-        </div>
-
+            <div class="flex mx-auto mt-12">
+                <button class="bg-arth-green hover:scale-105" >{{ $t("signUp.button") }}</button>
+            </div>
+        </form>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'signUp'
+        name: 'signUp',
+        data() {
+            return {
+                email: '',
+                password: '',
+                errorMessage: ''
+            }
+        },
+        methods: {
+            async createUser(){
+                const response = await axios.post('api/register', {
+                    email: this.email,
+                    password: this.password,
+                    password_confirmation: this.password,
+                })
+                this.errorMessage = response.data
+                console.log(response )
+            }
+        }
     }
 </script>

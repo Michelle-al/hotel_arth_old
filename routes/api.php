@@ -4,12 +4,12 @@ use App\Http\Controllers\AdvantageController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PromotionalBannerController;
 use App\Http\Controllers\PresentationVideoController;
-use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomCategoryController;
-use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -30,16 +30,19 @@ use Illuminate\Support\Facades\Route;
 # Login route
 Route::post('/login', [UserController::class, 'login']);
 
+# Register route
+Route::post('/register', [UserController::class, 'register']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
 
-
-# Routes '/api/users'
-# Users API routes
-Route::post('/users', [UserController::class, 'create']);
-Route::get('/users', [UserController::class, 'index']);
-Route::put('/users/{id}', [UserController::class, 'update']);
-Route::delete('/users/{id}', [UserController::class, 'destroy']);
+Route::middleware('auth:sanctum')->prefix('user')->group(function () {
+    # Users API routes
+    //Route::post('/users', [UserController::class, 'signUp']);
+    Route::get('display/{id}', [UserController::class, 'index']);
+    Route::put('update/{id}', [UserController::class, 'update']);
+    Route::delete('delete/users/{id}', [UserController::class, 'destroy']);
 });
 
 Route::post('/register', [UserController::class, 'register']);
@@ -50,6 +53,7 @@ Route::middleware('setLocale')->prefix('reservations')->group(function () {
     Route::get('/{id}', [ReservationController::class, 'show']);
 });
 
+Route::post('/user', [UserController::class, 'user'])->middleware('auth:sanctum');
 
 
 Route::middleware('authenticate')->prefix('users')->group(function () {
@@ -110,9 +114,16 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 
 Route::middleware('setLocale')->prefix('rooms')->group(function () {
 # Rooms API routes
-    Route::get('/', [RoomsController::class, 'index']);
-    Route::get('/{room_number}', [RoomsController::class, 'show']);
-    Route::post('/', [RoomsController::class, 'store']);
-    Route::put('/{room_number}', [RoomsController::class, 'update']);
-    Route::delete('/{room_number}', [RoomsController::class, 'destroy']);
+    Route::get('/', [RoomController::class, 'index']);
+    Route::get('/{room_number}', [RoomController::class, 'show']);
+    Route::post('/', [RoomController::class, 'store']);
+    Route::put('/{room_number}', [RoomController::class, 'update']);
+    Route::delete('/{room_number}', [RoomController::class, 'destroy']);
+});
+
+Route::middleware('setLocale')->prefix('reservation')->group(function () {
+# Options API routes
+    Route::post('/options', [OptionController::class, 'store']);
+    Route::get('/options', [OptionController::class, 'index']);
+    Route::put('/options/{id}', [OptionController::class, 'update']);
 });
