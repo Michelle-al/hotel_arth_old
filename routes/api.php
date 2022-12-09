@@ -4,11 +4,12 @@ use App\Http\Controllers\AdvantageController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PromotionalBannerController;
 use App\Http\Controllers\PresentationVideoController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomCategoryController;
-use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -105,9 +106,16 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
 
 Route::middleware('setLocale')->prefix('rooms')->group(function () {
 # Rooms API routes
-    Route::get('/', [RoomsController::class, 'index']);
-    Route::get('/{room_number}', [RoomsController::class, 'show']);
-    Route::post('/', [RoomsController::class, 'store']);
-    Route::put('/{room_number}', [RoomsController::class, 'update']);
-    Route::delete('/{room_number}', [RoomsController::class, 'destroy']);
+    Route::get('/', [RoomController::class, 'index']);
+    Route::get('/{room_number}', [RoomController::class, 'show']);
+    Route::post('/', [RoomController::class, 'store']);
+    Route::put('/{room_number}', [RoomController::class, 'update']);
+    Route::delete('/{room_number}', [RoomController::class, 'destroy']);
+});
+
+Route::middleware('setLocale')->prefix('reservation')->group(function () {
+# Options API routes
+    Route::post('/options', [OptionController::class, 'store']);
+    Route::get('/options', [OptionController::class, 'index']);
+    Route::put('/options/{id}', [OptionController::class, 'update']);
 });
