@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Reservation;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Reservations_optionResource extends JsonResource
+class ReservationsOptionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,6 +15,9 @@ class Reservations_optionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'reservation_id' => ReservationResource::make($this->reservation),
+            'option_id' => OptionResource::make($this->option),
+        ];
     }
 }

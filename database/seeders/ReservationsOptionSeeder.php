@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ReservationsOption;
 use Illuminate\Database\Seeder;
 
 class ReservationsOptionSeeder extends Seeder
