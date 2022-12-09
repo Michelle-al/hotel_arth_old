@@ -19,10 +19,11 @@ class Room extends Model
     ];
 
     /**
-     * Get reservations that owns the rooms
+     * Rooms that belongs to a reservations
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function hasReservation()
+    public function reservations()
     {
-        return $this->belongsTo(ReservationRoom::class);
+        return $this->belongsToMany(Reservation::class)->using(ReservationRoom::class);
     }
 }

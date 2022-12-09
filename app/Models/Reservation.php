@@ -23,10 +23,11 @@ class Reservation extends Model
     public $timestamps = false;
 
     /**
-     * Get rooms for reservations.
+     * Reservations that belongs to many rooms
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function rooms()
     {
-        return $this->hasMany(ReservationRoom::class, 'room_id');
+        return $this->belongsToMany(Room::class)->using(ReservationRoom::class);
     }
 }

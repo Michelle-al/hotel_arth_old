@@ -15,7 +15,7 @@ class CreateReservationRoomTable extends Migration
      */
     public function up()
     {
-        Schema::create('reservations_rooms', function (Blueprint $table) {
+        Schema::create('reservation_room', function (Blueprint $table) {
 
             $table->integer('reservation_id')->nullable(false);
             $table->foreign('reservation_id')->references('id')->on('reservations');

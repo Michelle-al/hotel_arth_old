@@ -11,5 +11,4 @@ class ReservationRoom extends Model
 
     public $timestamps = false;
     public $fillable = ['reservation_id', 'room_number'];
-    protected $table= "reservations_rooms";
 }

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ReservationResource;
 use App\Models\Reservation;
-use App\Models\Rooms;
+use App\Models\Room;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller
@@ -45,7 +46,7 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\ReservationResource
      */
     public function show(int $id)
     {
@@ -57,7 +58,7 @@ class ReservationController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Reservation  $reservation
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, int $id)
     {
@@ -84,9 +85,6 @@ class ReservationController extends Controller
     public function isAvailable(Request $request) : JsonResponse
     {
         $validator = Validator::make($request->post(), [
-//                'checkin' => 'required|date_format:Y-m-d',
-//                'checkout' => 'required|date_format:Y-m-d|after:checkin',
-//                'number_of_rooms' => 'required|integer|min:1'
                 'checkin' => 'required|date|date_format:Y-m-d',
                 'checkout' => 'required|date|after:checkin',
                 'number_of_people' => 'required|integer|min:1'
@@ -95,14 +93,23 @@ class ReservationController extends Controller
 
         $validated = $validator->validate();
 
-//        dd(response()->json(Rooms::find(1)->hasReservation(12)));
-
 //        $reservations = ReservationResource::collection(Reservation::all()
 //            ->where('checkin', $validated['checkin']));
 
-        $roomStyle = Rooms::where('style', 'La classique')->get();
-        $reservations = Reservation::whereBelongsTo($roomStyle)->get();
-        dd(response()->json(reservations));
+//        $roomStyle = Room::where('style', 'La classique')->get();
+//        $reservations = $roomStyle;
+
+        // To retrieve rooms  (works)
+        $reservations = DB::table('reservations')
+            ->join('reservations_rooms', function ($join) {
+                $join->on('reservations.id', '=', 'reservations_rooms.reservation_id');
+            })
+            ->join('rooms', function ($join) {
+                $join->on('reservations_rooms.room_number', '=', 'rooms.room_number');
+            })
+            ->get();
+
+//        dd(response()->json($reservations));
 //        $reservations = ReservationResource::make(Reservation::all());
 
         return response()->json($reservations);
