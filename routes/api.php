@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 # Login route
-Route::post('/login', [UserController::class, 'login']);
+Route::post('/login', [UserController::class, 'login'])->name('login');
 
 # Register route
 Route::post('/register', [UserController::class, 'register']);
@@ -39,7 +39,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->prefix('user')->group(function () {
     # Users API routes
     //Route::post('/users', [UserController::class, 'signUp']);
-    Route::get('display/{id}', [UserController::class, 'index']);
+    Route::get('display/{id}', [UserController::class, 'user']);
     Route::put('update/{id}', [UserController::class, 'update']);
     Route::delete('delete/users/{id}', [UserController::class, 'destroy']);
 });
@@ -54,6 +54,7 @@ Route::post('/user', [UserController::class, 'user'])->middleware('auth:sanctum'
 
 # Routes '/api/home/'
 Route::middleware('setLocale')->prefix('home')->group(function () {
+
     # Hero API routes
     Route::get('/hero', [HeroController::class, 'index']);
     Route::post('/hero/{id}', [HeroController::class, 'update']);

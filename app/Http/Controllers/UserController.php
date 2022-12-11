@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,26 +26,24 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
-
         if ($validatedData->fails())
         {
             return response()->json([
                 'message' => $validatedData->errors(),
             ]);
+        }else{
+            $user = User::create([
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]);
+
+            $token = $user->createToken('auth_token')->plainTextToken;
+
+            return response()->json([
+                'token' => $token,
+                'user' => $user,
+            ]);
         }
-
-        $user = User::create([
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
-        ]);
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ]);
-
-
     }
 
     /**
@@ -54,61 +53,69 @@ class UserController extends Controller
      */
     public function login(Request $request)
     {
-
-//    dd(Auth::attempt(['email' => $request['email'], 'password' => $request['password']]));
-//        try
-//        {
-//            $user = User::where('email', $request['email'])->firstOrFail();
-//
-//        }
-//        catch(ValidationException $e){
-//            return 'Email et/ ou mot de passe incorrect';
-//        }
-//
-//        $token = $user->createToken('auth_token')->plainTextToken;
-//        return response()->json([
-//            'access_token' => $token,
-//            'token_type' => 'Bearer',
-//        ]);
-
+        // Validation
         $validatedData = Validator::make($request->all(), [
-            'email' => 'required|string|email',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string',
         ]);
 
+        // if validation fails
         if ($validatedData->fails())
         {
             return response()->json([
-                'message' => $validatedData->errors(),
+                'message' => $validatedData->errors()
             ]);
         }
-        if (!Auth::attempt(['email' => $request['email'], 'password' => $request['password']])){
-            try
-            {
-                $user = User::where('email', $request['email'])->firstOrFail();
-                $token = $user->createToken('auth_token')->plainTextToken;
-                return response()->json([
-                    'access_token' => $token,
-                    'token_type' => 'Bearer',
-                ]);
-            }
-            catch(ModelNotFoundException $e){
-//                dd($e->getMessage());
-                $e->getMessage();
-            }
-        }
 
+        // Check if right email and password match in database (authentication)
+        $authentication = Auth::attempt(['email' => $request['email'], 'password' => $request['password']]) === true;
+
+        // Trow an exception if authentication fails
+        function checkauthentication($response) {
+            if(!$response) {
+                throw new Exception("Email et/ ou mot de passe incorrecte");
+            }
+            return true;
+        }
+        try {
+            // Authentication of user pass
+            checkauthentication($authentication);
+            // Get user information
+            $user = User::where('email', $request['email'])->firstOrFail();
+
+            // Delete old tokens in db
+            $user->tokens()->delete();
+
+            //Get remember token
+            $rememberToken = $user->remember_token;
+
+            // Create a new token
+            $token = $user->createToken('auth_token')->plainTextToken;
+            return response()->json([
+                'token' => $token,
+                'remember_token' => $rememberToken,
+                'user' => $user,
+            ]);
+//            return redirect()->route('welcome');
+        }
+        catch (Exception $e){
+            // Authentication of user fails
+            return response()->json([
+                'message' => [
+                    'error' => $e->getMessage()
+                ]
+            ]);
+        }
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function user(Request $request)
+    public function user($id)
     {
-        $user = User::where('email', $request['email'])->firstOrFail();
-
+        $user = User::query()->find($id);
         return response()->json($user);
 
     }

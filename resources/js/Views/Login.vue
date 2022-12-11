@@ -10,7 +10,7 @@
                     <span class="label-text">Email</span>
                 </label>
                 <input type="text" placeholder="Email" v-model="email" id="email" autocomplete="off"/>
-
+                <span class="text-red-500 text-sm">{{ message_email}}</span>
                 <label class="label">
                     <span class="label-text">{{ $t("login.password") }}</span>
                 </label>
@@ -38,22 +38,46 @@
                 email: '',
                 password: '',
                 message_password: '',
+                message_email: '',
                 errorMessage: ''
             }
         },
         methods: {
                 async checkUser() {
-                    try {
                     const response = await axios.post('api/login', {
                         email: this.email,
                         password: this.password
                     })
-                        console.log(response)
-                    }catch (error) {
-                        // this.message_password = response.data.message.password.join()
-                        console.log(error)
+                    function errorObj(obj){
+                        for (let i in obj) {
+                            if (obj.hasOwnProperty(i)) {
+                                obj = `${obj[i]}\n`;
+                            }
+                        }
+                        return obj
                     }
+                    if(typeof response.data.message !== 'undefined'){
+                        this.errorMessage = response.data.message.error
+                        this.message_email = errorObj(response.data.message.email)
+                        this.message_password = errorObj(response.data.message.password)
+
+                    }
+                   console.log(response.data)
+
+
+
                 }
         }
     }
 </script>
+<!--try {-->
+<!--const response = await axios.post('api/login', {-->
+<!--email: this.email,-->
+<!--password: this.password-->
+<!--})-->
+<!--console.log(response)-->
+<!--}catch (error) {-->
+<!--// this.message_password = response.data.message.password.join()-->
+<!--console.log(error.message)-->
+<!--}-->
+<!--}-->
