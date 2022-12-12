@@ -60,7 +60,10 @@
                         this.errorMessage = response.data.message.error
                         this.message_email = errorObj(response.data.message.email)
                         this.message_password = errorObj(response.data.message.password)
-
+                    }
+                    if(response.data.token){
+                        this.token = response.data.token
+                        localStorage.setItem("token", this.token)
                     }
                    console.log(response.data)
 
