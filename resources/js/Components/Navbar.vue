@@ -2,11 +2,14 @@
     <Popover class="section__navbar absolute w-full bg-white" :class="isHomeView() ? 'absolute' : 'relative'">
         <div class="mx-auto max-w-8xl px-4 sm:px-6">
             <div
-                class="flex items-center justify-between border-b-2 border-gray-100 py-2 lg:justify-start md:space-x-10 z-2">
+                class="flex items-center justify-between border-b-2 border-gray-100 py-2 lg:justify-start md:space-x-10 z-2"
+                aria-label="Barre de navigation">
                 <div class="flex justify-start">
                     <a href="#">
                         <span class="sr-only">Hotel Arth</span>
-                        <img class="h-20 w-auto" src="/storage/pictures/Logo.png" alt="Hotel Arth" />
+                        <img class="h-20 w-auto" src="/storage/pictures/Logo.png" alt="Hotel Arth"
+                             aria-label="link" tabindex="0" role="link" aria-description="Ce logo permet de retourner
+                        à la page d'accueil"/>
                     </a>
                 </div>
                 <!-- START - Open button for small and medium devices -->
@@ -20,7 +23,8 @@
                 <!-- STOP - Open button for small and medium devices -->
 
                 <!-- START - Nav links for large devices -->
-                <PopoverGroup as="nav" class="hidden space-x-6 lg:space-x-10 lg:flex items-center ml-0">
+                <PopoverGroup as="nav" class="hidden space-x-6 lg:space-x-10 lg:flex items-center ml-0"
+                              aria-label="Barre de navigation">
                     <a href="#rooms" class="font-medium text-gray-500 hover:text-gray-900">{{$t("navbar.rooms")}}</a>
                     <a href="#advantages" class="font-medium text-gray-500 hover:text-gray-900">{{ $t("navbar.advantages")}}</a>
                     <a href="#reviews" class="font-medium text-gray-500 hover:text-gray-900">{{ $t("navbar.reviews") }}</a>
@@ -29,13 +33,16 @@
                 <!-- STOP - Nav links for large devices -->
 
                 <!-- START - CTA toogle languages and Reservation-->
-                <div class="hidden items-center justify-end gap-10 md:gap-4 xl:gap-10 lg:flex lg:flex-1 lg:w-0">
+                <div class="hidden items-center justify-end gap-10 md:gap-4 xl:gap-10 lg:flex lg:flex-1 lg:w-0"
+                      role="Changer la langue du site">
                     <LanguagesToggleButton/>
 
 <!--                    Login button-->
                     <router-link :to="{ name: 'login' }"
-                        class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
-                    >{{ $t("buttons.connect")}}</router-link>
+                                    class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
+                    >
+                        {{ $t("buttons.connect")}}
+                    </router-link>
 
 <!--                    Book button-->
                     <router-link :to="{ name: 'reservation' }">

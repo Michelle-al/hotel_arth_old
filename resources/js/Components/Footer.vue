@@ -2,15 +2,15 @@
     <footer>
         <div class=" px-10 pt-0 pb-5 bg-arth-dark-blue flex flex-col md:block">
             <h3 class="text-white text-start font-poiret text-4xl"><a href="#">Hôtel ARTH</a></h3>
-            <div class="flex flex-col md:flex-row justify-around mx-auto md:m-0">
+            <div class="flex flex-col md:flex-row justify-around mx-auto md:m-0" aria-label="Barre de navigation" role="navigation">
                 <div class="flex flex-col" >
                     <div v-for="link in footer" :key="link.id">
-                        <p><a v-if="link.column_number === '1'">{{ link.entry_name }}</a></p>
+                        <p><a v-if="link.column_number === '1'" role="link" tabindex="0">{{ link.entry_name }}</a></p>
                     </div>
                 </div>
                 <div class="flex flex-col" >
                     <div v-for="link in footer" :key="link.id">
-                        <p><a v-if="link.column_number === '2'">{{ link.entry_name }}</a></p>
+                        <p><a v-if="link.column_number === '2'" role="link" tabindex="0">{{ link.entry_name }}</a></p>
                     </div>
                 </div>
                 <div class="flex flex-col">
