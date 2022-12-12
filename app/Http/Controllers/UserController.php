@@ -37,11 +37,18 @@ class UserController extends Controller
                 'password' => Hash::make($request['password']),
             ]);
 
+            // Delete old tokens in db
+            $user->tokens()->delete();
+
+            //Get remember token
+            $rememberToken = $user->remember_token;
+
             $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
                 'token' => $token,
                 'user' => $user,
+                'remember_token' => $rememberToken
             ]);
         }
     }
