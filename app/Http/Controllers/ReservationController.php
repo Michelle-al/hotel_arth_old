@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ReservationResource;
 use App\Models\Reservation;
+use App\Models\ReservationRoom;
+use App\Models\Room;
 use App\Models\Rooms;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -83,27 +85,30 @@ class ReservationController extends Controller
      */
     public function isAvailable(Request $request) : JsonResponse
     {
+
         $validator = Validator::make($request->post(), [
 //                'checkin' => 'required|date_format:Y-m-d',
 //                'checkout' => 'required|date_format:Y-m-d|after:checkin',
-//                'number_of_rooms' => 'required|integer|min:1'
+                'number_of_rooms' => 'required|integer|min:1',
                 'checkin' => 'required|date|date_format:Y-m-d',
                 'checkout' => 'required|date|after:checkin',
-                'number_of_people' => 'required|integer|min:1'
+                'number_of_people' => 'required|integer|min:1',
+                'room_category' => 'required|string'
             ]
         );
 
         $validated = $validator->validate();
-
 //        dd(response()->json(Rooms::find(1)->hasReservation(12)));
 
 //        $reservations = ReservationResource::collection(Reservation::all()
 //            ->where('checkin', $validated['checkin']));
 
-        $roomStyle = Rooms::where('style', 'La classique')->get();
-        $reservations = Reservation::whereBelongsTo($roomStyle)->get();
-        dd(response()->json(reservations));
-//        $reservations = ReservationResource::make(Reservation::all());
+        $roomStyle = Room::where('style', $validated['room_category'])->get('room_number');
+//dd($roomStyle);
+
+//        $reservations = ReservationRoom::whereBelongsTo($roomStyle)->get();
+//        dd(response()->json(reservations));
+        $reservations = ReservationResource::make(Reservation::all());
 
         return response()->json($reservations);
 

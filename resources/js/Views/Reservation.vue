@@ -38,7 +38,7 @@
             <label for="roomCategory-select" class="label">
                 <span class="label-text">{{ $t('reservation.roomCategory')}}</span>
             </label>
-            <select class="select select-bordered rounded-none" id="roomCategory-select" name="roomCategory" v-model="form.roomCategory">
+            <select class="select select-bordered rounded-none" id="roomCategory-select" name="roomCategory" v-model="form.room_category">
                 <option disabled selected>Select an option</option>
                 <option value="classic">La classique</option>
                 <option value="luxury">La chambre de luxe</option>
@@ -49,12 +49,12 @@
             <label for="numberOfRooms" class="label">
                 <span class="label-text">{{ $t('reservation.numberOfRooms')}}</span>
             </label>
-            <input type="number" id="numberOfRooms" name="numberOfRooms" v-model="form.numberOfRooms">
+            <input type="number" id="numberOfRooms" name="numberOfRooms" v-model="form.number_of_rooms">
 
             <label for="numberOfPeople" class="label">
                 <span class="label-text">{{ $t('reservation.numberOfPeople')}}</span>
             </label>
-            <input type="number" id="numberOfPeople" name="numberOfPeople" v-model="form.numberOfPeople">
+            <input type="number" id="numberOfPeople" name="numberOfPeople" v-model="form.number_of_people">
 
             <p class="mt-6">Résultat de l'algo de dispo</p>
             <p>Prix provisoire</p>
@@ -73,15 +73,23 @@
                 form: {
                     checkin: '',
                     checkout: '',
-                    roomCategory: '',
-                    numberOfRooms: 1,
-                    numberOfPeople: 1
+                    room_category: '',
+                    number_of_rooms: 1,
+                    number_of_people: 1
                 }
             }
         },
         methods: {
-                logInfos() {
-                    console.log(this.form);
+            // logInfos() {
+            //     console.log(this.form)
+            // }
+                async logInfos(){
+                    console.log(`form ${this.form.checkin} `)
+                    const response = await axios.post('api/reservations/availability',
+                       this.form
+                    )
+                    console.log(response.data);
+
                 }
             }
     }
