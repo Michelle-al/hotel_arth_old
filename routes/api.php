@@ -7,6 +7,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PromotionalBannerController;
 use App\Http\Controllers\PresentationVideoController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\RoomController;
