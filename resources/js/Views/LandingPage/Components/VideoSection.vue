@@ -1,5 +1,5 @@
 <template>
-    <div class="section__video"> <!-- BEM Syntax for classes -->
+    <section class="section__video"> <!-- BEM Syntax for classes -->
         <div class="section__video-content">
             <div class="section__video-text">
                 <h2 class="video__h2">{{ presentationVideo.title }}</h2>
@@ -16,7 +16,7 @@
                 {{ $t("buttons.reservation") }}
             </button>
         </router-link>
-    </div>
+    </section>
 
 
 </template>

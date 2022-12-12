@@ -1,5 +1,5 @@
 <template>
-    <div class="section__reviews" id="reviews">
+    <section class="section__reviews" id="reviews">
         <h2 class="reviews__title">{{ $t("reviews.heading") }}</h2>
         <div class="reviews__cards" >
             <div v-for="review in reviews" :key="review.id" v-show="review.is_displayed === 1 && review.id <= 3">
@@ -20,7 +20,7 @@
                     }}</button>
             </router-link>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>

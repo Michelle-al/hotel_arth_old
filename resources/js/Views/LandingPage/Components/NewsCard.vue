@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col">
+    <div class="flex flex-col h-full">
         <img :src="newsArticle.media_url" :alt="newsArticle.media_alt"/>
         <h2>{{ newsArticle.title }}</h2>
         <p>{{ newsArticle.description }}</p>

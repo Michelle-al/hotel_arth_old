@@ -1,5 +1,5 @@
 <template>
-    <div class="md:mt-20 flex flex-col lg:bg-arth-dark-blue flex-items-center" id="rooms">
+    <section class="md:mt-20 flex flex-col lg:bg-arth-dark-blue flex-items-center" id="rooms">
         <h2 class="p-12 lg:text-white lg:font-semibold">{{ $t("rooms.heading") }}</h2>
          <div v-for="category in roomCategories" :key="category.id">
              <Room :room="category"/>
@@ -9,7 +9,7 @@
                 <button class="mt-0 hover:bg-arth-dark-blue hover:text-white">{{ $t("buttons.reservation") }}</button>
             </router-link>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>

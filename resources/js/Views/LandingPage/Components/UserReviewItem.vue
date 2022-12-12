@@ -44,9 +44,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <p class="card-title">
+                <h3 class="card-title">
                     {{ review.title }}
-                </p>
+                </h3>
                 <p>{{ formatDate }}</p>
                 <blockquote>{{  review.body }}</blockquote>
                 <div class="card-actions justify-end">
