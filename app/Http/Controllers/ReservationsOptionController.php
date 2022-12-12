@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReservations_optionRequest;
-use App\Http\Requests\UpdateReservations_optionRequest;
-use App\Models\Reservations_option;
+use App\Http\Requests\StoreReservationsOptionRequest;
+use App\Http\Requests\UpdateReservationsOptionRequest;
+use App\Http\Resources\ReservationsOptionResource;
+use App\Models\ReservationsOption;
 
 class ReservationsOptionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        //
+        /*return ReservationsOptionResource::collection(
+            ReservationsOption::query()
+                ->with(['reservation','option'])
+        );*/
+        // TODO - Implements this method if it's usefull
     }
 
     /**
@@ -31,10 +36,10 @@ class ReservationsOptionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreReservations_optionRequest  $request
+     * @param  \App\Http\Requests\StoreReservationsOptionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreReservations_optionRequest $request)
+    public function store(StoreReservationsOptionRequest $request)
     {
         //
     }
@@ -42,10 +47,10 @@ class ReservationsOptionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Reservations_option  $reservations_option
+     * @param  \App\Models\ReservationsOption  $reservationsOption
      * @return \Illuminate\Http\Response
      */
-    public function show(Reservations_option $reservations_option)
+    public function show(ReservationsOption $reservationsOption)
     {
         //
     }
@@ -53,10 +58,10 @@ class ReservationsOptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Reservations_option  $reservations_option
+     * @param  \App\Models\ReservationsOption  $reservationsOption
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reservations_option $reservations_option)
+    public function edit(ReservationsOption $reservationsOption)
     {
         //
     }
@@ -64,11 +69,11 @@ class ReservationsOptionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateReservations_optionRequest  $request
-     * @param  \App\Models\Reservations_option  $reservations_option
+     * @param  \App\Http\Requests\UpdateReservationsOptionRequest  $request
+     * @param  \App\Models\ReservationsOption  $reservationsOption
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateReservations_optionRequest $request, Reservations_option $reservations_option)
+    public function update(UpdateReservationsOptionRequest $request, ReservationsOption $reservationsOption)
     {
         //
     }
@@ -76,10 +81,10 @@ class ReservationsOptionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Reservations_option  $reservations_option
+     * @param  \App\Models\ReservationsOption  $reservationsOption
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservations_option $reservations_option)
+    public function destroy(ReservationsOption $reservationsOption)
     {
         //
     }
