@@ -1,5 +1,5 @@
 <template>
-    <div class="section__reviews">
+    <div class="section__reviews" id="reviews">
         <h2 class="reviews__title">{{ $t("reviews.heading") }}</h2>
         <div class="reviews__cards" >
             <div v-for="review in reviews" :key="review.id" v-show="review.is_displayed === 1 && review.id <= 3">
@@ -12,6 +12,13 @@
             review.id < 7">
                 <UserReviewItem :review="review"/>
             </div>
+        </div>
+        <div class="p-12 flex justify-center">
+            <router-link :to="{ name: 'reservation' }" class="self-center">
+                <button class="mt-0 border-arth-dark-blue hover:bg-arth-dark-blue hover:text-white">{{
+                        $t("buttons.reservation")
+                    }}</button>
+            </router-link>
         </div>
     </div>
 </template>

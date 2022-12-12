@@ -34,13 +34,16 @@
 
 <!--                    Login button-->
                     <router-link :to="{ name: 'login' }"
-                        class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-4 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
+                        class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
                     >{{ $t("buttons.connect")}}</router-link>
 
 <!--                    Book button-->
-                    <router-link :to="{ name: 'reservation' }"
-                        class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
-                    >{{ $t("buttons.reservation") }}
+                    <router-link :to="{ name: 'reservation' }">
+                        <button class="inline-flex items-center justify-center whitespace-nowrap border
+                        border-arth-dark-blue px-8 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
+                        >
+                            {{ $t("buttons.reservation") }}
+                        </button>
                     </router-link>
                 </div>
                 <!-- END - CTA toogle languages and Reservation-->
@@ -52,15 +55,18 @@
                 <div class="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                     <div class="px-5 pt-5 pb-6">
                         <div class="flex items-center justify-between">
-                            <div>
-                                <img class="h-20 w-auto" src="/storage/pictures/Logo.svg" alt="Hôtel Arth" />
-                            </div>
+                            <router-link :to="{ name: 'landingPage' }">
+                                <div>
+                                    <img class="h-20 w-auto" src="/storage/pictures/Logo.svg" alt="Hôtel Arth" />
+                                </div>
+                            </router-link>
+
                             <div>
                                 <LanguagesToggleButton />
                             </div>
                             <div class="-mr-2">
                                 <PopoverButton
-                                    class="inline-flex items-center justify-center rounded-md bg-white mt-0 p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                    class="inline-flex items-center justify-center rounded-md bg-white mt-0 p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-arth-dark-blue">
                                     <span class="sr-only">Close menu</span>
                                     <XMarkIcon class="h-6 w-6" aria-hidden="true" />
                                 </PopoverButton>
@@ -70,22 +76,27 @@
                     <!-- START - Main Code for small devices -->
                     <div class="space-y-6 py-6 px-5">
                         <div class="grid grid-cols-2 gap-y-4 gap-x-8">
-                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">{{$t("navbar.rooms")}}</a>
-                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">{{ $t("navbar.advantages")}}</a>
+                            <a href="#rooms" class="font-medium text-gray-900 hover:text-gray-700">{{$t("navbar.rooms")
+                                }}</a>
+                            <a href="#advantages" class="font-medium text-gray-900 hover:text-gray-700">{{
+                                    $t("navbar.advantages")}}</a>
 
-                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">{{ $t("navbar.reviews") }}</a>
-                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">{{  $t("navbar.news") }}</a>
-<!--                            <a href="#" class="font-medium text-gray-900 hover:text-gray-700">Nous contacter</a>-->
+                            <a href="#reviews" class="font-medium text-gray-900 hover:text-gray-700">{{
+                                    $t("navbar.reviews") }}</a>
+                            <a href="#news" class="font-medium text-gray-900 hover:text-gray-700">{{  $t("navbar.news")
+                                }}</a>
                             <!-- STOP - Main Code for small devices -->
                         </div>
                         <div>
-                            <a href="#"
-                                class="flex w-full items-center justify-center  border border-transparent bg-arth-dark-blue hover:bg-white hover:text-black hover:border-arth-dark-blue my-6 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700">{{ $t("buttons.reservation")}}</a>
+                            <router-link :to="{ name: 'reservation' }"
+                                class="flex w-full items-center justify-center  border border-transparent bg-arth-dark-blue hover:bg-white hover:text-black hover:border-arth-dark-blue my-6 px-4 py-2 font-medium text-white shadow-sm hover:bg-arth-light-blue">
+                                {{ $t("buttons.reservation")}}
+                            </router-link>
                             <p class="mt-6 text-center font-medium text-gray-500">
                                 {{ $t("navbar.alreadyHaveAccount") }}
                                 {{ ' ' }}
-                                <router-link :to="{ name: 'login' }"
-                                    class="text-arth-dark-blue hover:text-arth-green">{{$t("buttons.connect")}}
+                                <router-link :to="{ name: 'login' }">
+                                    class="text-arth-dark-blue hover:font-bold">{{$t("buttons.connect")}}
                                 </router-link>
                             </p>
                         </div>
