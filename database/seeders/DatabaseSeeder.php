@@ -23,7 +23,12 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             NewsSeeder::class,
             SocialMediaSeeder::class,
-            FooterSeeder::class
+            FooterSeeder::class,
+            RoomSeeder::class,
+            OptionSeeder::class,
+            ReservationSeeder::class,
+            ReservationRoomSeeder::class,
+            ReservationsOptionSeeder::class,
         ]);
     }
 }

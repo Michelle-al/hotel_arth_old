@@ -40,6 +40,15 @@ export const translations = {
             haveAccount: 'I already have an account',
             button: 'Sign Up',
             rememberToken: "Remember me"
+        },
+        reservation: {
+            title: "Reservation",
+            arrival: "Arrival",
+            departure: "Departure",
+            numberOfPeople: "Number of people",
+            numberOfRooms: 'Number of rooms',
+            roomCategory: 'Type of room',
+            button: 'Next'
         }
     },
     fr: {
@@ -53,7 +62,7 @@ export const translations = {
             rooms: "Nos chambres",
             advantages: "Nos avantages",
             reviews: "Avis de nos clients",
-            news: "Notre actualités",
+            news: "Notre actualité",
             alreadyHaveAccount: "J'ai déjà un compte ?"
         },
         rooms: {
@@ -83,6 +92,15 @@ export const translations = {
             haveAccount: 'J\'ai déjà un compte',
             button: 'S\'inscrire',
             rememberToken: "Se souvenir de moi"
+        },
+        reservation: {
+            title: "Réservation",
+            arrival: "Arrivée",
+            departure: "Départ",
+            numberOfPeople: "Nombre de personnes",
+            numberOfRooms: 'Nombre de chambres',
+            roomCategory: 'Type de chambre',
+            button: 'Poursuivre'
         }
     }
 }

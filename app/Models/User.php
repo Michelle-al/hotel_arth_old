@@ -41,7 +41,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token', // TODO - Enable ?
+//        'remember_token',
     ];
 
     /**
@@ -49,19 +49,10 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+
     /* TODO - Enable ?
      * protected $casts = [
         'email_verified_at' => 'datetime',
     ];*/
-
-
-    // TODO - Créer la fonction si nécessaire pour récupérer le/les commentaires d'un utilisateur
-    /**
-     * Get the review(s) send by a customer.
-     */
-    /*public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }*/
 
 }

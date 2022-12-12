@@ -48,7 +48,7 @@ class PresentationVideoController extends Controller
      */
     public function show($id)
     {
-        //
+        return new PresentationVideoResource(PresentationVideo::findOrFail($id)); // TEST BARRE URL OK
     }
 
     /**
@@ -73,8 +73,6 @@ class PresentationVideoController extends Controller
 
     public function update(Request $request, $id)
     {
-// TODO - Vérification des users input
-
         // Retrieves information stored in DB for video corresponding to the id passed as a parameter of the request.
         $resource= PresentationVideoResource::make(PresentationVideo::findOrFail($id));
         // Stores the content of the request body in a variable.
