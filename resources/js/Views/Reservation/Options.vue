@@ -1,44 +1,44 @@
 <template>
-    <div class="options__section">
-        <!--    navigation breadcrumb-->
-        <nav class="flex" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                <li class="inline-flex items-center ml-6">
-                    <router-link :to="{ name: 'landingPage'}"
-                                 class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
-                        Home
+    <!--    navigation breadcrumb-->
+    <nav class="flex" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center ml-6">
+                <router-link :to="{ name: 'landingPage'}"
+                             class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                    Home
+                </router-link>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              clip-rule="evenodd"></path></svg>
+                    <router-link :to="{name : 'reservation'}"
+                                 class="ml-1 text-sm font-medium text-gray-500  hover:text-gray-900  dark:text-gray-400 dark:hover:text-white">
+                        Reservation
                     </router-link>
-                </li>
-                <li>
-                    <div class="flex items-center">
-                        <svg class="w-6 h-6 text-gray-400"
-                             fill="currentColor"
-                             viewBox="0 0 20 20"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                  clip-rule="evenodd"></path></svg>
-                        <router-link :to="{name : 'reservation'}"
-                                     class="ml-1 text-sm font-medium text-gray-500  hover:text-gray-900  dark:text-gray-400 dark:hover:text-white">
-                            Réservation
-                        </router-link>
-                    </div>
-                </li>
-                <li aria-current="page">
-                    <div class="flex items-center">
-                        <svg class="w-6 h-6 text-gray-400"
-                             fill="currentColor"
-                             viewBox="0 0 20 20"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                  clip-rule="evenodd"></path></svg>
-                        <span
-                            class="ml-1 text-sm font-medium md:ml-2 text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Options</span>
-                    </div>
-                </li>
-            </ol>
-        </nav>
+                </div>
+            </li>
+            <li aria-current="page">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              clip-rule="evenodd"></path></svg>
+                    <span
+                        class="ml-1 text-sm font-medium md:ml-2 text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Options</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+    <div class="options__section">
         <h1 class="option__heading">{{$t(('options.title'))}}</h1>
 
         <div class="option__heading--recap"> <!--TODO - Fake data, implement data from DB-->
@@ -166,8 +166,4 @@ export default {
     .option__heading--help {
         @apply mt-12 text-center font-montserrat
     }
-
-    /*.form {
-        @apply
-    }*/
 </style>
