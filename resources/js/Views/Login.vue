@@ -10,11 +10,12 @@
                     <span class="label-text">Email</span>
                 </label>
                 <input type="text" placeholder="Email" v-model="email" id="email" autocomplete="off"/>
-
+                <span class="text-red-500 text-sm">{{ message_email}}</span>
                 <label class="label">
                     <span class="label-text">{{ $t("login.password") }}</span>
                 </label>
                 <input type="password" placeholder="Password" v-model="password" id="password" autocomplete="off"/>
+                <span class="text-red-500 text-sm">{{ message_password}}</span>
                 <p class="mt-6 text-arth-green text-center"><router-link :to="{ name: 'signUp'}">{{
                         $t('login.dontHaveAccount')
                     }}</router-link></p>
@@ -36,17 +37,47 @@
             return {
                 email: '',
                 password: '',
+                message_password: '',
+                message_email: '',
                 errorMessage: ''
             }
         },
         methods: {
-            async checkUser(){
-                const response = await axios.post('api/login', {
-                    email: this.email,
-                    password: this.password
-                })
-                this.errorMessage = response.data
-            }
+                async checkUser() {
+                    const response = await axios.post('api/login', {
+                        email: this.email,
+                        password: this.password
+                    })
+                    function errorObj(obj){
+                        for (let i in obj) {
+                            if (obj.hasOwnProperty(i)) {
+                                obj = `${obj[i]}\n`;
+                            }
+                        }
+                        return obj
+                    }
+                    if(typeof response.data.message !== 'undefined'){
+                        this.errorMessage = response.data.message.error
+                        this.message_email = errorObj(response.data.message.email)
+                        this.message_password = errorObj(response.data.message.password)
+
+                    }
+                   console.log(response.data)
+
+
+
+                }
         }
     }
 </script>
+<!--try {-->
+<!--const response = await axios.post('api/login', {-->
+<!--email: this.email,-->
+<!--password: this.password-->
+<!--})-->
+<!--console.log(response)-->
+<!--}catch (error) {-->
+<!--// this.message_password = response.data.message.password.join()-->
+<!--console.log(error.message)-->
+<!--}-->
+<!--}-->

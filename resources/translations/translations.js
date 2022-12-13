@@ -12,7 +12,7 @@ export const translations = {
             advantages: "Our advantages",
             reviews: "Clients reviews",
             news: "Our news",
-            alreadyHaveAccount: "Already have an account ?"
+            alreadyHaveAccount: "Already have an account ?",
         },
         rooms: {
             heading: "Our rooms"
@@ -39,7 +39,8 @@ export const translations = {
             password: 'Password',
             confirmPassword: 'Confirm your password',
             haveAccount: 'I already have an account',
-            button: 'Sign Up'
+            button: 'Sign Up',
+            rememberToken: "Remember me"
         },
         reservation: {
             title: "Reservation",
@@ -104,7 +105,8 @@ export const translations = {
             password: 'Mot de passe',
             confirmPassword: 'Confirmez votre mot de passe',
             haveAccount: 'J\'ai déjà un compte',
-            button: 'S\'inscrire'
+            button: 'S\'inscrire',
+            rememberToken: "Se souvenir de moi"
         },
         reservation: {
             title: "Réservation",
