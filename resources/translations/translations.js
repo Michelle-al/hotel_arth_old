@@ -26,7 +26,7 @@ export const translations = {
         news: {
             heading: "Latest News"
         },
-         footer : {
+        footer : {
             joinUs : 'Join us :'
         },
         login: {
@@ -54,15 +54,18 @@ export const translations = {
         options: {
             title: "Options",
             help: "Check the boxes to add options",
-            option1:"Breakfast 9€ /person/day'",
-            option2:"Lunch formula 20€ /person/day",
-            option3:"Evening formula 20€ /person/day'",
-            option4:"Lunch and Evening formula 35€ /person/day",
-            option5:"All-inclusive pressing service €30 /person/day",
-            option6:"Unlimited access to the Canal+ channel €10 /week",
-            option7:"Access to the swimming pool 25€ per stay",
+            recapTitle: "Your booking",
+            recapDate: "from 22/12/22 to 30/12/2022",
+            recapRoom: "1 room \"La classique\", 1 person ",
+            optionPetitDejeuner:"Breakfast 9€ /person/day'",
+            optionMidi:"Lunch formula 20€ /person/day",
+            optionSoir:"Evening formula 20€ /person/day'",
+            optionMidiEtSoir:"Lunch and Evening formula 35€ /person/day",
+            optionPressing:"All-inclusive pressing service €30 /person/day",
+            optionCanalPlus:"Unlimited access to the Canal+ channel €10 /week",
+            optionSwimmingPool:"Access to the swimming pool 25€ per stay",
             totalAmount: "Total amount of the stay : ",
-            button: 'Valider'
+            button: 'Validate'
         }
     },
     fr: {
@@ -120,14 +123,17 @@ export const translations = {
         options: {
             title: "Options",
             help: "Cochez les cases des options à ajouter",
+            recapTitle: "Votre réservation",
+            recapDate: "du 22/12/22 au 30/12/2022",
+            recapRoom: "1 chambre \"La classique\", 1 personne",
             optionPetitDejeuner:"Petit-déjeuner 9€ /personne/jour",
             optionMidi:"Formule du midi 20€ /personne/jour",
             optionSoir:"Formule du soir 20€ /personne/jour",
-            optionMidiEtSoir:"Lunch and Evening formula 35€ /person/day",
-            optionPressing:"All-inclusive pressing service €30 /person/day",
-            optionCanalPlus:"Unlimited access to the Canal+ channel €10 /week",
-            optionSwimmingPool:"Access to the swimming pool 25€ per stay",
-            totalAmount: "Montant total du séjour",
+            optionMidiEtSoir:"Formule midi et soir 35€ /personne/jour",
+            optionPressing:"Service de pressing tout compris 30€ /personne/jour",
+            optionCanalPlus:"Accès illimité à la chaîne Canal+ 10€ / semaine",
+            optionSwimmingPool:"Accès à la piscine 25€ en une fois",
+            totalAmount: "Montant total du séjour : ",
             button: 'Valider',
         }
     }
