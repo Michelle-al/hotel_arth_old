@@ -28,11 +28,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-# Login route
-Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::middleware('setLocale')->group(function () {
+    # Login route
+    Route::post('/login', [UserController::class, 'login'])->name('login');
 
-# Register route
-Route::post('/register', [UserController::class, 'register']);
+    # Register route
+    Route::post('/register', [UserController::class, 'register']);
+});
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -46,7 +49,12 @@ Route::middleware('auth:sanctum')->prefix('user')->group(function () {
     Route::delete('delete/users/{id}', [UserController::class, 'destroy']);
 });
 
-Route::post('/register', [UserController::class, 'register']);
+Route::post('/user', [UserController::class, 'user'])->middleware('auth:sanctum');
+
+Route::middleware('authenticate')->prefix('users')->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
+});
+
 
 Route::middleware('setLocale')->prefix('reservations')->group(function () {
     Route::put('/{id}', [ReservationController::class, 'update']);
@@ -54,12 +62,7 @@ Route::middleware('setLocale')->prefix('reservations')->group(function () {
     Route::get('/{id}', [ReservationController::class, 'show']);
 });
 
-Route::post('/user', [UserController::class, 'user'])->middleware('auth:sanctum');
 
-
-Route::middleware('authenticate')->prefix('users')->group(function () {
-    Route::get('/users', [UserController::class, 'index']);
-});
 
 
 # Routes '/api/home/'
