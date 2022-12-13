@@ -113,6 +113,7 @@
                 </PopoverPanel>
             </transition>
             <!-- STOP - Display for small and medium devices -->
+
         </Popover>
     </header>
 
@@ -136,6 +137,7 @@ import {
 
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import LanguagesToggleButton from "./LanguagesToggleButton"
+import landingPage from "../Views/LandingPage/LandingPage.vue";
 
 export default {
     name: "NavBar.vue",
@@ -164,13 +166,17 @@ export default {
         }
     },
     mounted() {
+        //
     },
     computed: {
     },
     methods: {
+        landingPage() {
+            return landingPage
+        },
         isHomeView() {
             return this.$router.currentRoute.value.name === 'landingPage';
-        }
+        },
     }
 }
 
