@@ -66,6 +66,16 @@ export const translations = {
             optionSwimmingPool:"Access to the swimming pool 25€ per stay",
             totalAmount: "Total amount of the stay : ",
             button: 'Validate'
+        },
+        breadcrumb: {
+            home: "Home",
+            login: "Log in",
+            signUp: "Register",
+            reservation: "Reservation",
+            options: "Options",
+            validation: "Validation",
+            payment: "Payment",
+            thankYou: "thanks you"
         }
     },
     fr: {
@@ -135,6 +145,16 @@ export const translations = {
             optionSwimmingPool:"Accès à la piscine 25€ en une fois",
             totalAmount: "Montant total du séjour : ",
             button: 'Valider',
+        },
+        breadcrumb: {
+            home: "Accueil",
+            login: "Connexion",
+            signUp: "Inscription",
+            reservation: "Réservation",
+            options: "Options",
+            validation: "Validation",
+            payment: "Paiement",
+            thankYou: "Confirmation"
         }
     }
 }
