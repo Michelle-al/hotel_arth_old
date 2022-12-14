@@ -10,13 +10,16 @@ class Review extends Model
 {
     use HasFactory;
 
+    public $timestamps = ["created_at"]; // We only want to use created_at column
+    const UPDATED_AT = null; // updated_at column will be set to null by default
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     public $fillable = [
-        'customer_id',
+        'user_id',
         'rating',
         'title',
         'body',
@@ -25,11 +28,11 @@ class Review extends Model
 
 
     /**
-     * Get the content of the table customers where customer_id = customer.id
+     * Get the content of the table users where user_id = user.id
      */
-    public function customer(): HasOne
+    public function user(): HasOne
     {
-        return $this->hasOne(Customer::class, 'id', 'customer_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
 }

@@ -19,11 +19,16 @@ class DatabaseSeeder extends Seeder
             PromotionalBannerSeeder::class,
             RoomCategorySeeder::class,
             AdvantageSeeder::class,
-            CustomerSeeder::class,
+            UserSeeder::class,
             ReviewSeeder::class,
             NewsSeeder::class,
             SocialMediaSeeder::class,
-            FooterSeeder::class
+            FooterSeeder::class,
+            RoomSeeder::class,
+            OptionSeeder::class,
+            ReservationSeeder::class,
+            ReservationRoomSeeder::class,
+            ReservationsOptionSeeder::class,
         ]);
     }
 }

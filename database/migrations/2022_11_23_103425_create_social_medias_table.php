@@ -17,6 +17,7 @@ class CreateSocialMediasTable extends Migration
             $table->id();
             $table->string('logo_url');
             $table->string('social_url');
+            $table->string('logo_alt');
         });
     }
 

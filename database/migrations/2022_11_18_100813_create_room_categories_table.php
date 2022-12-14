@@ -18,6 +18,7 @@ class CreateRoomCategoriesTable extends Migration
             $table->string('media_url')->nullable(false);
             $table->json('title')->nullable(false);
             $table->json('description')->nullable(false);
+            $table->json('media_alt')->nullable(false);
         });
     }
 

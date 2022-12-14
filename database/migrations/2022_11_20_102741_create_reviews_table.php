@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +16,7 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Customer::class)
+            $table->foreignIdFor(User::class)
                 ->nullable(false)
 //                ->constrained()
                 ->onUpdate('cascade')
@@ -25,7 +25,7 @@ class CreateReviewsTable extends Migration
             $table->string('title');
             $table->mediumText('body');
             $table->boolean('is_displayed');
-            $table->timestamps();
+            $table->timestamps('created_at');
         });
     }
 

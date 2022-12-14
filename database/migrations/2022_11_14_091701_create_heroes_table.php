@@ -18,7 +18,6 @@ class CreateHeroesTable extends Migration
             $table->json('title');
             $table->string('media_url');
             $table->json('subtitle');
-
         });
     }
 

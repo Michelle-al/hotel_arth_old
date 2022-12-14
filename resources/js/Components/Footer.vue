@@ -1,21 +1,24 @@
 <template>
     <footer>
-        <div class=" px-10 pt-0 pb-5 bg-arth-dark-blue flex flex-col md:block">
-            <h3 class="text-white text-start font-poiret text-4xl"><a href="#">Hôtel ARTH</a></h3>
-            <div class="flex flex-col md:flex-row justify-around mx-auto md:m-0">
+        <div class=" px-10 pt-5 pb-5 bg-arth-dark-blue flex flex-col md:block">
+            <a href="#" class="text-white text-start font-poiret text-4xl py-3">Hôtel ARTH</a>
+<!--            <h3 class="text-white text-start font-poiret text-4xl"><a href="#">Hôtel ARTH</a></h3>-->
+            <div class="flex flex-col md:flex-row justify-around mx-auto md:m-0 md:mt-5"
+                 aria-label="Barre de navigation"
+                 role="navigation">
                 <div class="flex flex-col" >
                     <div v-for="link in footer" :key="link.id">
-                        <p><a v-if="link.column_number === '1'">{{ link.entry_name }}</a></p>
+                        <p><a v-if="link.column_number === '1'" role="link" tabindex="0">{{ link.entry_name }}</a></p>
                     </div>
                 </div>
                 <div class="flex flex-col" >
                     <div v-for="link in footer" :key="link.id">
-                        <p><a v-if="link.column_number === '2'">{{ link.entry_name }}</a></p>
+                        <p><a v-if="link.column_number === '2'" role="link" tabindex="0">{{ link.entry_name }}</a></p>
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <div v-for="link in footer" :key="link.id">
-                        <p><a v-if="link.column_number === '3'">{{ link.entry_name }}</a></p>
+                    <div>
+                        <p class="text-white">{{$t("footer.joinUs")}}</p>
                     </div>
                     <SocialMedia />
                 </div>
@@ -25,7 +28,7 @@
 </template>
 
 <script>
-import SocialMedia from "./SocialMedia";
+import SocialMedia from "../Views/LandingPage/Components/SocialMedia";
 export default {
     components: {SocialMedia},
     data() {
@@ -44,10 +47,10 @@ export default {
 </script>
 
 <style scoped>
-a{
-    @apply text-white link link-hover;
-}
-p{
-    @apply text-lg;
-}
+    a{
+        @apply text-white link link-hover;
+    }
+    p{
+        @apply text-lg;
+    }
 </style>

@@ -10,7 +10,7 @@ class News extends Model
 {
     use HasFactory, HasTranslations;
 
-    public $translatable = ['title', 'description'];
+    public $translatable = ['title', 'description', 'media_alt'];
     public $timestamps = true;
     public $guarded = [];
     public $fillable = ['title'];
