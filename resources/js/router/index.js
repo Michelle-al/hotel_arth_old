@@ -8,6 +8,7 @@ import RoomCategories from "../Views/LandingPage/Components/RoomCategories.vue";
 import Advantages from "../Views/LandingPage/Components/Advantages.vue";
 import UserReviews from "../Views/LandingPage/Components/UserReviews.vue";
 import News from "../Views/LandingPage/Components/News.vue";
+import Validation from "../Views/Reservation/Validation";
 
 const routes = [
     {
@@ -56,6 +57,11 @@ const routes = [
         path: '/options',
         name: 'options',
         component: Options
+    },
+    {
+        path: '/validation',
+        name: 'validation',
+        component: Validation
     },
 ]
 
