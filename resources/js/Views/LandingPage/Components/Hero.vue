@@ -1,12 +1,16 @@
 <template>
-    <div :style="image" class="flex flex-col bg-cover bg-center h-screen p-24 justify-evenly items-center lg:mb-20">
+    <section :style="image" class="flex flex-col bg-cover bg-center h-screen p-24 justify-evenly items-center lg:mb-20 ">
         <div>
             <h1 class="text-white lg:text-6xl">{{hero.title}}</h1>
             <h2 class="text-white mt-4 font-semibold  lg:text-3xl">{{hero.subtitle}}</h2>
         </div>
-        <button class="border-arth-light-blue justify-center font-tinos text-arth-dark-blue hover:bg-arth-light-blue mb-16">{{
-                $t("buttons.discover") }}</button>
-    </div>
+        <router-link :to="{ name: 'reservation' }" class="self-center">
+            <button class="border-arth-light-blue justify-center font-tinos text-arth-dark-blue hover:bg-arth-light-blue mb-16">{{
+                    $t("buttons.reservation") }}
+            </button>
+        </router-link>
+
+    </section>
 
 </template>
 

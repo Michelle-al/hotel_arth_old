@@ -1,5 +1,5 @@
 <template>
-    <div class="md:mt-24 md:mb-24 md:px-12" id="advantages">
+    <section class="md:mt-24 md:mb-24 md:px-12" id="advantages">
         <h2 class="mx-4">{{  $t("advantages.heading") }}</h2>
         <div  class="grid md:grid-cols-2 lg:grid-cols-3 md:gap-4 mb-8">
             <div v-for="advantage in advantages" :key="advantage.id">
@@ -10,7 +10,7 @@
             <button class="border-arth-dark-blue justify-center font-tinos hover:bg-arth-dark-blue hover:text-white">
                 {{ $t("buttons.reservation") }}</button>
         </div>
-    </div>
+    </section>
 
 </template>
 

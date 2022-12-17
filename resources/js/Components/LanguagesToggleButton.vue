@@ -1,16 +1,8 @@
 <template>
     <div class="section__navbar">
-<!--        <button @click="isFrench = !isFrench" class="navbar__button">-->
-<!--            <img v-if="isFrench"-->
-<!--                 :src="french.image.source"-->
-<!--                 class="navbar__flag navbar__flag&#45;&#45;french"-->
-<!--                 :alt="french.image.alt">-->
-<!--            <img v-else-->
-<!--                 :src="english.image.source"-->
-<!--                 class="navbar__flag navbar__flag&#45;&#45;english"-->
-<!--                 :alt="english.image.alt">-->
-<!--        </button>-->
-        <select name="lang" v-model="lang" @change="switchLocale(lang)" class="navbar__button appearance-none bg-white text-2xl">
+        <select name="lang" v-model="lang" @change="switchLocale(lang)"
+                class="navbar__button appearance-none bg-white text-2xl"
+                aria-label="Menu déroulant pour changer la langue du site">
             <option value="fr" :alt=french.image.alt>🇨🇵</option>
             <option value="en" :alt=english.image.alt>🇬🇧</option>
         </select>
