@@ -1,27 +1,25 @@
 <template>
     <div>
-        <h1>{{ $t("login.title")}}</h1>
-        <div class="bg-red-100 mt-16 border border-red-400 w-3/6 mx-auto text-center text-red-700 px-4 py-3 rounded relative" role="alert" v-if="errorMessage">
-            <span class="block sm:inline">{{ errorMessage }}</span>
-        </div>
+        <h1 class="mt-8 md:mt-0">{{ $t("login.title")}}</h1>
+
         <form  v-on:submit.prevent="checkUser">
             <div class="form-control w-full max-w-xs mx-auto mt-5">
                 <label class="label">
                     <span class="label-text">Email</span>
                 </label>
                 <input type="text" placeholder="Email" v-model="email" id="email" autocomplete="off"/>
-                <span class="text-red-500 text-sm">{{ message_email}}</span>
+                <span class="text-red-500 text-sm" v-for="email in message_email">{{ email }}</span>
                 <label class="label">
                     <span class="label-text">{{ $t("login.password") }}</span>
                 </label>
                 <input type="password" placeholder="Password" v-model="password" id="password" autocomplete="off"/>
-                <span class="text-red-500 text-sm">{{ message_password}}</span>
+                <span class="text-red-500 text-sm" v-for="password in message_password">{{ password }}</span>
                 <p class="mt-6 text-arth-green text-center"><router-link :to="{ name: 'signUp'}">{{
                         $t('login.dontHaveAccount')
                     }}</router-link></p>
             </div>
 
-            <div class="flex mx-auto mt-6">
+            <div class="flex mx-auto mt-6 mb-8">
                 <button class="bg-arth-green hover:scale-105">{{ $t("login.title") }}</button>
             </div>
         </form>
@@ -39,7 +37,6 @@
                 password: '',
                 message_password: '',
                 message_email: '',
-                errorMessage: ''
             }
         },
         methods: {
@@ -48,24 +45,16 @@
                         email: this.email,
                         password: this.password
                     })
-                    function errorObj(obj){
-                        for (let i in obj) {
-                            if (obj.hasOwnProperty(i)) {
-                                obj = `${obj[i]}\n`;
-                            }
-                        }
-                        return obj
-                    }
+
                     if(typeof response.data.message !== 'undefined'){
-                        this.errorMessage = response.data.message.error
-                        this.message_email = errorObj(response.data.message.email)
-                        this.message_password = errorObj(response.data.message.password)
+                        this.message_email = response.data.message.email
+                        this.message_password = response.data.message.password
                     }
                     if(response.data.token){
                         this.token = response.data.token
                         localStorage.setItem("token", this.token)
                     }
-                   console.log(response.data)
+                   // console.log(response.data)
 
 
 

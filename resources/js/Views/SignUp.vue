@@ -8,14 +8,14 @@
                         <span class="label-text">Email</span>
                     </label>
                     <input type="text" placeholder="Email" v-model="email" id="email" />
-                    <span class="text-red-500 text-sm" v-for="email in message_email">{{ email }}</span>
+                    <p class="text-red-500 text-sm" v-for="email in message_email">{{ email }}</p>
                 </div>
                 <div>
                     <label class="label">
                         <span class="label-text">{{ $t("signUp.password") }}</span>
                     </label>
                     <input type="password" placeholder="Password" v-model="password" id="password" autocomplete="off"/>
-                    <span class="text-red-500 text-sm" v-for="password in message_password">{{ password }}</span>
+                    <p class="text-red-500 text-sm" v-for="password in message_password">{{ password }}</p>
                 </div>
                 <div>
                     <label class="label">
@@ -77,8 +77,8 @@ export default {
             }
 
             // this.$router.push('/');
-            console.log(response)
-            console.log(this.token)
+            // console.log(response)
+            // console.log(this.token)
         }
     }
 }

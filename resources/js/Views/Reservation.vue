@@ -83,14 +83,14 @@
             // logInfos() {
             //     console.log(this.form)
             // }
-                async logInfos(){
-                    console.log(`form ${this.form.checkin} `)
-                    const response = await axios.post('api/reservations/availability',
-                       this.form
-                    )
-                    console.log(response.data);
-
-                }
-            }
+            //     async logInfos(){
+            //         console.log(`form ${this.form.checkin} `)
+            //         const response = await axios.post('api/reservations/availability',
+            //            this.form
+            //         )
+            //         console.log(response.data);
+            //
+            //     }
+        }
     }
 </script>
