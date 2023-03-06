@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header id="header">
         <Popover class="section__navbar absolute w-full bg-white" :class="isHomeView() ? 'absolute' : 'relative'">
             <div class="mx-auto max-w-8xl px-4 sm:px-6">
                 <div
@@ -126,6 +126,7 @@
             <!-- STOP - Display for small and medium devices -->
 
         </Popover>
+        <GoToTopButton />
     </header>
 
 </template>
@@ -149,6 +150,7 @@ import {
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import LanguagesToggleButton from "./LanguagesToggleButton"
 import landingPage from "../Views/LandingPage/LandingPage.vue";
+import GoToTopButton from "../Views/LandingPage/Components/GoToTopButton.vue";
 
 export default {
     name: "NavBar.vue",
@@ -169,7 +171,8 @@ export default {
         ShieldCheckIcon,
         Squares2X2Icon,
         XMarkIcon,
-        ChevronDownIcon
+        ChevronDownIcon,
+        GoToTopButton,
     },
     data() {
         return {
