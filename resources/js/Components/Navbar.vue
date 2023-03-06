@@ -9,7 +9,7 @@
                         <a href="#">
                             <span class="sr-only">Hotel Arth</span>
                             <img class="h-20 w-auto" src="/storage/pictures/Logo.png" alt="Hotel Arth"
-                                 aria-label="link" tabindex="0" role="link" aria-description="Ce logo permet de retourner
+                                 aria-label="link" tabindex="0" role="link" aria-description="Retourner
                         à la page d'accueil"/>
                         </a>
                     </div>
@@ -26,10 +26,18 @@
                     <!-- START - Nav links for large devices -->
                     <PopoverGroup as="nav" class="hidden space-x-6 lg:space-x-10 lg:flex items-center ml-0"
                                   aria-label="Barre de navigation">
-                        <a href="#rooms" class="font-medium text-gray-500 hover:text-gray-900">{{$t("navbar.rooms")}}</a>
-                        <a href="#advantages" class="font-medium text-gray-500 hover:text-gray-900">{{ $t("navbar.advantages")}}</a>
-                        <a href="#reviews" class="font-medium text-gray-500 hover:text-gray-900">{{ $t("navbar.reviews") }}</a>
-                        <a href="#news" class="font-medium text-gray-500 hover:text-gray-900">{{  $t("navbar.news") }}</a>
+                        <router-link to="#rooms" class="font-medium text-gray-500 hover:text-gray-900">
+                            {{$t("navbar.rooms")}}
+                        </router-link>
+                        <router-link to="#advantages" class="font-medium text-gray-500 hover:text-gray-900">
+                            {{ $t("navbar.advantages")}}
+                        </router-link>
+                        <router-link to="#reviews" class="font-medium text-gray-500 hover:text-gray-900">
+                            {{ $t("navbar.reviews") }}
+                        </router-link>
+                        <router-link to="#news" class="font-medium text-gray-500 hover:text-gray-900">
+                            {{  $t("navbar.news") }}
+                        </router-link>
                     </PopoverGroup>
                     <!-- STOP - Nav links for large devices -->
 
@@ -84,15 +92,18 @@
                         <!-- START - Main Code for small devices -->
                         <div class="space-y-6 py-6 px-5">
                             <div class="grid grid-cols-2 gap-y-4 gap-x-8">
-                                <a href="#rooms" class="font-medium text-gray-900 hover:text-gray-700">{{$t("navbar.rooms")
-                                    }}</a>
-                                <a href="#advantages" class="font-medium text-gray-900 hover:text-gray-700">{{
-                                        $t("navbar.advantages")}}</a>
-
-                                <a href="#reviews" class="font-medium text-gray-900 hover:text-gray-700">{{
-                                        $t("navbar.reviews") }}</a>
-                                <a href="#news" class="font-medium text-gray-900 hover:text-gray-700">{{  $t("navbar.news")
-                                    }}</a>
+                                <router-link to="#rooms" class="font-medium text-gray-900 hover:text-gray-700">
+                                    {{ $t("navbar.rooms") }}
+                                </router-link>
+                                <router-link to="#advantages" class="font-medium text-gray-900 hover:text-gray-700">
+                                    {{ $t("navbar.advantages") }}
+                                </router-link>
+                                <router-link to="#reviews" class="font-medium text-gray-900 hover:text-gray-700">
+                                    {{ $t("navbar.reviews") }}
+                                </router-link>
+                                <router-link to="#news" class="font-medium text-gray-900 hover:text-gray-700">
+                                    {{  $t("navbar.news") }}
+                                </router-link>
                                 <!-- STOP - Main Code for small devices -->
                             </div>
                             <div>
@@ -172,7 +183,7 @@ export default {
     },
     methods: {
         landingPage() {
-            return landingPage
+            //return landingPage
         },
         isHomeView() {
             return this.$router.currentRoute.value.name === 'landingPage';
