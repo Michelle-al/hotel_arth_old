@@ -1,9 +1,11 @@
 <template>
     <footer>
         <div class=" px-10 pt-5 pb-5 bg-arth-dark-blue flex flex-col md:block">
-            <a href="#" class="text-white text-start font-poiret text-4xl py-3">Hôtel ARTH</a>
+            <router-link :to="{ name: 'landingPage'}" class="text-white text-center md:text-start font-poiret text-4xl py-3 m-w">
+                Hôtel ARTH
+            </router-link>
 <!--            <h3 class="text-white text-start font-poiret text-4xl"><a href="#">Hôtel ARTH</a></h3>-->
-            <div class="flex flex-col md:flex-row justify-around mx-auto md:m-0 md:mt-5"
+            <div class="max-w-4xl flex flex-col md:flex-row justify-around mx-auto md:m-0 md:mt-5"
                  aria-label="Barre de navigation"
                  role="navigation">
                 <div class="flex flex-col" >

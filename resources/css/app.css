@@ -52,14 +52,15 @@ span {
 }
 
 button {
-    @apply bg-white px-10 py-2 border-2 mx-auto;
+    @apply bg-white px-10 py-2 border-2 mx-auto font-bold;
 }
 
 input {
     @apply input input-bordered w-full max-w-xs rounded-none p-4
 }
 
-/* Override DaisyUI style */
-.label-text {
+/* Override DaisyUI style for form */
+.label-text,
+option {
     font-size: 1rem;
 }
