@@ -53,8 +53,3 @@
     }
 </script>
 
-<style scoped>
-p.text-center.align-middle {
-    font-family: Montserrat, sans-serif;
-}
-</style>

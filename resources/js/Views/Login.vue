@@ -1,3 +1,4 @@
+<!--Les balises span sont celles de Daisy UI : NE PAS RETIRER LES BALISES SPAN : class CSS Daisy UI -->
 <template>
     <!--    navigation breadcrumb-->
     <nav class="flex" aria-label="Breadcrumb">

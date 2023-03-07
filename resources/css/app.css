@@ -44,8 +44,10 @@ h3 {
     @apply text-xl mx-auto my-4 py-3 text-center;
 }
 
-p{
+p,
+span {
     @apply font-tinos;
+    font-size: 16px;
 }
 
 button {
@@ -54,4 +56,9 @@ button {
 
 input {
     @apply input input-bordered w-full max-w-xs rounded-none p-4
+}
+
+/* Override DaisyUI style */
+.label-text {
+    font-size: 1rem;
 }
