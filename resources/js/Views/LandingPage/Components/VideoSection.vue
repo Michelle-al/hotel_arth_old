@@ -1,5 +1,5 @@
 <template>
-    <div class="section__video"> <!-- BEM Syntax for classes -->
+    <section class="section__video"> <!-- BEM Syntax for classes -->
         <div class="section__video-content">
             <div class="section__video-text">
                 <h2 class="video__h2">{{ presentationVideo.title }}</h2>
@@ -11,8 +11,12 @@
                 <p>Votre navigateur ne prend pas en charge les vidéos HTML5.</p>
             </video>
         </div>
-            <button class="video__button-reservation">{{ $t("buttons.reservation") }}</button>
-        </div>
+        <router-link :to="{ name: 'reservation' }" class="self-center">
+            <button class="video__button-reservation">
+                {{ $t("buttons.reservation") }}
+            </button>
+        </router-link>
+    </section>
 
 
 </template>

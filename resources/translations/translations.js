@@ -4,14 +4,15 @@ export const translations = {
             reservation: "Book now",
             connect: "Login",
             discover: "Discover",
-            more: "See more"
+            more: "See more",
+            validate: "Validate"
         },
         navbar : {
             rooms: "Our rooms",
             advantages: "Our advantages",
             reviews: "Clients reviews",
             news: "Our news",
-            alreadyHaveAccount: "Already have an account ?"
+            alreadyHaveAccount: "Already have an account ?",
         },
         rooms: {
             heading: "Our rooms"
@@ -25,7 +26,7 @@ export const translations = {
         news: {
             heading: "Latest News"
         },
-         footer : {
+        footer : {
             joinUs : 'Join us :'
         },
         login: {
@@ -38,7 +39,8 @@ export const translations = {
             password: 'Password',
             confirmPassword: 'Confirm your password',
             haveAccount: 'I already have an account',
-            button: 'Sign Up'
+            button: 'Sign Up',
+            rememberToken: "Remember me"
         },
         reservation: {
             title: "Reservation",
@@ -48,6 +50,32 @@ export const translations = {
             numberOfRooms: 'Number of rooms',
             roomCategory: 'Type of room',
             button: 'Next'
+        },
+        options: {
+            title: "Options",
+            help: "Check the boxes to add options",
+            recapTitle: "Your booking",
+            recapDate: "from 22/12/22 to 30/12/2022",
+            recapRoom: "1 room \"La classique\", 1 person ",
+            optionPetitDejeuner:"Breakfast 9€ /person/day'",
+            optionMidi:"Lunch formula 20€ /person/day",
+            optionSoir:"Evening formula 20€ /person/day'",
+            optionMidiEtSoir:"Lunch and Evening formula 35€ /person/day",
+            optionPressing:"All-inclusive pressing service €30 /person/day",
+            optionCanalPlus:"Unlimited access to the Canal+ channel €10 /week",
+            optionSwimmingPool:"Access to the swimming pool 25€ per stay",
+            totalAmount: "Total amount of the stay : ",
+            button: 'Validate'
+        },
+        breadcrumb: {
+            home: "Home",
+            login: "Log in",
+            signUp: "Register",
+            reservation: "Reservation",
+            options: "Options",
+            validation: "Validation",
+            payment: "Payment",
+            thankYou: "thanks you"
         }
     },
     fr: {
@@ -55,7 +83,8 @@ export const translations = {
             reservation: "Réserver",
             connect: "Me connecter",
             discover: "Découvrir",
-            more: "Voir plus"
+            more: "Voir plus",
+            validate: "Validate"
         },
         navbar: {
             rooms: "Nos chambres",
@@ -89,7 +118,8 @@ export const translations = {
             password: 'Mot de passe',
             confirmPassword: 'Confirmez votre mot de passe',
             haveAccount: 'J\'ai déjà un compte',
-            button: 'S\'inscrire'
+            button: 'S\'inscrire',
+            rememberToken: "Se souvenir de moi"
         },
         reservation: {
             title: "Réservation",
@@ -99,6 +129,32 @@ export const translations = {
             numberOfRooms: 'Nombre de chambres',
             roomCategory: 'Type de chambre',
             button: 'Poursuivre'
+        },
+        options: {
+            title: "Options",
+            help: "Cochez les cases des options à ajouter",
+            recapTitle: "Votre réservation",
+            recapDate: "du 22/12/22 au 30/12/2022",
+            recapRoom: "1 chambre \"La classique\", 1 personne",
+            optionPetitDejeuner:"Petit-déjeuner 9€ /personne/jour",
+            optionMidi:"Formule du midi 20€ /personne/jour",
+            optionSoir:"Formule du soir 20€ /personne/jour",
+            optionMidiEtSoir:"Formule midi et soir 35€ /personne/jour",
+            optionPressing:"Service de pressing tout compris 30€ /personne/jour",
+            optionCanalPlus:"Accès illimité à la chaîne Canal+ 10€ / semaine",
+            optionSwimmingPool:"Accès à la piscine 25€ en une fois",
+            totalAmount: "Montant total du séjour : ",
+            button: 'Valider',
+        },
+        breadcrumb: {
+            home: "Accueil",
+            login: "Connexion",
+            signUp: "Inscription",
+            reservation: "Réservation",
+            options: "Options",
+            validation: "Validation",
+            payment: "Paiement",
+            thankYou: "Confirmation"
         }
     }
 }
