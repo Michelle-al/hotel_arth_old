@@ -3,36 +3,36 @@
     <!--    navigation breadcrumb-->
     <nav class="flex" aria-label="Breadcrumb" id="form-breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
-<!--            <li class="inline-flex items-center ml-6">-->
-<!--                <router-link :to="{ name: 'landingPage'}"-->
-<!--                             class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">-->
-<!--                    {{ $t(('breadcrumb.home')) }}-->
-<!--                </router-link>-->
-<!--            </li>-->
-<!--            <li> > </li>-->
+            <!--            <li class="inline-flex items-center ml-6">-->
+            <!--                <router-link :to="{ name: 'landingPage'}"-->
+            <!--                             class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">-->
+            <!--                    {{ $t(('breadcrumb.home')) }}-->
+            <!--                </router-link>-->
+            <!--            </li>-->
+            <!--            <li> > </li>-->
             <li class="inline-flex items-center ml-6">
-                <button  @click="setActiveTab('checkAvailability')"
-                         :class="{ active: activeTab === 'checkAvailability' }"
-                         id="nav--button"
+                <button @click="setActiveTab('checkAvailability')"
+                        :class="{ active: activeTab === 'checkAvailability' }"
+                        id="nav--button"
                 >
                     {{ $t(('breadcrumb.reservation')) }}
                 </button>
             </li>
-            <li> > </li>
+            <li> ></li>
             <li class="inline-flex items-center ml-6">
-                <button  @click="setActiveTab('selectOption')"
-                         :class="{ active: activeTab === 'selectOption' } "
-                         id="nav--button"
+                <button @click="setActiveTab('selectOption')"
+                        :class="{ active: activeTab === 'selectOption' } "
+                        id="nav--button"
                 >
                     {{ $t(('breadcrumb.options')) }}
                 </button>
             </li>
-            <li> > </li>
+            <li> ></li>
             <li class="inline-flex items-center ml-6">
-                <button  @click="setActiveTab('validation')"
-                         :class="{ active: activeTab === 'validation' } "
-                         id="nav--button"
-                         >
+                <button @click="setActiveTab('validateBooking')"
+                        :class="{ active: activeTab === 'validateBooking' } "
+                        id="nav--button"
+                >
                     {{ $t(('breadcrumb.validation')) }}
                 </button>
             </li>
@@ -40,147 +40,300 @@
     </nav>
 
 
-
-    <form v-on:submit.prevent="logInfos, submitBooking"  ref="reservationForm">
+    <form v-on:submit.prevent="logInfos, submitBooking" ref="reservationForm" class="flex flex-col mx-2">
         <div class="form-control w-full max-w-md mx-auto my-12">
             <!-- START - Vue Reservation -->
-            <fieldset class="checkAvailability__section" id="checkAvailability" v-show="activeTab === 'checkAvailability'">
+            <fieldset class="checkAvailability__section" id="checkAvailability"
+                      v-show="activeTab === 'checkAvailability'">
                 <h1 class="reservation__heading">{{ $t(('reservation.title')) }}</h1>
                 <div class="form-group flex justify-between gap-x-1">
                     <div class="flex-col ">
                         <label for="checkin" class="label">
                             <span class="label-text">{{ $t('reservation.arrival') }}</span>
                         </label>
-                        <input type="Date" id="checkin" name="checkin" v-model="form.checkin">
+                        <!--                        TODO - Bloquer la sélection de dates antérieures à la date du jour-->
+
+                        <input type="Date" id="checkin" name="checkin" v-model="form.checkin" class="w-full max-w-md">
                     </div>
                     <div class="flex-col">
                         <label for="checkout" class="label">
                             <span class="label-text">{{ $t('reservation.departure') }}</span>
                         </label>
-                        <input type="Date" id="checkout" name="checkout" v-model="form.checkout">
+                        <!--                        TODO - Bloquer la sélection de dates antérieures à la date de check in-->
+                        <input type="Date" id="checkout" name="checkout" v-model="form.checkout"
+                               class="w-full max-w-md">
                     </div>
                 </div>
 
                 <label for="roomCategory-select" class="label">
                     <span class="label-text">{{ $t('reservation.roomCategory') }}</span>
                 </label>
-<!--                TODO - Récupérer la valeur de form.roomCategory pour la récap-->
+                <!--                TODO - Récupérer la valeur de form.roomCategory pour la récap-->
                 <select class="select select-bordered rounded-none" id="roomCategory-select" name="roomCategory"
                         v-model="form.roomCategory">
                     <option disabled selected>{{ $t('reservation.selectInputHelp') }}</option>
+
+                    <!--                    TODO - Bugfix : Values-->
                     <option value="{{ $t('reservation.roomClassic') }}">{{ $t('reservation.roomClassic') }}</option>
-                    <option value="{{ $t('reservation.roomRoyale') }}">{{ $t('reservation.roomRoyale') }}</option>
                     <option value="{{ $t('reservation.roomLuxury') }}">{{ $t('reservation.roomLuxury') }}</option>
+                    <option value="{{ $t('reservation.roomRoyale') }}">{{ $t('reservation.roomRoyale') }}</option>
+
                 </select>
 
-                <label for="numberOfRooms" class="label">
-                    <span class="label-text">{{ $t('reservation.numberOfRooms') }}</span>
-                </label>
-                <input type="number" id="numberOfRooms" name="numberOfRooms" v-model="form.numberOfRooms">
+                <!--                TODO - Complete this lines to display the choosen room image-->
+                <div v-if="form.roomCategory === ($t('reservation.roomClassic'))">
+                    <img :src="roomsImg.classic.src" :alt="roomsImg.classic.altFr">
+                </div>
 
                 <label for="numberOfPeople" class="label">
                     <span class="label-text">{{ $t('reservation.numberOfPeople') }}</span>
                 </label>
-                <input type="number" id="numberOfPeople" name="numberOfPeople" v-model="form.numberOfPeople">
+                <input type="number" id="numberOfPeople" name="numberOfPeople" min="1" max="10"
+                       v-model="form.numberOfPeople" class="w-full max-w-md">
 
-<!--                TODO - Mettre le texte issu de la bdd ? du fichier de traduction ?-->
+                <label for="numberOfRooms" class="label">
+                    <span class="label-text">{{ $t('reservation.numberOfRooms') }}</span>
+                </label>
+                <input type="number" id="numberOfRooms" name="numberOfRooms" min="1" max="10" class="w-full max-w-md"
+                       v-model="form.numberOfRooms">
+                <!--                TODO - Mettre le texte issu de la bdd ? du fichier de traduction ?-->
                 <p class="mt-6 text-center text-red-600">Résultat de l'algo de dispo</p>
                 <p class="text-center text-red-600">Prix provisoire</p>
 
-<!--                <router-link :to="{ name: 'options' }" class="self-center">-->
-                    <button type="button" @click="nextTab()" class="bg-arth-green w-full mt-6 mb-8">{{ $t('reservation.button') }}</button>
-<!--                </router-link>-->
+                <button type="button" @click="nextTab()" class="">
+                    {{ $t('buttons.buttonBooking') }}
+                </button>
             </fieldset>
             <!-- END - Vue Reservation -->
 
             <!-- START - Vue Options -->
-            <fieldset class="options__section" id="selectOption" v-show="activeTab === 'selectOption'" :disabled="activeTab === 'checkAvailability'">
-                <h1 class="option__heading">{{$t(('options.title'))}}</h1>
+            <fieldset class="options__section" id="selectOption" v-show="activeTab === 'selectOption'"
+                      :disabled="activeTab === 'checkAvailability'">
+                <h1 class="option__heading">{{ $t(('options.title')) }}</h1>
 
                 <div class="option__heading--recap"> <!--TODO - Fake data, for text implement data from DB-->
-                    <p>{{ $t(('options.recapTitle'))}} <br>
-                        {{ $t(('options.recapStartDate')) }} {{ form.checkin }} {{ $t(('options.recapEndDate')) }} {{ form.checkout}} <br>
-                    {{ form.numberOfRooms }} {{ $t(('options.recapRoom'))}} {{ form.roomCategory }}, {{ form.numberOfPeople }} {{ $t(('options.recapPeople'))}}
+                    <p>{{ $t(('options.recapTitle')) }} <br>
+                        {{ $t(('options.recapStartDate')) }} {{ form.checkin }} {{ $t(('options.recapEndDate')) }}
+                        {{ form.checkout }} <br>
+                        {{ form.numberOfRooms }} {{ $t(('options.recapRoom')) }} {{ form.roomCategory }},
+                        {{ form.numberOfPeople }} {{ $t(('options.recapPeople')) }}
                     </p>
                 </div>
 
-                <p class="option__heading--help">{{$t(('options.help'))}}</p>
+                <p class="option__heading--help">{{ $t(('options.help')) }}</p>
 
                 <div class="form-control flex flex-row flex-wrap mx-4 my-2">
                     <input type="checkbox"
                            id="optionPetitDejeuner"
                            checked="checked"
                            class="checkbox checkbox-xs"
-                           value="optionPetitDejeuner"
+                           value="Option Petit-Déjeuner"
                            v-model="form.formOptions">
                     <label for="optionPetitDejeuner" class="label cursor-pointer ml-4">
-                        <span class="label-text">{{ $t('options.optionPetitDejeuner')}}</span>
+                        <span class="label-text">{{ $t('options.optionPetitDejeuner') }}</span>
                     </label>
                 </div>
                 <div class="form-control flex flex-row mx-4 my-2">
-                    <input type="checkbox" id="optionMidi" class="checkbox checkbox-sm" value="optionMidi"
+                    <input type="checkbox" id="optionMidi" class="checkbox checkbox-sm" value="Option Midi"
                            v-model="form.formOptions">
                     <label for="optionMidi" class="label cursor-pointer ml-4">
-                        <span class="label-text">{{ $t('options.optionMidi')}}</span>
+                        <span class="label-text">{{ $t('options.optionMidi') }}</span>
                     </label>
                 </div>
 
                 <div class="form-control flex flex-row mx-4 my-2">
-                    <input type="checkbox" id="optionSoir" class="checkbox checkbox-sm" value="optionSoir"
+                    <input type="checkbox" id="optionSoir" class="checkbox checkbox-sm" value="Option Soir"
                            v-model="form.formOptions">
                     <label for="optionSoir" class="label cursor-pointer ml-4">
-                        <span class="label-text">{{ $t('options.optionSoir')}}</span>
+                        <span class="label-text">{{ $t('options.optionSoir') }}</span>
                     </label>
                 </div>
                 <div class="form-control flex flex-row mx-4 my-2">
 
-                    <input type="checkbox" id="optionMidiEtSoir" class="checkbox checkbox-sm" value="optionMidiEtSoir"
+                    <input type="checkbox" id="optionMidiEtSoir" class="checkbox checkbox-sm" value="Option Midi et Soir"
                            v-model="form.formOptions">
                     <label for="optionMidiEtSoir" class="label cursor-pointer ml-4">
-                        <span class="label-text">{{ $t('options.optionMidiEtSoir')}}</span>
+                        <span class="label-text">{{ $t('options.optionMidiEtSoir') }}</span>
                     </label>
                 </div>
 
                 <div class="form-control flex flex-row mx-4 my-2">
-                    <input type="checkbox" id="optionPressing" class="checkbox checkbox-sm" value="optionPressing"
+                    <input type="checkbox" id="optionPressing" class="checkbox checkbox-sm" value="Option Pressing"
                            v-model="form.formOptions">
                     <label for="optionPressing" class="label cursor-pointer ml-4">
-                        <span class="label-text">{{ $t('options.optionPressing')}}</span>
+                        <span class="label-text">{{ $t('options.optionPressing') }}</span>
                     </label>
 
                 </div>
                 <div class="form-control flex flex-row mx-4 my-2">
-                    <input type="checkbox" id="optionCanalPlus" class="checkbox checkbox-sm" value="optionCanalPlus"
+                    <input type="checkbox" id="optionCanalPlus" class="checkbox checkbox-sm" value="Option Canal +"
                            v-model="form.formOptions">
                     <label for="optionCanalPlus" class="label cursor-pointer ml-4">
-                        <span class="label-text">{{ $t('options.optionCanalPlus')}}</span>
+                        <span class="label-text">{{ $t('options.optionCanalPlus') }}</span>
                     </label>
 
                 </div>
                 <div class="form-control flex flex-row mx-4 my-2">
-                    <input type="checkbox" id="optionSwimmingPool" class="checkbox checkbox-sm" value="optionSwimmingPool"
+                    <input type="checkbox" id="optionSwimmingPool" class="checkbox checkbox-sm"
+                           value="Option Swimming-pool"
                            v-model="form.formOptions">
                     <label for="optionSwimmingPool" class="label cursor-pointer ml-4">
-                        <span class="label-text">{{ $t('options.optionSwimmingPool')}}</span>
+                        <span class="label-text">{{ $t('options.optionSwimmingPool') }}</span>
                     </label>
                 </div>
 
-                <p class="mt-6 text-center">{{ $t('options.totalAmount') }}
+                <p class="mt-6 text-center text-red-600">{{ $t('options.totalAmount') }}
                     <span class="font-bold">580</span> <!-- TODO - Fake data, implement data from DB -->
                     <span> €</span>
                 </p>
 
-<!--                <router-link :to="{ name: 'options' }" class="self-center">-->
-                    <button type="button" @click="nextTab()" class="bg-arth-green w-full mt-6 mb-8">{{ $t('options.button') }}</button>
-<!--                </router-link>-->
+                <button type="button" @click="nextTab()" class="bg-arth-green w-full mt-6 mb-8">
+                    {{ $t('buttons.buttonOptions') }}
+                </button>
+
             </fieldset>
             <!-- END - Vue Options -->
-<!--            START - Vue Validation -->
-            <fieldset class="validation__section" id="validateBooking" v-show="activeTab === 'validateBooking'" :disabled="activeTab !== 'validateBooking'">
+
+            <!--            START - Vue Validation -->
+            <fieldset class="validation__section" id="validateBooking" v-show="activeTab === 'validateBooking'"
+                      :disabled="activeTab !== 'validateBooking'">
                 <h1 class="validation__heading">{{ $t(('breadcrumb.validation')) }}</h1>
-                <button v-on:submit="logInfos" type="submit" id="submit" class="submit"></button>
+                <h2>{{ $t('validation.customerInformationsTitle') }}</h2>
+                <div class="form-group flex justify-start gap-x-1">
+                    <div class="form-control">
+                        <label class="label cursor-pointer">
+                            <input type="radio" name="civility" class="radio radio-xs" v-model="form.civility"/>
+                            <span class="label-text ml-2 mr-4">{{ $t('validation.madam') }}</span>
+
+                        </label>
+                    </div>
+                    <div class="form-control">
+                        <label class="label cursor-pointer">
+                            <input type="radio" name="civility" class="radio radio-xs" v-model="form.civility"/>
+                            <span class="label-text ml-2">{{ $t('validation.mister') }}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">{{ $t('validation.lastname') }}</span>
+                        </label>
+                        <input type="text" placeholder="" class="input input-bordered w-full max-w-md" v-model="form.lastname"/>
+                    </div>
+
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">{{ $t('validation.firstname') }}</span>
+                        </label>
+                        <input type="text" placeholder="" class="input input-bordered w-full max-w-md" v-model="form.firstname"/>
+                    </div>
+
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">{{ $t('validation.email') }}</span>
+                        </label>
+                        <input type="email" placeholder="" class="input input-bordered w-full max-w-md" v-model="form.email"/>
+                    </div>
+
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">{{ $t('validation.phoneNumber') }}</span>
+                        </label>
+                        <input type="tel" placeholder="" class="input input-bordered w-full max-w-md"
+                               v-model="form.phoneNumber"/>
+                    </div>
+
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">{{ $t('validation.address') }}</span>
+                        </label>
+                        <input type="text" placeholder="" class="input input-bordered w-full max-w-md" v-model="form.address"/>
+                    </div>
+
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">{{ $t('validation.zipCode') }}</span>
+                        </label>
+                        <input type="text" placeholder="" class="input input-bordered w-full max-w-md" v-model="form.zipCode"/>
+                    </div>
+
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">{{ $t('validation.city') }}</span>
+                        </label>
+                        <input type="text" placeholder="" class="input input-bordered w-full max-w-md" v-model="form.city"/>
+                    </div>
+                </div>
+
+                <div class=" flex flex-col">
+                    <div class="form-control">
+                        <label class="label cursor-pointer">
+                            <span class="label-text">{{ $t('validation.isTravelForWork') }}</span>
+                            <input type="checkbox" class="checkbox" v-model="form.isTravelForWork"
+                                   @change="isBusinessTravel"/>
+                        </label>
+                    </div>
+
+                    <div v-if="isBusinessTravel">
+                        <h2>{{ $t('validation.companyInformationsTitle') }}</h2>
+                        <div class="form-control w-full">
+                            <label class="label">
+                                <span class="label-text">{{ $t('validation.companyName') }}</span>
+                            </label>
+                            <input type="text" placeholder="" class="input input-bordered w-full max-w-md"
+                                   v-model="form.companyName"/>
+                        </div>
+                        <div class="form-control w-full">
+                            <label class="label">
+                                <span class="label-text">{{ $t('validation.companyAddress') }}</span>
+                            </label>
+                            <input type="text" placeholder="" class="input input-bordered w-full max-w-md"
+                                   v-model="form.companyName"/>
+                        </div>
+                    </div>
+
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">{{ $t('validation.companyZipCode') }}</span>
+                        </label>
+                        <input type="text" placeholder="" class="input input-bordered w-full max-w-md" v-model="form.zipCode"/>
+                    </div>
+
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">{{ $t('validation.companyCity') }}</span>
+                        </label>
+                        <input type="text" placeholder="" class="input input-bordered w-full max-w-md" v-model="form.city"/>
+                    </div>
+
+                    <div>
+                        <h2>{{ $t('validation.recapTitle') }}</h2>
+
+                        <div class="booking__validation--recap"><!--TODO - Fake data, for text implement data from DB-->
+                            <p class="m-2">{{ $t(('options.recapTitle')) }} <br>
+                                {{ $t(('options.recapStartDate')) }} {{ form.checkin }} {{
+                                    $t(('options.recapEndDate'))
+                                }} {{ form.checkout }} <br>
+                                {{ form.numberOfRooms }} {{ $t(('options.recapRoom')) }} {{ form.roomCategory }},
+                                {{ form.numberOfPeople }} {{ $t(('options.recapPeople')) }}
+                            </p>
+                            <p class="m-2">Options : </p>
+                            <ul class="m-2">
+                                <li v-for="(option,i) in form.formOptions">{{ option }}</li>
+                            </ul>
+                            <p class="mx-2 my-4 text-start">{{ $t('validation.annulationDelay')}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button v-on:submit="logInfos" type="submit" id="submit" class="submit">
+                    {{ $t('buttons.buttonValidateAndGoToPayment') }}
+                </button>
+
             </fieldset>
-<!--            END - Vue Validation-->
+            <!--            END - Vue Validation-->
         </div>
         <!-- SUBMIT BUTTON -->
 
@@ -196,6 +349,7 @@
 
 
 export default {
+    name: 'reservation',
     data() {
         return {
             form: {
@@ -205,8 +359,39 @@ export default {
                 numberOfRooms: 1,
                 numberOfPeople: 1,
                 formOptions: [],
+                civility: "",
+                firstname: "",
+                lastname: "",
+                email: "",
+                phoneNumber: "",
+                address: "",
+                zipCode: "",
+                city: "",
+                isTravelForWork: false,
+                companyName: null,
+                companyAddress: null,
+                companyZipCode: null,
+                companyCity: null,
+
             },
-            allTabs: ["checkAvailability","selectOption","validation"],
+            roomsImg: {
+                classic: {
+                    src: "storage/room_categories/arth_chambre_classique.jpeg",
+                    altFr: "Chambre Classique",
+                    altEn: " Classic Room",
+                },
+                luxe: {
+                    src: "storage/room_categories/arth_chambre_luxe.jpeg",
+                    altFr: "Chambre de luxe",
+                    altEn: " Luxury  Room",
+                },
+                royal: {
+                    src: "storage/room_categories/hotel-room-g512f9f1ee_1920.jpg",
+                    altFr: "Suite Royale",
+                    altEn: "Royal Suite",
+                }
+            },
+            allTabs: ["checkAvailability", "selectOption", "validateBooking"],
             activeTab: "checkAvailability",
             errors: [],
         }
@@ -222,7 +407,7 @@ export default {
         },
         nextTab() {
             if (
-                this.activeTab !== "validation" &&
+                this.activeTab !== "validateBooking" &&
                 this.$refs.reservationForm.reportValidity()
             ) {
                 this.activeTab = this.allTabs[this.allTabs.indexOf(this.activeTab) + 1];
@@ -245,6 +430,11 @@ export default {
                     },
                 }
             }
+        },
+        isBusinessTravel() {
+            if (this.form.isTravelForWork !== false) {
+                return true;
+            }
         }
     }
 }
@@ -266,8 +456,20 @@ export default {
 
 }
 
+form button {
+    @apply bg-arth-green w-full mt-6 mb-8;
+}
+
+form input {
+    @apply rounded-sm;
+}
+
 fieldset {
-    @apply mx-auto;
+    @apply mx-0;
+}
+
+.validation__section {
+//margin: 0;
 }
 
 .select {
@@ -276,7 +478,12 @@ fieldset {
 
 #nav--button {
     border: none;
-    @apply pl-2 pr-2
+
+    @apply pl-2 pr-2 font-normal border-0;
+}
+
+.active {
+    @apply font-bold !important;
 }
 
 .reservation__heading,
@@ -285,7 +492,8 @@ fieldset {
     @apply mb-8
 }
 
-.option__heading--recap {
+.option__heading--recap,
+.booking__validation--recap {
     @apply bg-arth-light-blue mx-auto mt-12 py-3 text-center
 }
 

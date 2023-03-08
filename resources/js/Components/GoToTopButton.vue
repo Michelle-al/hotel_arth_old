@@ -33,8 +33,7 @@ export default {
             }
             this.scrolledPage = false;
         },
-    }
-
+    },
 }
 </script>
 

@@ -5,7 +5,11 @@ export const translations = {
             connect: "Login",
             discover: "Discover",
             more: "See more",
-            validate: "Validate"
+            validate: "Validate",
+            buttonBooking: "Continue",
+            buttonOptions: "Validate my options",
+            buttonValidateAndGoToPayment: "Validate my booking",
+            buttonPay: "Pay my booking"
         },
         navbar : {
             rooms: "Our rooms",
@@ -27,19 +31,19 @@ export const translations = {
             heading: "Latest News"
         },
         footer : {
-            joinUs : 'Join us :'
+            joinUs : "Join us :"
         },
         login: {
-            title: 'Log In',
-            password: 'Password',
-            dontHaveAccount: 'You don\'t have an account ?'
+            title: "Log In",
+            password: "Password",
+            dontHaveAccount: "You don\'t have an account ?"
         },
         signUp: {
-            title: 'Sign Up',
-            password: 'Password',
-            confirmPassword: 'Confirm your password',
-            haveAccount: 'I already have an account',
-            button: 'Sign Up',
+            title: "Sign Up",
+            password: "Password",
+            confirmPassword: "Confirm your password",
+            haveAccount: "I already have an account",
+            button: "Sign Up",
             rememberToken: "Remember me"
         },
         reservation: {
@@ -47,13 +51,14 @@ export const translations = {
             arrival: "Arrival",
             departure: "Departure",
             numberOfPeople: "Number of people",
-            numberOfRooms: 'Number of rooms',
-            selectInputHelp: 'Select an option',
-            roomCategory: 'Type of room',
-            roomClassic: 'The Classic - 70€/person',
-            roomLuxury: 'The Luxury Room - 140€/person',
-            roomRoyale: 'The Royal Suite - 280€/person',
-            button: 'Next'
+            numberOfRooms: "Number of rooms",
+            selectInputHelp: "Select an option",
+            roomCategory: "Type of room",
+            roomClassic: "The Classic - 70€/person",
+            roomLuxury: "The Luxury Room - 140€/person",
+            roomRoyale: "The Royal Suite - 280€/person",
+            Mister: "Mister",
+            Madam: "Madam"
         },
         options: {
             title: "Options",
@@ -63,15 +68,35 @@ export const translations = {
             recapEndDate: "to",
             recapRoom: "room(s)",
             recapPeople: "person",
-            optionPetitDejeuner:"Breakfast 9€ /person/day'",
+            optionPetitDejeuner:"Breakfast 9€ /person/day",
             optionMidi:"Lunch formula 20€ /person/day",
-            optionSoir:"Evening formula 20€ /person/day'",
+            optionSoir:"Evening formula 20€ /person/day",
             optionMidiEtSoir:"Lunch and Evening formula 35€ /person/day",
             optionPressing:"All-inclusive pressing service €30 /person/day",
             optionCanalPlus:"Unlimited access to the Canal+ channel €10 /week",
             optionSwimmingPool:"Access to the swimming pool 25€ per stay",
             totalAmount: "Total amount of the stay : ",
-            button: 'Validate'
+        },
+        validation: {
+            mister: "Mister",
+            madam: "Madam",
+            firstname: "Firstname",
+            lastname: "Lastname",
+            email: "Email",
+            phoneNumber: "Phone number",
+            address: "Address",
+            zipCode: "Zip Code",
+            city: "City",
+            isTravelForWork: "Do you travel for business ?",
+            customerInformationTitle: "Personal informations",
+            companyInformationsTitle: "Company informations",
+            companyName: "Company name",
+            companyAddress: "Address",
+            companyZipCode: "Zip Code",
+            companyCity: "City",
+            recapTitle: "Summary of your booking",
+            annulationDelay: "The room can be canceled free of charge up to 24 hours before the start of the reservation.\n" +
+                "After this time, the room will be billed at 12:00 a.m., the day of arrival."
         },
         breadcrumb: {
             home: "Home",
@@ -90,7 +115,11 @@ export const translations = {
             connect: "Me connecter",
             discover: "Découvrir",
             more: "Voir plus",
-            validate: "Validate"
+            validate: "Validate",
+            buttonBooking: "Poursuivre ma réservation",
+            buttonOptions: "Valider mes options",
+            buttonValidateAndGoToPayment: "Valider ma réservation",
+            buttonPay: "Payer ma réservation"
         },
         navbar: {
             rooms: "Nos chambres",
@@ -115,16 +144,16 @@ export const translations = {
             joinUs: 'Nous rejoindre :'
         },
         login: {
-            title: 'Connexion',
-            password: 'Mot de passe',
-            dontHaveAccount: 'Pas encore de compte ?'
+            title: "Connexion",
+            password: "Mot de passe",
+            dontHaveAccount: "Pas encore de compte ?"
         },
         signUp: {
-            title: 'Inscription',
-            password: 'Mot de passe',
-            confirmPassword: 'Confirmez votre mot de passe',
-            haveAccount: 'J\'ai déjà un compte',
-            button: 'S\'inscrire',
+            title: "Inscription",
+            password: "Mot de passe",
+            confirmPassword: "Confirmez votre mot de passe",
+            haveAccount: "J\'ai déjà un compte",
+            button: "S\'inscrire",
             rememberToken: "Se souvenir de moi"
         },
         reservation: {
@@ -133,12 +162,11 @@ export const translations = {
             departure: "Départ",
             numberOfPeople: "Nombre de personnes",
             numberOfRooms: 'Nombre de chambres',
-            selectInputHelp: 'Sélectionner une option',
-            roomCategory: 'Type de chambre',
-            roomClassic: 'La Classique - 70€/ personne',
-            roomLuxury: 'La chambre de luxe - 140€/ personne',
-            roomRoyale: 'La suite royale - 280€/ personne',
-            button: 'Poursuivre'
+            selectInputHelp: "Sélectionner une option",
+            roomCategory: "Type de chambre",
+            roomClassic: "La Classique - 70€/ personne",
+            roomLuxury: "La Chambre de Luxe - 140€/ personne",
+            roomRoyale: "La Suite Royale - 280€/ personne",
         },
         options: {
             title: "Options",
@@ -156,7 +184,27 @@ export const translations = {
             optionCanalPlus:"Accès illimité à la chaîne Canal+ 10€ / semaine",
             optionSwimmingPool:"Accès à la piscine 25€ en une fois",
             totalAmount: "Montant total du séjour : ",
-            button: 'Valider',
+        },
+        validation: {
+            mister: "Monsieur",
+            madam: "Madame",
+            firstname: "Prénom",
+            lastname: "Nom",
+            email: "Email",
+            phoneNumber: "Téléphone portable",
+            address: "Adresse",
+            zipCode: "Code Postal",
+            city: "Ville",
+            isTravelForWork: "Vous voyagez pour le travail",
+            customerInformationsTitle: "Cooordonnées personnelles",
+            companyInformationsTitle: "Coordonnées de l'entreprise",
+            companyName: "Nom de la société",
+            companyAddress: "Adresse",
+            companyZipCode: "Code postal",
+            companyCity: "Ville",
+            recapTitle: "Récapitulatif de votre réservation",
+            annulationDelay: "La chambre est annulable sans frais jusquà 24h avant le début de la reservation.\n" +
+                "Passé ce délai, la chambre sera facturée à 12h le jour de l’arrivée prévu."
         },
         breadcrumb: {
             home: "Accueil",
