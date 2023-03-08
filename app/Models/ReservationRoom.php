@@ -10,5 +10,6 @@ class ReservationRoom extends Model
     use HasFactory;
 
     public $timestamps = false;
-    public $fillable = ['reservation_id', 'room_number'];
+    protected $table = "reservation_rooms";
+    public $fillable = ['reservation_id', 'room_id'];
 }

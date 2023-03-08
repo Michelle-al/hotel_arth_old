@@ -22,12 +22,13 @@ class Reservation extends Model
 
     public $timestamps = false;
 
+    public $fillable = ['checkin', 'checkout'];
     /**
      * Reservations that belongs to many rooms
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function rooms()
     {
-        return $this->belongsToMany(Room::class)->using(ReservationRoom::class);
+        return $this->belongsToMany(Room::class, 'reservation_rooms');
     }
 }

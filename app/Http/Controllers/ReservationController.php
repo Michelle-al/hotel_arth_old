@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ReservationResource;
 use App\Models\Reservation;
 use App\Models\Room;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -82,40 +83,42 @@ class ReservationController extends Controller
      * @return JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function isAvailable(Request $request) : JsonResponse
+    public function isAvailable(Request $request) : Collection
     {
-        $validator = Validator::make($request->post(), [
-                'checkin' => 'required|date|date_format:Y-m-d',
-                'checkout' => 'required|date|after:checkin',
-                'number_of_people' => 'required|integer|min:1'
-            ]
-        );
+//        $validator = Validator::make($request->post(), [
+//                'checkin' => 'required|date|date_format:Y-m-d',
+//                'checkout' => 'required|date|after:checkin',
+//                'number_of_people' => 'required|integer|min:1'
+//            ]
+//        );
 
-        $validated = $validator->validate();
+        // Get the reservations between two dates
+        $reservationsIdArray = Reservation::whereBetween("checkin", [$request->checkin, $request->checkout])
+                                            ->orWhereBetween("checkout", [$request->checkin, $request->checkout])
+                                            ->pluck("id");
 
-//        $reservations = ReservationResource::collection(Reservation::all()
-//            ->where('checkin', $validated['checkin']));
+        // Retrieve Reservations in a Collection
+        $reservations = Reservation::whereIn("id", $reservationsIdArray)->get();
 
-//        $roomStyle = Room::where('style', 'La classique')->get();
-//        $reservations = $roomStyle;
+        // Iterate over the collection of Reservation models to retrieve the rooms booked
+        $booked = [];
+        forEach ($reservations as $reservation) {
+            $booked = [ ...$reservation->rooms->pluck("id") ];
+        };
 
-        // To retrieve rooms  (works)
-        $reservations = DB::table('reservations')
-            ->join('reservations_rooms', function ($join) {
-                $join->on('reservations.id', '=', 'reservations_rooms.reservation_id');
-            })
-            ->join('rooms', function ($join) {
-                $join->on('reservations_rooms.room_number', '=', 'rooms.room_number');
-            })
-            ->get();
+        // Return the free rooms
+        return Room::all()->whereNotIn("id", array_unique($booked));
+    }
 
-//        dd(response()->json($reservations));
-//        $reservations = ReservationResource::make(Reservation::all());
-
-        return response()->json($reservations);
-
-
-
+    public function createReservation(Request $request)
+    {
+        $reservation = new Reservation;
+        $room = explode(',', $request->room);
+        $reservation->checkin = $request->checkin;
+        $reservation->save();
+        // $reservation->rooms is a BelongsToMany
+        // But $reservation->rooms() is a QueryBuilder
+        $reservation->rooms()->attach($room);
     }
 
     /**
