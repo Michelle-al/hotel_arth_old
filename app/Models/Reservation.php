@@ -31,4 +31,9 @@ class Reservation extends Model
     {
         return $this->belongsToMany(Room::class, 'reservation_rooms');
     }
+
+    public function options()
+    {
+        return $this->belongsToMany(Option::class, 'reservations_options');
+    }
 }

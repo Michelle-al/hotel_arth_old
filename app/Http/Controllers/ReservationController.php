@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetAvailableRoomsRequest;
+use App\Http\Requests\StoreReservationRequest;
 use App\Http\Resources\ReservationResource;
 use App\Models\Reservation;
 use App\Models\Room;
@@ -78,23 +80,21 @@ class ReservationController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param GetFreeRoomsRequest $request
      * @mixin Reservation
      * @return JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function isAvailable(Request $request) : Collection
+    public function getAvailableRooms(GetAvailableRoomsRequest $request) : Collection
     {
-//        $validator = Validator::make($request->post(), [
-//                'checkin' => 'required|date|date_format:Y-m-d',
-//                'checkout' => 'required|date|after:checkin',
-//                'number_of_people' => 'required|integer|min:1'
-//            ]
-//        );
+        // Data validation
+        $validated = $request->validated();
+        $checkin = $validated["checkin"];
+        $checkout = $validated["checkout"];
 
-        // Get the reservations between two dates
-        $reservationsIdArray = Reservation::whereBetween("checkin", [$request->checkin, $request->checkout])
-                                            ->orWhereBetween("checkout", [$request->checkin, $request->checkout])
+        // Get the id of every reservation between two dates
+        $reservationsIdArray = Reservation::whereBetween("checkin", [$checkin, $checkout])
+                                            ->orWhereBetween("checkout", [$checkin, $checkout])
                                             ->pluck("id");
 
         // Retrieve Reservations in a Collection
@@ -110,15 +110,28 @@ class ReservationController extends Controller
         return Room::all()->whereNotIn("id", array_unique($booked));
     }
 
-    public function createReservation(Request $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  StoreReservationRequest  $request
+     */
+    public function createReservation(StoreReservationRequest $request)
     {
+        $validated = $request->validated();
+
+        dd($validated);
+
         $reservation = new Reservation;
-        $room = explode(',', $request->room);
-        $reservation->checkin = $request->checkin;
+        $room = explode(',', $validated["room"]);
+        $options = explode(',', $validated["options"]);
+
+        $reservation->checkin = $validated["checkin"];
+        $reservation->checkout = $validated["checkout"];
         $reservation->save();
-        // $reservation->rooms is a BelongsToMany
-        // But $reservation->rooms() is a QueryBuilder
+
+        // $reservation->rooms() is a QueryBuilder
         $reservation->rooms()->attach($room);
+        $reservation->options()->attach($options);
     }
 
     /**

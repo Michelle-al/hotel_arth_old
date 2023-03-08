@@ -17,4 +17,6 @@ class Option extends Model
         'option_name',
         'option_price',
     ];
+
+
 }

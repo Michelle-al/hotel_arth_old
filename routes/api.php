@@ -58,7 +58,7 @@ Route::middleware('authenticate')->prefix('users')->group(function () {
 
 Route::middleware('setLocale')->prefix('reservations')->group(function () {
     Route::put('/{id}', [ReservationController::class, 'update']);
-    Route::get('/availability', [ReservationController::class, 'isAvailable']);
+    Route::get('/availability', [ReservationController::class, 'getAvailableRooms']);
     Route::get('/{id}', [ReservationController::class, 'show']);
 });
 
