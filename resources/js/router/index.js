@@ -7,6 +7,7 @@ import RoomCategories from "../Views/LandingPage/Components/RoomCategories.vue";
 import Advantages from "../Views/LandingPage/Components/Advantages.vue";
 import UserReviews from "../Views/LandingPage/Components/UserReviews.vue";
 import News from "../Views/LandingPage/Components/News.vue";
+import ReservationConfirmation from "../Views/Reservation/ReservationConfirmation.vue";
 
 const routes = [
     {
@@ -49,8 +50,13 @@ const routes = [
     {
         path: '/reservation',
         name: 'reservation',
-        component: Reservation
+        component: Reservation,
     },
+    {
+        path: '/reservation-confirmation',
+        name: 'reservationConfirmation',
+        component: ReservationConfirmation
+    }
 ]
 
 const router = createRouter({

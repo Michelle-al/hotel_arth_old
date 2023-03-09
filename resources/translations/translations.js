@@ -9,7 +9,8 @@ export const translations = {
             buttonBooking: "Continue",
             buttonOptions: "Validate my options",
             buttonValidateAndGoToPayment: "Validate my booking",
-            buttonPay: "Pay my booking"
+            buttonPay: "Pay my booking",
+            buttonGoBackToHome: "Go back to Homepage",
         },
         navbar : {
             rooms: "Our rooms",
@@ -98,6 +99,14 @@ export const translations = {
             annulationDelay: "The room can be canceled free of charge up to 24 hours before the start of the reservation.\n" +
                 "After this time, the room will be billed at 12:00 a.m., the day of arrival."
         },
+        confirmation: {
+            title: "Reservation Confirmation",
+            subtitle: "Thank you !",
+            sentenceWithReservationNumber: "Your reservation n°xxxxx\n" +
+                "  has been taken into account.",
+            sentenceWithMessageForEmail: "You will receive a confirmation email shortly.",
+
+        },
         breadcrumb: {
             home: "Home",
             login: "Log in",
@@ -119,7 +128,8 @@ export const translations = {
             buttonBooking: "Poursuivre ma réservation",
             buttonOptions: "Valider mes options",
             buttonValidateAndGoToPayment: "Valider ma réservation",
-            buttonPay: "Payer ma réservation"
+            buttonPay: "Payer ma réservation",
+            buttonGoBackToHome: "Retourner à l'accueil",
         },
         navbar: {
             rooms: "Nos chambres",
@@ -196,15 +206,21 @@ export const translations = {
             zipCode: "Code Postal",
             city: "Ville",
             isTravelForWork: "Vous voyagez pour le travail",
-            customerInformationsTitle: "Cooordonnées personnelles",
+            customerInformationsTitle: "Coordonnées personnelles",
             companyInformationsTitle: "Coordonnées de l'entreprise",
             companyName: "Nom de la société",
             companyAddress: "Adresse",
             companyZipCode: "Code postal",
             companyCity: "Ville",
             recapTitle: "Récapitulatif de votre réservation",
-            annulationDelay: "La chambre est annulable sans frais jusquà 24h avant le début de la reservation.\n" +
+            annulationDelay: "La chambre est annulable sans frais jusquà 24h avant le début de la réservation.\n" +
                 "Passé ce délai, la chambre sera facturée à 12h le jour de l’arrivée prévu."
+        },
+        confirmation: {
+            title: "Confirmation de votre réservation",
+            subtitle: "Merci !",
+            sentenceWithReservationNumber: "Votre réservation n°xxxxx a bien été prise en compte.",
+            sentenceWithMessageForEmail: "Vous recevrez dans quelques instants un email de confirmation.",
         },
         breadcrumb: {
             home: "Accueil",
@@ -214,7 +230,7 @@ export const translations = {
             options: "Options",
             validation: "Validation",
             payment: "Paiement",
-            thankYou: "Confirmation"
+            thankYou: "Confirmation",
         }
     }
 }
