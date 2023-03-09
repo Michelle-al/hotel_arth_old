@@ -43,6 +43,8 @@
                                      class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
                         >
                             {{ $t("buttons.connect")}}
+<!--                            {{ userStore.user.lastname }}-->
+
                         </router-link>
 
                         <!--                    Book button-->
@@ -134,10 +136,13 @@ import {
     Squares2X2Icon,
     XMarkIcon,
 } from '@heroicons/vue/24/outline'
-
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import LanguagesToggleButton from "./LanguagesToggleButton"
-import landingPage from "../Views/LandingPage/LandingPage.vue";
+import landingPage from "../Views/LandingPage/LandingPage.vue"
+// import { useCounterStore } from '../../stores/counterStore'
+import {mapStores} from 'pinia'
+import { useUserTestStore } from '../../stores/userTestStore'
+import { useUserStore } from '../../stores/userStore'
 
 export default {
     name: "NavBar.vue",
@@ -160,16 +165,27 @@ export default {
         XMarkIcon,
         ChevronDownIcon
     },
+    // setup() {
+    //     const store = useUserStore();
+    //     return { store }
+    // },
     data() {
         return {
-            //
+
+
         }
     },
     mounted() {
-        //
+        // this.test()
     },
     computed: {
+        ...mapStores(useUserStore)
     },
+    created() {
+        this.userStore // store with id "user"
+
+    },
+
     methods: {
         landingPage() {
             return landingPage
@@ -177,14 +193,17 @@ export default {
         isHomeView() {
             return this.$router.currentRoute.value.name === 'landingPage';
         },
+        test(){
+            const store = useUserStore()
+            console.log("test");
+            console.log(this.store.getToken)
+        }
     }
 }
-
-
 </script>
 
 <style scoped>
-    .section__navbar{
+.section__navbar{
     /*    */
-    }
+}
 </style>
