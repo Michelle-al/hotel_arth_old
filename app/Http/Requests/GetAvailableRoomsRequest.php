@@ -29,4 +29,17 @@ class GetAvailableRoomsRequest extends FormRequest
             'checkout' => 'required|date_format:Y-m-d|after:checkin'
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'checkin' => 'A title is required',
+            'checkout' => 'A message is required',
+        ];
+    }
 }
