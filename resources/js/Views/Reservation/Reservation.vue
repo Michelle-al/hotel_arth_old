@@ -39,8 +39,7 @@
         </ul>
     </nav>
 
-
-    <form ref="reservationForm"  @submit.prevent="submitBooking" class="flex flex-col mx-2">
+    <form ref="reservationForm"  @submit.prevent="submitBooking" class="flex flex-col mx-4">
         <div class="form-control w-full max-w-md mx-auto my-12">
             <!-- START - Vue Reservation -->
             <fieldset class="checkAvailability__section" id="checkAvailability"
@@ -97,8 +96,7 @@
                 <label for="numberOfRooms" class="label">
                     <span class="label-text">{{ $t('reservation.numberOfRooms') }}</span>
                 </label>
-                <input type="number" id="numberOfRooms" name="numberOfRooms" min="1" max="10" class="w-full max-w-md"
-                       v-model="form.numberOfRooms">
+                <input type="number" id="numberOfRooms" name="numberOfRooms" @change="calculateMinNumberOfRoomsDependingOfNumberOfPeople" :min="calculateMinNumberOfRoomsDependingOfNumberOfPeople" max="10" required class="w-full max-w-md" v-model="form.numberOfRooms">
                 <!--                TODO - Mettre le texte issu de la bdd ? du fichier de traduction ?-->
                 <p class="mt-6 text-center text-red-600 font-bold">Résultat de l'algo de dispo</p>
                 <p class="text-center text-red-600 font-bold">Prix provisoire</p>
@@ -359,7 +357,6 @@
                 <button @click="submitBooking" type="button" id="submit" class="submit">
                     {{ $t('buttons.buttonValidateAndGoToPayment') }}
                 </button>
-
             </fieldset>
             <!--            END - Vue Validation-->
         </div>
@@ -371,9 +368,6 @@
 </template>
 
 <script>
-//import router from "@/router";
-
-
 import router from "../../router";
 
 export default {
@@ -425,10 +419,23 @@ export default {
             errors: [],
         }
     },
-    methods: {
-        getDateOfToday() {
-            //
+    computed: {
+        calculateMinNumberOfRoomsDependingOfNumberOfPeople() {
+            const numberOfPeople = this.form.numberOfPeople;
+            let minNumberOfRooms = 1;
+            let numberOfBeds = minNumberOfRooms * 3;
+
+            if (numberOfPeople > (numberOfBeds)) {
+                return minNumberOfRooms = Math.ceil(numberOfPeople/3);
+                console.log(minNumberOfRooms);
+            } else {
+                return minNumberOfRooms;
+            }
+
+            console.log(minNumberOfRooms);
         },
+    },
+    methods: {
         isBusinessTravel() {
             if (this.form.isTravelForWork !== false) {
                 return true;
@@ -447,26 +454,77 @@ export default {
                 this.activeTab = this.allTabs[this.allTabs.indexOf(this.activeTab) + 1];
             }
         },
-        prevTab() {
+        /*prevTab() {
             if (this.activeTab !== "checkAvailability") {
                 this.activeTab = this.allTabs[this.allTabs.indexOf(this.activeTab) - 1];
             }
-        },
+        },*/
         resetForm() {
             this.$refs.reservationForm.reset();
         },
         async submitBooking() {
-            if (this.$refs.reservationForm.reportValidity()) {
-                /*const config = {
+            console.log(this.form);
+            this.resetForm();
+            /*if (this.$refs.reservationForm.reportValidity()) {
+                const config = {
                     headers: {
                         Accept: ["application/json"],
                         "Content-Type": ["application/json"],
+                        //withCredentials: true,
                     },
-                }*/
-                console.log(this.form);
-                this.resetForm();
-                return router.push("/reservation-confirmation");
-            }
+                    auth: {
+                        // TODO - Ajouter le cookie utilisateur;
+                    },
+                };
+            await axios
+                .post(
+                    "",
+                    {
+                        config,
+                        // TODO - Add form data
+                    },
+                    {
+
+                    }
+                )
+                .then(
+                    (response) => {
+                            if (response.status === 200 || response.status === 201) {
+                                console.log(this.form);
+                                console.debug("response code: " + response.status);
+                                this.resetForm();
+                                return router.push("/reservation-confirmation");
+                            } else {
+                                this.errors.push(
+                                    "Une erreur s'est produite lors de l'enregistrement de votre réservation : " +
+                                    (response?.data?.message || "inconnue")
+                                );
+                            }
+                        },
+                )
+                .catch((error) => {
+                    if (error.response) {
+                        // The request was made and the server responded with a status code
+                        // that falls out of the range of 2xx
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        // The request was made but no response was received
+                        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                        // http.ClientRequest in node.js
+                        console.log(error.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log('Error', error.message);
+                    }
+                    console.log(error.config);
+                    this.errors.push(
+                            "Une erreur s'est produite lors de l'enregistrement de votre réservation." +
+                        (error?.response?.data?.message || "inconnue")
+                    );
+                });
+            }*/
         },
     }
 }
