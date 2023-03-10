@@ -53,17 +53,38 @@
                             <span class="label-text">{{ $t('reservation.arrival') }}</span>
                         </label>
                         <!--                        TODO - Bloquer la sélection de dates antérieures à la date du jour-->
-                        <VueDatePicker v-model="form.checkin" uid="checkin" model-type="dd.MM.yyyy" close-on-scroll auto-apply placeholder="Select Date" required :min-date="new Date()" prevent-min-max-navigation
-                                       :locale="store.getLocale" :format-locale="fr" :format="formateDate"
+                        <VueDatePicker
+                            v-model="form.checkin"
+                            uid="checkin"
 
-                                       id="checkin" name="checkin"  ></VueDatePicker>
+                            close-on-scroll
+                            auto-apply placeholder="Select Date"
+                            required prevent-min-max-navigation
+                            :locale="store.getLocale"
+                            :format="formateDate"
+                            :format-locale="fr"
+                            :min-date="new Date()"
+                            :max-date="maxDate"
+
+                            id="checkin" name="checkin"  ></VueDatePicker>
                     </div>
                     <div class="flex-col">
                         <label for="checkout" class="label">
                             <span class="label-text">{{ $t('reservation.departure') }}</span>
                         </label>
                         <!--                        TODO - Bloquer la sélection de dates antérieures à la date de check in-->
-                        <VueDatePicker v-model="form.checkout" uid="checkout" model-type="dd.MM.yyyy" close-on-scroll auto-apply placeholder="Select Date" required prevent-min-max-navigation  :locale="store.getLocale" :format="formateDate" :format-locale="fr" :min-date="calculateMinCheckoutDate"
+                        <VueDatePicker
+                            v-model="form.checkout"
+                            uid="checkout"
+
+                            close-on-scroll
+                            auto-apply placeholder="Select Date"
+                            required prevent-min-max-navigation
+                            :locale="store.getLocale"
+                            :format="formateDate"
+                            :format-locale="fr"
+                            :min-date="calculateMinCheckoutDate"
+                            :max-date="maxDate"
 
                                        id="checkout" name="checkout" ></VueDatePicker>
                     </div>
@@ -118,7 +139,7 @@
                         {{ $t(('options.recapStartDate')) }} {{ form.checkin }} {{ $t(('options.recapEndDate')) }}
                         {{ form.checkout }} <br>
                         {{ form.numberOfRooms }} {{ $t(('options.recapRoom')) }}
-
+<!--TODO - Bugfix Not found 'reservation.' key in 'en' locale messages.-->
                         {{ $t((`reservation.${form.roomCategory}`))}},
 
                         {{ form.numberOfPeople }} {{ $t(('options.recapPeople')) }}
@@ -372,16 +393,19 @@
 <script>
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
-import router from "../../router";
 import {useGlobalStore} from "../../../stores/globalStore";
-import { fr, enGB, ja } from 'date-fns/locale';
+import {enGB, fr} from 'date-fns/locale';
+import moment from "moment";
+import {computed} from "vue";
+import {addMonths, getMonth, getYear} from 'date-fns';
 
 export default {
     name: 'reservation',
     components: { VueDatePicker },
     setup() {
         const store = useGlobalStore();
-        return {store, fr, enGB, ja};
+        const maxDate = computed(() => addMonths(new Date(getYear(new Date()), getMonth(new Date())), 6));
+        return {store, fr, enGB, maxDate};
     },
     data() {
         return {
@@ -426,7 +450,6 @@ export default {
             },
             allTabs: ["checkAvailability", "selectOption", "validateBooking"],
             activeTab: "checkAvailability",
-            today: '',
             errors: [],
         }
     },
@@ -443,35 +466,14 @@ export default {
             }
         },
         calculateMinCheckoutDate() {
-
-            let parseDate = [];
-
             if (this.form.checkin) {
-                console.log(this.form.checkin)
-                parseDate = this.form.checkin.split('.')
+                const checkinDate = new Date(moment(this.form.checkin, "DD MM YYYY"));
+                return new Date(moment(checkinDate).add(1, 'days'));
             }
-            console.log('parseDate : ', new Date(parseDate[2], parseDate[1]-1, parseDate[0]))
-
-            const checkinDate = new Date(this.form.checkin)
-            console.log(checkinDate)
-            console.log(window.navigator.language);
-            console.log(`CheckinDate : `, checkinDate.toLocaleDateString(this.store.getLocale), `type of checkinDate :`, typeof checkinDate)
-            console.log(typeof new Date(this.form.checkin))
-
-            const dateTime = checkinDate.getTime();
-            console.log('dateTime : ' , dateTime)
-            const endTime = dateTime + (60*60*24) * 1000
-            const minCheckoutDate = new Date(endTime);
-            console.log('minCheckoutDate : ',minCheckoutDate.toLocaleDateString(this.store.getLocale));
-
-            return minCheckoutDate;
         },
         formateDate() {
-
             return this.store.getLocale === 'fr' ? 'dd/MM/yyyy' : 'MM/dd/yyyy'
-        }
-
-
+        },
     },
     methods: {
         useGlobalStore,
