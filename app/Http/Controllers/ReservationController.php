@@ -9,6 +9,7 @@ use App\Http\Validators\ReservationControllerValidator;
 use App\Models\Option;
 use App\Models\Reservation;
 use App\Models\Room;
+use App\Repository\ReservationRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -32,9 +33,9 @@ class ReservationController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create(Request $request) : ReservationResource
+    public function createReservation(Request $request) : JsonResponse
     {
         // Data validation
         $validator = ReservationControllerValidator::createReservationValidator($request);
@@ -45,33 +46,15 @@ class ReservationController extends Controller
         }
         $validated = $validator->validated();
 
-        // Calculating price with rooms and options
+        // Creating an array with room ids
         $rooms = explode(',', $validated["rooms"]);
-
-        $prices = [];
-        // Getting the room price
-        forEach($rooms as $room) {
-            array_push($prices, ...Room::whereIn("id", $rooms)->select('price')->pluck('price'));
-        }
-        // Getting the options price
-        if (isset($validated["options"])) {
-            $options = explode(',', $validated["options"]);
-            forEach($options as $option) {
-                array_push($prices, ...Option::whereIn("id", $options)->select('option_price')->pluck('option_price'));
-            }
-        }
-
-        // Adding everything and setting the price
-        $price = array_reduce($prices, function ($curr, $acc) {
-            return $curr + $acc;
-        });
+        $options = $validated["options"] ? explode(',', $validated["options"]) : null;
 
         // Creating the reservation
         $reservation = new Reservation;
-
+        $reservation->price = ReservationRepository::calculateReservationPrice($validated, $rooms);
         $reservation->checkin = $validated["checkin"];
         $reservation->checkout = $validated["checkout"];
-        $reservation->price = $price;
         $reservation->number_of_people = $validated["number_of_people"];
         $reservation->stay_type = $validated["stay_type"];
         $reservation->user_id = $validated["user_id"];
