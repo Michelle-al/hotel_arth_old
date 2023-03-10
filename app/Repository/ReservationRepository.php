@@ -10,9 +10,6 @@ class ReservationRepository
 {
     static function calculateReservationPrice(array $validated, array $rooms) : float|int
     {
-//        // Creating an array with room ids
-//        $rooms = explode(',', $validated["rooms"]);
-
         // Calculating the price of the options if any
         if (isset($validated["options"])) {
             $option_price = ReservationRepository::calculateOptionPrice($validated, count($rooms));

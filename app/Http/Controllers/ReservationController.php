@@ -144,13 +144,16 @@ class ReservationController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource and its references in the pivot tables from storage.
      *
-     * @param  \App\Models\Reservation  $reservation
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservation $reservation)
+    public function destroy(int $id)
     {
-        //
+        $reservation = Reservation::find($id);
+        $reservation->rooms()->detach();
+        $reservation->options()->detach();
+        $reservation->delete();
     }
 }

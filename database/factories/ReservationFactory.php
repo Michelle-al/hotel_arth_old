@@ -21,7 +21,6 @@ class ReservationFactory extends Factory
             'number_of_people' => $this->faker->numberBetween(1, 9),
             'checkin' => $this->faker->date(),
             'checkout' => $this->faker->date(),
-            'has_options' => $this->faker->boolean(50),
             'price' => $this->faker->randomFloat(2, 70, 3500),
             'stay_type' => $this->faker->randomElement(['pro', 'personal']),
             'status' => $this->faker->randomElement(['cancelled', 'terminated', 'no-show', 'validated']),
