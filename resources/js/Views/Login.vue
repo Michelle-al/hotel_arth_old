@@ -45,7 +45,7 @@
             </div>
 
             <div class="flex mx-auto mt-6">
-                <button @click="submitLogin" class="bg-arth-green hover:scale-105">{{ $t("login.title") }}</button>
+                <button @click="userStore.submitLogin()" class="bg-arth-green hover:scale-105">{{ $t("login.title") }}</button>
             </div>
         </form>
 
@@ -55,20 +55,15 @@
 
 <script>
 
-import {mapActions, mapStores} from 'pinia'
 import { useUserStore } from '../../stores/userStore'
-
 
 export default {
     name: 'login',
 
-    computed: {
-        ...mapStores(useUserStore)
+    setup() {
+        const userStore = useUserStore();
+        return { userStore }
     },
-    methods: {
-        ...mapActions(useUserStore, ['submitLogin']),
-
-    }
 }
 </script>
 

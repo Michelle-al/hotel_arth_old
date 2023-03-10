@@ -38,14 +38,23 @@
                          role="Changer la langue du site">
                         <LanguagesToggleButton/>
 
+                        <!-- START - login or logout button-->
                         <!--                    Login button-->
-                        <router-link :to="{ name: 'login' }"
+                        <router-link :to="{ name: 'login' }" v-if="!store.isLogged"
                                      class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
                         >
                             {{ $t("buttons.connect")}}
-<!--                            {{ userStore.user.lastname }}-->
 
                         </router-link>
+
+                        <!--                    Logout button-->
+                        <router-link :to="{ name: '' }" v-else
+                                     class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
+                        >
+                            {{ $t("buttons.logout")}}
+
+                        </router-link>
+                        <!-- STOP - login or logout button-->
 
                         <!--                    Book button-->
                         <router-link :to="{ name: 'reservation' }">
@@ -99,16 +108,27 @@
                             </div>
                             <div>
                                 <router-link :to="{ name: 'reservation' }"
-                                             class="flex w-full items-center justify-center  border border-transparent bg-arth-dark-blue hover:bg-white hover:text-black hover:border-arth-dark-blue my-6 px-4 py-2 font-medium text-white shadow-sm hover:bg-arth-light-blue">
+                                             class="flex w-full items-center justify-center border border-transparent bg-arth-dark-blue hover:bg-white hover:text-black hover:border-arth-dark-blue my-6 px-4 py-2 font-medium text-white shadow-sm">
                                     {{ $t("buttons.reservation")}}
                                 </router-link>
-                                <p class="mt-6 text-center font-medium text-gray-500">
+
+                                <!-- START - login or logout button-->
+                                <!--                    Login button-->
+                                <p class="mt-6 text-center font-medium text-gray-500" v-if="!store.isLogged">
                                     {{ $t("navbar.alreadyHaveAccount") }}
                                     {{ ' ' }}
                                     <router-link :to="{ name: 'login' }"
                                                  class="text-arth-dark-blue hover:font-bold">{{$t("buttons.connect")}}
                                     </router-link>
                                 </p>
+                                <!--                    Logout button-->
+                                <p class="mt-6 text-center font-medium  items-center justify-center whitespace-nowrap border border-arth-light-blue px-6 py-2 shadow-sm hover:bg-arth-light-blue"  v-else>
+                                    <router-link :to="{ name: '' }"
+                                    >{{$t("buttons.logout")}}
+                                    </router-link>
+                                </p>
+                                <!-- STOP - login or logout button-->
+
                             </div>
                         </div>
                     </div>
@@ -139,9 +159,6 @@ import {
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import LanguagesToggleButton from "./LanguagesToggleButton"
 import landingPage from "../Views/LandingPage/LandingPage.vue"
-// import { useCounterStore } from '../../stores/counterStore'
-import {mapStores} from 'pinia'
-import { useUserTestStore } from '../../stores/userTestStore'
 import { useUserStore } from '../../stores/userStore'
 
 export default {
@@ -165,10 +182,10 @@ export default {
         XMarkIcon,
         ChevronDownIcon
     },
-    // setup() {
-    //     const store = useUserStore();
-    //     return { store }
-    // },
+    setup() {
+        const store = useUserStore();
+        return { store }
+    },
     data() {
         return {
 
@@ -176,16 +193,11 @@ export default {
         }
     },
     mounted() {
-        // this.test()
+        //
     },
     computed: {
-        ...mapStores(useUserStore)
+        //
     },
-    created() {
-        this.userStore // store with id "user"
-
-    },
-
     methods: {
         landingPage() {
             return landingPage
@@ -193,11 +205,6 @@ export default {
         isHomeView() {
             return this.$router.currentRoute.value.name === 'landingPage';
         },
-        test(){
-            const store = useUserStore()
-            console.log("test");
-            console.log(this.store.getToken)
-        }
     }
 }
 </script>

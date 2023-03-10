@@ -26,7 +26,7 @@ class AuthController extends Controller
         if ($validatedData->fails())
         {
             return response()->json([
-                'message' => $validatedData->errors(),
+                'errors' => $validatedData->errors(),
             ]);
         }else{
             $user = User::create([
@@ -35,7 +35,7 @@ class AuthController extends Controller
             ]);
 
             // Delete old tokens in db
-            $user->tokens()->delete();
+            // $user->tokens()->delete();
 
             //Get remember token
             $rememberToken = $user->remember_token;
@@ -88,21 +88,16 @@ class AuthController extends Controller
             $user = User::where('email', $request['email'])->firstOrFail();
 
             // Delete old tokens in db
-            $user->tokens()->delete();
+            // $user->tokens()->delete();
 
             //Get remember token
             $rememberToken = $user->remember_token;
 
             // Create a new token
             $token = $user->createToken('auth_token')->plainTextToken;
-            if(isset($token)){
-                $hasToken = true;
-            }
-            else{
-                $hasToken = false;
-            }
+
             return response()->json([
-                'token' => $hasToken,
+                'token' => $token,
                 'remember_token' => $rememberToken,
                 'user' => $user,
             ]);
@@ -131,6 +126,9 @@ class AuthController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+
+        // Revoke the token that was used to authenticate the current request...
+        $request->user()->currentAccessToken()->delete();
 
 //        return redirect('/');
     }

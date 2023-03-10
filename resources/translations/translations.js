@@ -3,6 +3,7 @@ export const translations = {
         buttons: {
             reservation: "Book now",
             connect: "Login",
+            logout: "Logout",
             discover: "Discover",
             more: "See more",
             validate: "Validate"
@@ -82,6 +83,7 @@ export const translations = {
         buttons: {
             reservation: "Réserver",
             connect: "Me connecter",
+            logout: "Me déconnecter",
             discover: "Découvrir",
             more: "Voir plus",
             validate: "Validate"

@@ -38,6 +38,37 @@ class UserController extends Controller
 
     }
 
+//    /**
+//     * Display a listing of the resource.
+//     *
+//     * @return \Illuminate\Http\JsonResponse
+//     */
+//    public function me(Request $request)
+//    {
+//        $user = $request->user();
+//        return response()->json($user);
+//
+//    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        if(Auth::check()){
+            $user = Auth::user();
+            return response()->json($user);
+        }else{
+            return response()->json('test');
+        }
+
+
+
+
+    }
+
     /**
      * Display a listing of the resource.
      *
