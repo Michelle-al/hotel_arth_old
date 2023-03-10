@@ -47,23 +47,25 @@
                 <legend>
                     <h1 class="reservation__heading">{{ $t(('reservation.title')) }}</h1>
                 </legend>
-
                 <div class="form-group flex justify-between gap-x-1">
                     <div class="flex-col ">
                         <label for="checkin" class="label">
                             <span class="label-text">{{ $t('reservation.arrival') }}</span>
                         </label>
                         <!--                        TODO - Bloquer la sélection de dates antérieures à la date du jour-->
+                        <VueDatePicker v-model="form.checkin" uid="checkin" model-type="dd.MM.yyyy" close-on-scroll auto-apply placeholder="Select Date" required :min-date="new Date()" prevent-min-max-navigation
+                                       :locale="store.getLocale" :format-locale="fr" :format="formateDate"
 
-                        <input type="Date" id="checkin" name="checkin" min="2023-03-09" max="2050-12-30" required pattern="\d{4}-\d{2}-\d{2}" v-model="form.checkin" class="w-full max-w-md">
+                                       id="checkin" name="checkin"  ></VueDatePicker>
                     </div>
                     <div class="flex-col">
                         <label for="checkout" class="label">
                             <span class="label-text">{{ $t('reservation.departure') }}</span>
                         </label>
                         <!--                        TODO - Bloquer la sélection de dates antérieures à la date de check in-->
-                        <input type="Date" id="checkout" name="checkout" min="2023-03-10" max="2050-12-31" required pattern="\d{4}-\d{2}-\d{2}" v-model="form.checkout"
-                               class="w-full max-w-md">
+                        <VueDatePicker v-model="form.checkout" uid="checkout" model-type="dd.MM.yyyy" close-on-scroll auto-apply placeholder="Select Date" required prevent-min-max-navigation  :locale="store.getLocale" :format="formateDate" :format-locale="fr" :min-date="calculateMinCheckoutDate"
+
+                                       id="checkout" name="checkout" ></VueDatePicker>
                     </div>
                 </div>
 
@@ -74,18 +76,15 @@
                 <select class="select select-bordered rounded-none" id="roomCategory-select" name="roomCategory"
                         v-model="form.roomCategory">
                     <option disabled selected>{{ $t('reservation.selectInputHelp') }}</option>
-
-                    <!--                    TODO - Bugfix : Values-->
-                    <option value="{{ $t('reservation.roomClassic') }}">{{ $t('reservation.roomClassic') }}</option>
-                    <option value="{{ $t('reservation.roomLuxury') }}">{{ $t('reservation.roomLuxury') }}</option>
-                    <option value="{{ $t('reservation.roomRoyale') }}">{{ $t('reservation.roomRoyale') }}</option>
-
+                    <option value="classic">{{ $t('reservation.classic') }}</option>
+                    <option value="luxury">{{ $t('reservation.luxury') }}</option>
+                    <option value="royal">{{ $t('reservation.royal') }}</option>
                 </select>
-
-                <!--                TODO - Complete this lines to display the choosen room image-->
-                <div v-if="form.roomCategory === ($t('reservation.roomClassic'))">
-                    <img :src="roomsImg.classic.src" :alt="roomsImg.classic.altFr">
-                </div>
+<!--                <div v-if="form.roomCategory === 'classic'">-->
+                    <img v-if="form.roomCategory === 'classic'" :src="roomsImg.classic.src" :alt="roomsImg.classic.altFr">
+                    <img v-else-if="form.roomCategory === 'luxury'" :src="roomsImg.luxury.src" :alt="roomsImg.classic.altFr">
+                    <img v-else-if="form.roomCategory === 'royal'" :src="roomsImg.royal.src" :alt="roomsImg.classic.altFr">
+<!--                </div>-->
 
                 <label for="numberOfPeople" class="label">
                     <span class="label-text">{{ $t('reservation.numberOfPeople') }}</span>
@@ -118,7 +117,10 @@
                     <p>{{ $t(('options.recapTitle')) }} <br>
                         {{ $t(('options.recapStartDate')) }} {{ form.checkin }} {{ $t(('options.recapEndDate')) }}
                         {{ form.checkout }} <br>
-                        {{ form.numberOfRooms }} {{ $t(('options.recapRoom')) }} {{ form.roomCategory }},
+                        {{ form.numberOfRooms }} {{ $t(('options.recapRoom')) }}
+
+                        {{ $t((`reservation.${form.roomCategory}`))}},
+
                         {{ form.numberOfPeople }} {{ $t(('options.recapPeople')) }}
                     </p>
                 </div>
@@ -294,11 +296,11 @@
                             <span class="label-text">{{ $t('validation.isTravelForWork') }}</span>
                             <input type="checkbox" id="isTravelForWork" name="isTravelForWork" class="checkbox"
                                    v-model="form.isTravelForWork"
-                                   @change="isBusinessTravel"/>
+                                   />
                         </label>
                     </div>
 
-                    <div v-if="isBusinessTravel">
+                    <div v-if="form.isTravelForWork">
                         <h2>{{ $t('validation.companyInformationsTitle') }}</h2>
                         <div class="form-control w-full">
                             <label for="companyName" class="label">
@@ -368,15 +370,24 @@
 </template>
 
 <script>
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 import router from "../../router";
+import {useGlobalStore} from "../../../stores/globalStore";
+import { fr, enGB, ja } from 'date-fns/locale';
 
 export default {
     name: 'reservation',
+    components: { VueDatePicker },
+    setup() {
+        const store = useGlobalStore();
+        return {store, fr, enGB, ja};
+    },
     data() {
         return {
             form: {
-                checkin: ('').toLocaleString(),
-                checkout: '',
+                checkin: null,
+                checkout: null,
                 roomCategory: '',
                 numberOfRooms: null,
                 numberOfPeople: null,
@@ -402,7 +413,7 @@ export default {
                     altFr: "Chambre Classique",
                     altEn: " Classic Room",
                 },
-                luxe: {
+                luxury: {
                     src: "storage/room_categories/arth_chambre_luxe.jpeg",
                     altFr: "Chambre de luxe",
                     altEn: " Luxury  Room",
@@ -427,20 +438,43 @@ export default {
 
             if (numberOfPeople > (numberOfBeds)) {
                 return minNumberOfRooms = Math.ceil(numberOfPeople/3);
-                console.log(minNumberOfRooms);
             } else {
                 return minNumberOfRooms;
             }
-
-            console.log(minNumberOfRooms);
         },
+        calculateMinCheckoutDate() {
+
+            let parseDate = [];
+
+            if (this.form.checkin) {
+                console.log(this.form.checkin)
+                parseDate = this.form.checkin.split('.')
+            }
+            console.log('parseDate : ', new Date(parseDate[2], parseDate[1]-1, parseDate[0]))
+
+            const checkinDate = new Date(this.form.checkin)
+            console.log(checkinDate)
+            console.log(window.navigator.language);
+            console.log(`CheckinDate : `, checkinDate.toLocaleDateString(this.store.getLocale), `type of checkinDate :`, typeof checkinDate)
+            console.log(typeof new Date(this.form.checkin))
+
+            const dateTime = checkinDate.getTime();
+            console.log('dateTime : ' , dateTime)
+            const endTime = dateTime + (60*60*24) * 1000
+            const minCheckoutDate = new Date(endTime);
+            console.log('minCheckoutDate : ',minCheckoutDate.toLocaleDateString(this.store.getLocale));
+
+            return minCheckoutDate;
+        },
+        formateDate() {
+
+            return this.store.getLocale === 'fr' ? 'dd/MM/yyyy' : 'MM/dd/yyyy'
+        }
+
+
     },
     methods: {
-        isBusinessTravel() {
-            if (this.form.isTravelForWork !== false) {
-                return true;
-            }
-        },
+        useGlobalStore,
         setActiveTab(tabRef) {
             if (this.$refs.reservationForm.reportValidity()) {
                 this.activeTab = tabRef;
@@ -526,6 +560,9 @@ export default {
                 });
             }*/
         },
+    },
+    mounted() {
+        //
     }
 }
 </script>
