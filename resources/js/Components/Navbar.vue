@@ -40,6 +40,7 @@
 
                         <!-- START - login or logout button-->
                         <!--                    Login button-->
+
                         <router-link :to="{ name: 'login' }" v-if="!store.isLogged"
                                      class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
                         >
@@ -47,13 +48,26 @@
 
                         </router-link>
 
-                        <!--                    Logout button-->
-                        <router-link :to="{ name: '' }" v-else
-                                     class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
-                        >
-                            {{ $t("buttons.logout")}}
+                        <!--                    profil button-->
+<!--                        <router-link :to="{ name: '' }" v-else-->
+<!--                                     class="inline-flex items-center justify-center whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"-->
+<!--                        >-->
+<!--                            {{ $t("buttons.logout")}}-->
 
-                        </router-link>
+<!--                        </router-link>-->
+
+                        <div class="dropdown" v-else>
+                            <label tabindex="0" class="inline-flex items-center justify-center cursor-pointer whitespace-nowrap border border-arth-dark-blue px-6 py-2 shadow-sm hover:bg-arth-dark-blue hover:text-white"
+                            >{{ $t("buttons.profile")}}</label>
+                            <ul tabindex="0" class="dropdown-content menu  bg-arth-light-blue w-48">
+                                <li><a class="hover:bg-arth-grey">{{ $t("buttons.account")}}</a></li>
+                                <li>
+                                    <router-link :to="{ name: '' }" class="hover:bg-arth-grey">
+                                        {{ $t("buttons.logout")}}
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </div>
                         <!-- STOP - login or logout button-->
 
                         <!--                    Book button-->
@@ -122,11 +136,23 @@
                                     </router-link>
                                 </p>
                                 <!--                    Logout button-->
-                                <p class="mt-6 text-center font-medium  items-center justify-center whitespace-nowrap border border-arth-light-blue px-6 py-2 shadow-sm hover:bg-arth-light-blue"  v-else>
-                                    <router-link :to="{ name: '' }"
-                                    >{{$t("buttons.logout")}}
-                                    </router-link>
-                                </p>
+<!--                                <p class="mt-6 text-center font-medium  items-center justify-center whitespace-nowrap border border-arth-light-blue px-6 py-2 shadow-sm hover:bg-arth-light-blue"  v-else>-->
+<!--                                    <router-link :to="{ name: '' }"-->
+<!--                                    >{{$t("buttons.logout")}}-->
+<!--                                    </router-link>-->
+<!--                                </p>-->
+                                <div  class=" dropdown cursor-pointer w-full text-center font-medium whitespace-nowrap border border-arth-light-blue px-6 py-2 shadow-sm hover:bg-arth-light-blue" v-else>
+                                    <label tabindex="0" class="text-center font-medium items-center justify-center cursor-pointer"
+                                    >{{ $t("buttons.profile")}}</label>
+                                    <ul tabindex="0" class="dropdown-content menu bg-arth-light-blue w-48">
+                                        <li><a class="hover:bg-arth-grey">{{ $t("buttons.account")}}</a></li>
+                                        <li>
+                                            <router-link :to="{ name: '' }" class="hover:bg-arth-grey">
+                                                {{ $t("buttons.logout")}}
+                                            </router-link>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <!-- STOP - login or logout button-->
 
                             </div>

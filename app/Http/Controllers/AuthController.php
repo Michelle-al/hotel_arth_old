@@ -75,7 +75,7 @@ class AuthController extends Controller
         $authentication = Auth::attempt(['email' => $request['email'], 'password' => $request['password']]) === true;
 
         // Trow an exception if authentication fails
-        function checkauthentication($response) {
+        function checkAuthentication($response) {
             if(!$response) {
                 throw new Exception("Email et/ ou mot de passe incorrecte");
             }
@@ -83,7 +83,7 @@ class AuthController extends Controller
         }
         try {
             // Authentication of user pass
-            checkauthentication($authentication);
+            checkAuthentication($authentication);
             // Get user information
             $user = User::where('email', $request['email'])->firstOrFail();
 
