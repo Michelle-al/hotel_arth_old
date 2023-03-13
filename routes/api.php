@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvantageController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\NewsController;
@@ -30,31 +31,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('setLocale')->group(function () {
     # Login route
-    Route::post('/login', [UserController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
 
     # Register route
-    Route::post('/register', [UserController::class, 'register']);
+    Route::post('/register', [AuthController::class, 'register']);
+
+    # Users API routes 'api/users/'
+    Route::middleware('auth:sanctum')->prefix('users')->group(function () {
+        # Get a user
+        Route::get('/{id}', [UserController::class, 'user']);
+        # Modify a user
+        Route::put('/{id}', [UserController::class, 'update']);
+        # Delete a user
+        Route::delete('/{id}', [UserController::class, 'destroy']);
+        # Get info of user connected
+        Route::get('/me', [UserController::class, 'me']);
+    });
+
 });
-
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::middleware('auth:sanctum')->prefix('user')->group(function () {
-    # Users API routes
-    //Route::post('/users', [UserController::class, 'signUp']);
-    Route::get('display/{id}', [UserController::class, 'user']);
-    Route::put('update/{id}', [UserController::class, 'update']);
-    Route::delete('delete/users/{id}', [UserController::class, 'destroy']);
-});
-
-Route::post('/user', [UserController::class, 'user'])->middleware('auth:sanctum');
-
-Route::middleware('authenticate')->prefix('users')->group(function () {
-    Route::get('/users', [UserController::class, 'index']);
-});
-
 
 Route::middleware('setLocale')->prefix('reservations')->group(function () {
     Route::put('/{id}', [ReservationController::class, 'update']);
@@ -64,14 +58,27 @@ Route::middleware('setLocale')->prefix('reservations')->group(function () {
     Route::delete('/delete/{id}', [ReservationController::class, 'destroy']);
 });
 
+// routes/api.php pour test
+    Route::group(['middleware' => ['auth:sanctum']], function() {
+        Route::get('home/hero', [HeroController::class, 'index']);
+    });
 
-
+# Routes 'api/reservations/'
+    Route::middleware('setLocale')->prefix('reservations')->group(function () {
+        Route::put('/{id}', [ReservationController::class, 'update']);
+        Route::post('/availability', [ReservationController::class, 'isAvailable']);
+        Route::get('/{id}', [ReservationController::class, 'show']);
+    });
 
 # Routes '/api/home/'
 Route::middleware('setLocale')->prefix('home')->group(function () {
+# Route avec authentification
+    Route::group(['middleware' => ['auth:sanctum']], function() {
 
-    # Hero API routes
-    Route::get('/hero', [HeroController::class, 'index']);
+    });
+
+# Hero API routes
+//    Route::get('/hero', [HeroController::class, 'index']);
     Route::post('/hero/{id}', [HeroController::class, 'update']);
 
 
