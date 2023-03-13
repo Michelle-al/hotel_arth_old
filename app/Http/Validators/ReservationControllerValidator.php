@@ -13,7 +13,7 @@ class ReservationControllerValidator
     static function getAvailableRoomsValidator(Request $request): \Illuminate\Contracts\Validation\Validator
     {
         return Validator::make($request->all(), [
-            'checkin' => 'required|date_format:Y-m-d',
+            'checkin' => 'required|date_format:Y-m-d|after:yesterday',
             'checkout' => 'required|date_format:Y-m-d|after:checkin'
 
         ], [
