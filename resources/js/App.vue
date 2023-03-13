@@ -20,6 +20,7 @@ export default {
         this.checkUserConnection()
     },
     methods: {
+    // To pass user data in userStore after refresh of the page
         checkUserConnection(){
             // Check if user is Authenticate
             const userStore = useUserStore();
