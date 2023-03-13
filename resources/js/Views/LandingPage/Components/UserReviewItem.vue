@@ -6,41 +6,41 @@
                 </figure>
                 <div class="card__header--text">
                     <div class="header__text--rating" v-if="review.rating == '1'">
-                        <img src="/storage/pictures/Star_full.png" alt="">
-                        <img src="/storage/pictures/Star_empty.png" alt="">
-                        <img src="/storage/pictures/Star_empty.png" alt="">
-                        <img src="/storage/pictures/Star_empty.png" alt="">
-                        <img src="/storage/pictures/Star_empty.png" alt="">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.empty.source" :alt="image.empty.alt">
+                        <img :src="image.empty.source" :alt="image.empty.alt">
+                        <img :src="image.empty.source" :alt="image.empty.alt">
+                        <img :src="image.empty.source" :alt="image.empty.alt">
                     </div>
                     <div class="header__text--rating" v-if="review.rating == '2'">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_empty.png" alt="">
-                        <img src="storage/pictures/Star_empty.png" alt="">
-                        <img src="storage/pictures/Star_empty.png" alt="">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.empty.source" :alt="image.empty.alt">
+                        <img :src="image.empty.source" :alt="image.empty.alt">
+                        <img :src="image.empty.source" :alt="image.empty.alt">
                     </div>
                     <div class="header__text--rating" v-if="review.rating == '3'">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_empty.png" alt="">
-                        <img src="storage/pictures/Star_empty.png" alt="">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.empty.source" :alt="image.empty.alt">
+                        <img :src="image.empty.source" :alt="image.empty.alt">
                     </div>
                     <div class="header__text--rating" v-if="review.rating == '4'">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_empty.png" alt="">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.empty.source" :alt="image.empty.alt">
                     </div>
                     <div class="header__text--rating" v-if="review.rating == '5'">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_full.png" alt="">
-                        <img src="storage/pictures/Star_full.png" alt="">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.full.source" :alt="image.full.alt">
+                        <img :src="image.full.source" :alt="image.full.alt">
                     </div>
-                    <p>{{ review.user.firstname}} {{review.user.lastname}}</p>
+                    <p>{{ review.user.firstname }} {{ review.user.lastname }}</p>
                 </div>
             </div>
             <div class="card-body">
@@ -61,7 +61,16 @@ export default {
     data() {
         return {
             reviews: {},
-
+            image: {
+                full: {
+                    source: "storage/pictures/Star_full.png",
+                    alt: "",
+                },
+                empty: {
+                    source: "storage/pictures/Star_empty.png",
+                    alt: "",
+                }
+            }
         }
     },
     props:{

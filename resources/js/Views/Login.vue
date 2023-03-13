@@ -1,3 +1,4 @@
+<!--Les balises span sont celles de Daisy UI : NE PAS RETIRER LES BALISES SPAN : class CSS Daisy UI -->
 <template>
     <!--    navigation breadcrumb-->
     <nav class="flex" aria-label="Breadcrumb">
@@ -67,8 +68,12 @@ export default {
 }
 </script>
 
-<style scoped>
-.login__section {
-    @apply w-11/12 sm:w-96 md:w-3/6 lg:w-4/12 mx-auto my-16
-}
+<style scoped >
+    .login__section {
+        @apply w-11/12 sm:w-96 md:w-3/6 lg:w-4/12 mx-auto my-16
+    }
+
+    p, span {
+        font-size: 16px;
+    }
 </style>

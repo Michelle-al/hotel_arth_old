@@ -18,6 +18,7 @@ body,
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    background-color: #fff;
 }
 
 body {
@@ -44,14 +45,22 @@ h3 {
     @apply text-xl mx-auto my-4 py-3 text-center;
 }
 
-p{
+p,
+span {
     @apply font-tinos;
+    font-size: 16px;
 }
 
 button {
-    @apply bg-white px-10 py-2 border-2 mx-auto;
+    @apply bg-white px-10 py-2 border-2 mx-auto font-bold;
 }
 
 input {
     @apply input input-bordered w-full max-w-xs rounded-none p-4
+}
+
+/* Override DaisyUI style for form */
+.label-text,
+option {
+    font-size: 1rem;
 }

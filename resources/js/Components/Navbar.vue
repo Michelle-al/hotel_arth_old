@@ -6,12 +6,12 @@
                     class="flex items-center justify-between border-b-2 border-gray-100 py-2 lg:justify-start md:space-x-10 z-2"
                     aria-label="Barre de navigation">
                     <div class="flex justify-start">
-                        <a href="#">
+                        <router-link :to="{ name: 'landingPage'}">
                             <span class="sr-only">Hotel Arth</span>
                             <img class="h-20 w-auto" src="/storage/pictures/Logo.png" alt="Hotel Arth"
                                  aria-label="link" tabindex="0" role="link" aria-description="Retourner
                         à la page d'accueil"/>
-                        </a>
+                        </router-link>
                     </div>
                     <!-- START - Open button for small and medium devices -->
                     <div class="-my-2 -mr-2 lg:hidden">
@@ -198,7 +198,8 @@ import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import LanguagesToggleButton from "./LanguagesToggleButton"
 import { useUserStore } from '../../stores/userStore'
 import landingPage from "../Views/LandingPage/LandingPage.vue";
-import GoToTopButton from "../Views/LandingPage/Components/GoToTopButton.vue";
+import GoToTopButton from "./GoToTopButton.vue";
+
 
 export default {
     name: "NavBar.vue",

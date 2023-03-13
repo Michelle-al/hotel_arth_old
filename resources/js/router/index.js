@@ -3,12 +3,11 @@ import LandingPage from '../Views/LandingPage/LandingPage';
 import Login from '../Views/Login';
 import SignUp from '../Views/SignUp';
 import Reservation from "../Views/Reservation/Reservation.vue";
-import Options from "../Views/Reservation/Options.vue";
 import RoomCategories from "../Views/LandingPage/Components/RoomCategories.vue";
 import Advantages from "../Views/LandingPage/Components/Advantages.vue";
 import UserReviews from "../Views/LandingPage/Components/UserReviews.vue";
 import News from "../Views/LandingPage/Components/News.vue";
-import Validation from "../Views/Reservation/Validation";
+import ReservationConfirmation from "../Views/Reservation/ReservationConfirmation.vue";
 
 const routes = [
     {
@@ -51,18 +50,13 @@ const routes = [
     {
         path: '/reservation',
         name: 'reservation',
-        component: Reservation
+        component: Reservation,
     },
     {
-        path: '/options',
-        name: 'options',
-        component: Options
-    },
-    {
-        path: '/validation',
-        name: 'validation',
-        component: Validation
-    },
+        path: '/reservation-confirmation',
+        name: 'reservationConfirmation',
+        component: ReservationConfirmation
+    }
 ]
 
 const router = createRouter({
