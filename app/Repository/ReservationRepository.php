@@ -29,7 +29,7 @@ class ReservationRepository
     {
         $checkin = $validated["checkin"];
         $checkout = $validated["checkout"];
-        $people = $validated["number_of_people"];
+        $people = $validated["numberOfPeople"];
         // Carbon is a class used to work with dates
         $number_of_days = Carbon::parse($checkin)->diffInDays(Carbon::parse($checkout));
 

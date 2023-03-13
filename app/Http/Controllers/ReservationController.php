@@ -55,7 +55,7 @@ class ReservationController extends Controller
         $reservation->price = ReservationRepository::calculateReservationPrice($validated, $rooms);
         $reservation->checkin = $validated["checkin"];
         $reservation->checkout = $validated["checkout"];
-        $reservation->number_of_people = $validated["number_of_people"];
+        $reservation->number_of_people = $validated["numberOfPeople"];
         $reservation->stay_type = $validated["stay_type"];
         $reservation->user_id = $validated["user_id"];
         $reservation->status = "validated";
