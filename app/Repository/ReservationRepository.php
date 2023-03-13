@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Models\Option;
+use App\Models\Reservation;
 use App\Models\Room;
 use Carbon\Carbon;
 
@@ -48,6 +49,26 @@ class ReservationRepository
         }
 
         return $option_price;
+    }
+
+    static function getAvailableRooms($checkin, $checkout) {
+        // Get the id of every reservation between two dates
+        $reservationsIdArray = Reservation::whereBetween("checkin", [$checkin, $checkout])
+            ->orWhereBetween("checkout", [$checkin, $checkout])
+            ->pluck("id");
+
+        // Retrieve Reservations in a Collection
+        $reservations = Reservation::whereIn("id", $reservationsIdArray)->get();
+
+        // Iterate over the collection of Reservation models to retrieve the rooms booked
+        $booked = [];
+        forEach ($reservations as $reservation) {
+            $booked = [ ...$reservation->rooms->pluck("id") ];
+        };
+
+        // Return the free rooms
+        return Room::all()->whereNotIn("id", array_unique($booked));
+
     }
 }
 

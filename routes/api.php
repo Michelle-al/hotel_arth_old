@@ -52,7 +52,7 @@ Route::middleware('setLocale')->group(function () {
 
 Route::middleware('setLocale')->prefix('reservations')->group(function () {
     Route::put('/{id}', [ReservationController::class, 'update']);
-    Route::get('/availability', [ReservationController::class, 'getAvailableRooms']);
+    Route::get('/availability', [ReservationController::class, 'getAvailableRoomsFromRequest']);
     Route::get('/{id}', [ReservationController::class, 'show']);
     Route::post('/create', [ReservationController::class, 'createReservation']);
     Route::delete('/delete/{id}', [ReservationController::class, 'destroy']);
@@ -64,11 +64,11 @@ Route::middleware('setLocale')->prefix('reservations')->group(function () {
 //    });
 
 # Routes 'api/reservations/'
-    Route::middleware('setLocale')->prefix('reservations')->group(function () {
-        Route::put('/{id}', [ReservationController::class, 'update']);
-        Route::post('/availability', [ReservationController::class, 'isAvailable']);
-        Route::get('/{id}', [ReservationController::class, 'show']);
-    });
+//    Route::middleware('setLocale')->prefix('reservations')->group(function () {
+//        Route::put('/{id}', [ReservationController::class, 'update']);
+//        Route::post('/availability', [ReservationController::class, 'isAvailable']);
+//        Route::get('/{id}', [ReservationController::class, 'show']);
+//    });
 
 # Routes '/api/home/'
 Route::middleware('setLocale')->prefix('home')->group(function () {

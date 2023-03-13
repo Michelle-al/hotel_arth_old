@@ -6,14 +6,11 @@ use App\Http\Requests\GetAvailableRoomsRequest;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Resources\ReservationResource;
 use App\Http\Validators\ReservationControllerValidator;
-use App\Models\Option;
 use App\Models\Reservation;
-use App\Models\Room;
 use App\Repository\ReservationRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
@@ -47,6 +44,8 @@ class ReservationController extends Controller
         $validated = $validator->validated();
 
         // Creating an array with room ids
+        // $rooms = getAvailableRoomsFromInput($validated["checkin"], $validated["checkout"]);
+        dd($rooms);
         $rooms = explode(',', $validated["rooms"]);
         $options = $validated["options"] ? explode(',', $validated["options"]) : null;
 
@@ -105,12 +104,12 @@ class ReservationController extends Controller
     }
 
     /**
-     * @param GetFreeRoomsRequest $request
+     * @param Request $request
      * @mixin Reservation
      * @return JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function getAvailableRooms(Request $request) : Collection | Response
+    public function getAvailableRoomsFromRequest(Request $request) : Collection | Response
     {
         // Data validation
         $validator = ReservationControllerValidator::getAvailableRoomsValidator($request);
@@ -124,22 +123,7 @@ class ReservationController extends Controller
         $checkin = $validated["checkin"];
         $checkout = $validated["checkout"];
 
-        // Get the id of every reservation between two dates
-        $reservationsIdArray = Reservation::whereBetween("checkin", [$checkin, $checkout])
-                                            ->orWhereBetween("checkout", [$checkin, $checkout])
-                                            ->pluck("id");
-
-        // Retrieve Reservations in a Collection
-        $reservations = Reservation::whereIn("id", $reservationsIdArray)->get();
-
-        // Iterate over the collection of Reservation models to retrieve the rooms booked
-        $booked = [];
-        forEach ($reservations as $reservation) {
-            $booked = [ ...$reservation->rooms->pluck("id") ];
-        };
-
-        // Return the free rooms
-        return Room::all()->whereNotIn("id", array_unique($booked));
+        return ReservationRepository::getAvailableRooms($checkin, $checkout);
     }
 
     /**
