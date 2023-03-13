@@ -50,12 +50,13 @@ Route::middleware('setLocale')->group(function () {
 
 });
 
-//Route::middleware('authenticate')->group(function () {
-//    # Hero API routes
-//    Route::get('home/hero', [HeroController::class, 'index']);
-//    Route::post('home/hero/{id}', [HeroController::class, 'update']);
-//});
-
+Route::middleware('setLocale')->prefix('reservations')->group(function () {
+    Route::put('/{id}', [ReservationController::class, 'update']);
+    Route::get('/availability', [ReservationController::class, 'getAvailableRooms']);
+    Route::get('/{id}', [ReservationController::class, 'show']);
+    Route::post('/create', [ReservationController::class, 'createReservation']);
+    Route::delete('/delete/{id}', [ReservationController::class, 'destroy']);
+});
 
 // routes/api.php pour test
     Route::group(['middleware' => ['auth:sanctum']], function() {

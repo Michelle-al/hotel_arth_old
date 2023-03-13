@@ -27,7 +27,9 @@ class ReservationResource extends JsonResource
             'has_options' => $this->has_options,
             'price' => $this->price,
             'stay_type' => $this->stay_type,
-            'status' => $this->status
+            'status' => $this->status,
+            'rooms' => $this->rooms,
+            'options' => $this->options
         ];
     }
 }
