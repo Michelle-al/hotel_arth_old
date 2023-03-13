@@ -168,6 +168,36 @@
                         <span class="label-text">{{ $t('options.optionMidi') }}</span>
                     </label>
                 </div>
+            </div>
+
+            <label for="roomCategory-select" class="label">
+                <span class="label-text">{{ $t('reservation.roomCategory')}}</span>
+            </label>
+            <select class="select select-bordered rounded-none" id="roomCategory-select" name="roomCategory" v-model="form.room_category">
+                <option disabled selected>Select an option</option>
+                <option value="classic">La classique</option>
+                <option value="luxury">La chambre de luxe</option>
+                <option value="royale">La Suite Royale</option>
+            </select>
+
+
+            <label for="numberOfRooms" class="label">
+                <span class="label-text">{{ $t('reservation.numberOfRooms')}}</span>
+            </label>
+            <input type="number" id="numberOfRooms" name="numberOfRooms" v-model="form.number_of_rooms">
+
+            <label for="numberOfPeople" class="label">
+                <span class="label-text">{{ $t('reservation.numberOfPeople')}}</span>
+            </label>
+            <input type="number" id="numberOfPeople" name="numberOfPeople" v-model="form.number_of_people">
+
+            <p class="mt-6">Résultat de l'algo de dispo</p>
+            <p>Prix provisoire</p>
+
+            <router-link :to="{ name: 'options' }" class="self-center">
+            <button class="bg-arth-green mt-6 mb-8">{{ $t('reservation.button') }}</button>
+            </router-link>
+        </div>
 
                 <div class="form-control flex flex-row mx-4 my-2">
                     <input type="checkbox" id="optionSoir" name="optionSoir" class="checkbox checkbox-sm"
@@ -429,7 +459,6 @@ export default {
                 companyAddress: null,
                 companyZipCode: null,
                 companyCity: null,
-
             },
             roomsImg: {
                 classic: {

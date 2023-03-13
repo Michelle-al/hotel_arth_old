@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int id
@@ -22,11 +23,20 @@ class Reservation extends Model
 
     public $timestamps = false;
 
+    public $fillable = ['checkin', 'checkout', 'user_id', 'number_of_people', 'price', 'stay_type'];
     /**
-     * Get rooms for reservations.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function rooms()
+    public function rooms() : BelongsToMany
     {
-        return $this->hasMany(ReservationRoom::class, 'room_id');
+        return $this->belongsToMany(Room::class, 'reservation_rooms');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function options() : BelongsToMany
+    {
+        return $this->belongsToMany(Option::class, 'reservations_options');
     }
 }
