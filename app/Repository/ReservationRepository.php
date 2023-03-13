@@ -30,6 +30,8 @@ class ReservationRepository
         $checkin = $validated["checkin"];
         $checkout = $validated["checkout"];
         $people = $validated["number_of_people"];
+        // Carbon is a class used to work with dates
+        $number_of_days = Carbon::parse($checkin)->diffInDays(Carbon::parse($checkout));
 
         $option_price = 0;
         $options = explode(',', $validated["options"]);
@@ -37,9 +39,8 @@ class ReservationRepository
 
         foreach($options as $option) {
             if (in_array($option->id, array(1,2,3,4,5))) {
-                $option_price += $option->option_price * $people;
+                $option_price += $option->option_price * $people * $number_of_days;
             } elseif ($option->id === 6) {
-                $number_of_days = Carbon::parse($checkin)->diffInDays(Carbon::parse($checkout));
                 $option_price += 10 * ceil($number_of_days/7) * count($numberOfRooms);
             } else {
                 $option_price += 25;
