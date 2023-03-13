@@ -58,7 +58,6 @@ class ReservationController extends Controller
         $reservation->number_of_people = $validated["number_of_people"];
         $reservation->stay_type = $validated["stay_type"];
         $reservation->user_id = $validated["user_id"];
-        $reservation->has_options = 1;
         $reservation->status = "validated";
         $reservation->save();
         $reservation->rooms()->attach($rooms);
