@@ -5,7 +5,7 @@ import router from "../js/router";
 export const useUserStore = defineStore('user', {
     state: () =>({
         // token: localStorage.getItem('token'),
-        // isLogged: localStorage.getItem('isLogged'),
+        isLogged: localStorage.getItem('isLogged'),
         user: {
             email : "",
             password: "",
@@ -14,7 +14,7 @@ export const useUserStore = defineStore('user', {
     }),
     getters: {
         getErrors: (state) => state.errors,
-        // isLogged: (state) => state.isLogged,
+        // isLogged: (state) => state.isLogged === true,
         // isLogged: (state) => state.token !== null,
     },
     actions: {
@@ -68,16 +68,17 @@ export const useUserStore = defineStore('user', {
             await axios.get('api/users/me')
                 .then((response) => {
                     this.user = response.data
-                    this.isLogged = true
+                    localStorage.setItem('isLogged', response.data.isLogged)
+                    this.isLogged = localStorage.getItem('isLogged')
                     console.log('getUser',response.data)
                 })
                 .catch((error) => {
                     if(error.response.status === 401 ){
-                        // this.errors.push(error.response.data)
-                        // localStorage.removeItem("token")
-                        // this.token = null
-                       router.push({name: 'login'})
-                       //  console.log(error.response.statusText)
+                        this.errors.push(error.response.data)
+                        localStorage.removeItem("isLogged")
+                        this.isLogged = false
+                        router.push({name: 'login'})
+                        console.log(this.errors)
                     }
 
                 })
@@ -86,8 +87,11 @@ export const useUserStore = defineStore('user', {
         },
 
         async logout(){
-            const response = await axios.get('api/login')
-            localStorage.removeItem("token");
+            console.log('Logout')
+            const response = await axios.get('api/logout')
+            console.log(response.data)
+            localStorage.removeItem("isLogged")
+            await router.push({name: 'landingPage'});
 
         }
 

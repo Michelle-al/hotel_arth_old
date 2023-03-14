@@ -24,17 +24,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function isLogged($id)
-    {
-       return Auth::user();
-
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function user($id)
     {
         $user = User::query()->find($id);
@@ -55,25 +44,9 @@ class UserController extends Controller
                 'user'=> $user,
                 'isLogged'=> true
             ]);
-        }else{
-            throw new Exception("Non autorisé");
         }
-
     }
 
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\JsonResponse
-//     */
-//    public function me()
-//    {
-//        if(Auth::check()){
-//            $user = Auth::user();
-//            return response()->json($user);
-//        }
-//
-//    }
 
     /**
      * Display a listing of the resource.
@@ -103,28 +76,6 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
@@ -199,10 +150,16 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        try {
+            User::destroy($id);
+            return response()->json(['Ok'], 200);
+        }catch (Exception $e){
+            return response()->json($e);
+        }
+
     }
 }
