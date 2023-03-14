@@ -4,7 +4,8 @@ import router from "../js/router";
 
 export const useUserStore = defineStore('user', {
     state: () =>({
-        token: localStorage.getItem('token'),
+        // token: localStorage.getItem('token'),
+        // isLogged: localStorage.getItem('isLogged'),
         user: {
             email : "",
             password: "",
@@ -13,7 +14,8 @@ export const useUserStore = defineStore('user', {
     }),
     getters: {
         getErrors: (state) => state.errors,
-        isLogged: (state) => state.token !== null,
+        // isLogged: (state) => state.isLogged,
+        // isLogged: (state) => state.token !== null,
     },
     actions: {
         formValidation(response) {
@@ -22,7 +24,7 @@ export const useUserStore = defineStore('user', {
                 console.log("errors", response.data.errors)
             }else{
                 this.user = response.data.user
-                localStorage.setItem('token', response.data.token)
+                localStorage.setItem('isLogged', response.data.isLogged)
                 console.log(response.data)
                 // this.token = response.data.token
                 // await router.push({name: 'landingPage'})
@@ -66,13 +68,14 @@ export const useUserStore = defineStore('user', {
             await axios.get('api/users/me')
                 .then((response) => {
                     this.user = response.data
+                    this.isLogged = true
                     console.log('getUser',response.data)
                 })
                 .catch((error) => {
                     if(error.response.status === 401 ){
                         // this.errors.push(error.response.data)
-                        localStorage.removeItem("token")
-                        this.token = null
+                        // localStorage.removeItem("token")
+                        // this.token = null
                        router.push({name: 'login'})
                        //  console.log(error.response.statusText)
                     }
