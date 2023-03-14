@@ -49,9 +49,15 @@ class UserController extends Controller
      */
     public function me(Request $request)
     {
-        dd($request);
-        $user = $request->user();
-        return response()->json($user);
+        if(Auth::check()){
+            $user = Auth::user();
+            return response()->json([
+                'user'=> $user,
+                'isLogged'=> true
+            ]);
+        }else{
+            throw new Exception("Non autorisé");
+        }
 
     }
 

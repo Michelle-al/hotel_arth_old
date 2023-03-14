@@ -40,10 +40,10 @@ class AuthController extends Controller
             //Get remember token
             $rememberToken = $user->remember_token;
 
-            $token = $user->createToken('auth_token')->plainTextToken;
+//            $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
-                'token' => $token,
+//                'token' => $token,
                 'user' => $user,
                 'remember_token' => $rememberToken
             ]);
@@ -93,10 +93,10 @@ class AuthController extends Controller
             $rememberToken = $user->remember_token;
 
             // Create a new token
-            $token = $user->createToken('auth_token')->plainTextToken;
+//            $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
-                'token' => $token,
+//                'token' => $token,
                 'remember_token' => $rememberToken,
                 'user' => $user,
             ]);
