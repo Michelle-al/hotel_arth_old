@@ -26,6 +26,7 @@ export default {
             const userStore = useUserStore();
             if(userStore.isLogged){
                     userStore.getUser();
+                    console.log("checkUserConnection", "true")
             }
         }
     }

@@ -86,7 +86,6 @@ class AuthController extends Controller
             checkAuthentication($authentication);
             // Get user information
             $user = User::where('email', $request['email'])->firstOrFail();
-
             // Delete old tokens in db
             // $user->tokens()->delete();
 

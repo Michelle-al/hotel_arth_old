@@ -24,7 +24,7 @@ export const useUserStore = defineStore('user', {
                 this.user = response.data.user
                 localStorage.setItem('token', response.data.token)
                 console.log(response.data)
-                this.token = response.data.token
+                // this.token = response.data.token
                 // await router.push({name: 'landingPage'})
             }
         },
@@ -43,29 +43,30 @@ export const useUserStore = defineStore('user', {
             this.formValidation(response)
         },
         // async getUser(){
-        //     // const config = {
-        //     //     headers: { Authorization: `Bearer ${this.token}` }
-        //     // };
+        //     const config = {
+        //         headers: { 'Authorization': `Bearer ${this.token}` }
+        //     };
         //      this.errors = []
-        //     const response = await axios.get('api/users/me')
+        //     const response = await axios.get('api/users/me', config)
         //
         //     if (typeof response.data.errors !== 'undefined') {
         //         this.errors = response.data.errors
         //         console.log("errors", response.data.errors)
         //     } else {
-        //         this.user = response.data
+        //         console.log('getUser',response)
+        //         // this.user = response.data
         //         // await router.push({name: 'landingPage'})
         //     }
         // },
         async getUser(){
-            const config = {
-                headers: { Authorization: `Bearer ${this.token}` }
-            };
+            // const config = {
+            //     headers: { Authorization: `Bearer ${this.token}` }
+            // };
             this.errors = []
             await axios.get('api/users/me')
                 .then((response) => {
                     this.user = response.data
-                    console.log('response',response.data)
+                    console.log('getUser',response.data)
                 })
                 .catch((error) => {
                     if(error.response.status === 401 ){
@@ -77,7 +78,6 @@ export const useUserStore = defineStore('user', {
                     }
 
                 })
-                // this.user = response.data
 
 
         },

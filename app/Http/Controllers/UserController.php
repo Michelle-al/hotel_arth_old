@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function isLogged($id)
     {
-       Auth::user();
+       return Auth::user();
 
     }
 
@@ -42,36 +42,32 @@ class UserController extends Controller
 
     }
 
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\JsonResponse
-//     */
-//    public function me(Request $request)
-//    {
-//        $user = $request->user();
-//        return response()->json($user);
-//
-//    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function me()
+    public function me(Request $request)
     {
-//        if(Auth::check()){
-            $user = Auth::user();
-            return response()->json($user);
-//        }else{
-//            throw new Exception("Non autorisé");
-//        }
-
-
-
+        dd($request);
+        $user = $request->user();
+        return response()->json($user);
 
     }
+
+//    /**
+//     * Display a listing of the resource.
+//     *
+//     * @return \Illuminate\Http\JsonResponse
+//     */
+//    public function me()
+//    {
+//        if(Auth::check()){
+//            $user = Auth::user();
+//            return response()->json($user);
+//        }
+//
+//    }
 
     /**
      * Display a listing of the resource.
