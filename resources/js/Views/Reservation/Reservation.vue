@@ -161,7 +161,7 @@
                            name="optionPetitDejeuner"
                            checked="checked"
                            class="checkbox checkbox-xs"
-                           value="Option Petit-Déjeuner"
+                           value="1"
                            v-model="form.reservation.formOptions">
                     <label for="optionPetitDejeuner" class="label cursor-pointer ml-4">
                         <span class="label-text">{{ $t('options.optionPetitDejeuner') }}</span>
@@ -169,7 +169,7 @@
                 </div>
                 <div class="form-control flex flex-row mx-4 my-2">
                     <input type="checkbox" id="optionMidi" name="optionMidi" class="checkbox checkbox-sm"
-                           value="Option Midi"
+                           value="2"
                            v-model="form.reservation.formOptions">
                     <label for="optionMidi" class="label cursor-pointer ml-4">
                         <span class="label-text">{{ $t('options.optionMidi') }}</span>
@@ -178,7 +178,7 @@
 
                 <div class="form-control flex flex-row mx-4 my-2">
                     <input type="checkbox" id="optionSoir" name="optionSoir" class="checkbox checkbox-sm"
-                           value="Option Soir"
+                           value="3"
                            v-model="form.reservation.formOptions">
                     <label for="optionSoir" class="label cursor-pointer ml-4">
                         <span class="label-text">{{ $t('options.optionSoir') }}</span>
@@ -187,7 +187,7 @@
                 <div class="form-control flex flex-row mx-4 my-2">
 
                     <input type="checkbox" id="optionMidiEtSoir" name="optionMidiEtSoir" class="checkbox checkbox-sm"
-                           value="Option Midi et Soir"
+                           value="4"
                            v-model="form.reservation.formOptions">
                     <label for="optionMidiEtSoir" class="label cursor-pointer ml-4">
                         <span class="label-text">{{ $t('options.optionMidiEtSoir') }}</span>
@@ -196,7 +196,7 @@
 
                 <div class="form-control flex flex-row mx-4 my-2">
                     <input type="checkbox" id="optionPressing" name="optionPressing" class="checkbox checkbox-sm"
-                           value="Option Pressing"
+                           value="5"
                            v-model="form.reservation.formOptions">
                     <label for="optionPressing" class="label cursor-pointer ml-4">
                         <span class="label-text">{{ $t('options.optionPressing') }}</span>
@@ -205,7 +205,7 @@
                 </div>
                 <div class="form-control flex flex-row mx-4 my-2">
                     <input type="checkbox" id="optionCanalPlus" name="optionCanalPlus" class="checkbox checkbox-sm"
-                           value="Option Canal +"
+                           value="6"
                            v-model="form.reservation.formOptions">
                     <label for="optionCanalPlus" class="label cursor-pointer ml-4">
                         <span class="label-text">{{ $t('options.optionCanalPlus') }}</span>
@@ -215,7 +215,7 @@
                 <div class="form-control flex flex-row mx-4 my-2">
                     <input type="checkbox" id="optionSwimmingPool" name="optionSwimmingPool"
                            class="checkbox checkbox-sm"
-                           value="Option Swimming-pool"
+                           value="7"
                            v-model="form.reservation.formOptions">
                     <label for="optionSwimmingPool" class="label cursor-pointer ml-4">
                         <span class="label-text">{{ $t('options.optionSwimmingPool') }}</span>
