@@ -24,6 +24,7 @@ class ReservationControllerValidator
 
     static function createReservationValidator(Request $request) : \Illuminate\Contracts\Validation\Validator
     {
+        Log::info($request);
         return Validator::make($request->post(), [
             'checkin' => 'required|date_format:Y-m-d|after:yesterday',
             'checkout' => 'required|date_format:Y-m-d|after:checkin',

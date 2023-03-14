@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int id
@@ -38,5 +39,14 @@ class Reservation extends Model
     public function options() : BelongsToMany
     {
         return $this->belongsToMany(Option::class, 'reservations_options');
+    }
+
+    /**
+     * Defines a relationship to user from the reservation table
+     * @return HasOne
+     */
+    public function user() : HasOne
+    {
+        return $this->hasOne(User::class);
     }
 }

@@ -44,8 +44,8 @@ class ReservationController extends Controller
         $validated = $validator->validated();
 
         // Creating an array with room ids
-        // $rooms = getAvailableRoomsFromInput($validated["checkin"], $validated["checkout"]);
         dd($rooms);
+        // $rooms = ReservationRepository::getAvailableRooms($validated["checkin"], $validated["checkout"]);
         $rooms = explode(',', $validated["rooms"]);
         $options = $validated["options"] ? explode(',', $validated["options"]) : null;
 
