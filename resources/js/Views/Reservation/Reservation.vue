@@ -373,7 +373,7 @@
                                 {{ $t(('options.recapStartDate')) }} {{ form.reservation.checkin }} {{
                                     $t(('options.recapEndDate'))
                                 }} {{ form.reservation.checkout }} <br>
-                                {{ form.reservation.numberOfRooms }} {{ $t(('options.recapRoom')) }} {{ form.reservation.roomCategory }},
+                                {{ form.reservation.numberOfRooms }} {{ $t(('options.recapRoom')) }}  {{ $t((`reservation.${form.reservation.roomCategory}`))}},
                                 {{ form.reservation.numberOfPeople }} {{ $t(('options.recapPeople')) }}
                             </p>
                             <p class="m-2">Options : </p>
@@ -639,11 +639,19 @@ label {
 
 .option__heading--recap,
 .booking__validation--recap {
-    @apply bg-arth-light-blue mx-auto mt-12 py-3 text-center
+    @apply bg-arth-light-blue mx-auto mt-12 py-3 px-4 text-center
 }
 
 .option__heading--help {
     @apply mt-12 mb-6 text-center font-montserrat
+}
+
+.option__heading--recap {
+    @apply px-4
+}
+
+.options__section label {
+    @apply mt-0;
 }
 </style>
 
