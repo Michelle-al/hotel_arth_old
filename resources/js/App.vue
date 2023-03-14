@@ -24,10 +24,11 @@ export default {
         checkUserConnection(){
             // Check if user is Authenticate
             const userStore = useUserStore();
-            // if(userStore.isLogged){
+            if(userStore.isLogged){
                     userStore.getUser();
-                    console.log("checkUserConnection", "true")
-            // }
+            }else{
+                userStore.logout()
+            }
         }
     }
 }

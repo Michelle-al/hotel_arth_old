@@ -158,9 +158,10 @@
                                     <ul tabindex="0" class="dropdown-content menu bg-arth-light-blue w-48">
                                         <li><a class="hover:bg-arth-grey">{{ $t("buttons.account")}}</a></li>
                                         <li>
-                                            <router-link :to="{ name: '' }" class="hover:bg-arth-grey">
-                                                {{ $t("buttons.logout")}}
-                                            </router-link>
+<!--                                            <router-link :to="{ name: '' }" class="hover:bg-arth-grey">-->
+<!--                                                {{ $t("buttons.logout")}}-->
+<!--                                            </router-link>-->
+                                            <a @click="store.logout()" class=" hover:bg-arth-grey">{{ $t("buttons.logout")}}</a>
                                         </li>
                                     </ul>
                                 </div>
