@@ -30,10 +30,10 @@ class ReservationControllerValidator
             'checkout' => 'required|date_format:Y-m-d|after:checkin',
             'numberOfPeople' => 'required|integer|min:1',
             'isTravelForWork' => 'required|in:personal,pro',
-            'rooms' => 'required|string',
-            'options' => 'string',
+            'numberOfRooms' => 'required|string',
+            'roomCategory' => 'required|in:classic,luxury,royal',
+            'formOptions' => 'array',
             'user_id' => 'int',
-            'status' => ""
         ], [
             'required' => 'The :attribute field is required.',
             'array' => 'The :attribute must be an array'

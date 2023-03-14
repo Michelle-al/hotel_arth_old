@@ -141,3 +141,5 @@ Route::middleware('setLocale')->prefix('reservation')->group(function () {
     Route::get('/options', [OptionController::class, 'index']);
     Route::put('/options/{id}', [OptionController::class, 'update']);
 });
+
+Route::put('users/{id}', [UserController::class, 'updateUserInfo']);
