@@ -1,6 +1,6 @@
 <!--Les balises span sont celles de Daisy UI : NE PAS RETIRER LES BALISES SPAN : class CSS Daisy UI -->
 <template>
-    <!--    navigation breadcrumb-->
+    <!--   START - navigation breadcrumb-->
     <nav class="flex" aria-label="Breadcrumb" id="form-breadcrumb">
         <ul class="inline-flex items-center space-x-1 md:space-x-3">
             <!--            <li class="inline-flex items-center ml-6">-->
@@ -38,7 +38,8 @@
             </li>
         </ul>
     </nav>
-
+    <!--   END - navigation breadcrumb -->
+    <!-- START - Reservation form -->
     <form ref="reservationForm"  @submit.prevent="submitBooking" class="flex flex-col mx-4">
         <div class="form-control w-full max-w-md mx-auto my-12">
             <!-- START - Vue Reservation -->
@@ -116,13 +117,13 @@
                        :max="calculateMaxNumberOfRooms"
                         class="w-full max-w-md"
                        v-model="formReservation.numberOfRooms">
-                <!--                TODO - Mettre le texte issu de la bdd ? du fichier de traduction ?-->
                 <p class="mt-6 text-center font-bold">{{ calculateRoomPrice }} € </p>
                 <p class="text-center text-red-600 font-bold italic">Prix indicatif provisoire</p>
-
+                <!-- START - Navigation Button -->
                 <button type="button" @click="nextTab()" class="">
                     {{ $t('buttons.buttonBooking') }}
                 </button>
+                <!-- END - Navigation Button -->
             </fieldset>
             <!-- END - Vue Reservation -->
 
@@ -132,8 +133,8 @@
                 <legend>
                     <h1 class="option__heading">{{ $t(('options.title')) }}</h1>
                 </legend>
-
-                <div class="option__heading--recap"> <!--TODO - Fake data, for text implement data from DB-->
+                <!-- START - Recap -->
+                <div class="option__heading--recap">
                     <p>{{ $t(('options.recapTitle')) }} <br>
                         {{ $t(('options.recapStartDate')) }}
                         {{ formateCheckinDate }}
@@ -145,9 +146,9 @@
                         {{ formReservation.numberOfPeople }} {{ $t(('options.recapPeople')) }}
                     </p>
                 </div>
-
+                <!-- END - Recap -->
                 <p class="option__heading--help">{{ $t(('options.help')) }}</p>
-
+                <!-- START - Options checkboxes -->
                 <div class="form-control flex flex-row flex-wrap mx-4 my-2">
                     <input type="checkbox"
                            id="optionPetitDejeuner"
@@ -214,21 +215,23 @@
                         <span class="label-text">{{ $t('options.7') }}</span>
                     </label>
                 </div>
-
+                <!-- END - Options checkboxes -->
+                <!-- START - Options price - TODO - Remove this section after validate result is the same as back-end's result -->
                 <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfOptions') }}
-                    <span>{{ calculateOptionsPrice }}</span> <!-- TODO - Fake data, implement data from DB -->
+                    <span>{{ calculateOptionsPrice }}</span>
                     <span> €</span>
                 </p>
+                <!-- END - Options price -->
 
                 <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfStay') }}
-                    <span>{{ calculateTotalPrice }}</span> <!-- TODO - Fake data, implement data from DB -->
+                    <span>{{ calculateTotalPrice }}</span>
                     <span> €</span>
                 </p>
-
+                <!-- START - Navigation button -->
                 <button type="button" @click="nextTab()" class="bg-arth-green w-full mt-6 mb-8">
                     {{ $t('buttons.buttonOptions') }}
                 </button>
-
+                <!-- END - Navigation button -->
             </fieldset>
             <!-- END - Vue Options -->
 
@@ -366,7 +369,7 @@
                     <div>
                         <h2>{{ $t('validation.recapTitle') }}</h2>
 
-                        <div class="booking__validation--recap"><!--TODO - Fake data, for text implement data from DB-->
+                        <div class="booking__validation--recap">
                             <p class="m-2">{{ $t(('options.recapTitle')) }} <br>
                                 {{ $t(('options.recapStartDate')) }} {{ formateCheckinDate }} {{
                                     $t(('options.recapEndDate'))
@@ -376,24 +379,28 @@
                             </p>
                             <p class="m-2">Options : </p>
                             <ul class="m-2">
-                                <li v-for="(option,i) in formReservation.formOptions">{{ $t((`options.${option}`)) }}</li>
+                                <li v-for="(option) in formReservation.formOptions">{{ $t((`options.${option}`)) }}</li>
                             </ul>
                             <p class="mx-6 my-6 text-start">{{ $t('validation.annulationDelay') }}</p>
                         </div>
                     </div>
                 </div>
-
+                <!-- START - Submit Button -->
                 <button @click="submitBooking" type="button" id="submit" class="submit">
                     {{ $t('buttons.buttonValidateAndGoToPayment') }}
                 </button>
+                <!-- END -Submit Button -->
             </fieldset>
             <!--            END - Vue Validation-->
         </div>
     </form>
+    <!-- END - Reservation form -->
 
+    <!-- START - Errors section -->
     <div class="alert" v-if="errors.length">
         <div v-for="error in errors" :key="error.index">{{ error }}</div>
     </div>
+    <!-- END - Errors section -->
 </template>
 
 <script>
@@ -476,37 +483,34 @@ export default {
         // Calculate room price
         calculateRoomPrice() {
             let roomPrice = 0;
+            let numberOfDays = this.calculateNumberOfDays();
             if (this.formReservation.numberOfRooms > 0) {
-                roomPrice = (this.roomCategoriesStore.getRoomCategories.find(roomCategory => roomCategory.slug === this.formReservation.roomCategory).price) * this.formReservation.numberOfRooms;
-                // TODO - Bugfix - calculate rooms price en fonction du nombre de jours de la réservation
+                roomPrice = (this.roomCategoriesStore.getRoomCategories.find(roomCategory => roomCategory.slug ===
+                    this.formReservation.roomCategory).price) * this.formReservation.numberOfRooms * numberOfDays;
             }
             return roomPrice;
         },
         // Calculate options price
         calculateOptionsPrice() {
             let optionsPrice = 0;
-            console.log(this.roomCategoriesStore.getOptions);
-            console.log(this.formReservation.formOptions);
+            let numberOfDays = this.calculateNumberOfDays();
+
             if (this.formReservation.formOptions.length > 0) {
                 this.formReservation.formOptions.forEach(option => {
-                    console.log('option' , typeof option)
+
                     if(option === "1" || option === "2" || option === "3" || option === "4" || option === "5") {
-                        console.log(this.optionsStore.getOptions)
-                        console.log(this.optionsStore.getOptions.find(element => element.id.toString() === option))
-                        console.log(typeof this.optionsStore.getOptions[0].id)
-                        optionsPrice += (this.optionsStore.getOptions.find(element => element.id.toString() === option).price) * this.formReservation.numberOfPeople * this.formReservation.numberOfRooms;
-                        // TODO - Bugfix - calculate options price en fonction du nombre de jours de la réservation
+                        optionsPrice += (this.optionsStore.getOptions.find(element => element.id.toString() ===
+                            option).price) * this.formReservation.numberOfPeople * numberOfDays;
                     }
                     if(option === "6") {
-                        optionsPrice += (this.optionsStore.getOptions.find(element => element.id.toString() === option).price) * this.formReservation.numberOfRooms;
-                        // TODO - Bugfix - calculate options price en fonction du nombre de semaine de la réservation
+                        optionsPrice += (this.optionsStore.getOptions.find(element => element.id.toString() ===
+                            option).price) * Math.ceil(numberOfDays/7) * this.formReservation.numberOfRooms;
                     }
                     if(option === "7") {
                         optionsPrice += (this.optionsStore.getOptions.find(element => element.id.toString() === option).price);
                     }
                 });
             }
-            //console.log('Total :' , optionsPrice)
             return optionsPrice;
         },
         // Calculate total price of reservation
@@ -621,7 +625,7 @@ export default {
                         //withCredentials: true,
                     },
                     auth: {
-                        // TODO - Ajouter le cookie utilisateur;
+                        // TODO - Ajouter le cookie utilisateur ? ;
                     },
                 };
             await axios
@@ -634,7 +638,6 @@ export default {
                 .then(
                     (response) => {
                             if (response.status === 200 || response.status === 201) {
-                                console.log(this.form);
                                 console.debug("response code: " + response.status);
                                 this.resetForm();
                                 return router.push("/reservation-confirmation");
@@ -683,10 +686,17 @@ export default {
 <style scoped>
 
 .alert {
-
     @apply w-96 justify-center p-4 mx-auto mb-6
     text-red-600 text-base font-bold
     border border-2 border-red-600 rounded-md bg-transparent;
+}
+
+form,
+label,
+span.label-text,
+input,
+select {
+    @apply text-black;
 }
 
 legend {
@@ -697,7 +707,8 @@ form button {
     @apply bg-arth-green w-full mt-6 mb-8;
 }
 
-form input {
+form input,
+form select {
     @apply rounded-sm bg-white;
 }
 
