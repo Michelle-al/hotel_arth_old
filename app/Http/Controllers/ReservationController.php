@@ -44,12 +44,15 @@ class ReservationController extends Controller
         $validated = $validator->validated();
 
         // Creating an array with room ids
-        $rooms = ReservationRepository::getAvailableRooms($validated["checkin"], $validated["checkout"])
+        $rooms = (array)ReservationRepository::getAvailableRooms($validated["checkin"], $validated["checkout"])
                                          ->where("style", '==', $validated["roomCategory"])
                                          ->take($validated["numberOfRooms"])
                                          ->pluck("id");
 
-        $options = $validated["formOptions"] || null;
+        if($validated["formOptions"] !== []) {
+            $options = $validated["formOptions"];
+            Log::info($options);
+        }
 
         // Creating the reservation
         $reservation = new Reservation;
@@ -57,7 +60,7 @@ class ReservationController extends Controller
         $reservation->checkin = $validated["checkin"];
         $reservation->checkout = $validated["checkout"];
         $reservation->number_of_people = $validated["numberOfPeople"];
-        $reservation->stay_type = $validated["stay_type"];
+        $reservation->stay_type = $validated["isTravelForWork"];
         $reservation->user_id = $validated["user_id"];
         $reservation->status = "validated";
         $reservation->save();
