@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Nette\Schema\ValidationException;
+use function PHPUnit\Framework\throwException;
 
 class UserController extends Controller
 {
@@ -35,13 +36,16 @@ class UserController extends Controller
      */
     public function me(Request $request)
     {
-        if(Auth::check()){
+        if(Auth::check() && $request->user()->role == 'admin'){
             $user = Auth::user();
             return response()->json([
                 'user'=> $user,
-                'isLogged'=> true
             ]);
+        }else{
+            abort('401');
         }
+
+
     }
 
 
@@ -49,15 +53,20 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws Exception
      */
     public function index(Request $request)
     {
-//        var_dump(Auth::user());
-//        $user = Auth::user();
+        $user = Auth::user();
+//        if($user){
+            return response()->json($user);
+//        }else{
+//            throw new Exception('Non');
+//        }
+
 //        $admin = $users->where('role', '=', 'Admin');
 //       $admin = Auth::check();
 
-        return response()->json($user);
     }
 
     /**
