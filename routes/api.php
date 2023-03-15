@@ -62,9 +62,9 @@ Route::middleware('setLocale')->prefix('reservations')->group(function () {
 });
 
 // routes/api.php pour test
-    Route::group(['middleware' => ['auth:sanctum']], function() {
-        Route::get('home/hero', [HeroController::class, 'index']);
-    });
+//    Route::group(['middleware' => ['auth:sanctum']], function() {
+//        Route::get('home/hero', [HeroController::class, 'index']);
+//    });
 
 
 # Routes 'api/reservations/'
@@ -82,7 +82,7 @@ Route::middleware('setLocale')->prefix('home')->group(function () {
     });
 
 # Hero API routes
-//    Route::get('/hero', [HeroController::class, 'index']);
+    Route::get('/hero', [HeroController::class, 'index']);
     Route::post('/hero/{id}', [HeroController::class, 'update']);
 
 

@@ -40,10 +40,10 @@ class AuthController extends Controller
             //Get remember token
             $rememberToken = $user->remember_token;
 
-//            $token = $user->createToken('auth_token')->plainTextToken;
+            $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
-//                'token' => $token,
+                'token' => $token,
                 'user' => $user,
                 'remember_token' => $rememberToken
             ]);
@@ -93,10 +93,10 @@ class AuthController extends Controller
             $rememberToken = $user->remember_token;
 
             // Create a new token
-//            $token = $user->createToken('auth_token')->plainTextToken;
+            $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
-//                'token' => $token,
+                'token' => $token,
                 'remember_token' => $rememberToken,
                 'user' => $user,
             ]);
@@ -120,11 +120,12 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::logout();
-//        Auth::guard("web")->logout();
+        Auth::user()->tokens()->delete();
+        Auth::guard("web")->logout();
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
+
+         return response()->noContent();
 
 //        // Revoke the token that was used to authenticate the current request...
 //        $request->user()->currentAccessToken()->delete();
