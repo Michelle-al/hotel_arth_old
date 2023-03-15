@@ -58,9 +58,9 @@ export const translations = {
             numberOfRooms: "Number of rooms",
             selectInputHelp: "Select an option",
             roomCategory: "Type of room",
-            classic: "The Classic - 70€/person",
-            luxury: "The Luxury Room - 140€/person",
-            royal: "The Royal Suite - 280€/person",
+            classic: "The Classic - 70€/person/night",
+            luxury: "The Luxury Room - 140€/person/night",
+            royal: "The Royal Suite - 280€/person/night",
             Mister: "Mister",
             Madam: "Madam"
         },
@@ -101,7 +101,8 @@ export const translations = {
             companyCity: "City",
             recapTitle: "Summary of your booking",
             annulationDelay: "The room can be canceled free of charge up to 24 hours before the start of the reservation.\n" +
-                "After this time, the room will be billed at 12:00 a.m., the day of arrival."
+                "After this time, the room will be billed at 12:00 a.m., the day of arrival.",
+            error: "An error occurred while saving your reservation. Please try again later or contact us by phone."
         },
         confirmation: {
             title: "Reservation Confirmation",
@@ -181,9 +182,9 @@ export const translations = {
             numberOfRooms: 'Nombre de chambres',
             selectInputHelp: "Sélectionner une option",
             roomCategory: "Type de chambre",
-            classic: "La Classique - 70€/ personne",
-            luxury: "La Chambre de Luxe - 140€/ personne",
-            royal: "La Suite Royale - 280€/ personne",
+            classic: "La Classique - 70€/ personne/ nuit",
+            luxury: "La Chambre de Luxe - 140€/ personne/ nuit",
+            royal: "La Suite Royale - 280€/ personne/ nuit",
         },
         options: {
             title: "Options",
@@ -222,7 +223,8 @@ export const translations = {
             companyCity: "Ville",
             recapTitle: "Récapitulatif de votre réservation",
             annulationDelay: "La chambre est annulable sans frais jusquà 24h avant le début de la réservation.\n" +
-                "Passé ce délai, la chambre sera facturée à 12h le jour de l’arrivée prévu."
+                "Passé ce délai, la chambre sera facturée à 12h le jour de l’arrivée prévu.",
+            error: "Une erreur est survenue,lors de l'enregistrement de votre réservation. Veuillez réessayer ultérieurement ou nous contacter par téléphone."
         },
         confirmation: {
             title: "Confirmation de votre réservation",
