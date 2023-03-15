@@ -86,7 +86,6 @@ class AuthController extends Controller
             checkAuthentication($authentication);
             // Get user information
             $user = User::where('email', $request['email'])->firstOrFail();
-
             // Delete old tokens in db
             // $user->tokens()->delete();
 
@@ -121,14 +120,15 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::logout();
-
+        Auth::user()->tokens()->delete();
+        Auth::guard("web")->logout();
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        // Revoke the token that was used to authenticate the current request...
-        $request->user()->currentAccessToken()->delete();
+         return response()->noContent();
+
+//        // Revoke the token that was used to authenticate the current request...
+//        $request->user()->currentAccessToken()->delete();
 
 //        return redirect('/');
     }

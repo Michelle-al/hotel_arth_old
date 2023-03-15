@@ -28,25 +28,25 @@
         <h1>{{ $t("login.title")}}</h1>
 
         <form class="mt-12 mb-20">
-            <div class="text-center text-red-500">{{ userStore.errors.error }}</div>
+            <div class="text-center text-red-500">{{ errors.error }}</div>
             <div class="form-control w-full max-w-xs mx-auto mt-5">
                 <label class="label">
                     <span class="label-text">Email</span>
                 </label>
-                <input type="text" placeholder="Email" v-model="userStore.user.email" id="email" autocomplete="off"/>
-                <span class="text-red-500 text-sm" v-for="email in userStore.errors.email">{{ email }}</span>
+                <input type="text" placeholder="Email" v-model="user.email" id="email" autocomplete="off"/>
+                <span class="text-red-500 text-sm" v-for="email in errors.email">{{ email }}</span>
                 <label class="label">
                     <span class="label-text">{{ $t("login.password") }}</span>
                 </label>
-                <input type="password" placeholder="Password" v-model="userStore.user.password" id="password" autocomplete="off"/>
-                <span class="text-red-500 text-sm" v-for="password in userStore.errors.password">{{ password }}</span>
+                <input type="password" placeholder="Password" v-model="user.password" id="password" autocomplete="off"/>
+                <span class="text-red-500 text-sm" v-for="password in errors.password">{{ password }}</span>
                 <p class="mt-6 text-arth-dark-blue text-center"><router-link :to="{ name: 'signUp'}">{{
                         $t('login.dontHaveAccount')
                     }}</router-link></p>
             </div>
 
             <div class="flex mx-auto mt-6">
-                <button @click="userStore.submitLogin()" class="bg-arth-green hover:scale-105">{{ $t("login.title") }}</button>
+                <button @click="submitLogin()" class="bg-arth-green hover:scale-105">{{ $t("login.title") }}</button>
             </div>
         </form>
 
@@ -56,7 +56,10 @@
 
 <script>
 
-import { useUserStore } from '../../stores/userStore'
+import {useUserStore} from '../../stores/userStore'
+import axios from "axios";
+import {handleResponse} from "../utils/apiUtils";
+import router from "../router";
 
 export default {
     name: 'login',
@@ -65,6 +68,32 @@ export default {
         const userStore = useUserStore();
         return { userStore }
     },
+    data() {
+        return {
+            user:{
+                email: '',
+                password: ''
+            },
+            errors: []
+        }
+    },
+    methods: {
+        async submitLogin() {
+            this.errors = []
+
+            try {
+                await axios.get('/sanctum/csrf-cookie')
+                const response = await axios.post('api/login', this.user)
+                this.userStore.user = handleResponse(response)
+                await router.push({name: 'landingPage'})
+            } catch (errors) {
+                this.errors = errors
+            }
+        },
+
+
+    }
+
 }
 </script>
 

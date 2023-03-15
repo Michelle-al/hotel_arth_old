@@ -32,14 +32,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('setLocale')->group(function () {
     # Login route
     Route::post('/login', [AuthController::class, 'login'])->name('login');
-
     # Register route
     Route::post('/register', [AuthController::class, 'register']);
+    # Logout route
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout']);
+    });
 
     # Users API routes 'api/users/'
     Route::middleware('auth:sanctum')->prefix('users')->group(function () {
         # Get a user
-        Route::get('/{id}', [UserController::class, 'user']);
+//        Route::get('/{id}', [UserController::class, 'user']);
         # Modify a user
         Route::put('/{id}', [UserController::class, 'update']);
         # Delete a user
@@ -62,6 +65,7 @@ Route::middleware('setLocale')->prefix('reservations')->group(function () {
 //    Route::group(['middleware' => ['auth:sanctum']], function() {
 //        Route::get('home/hero', [HeroController::class, 'index']);
 //    });
+
 
 # Routes 'api/reservations/'
     Route::middleware('setLocale')->prefix('reservations')->group(function () {

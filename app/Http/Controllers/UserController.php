@@ -20,17 +20,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function isLogged($id)
-    {
-       Auth::user();
-
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function user($id)
     {
         $user = User::query()->find($id);
@@ -38,36 +27,22 @@ class UserController extends Controller
 
     }
 
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\JsonResponse
-//     */
-//    public function me(Request $request)
-//    {
-//        $user = $request->user();
-//        return response()->json($user);
-//
-//    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function me()
+    public function me(Request $request)
     {
-//        if(Auth::check()){
+        if(Auth::check()){
             $user = Auth::user();
-            return response()->json($user);
-//        }else{
-//            throw new Exception("Non autorisé");
-//        }
-
-
-
-
+            return response()->json([
+                'user'=> $user,
+                'isLogged'=> true
+            ]);
+        }
     }
+
 
     /**
      * Display a listing of the resource.
@@ -97,28 +72,6 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
@@ -175,10 +128,16 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        try {
+            User::destroy($id);
+            return response()->json(['Ok'], 200);
+        }catch (Exception $e){
+            return response()->json($e);
+        }
+
     }
 }
