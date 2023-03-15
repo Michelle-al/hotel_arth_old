@@ -6,11 +6,13 @@ use App\Models\Option;
 use App\Models\Reservation;
 use App\Models\Room;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class ReservationRepository
 {
     static function calculateReservationPrice(array $validated, array $rooms) : float|int
     {
+        Log::info("We're in reservation price");
         // Calculating the price of the options if any
         if (isset($validated["formOptions"])) {
             $option_price = ReservationRepository::calculateOptionPrice($validated, count($rooms));
@@ -28,6 +30,7 @@ class ReservationRepository
 
     private static function calculateOptionPrice(array $validated, int $numberOfRooms) : float|int
     {
+        Log::info("Calculating option price : {$numberOfRooms}");
         $checkin = $validated["checkin"];
         $checkout = $validated["checkout"];
         $people = $validated["numberOfPeople"];
@@ -42,7 +45,7 @@ class ReservationRepository
             if (in_array($option->id, array(1,2,3,4,5))) {
                 $option_price += $option->option_price * $people * $number_of_days;
             } elseif ($option->id === 6) {
-                $option_price += 10 * ceil($number_of_days/7) * count($numberOfRooms);
+                $option_price += 10 * ceil($number_of_days/7) * $numberOfRooms;
             } else {
                 $option_price += 25;
             }
