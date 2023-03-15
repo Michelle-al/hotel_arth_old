@@ -113,7 +113,7 @@
                 </label>
                 <input type="number" id="numberOfRooms" name="numberOfRooms"
                        :min="calculateMinNumberOfRooms"
-                       max="10"
+                       :max="calculateMaxNumberOfRooms"
                         class="w-full max-w-md"
                        v-model="formReservation.numberOfRooms">
                 <!--                TODO - Mettre le texte issu de la bdd ? du fichier de traduction ?-->
@@ -513,7 +513,7 @@ export default {
         calculateTotalPrice() {
             return this.calculateRoomPrice + this.calculateOptionsPrice;
         },
-        // Calculate Minimum number of rooms depending of number of people
+        // Calculate Minimum number of rooms depending on number of people
         calculateMinNumberOfRooms() {
             const numberOfPeople = this.formReservation.numberOfPeople;
             let minNumberOfRooms = 1;
@@ -525,7 +525,13 @@ export default {
                 return minNumberOfRooms;
             }
         },
-        // Calculate minimum date of checkout depending of checkin date
+        // Define maximum number of rooms depending on number of people
+        calculateMaxNumberOfRooms() {
+            if(this.formReservation.numberOfPeople > 0) {
+                return this.formReservation.numberOfPeople;
+            }
+        },
+        // Calculate minimum date of checkout depending on checkin date
         calculateMinCheckoutDate() {
             if (this.formReservation.checkin) {
                 const checkinDate = new Date(moment(this.formReservation.checkin, "DD MM YYYY"));
@@ -554,6 +560,14 @@ export default {
     methods: {
         //useUserStore, //TODO - Discomment this line if needed
         useGlobalStore,
+        calculateNumberOfDays() {
+            if (this.formReservation.checkin && this.formReservation.checkout) {
+                const checkinDate = new Date(moment(this.formReservation.checkin, "DD MM YYYY"));
+                const checkoutDate = new Date(moment(this.formReservation.checkout, "DD MM YYYY"));
+                const numberOfDays = moment(checkoutDate).diff(moment(checkinDate), 'days');
+                return numberOfDays;
+            }
+        },
         // This methods is called by the computed properties formateChekinDate() and formateCheckoutDate
         formateDateForRecap(input) {
             if (input) {
@@ -684,7 +698,7 @@ form button {
 }
 
 form input {
-    @apply rounded-sm;
+    @apply rounded-sm bg-white;
 }
 
 fieldset {
