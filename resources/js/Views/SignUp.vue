@@ -32,28 +32,28 @@
                     <label class="label">
                         <span class="label-text">Email</span>
                     </label>
-                    <input type="text" placeholder="Email" v-model="userStore.user.email" id="email" />
-                    <p class="text-red-500 text-sm" v-for="email in userStore.errors.email">{{ email }}</p>
+                    <input type="text" placeholder="Email" v-model="user.email" id="email" />
+                    <p class="text-red-500 text-sm" v-for="email in errors.email">{{ email }}</p>
                 </div>
                 <div>
                     <label class="label">
                         <span class="label-text">{{ $t("signUp.password") }}</span>
                     </label>
-                    <input type="password" placeholder="Password" v-model="userStore.user.password" id="password" autocomplete="off"/>
-                    <p class="text-red-500 text-sm" v-for="password in userStore.errors.password">{{ password }}</p>
+                    <input type="password" placeholder="Password" v-model="user.password" id="password" autocomplete="off"/>
+                    <p class="text-red-500 text-sm" v-for="password in errors.password">{{ password }}</p>
                 </div>
                 <div>
                     <label class="label">
                         <span class="label-text">{{ $t("signUp.confirmPassword") }}</span>
                     </label>
-                    <input type="password" placeholder="Password confirmation" v-model="userStore.user.password_confirmation" id="password_confirmation" autocomplete="off"/>
+                    <input type="password" placeholder="Password confirmation" v-model="user.password_confirmation" id="password_confirmation" autocomplete="off"/>
                 </div>
                 <div class=" flex space-x-4 mt-4">
                     <div>
                         <span class="label-text">{{ $t("signUp.rememberToken") }}</span>
                     </div>
                     <div>
-                        <input type="checkbox" class="w-4 h-4" v-model="userStore.user.remember_token" id="remember_token" />
+                        <input type="checkbox" class="w-4 h-4" v-model="user.remember_token" id="remember_token" />
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@
             </div>
 
             <div class="flex mx-auto mt-12 mb-8">
-                <button @click="userStore.registerUser()" class="bg-arth-green hover:scale-105" >{{ $t("signUp.button") }}</button>
+                <button @click="registerUser()" class="bg-arth-green hover:scale-105" >{{ $t("signUp.button") }}</button>
             </div>
         </form>
     </div>
@@ -74,6 +74,8 @@
 <script>
 
 import { useUserStore } from '../../stores/userStore'
+import {handleResponse} from "../utils/apiUtils";
+import router from "../router";
 
 export default {
     name: 'signUp',
@@ -82,38 +84,37 @@ export default {
         const userStore = useUserStore();
         return { userStore }
     },
-    // data() {
-    //     return {
-    //         email: '',
-    //         password: '',
-    //         password_confirmation: '',
-    //         message_email:'',
-    //         message_password: '',
-    //         remember_token: '',
-    //         token:''
-    //     }
-    // },
+    data() {
+        return {
+            user:{
+                email: '',
+                password: '',
+                password_confirmation: '',
+                message_email:'',
+                message_password: '',
+                remember_token: '',
+                token:''
+            },
+            errors: []
+        }
+    },
+
     methods: {
-        // async createUser(){
-        //
-        //     const response = await axios.post('api/register', {
-        //         email: this.email,
-        //         password: this.password,
-        //         password_confirmation: this.password_confirmation,
-        //     })
-        //     if(typeof response.data.message !== 'undefined'){
-        //         this.message_email = response.data.message.email
-        //         this.message_password = response.data.message.password
-        //     }
-        //     if(response.data.token){
-        //         this.token = response.data.token
-        //         localStorage.setItem("token", this.token)
-        //     }
-        //
-        //     // this.$router.push('/');
-        //     // console.log(response)
-        //     // console.log(this.token)
-        // }
+        async registerUser() {
+            this.errors = []
+
+            try {
+                await axios.get('/sanctum/csrf-cookie')
+                const response = await axios.post('api/register', this.user)
+                this.userStore.user = handleResponse(response)
+                await router.push({name: 'landingPage'})
+
+            } catch (errors) {
+                this.errors = errors
+            }
+
+        },
+
     }
 }
 </script>
