@@ -636,8 +636,6 @@ export default {
                             if (response.status === 200 || response.status === 201) {
                                 console.log(this.form);
                                 console.debug("response code: " + response.status);
-                                this.resetForm();
-                                return router.push("/reservation-confirmation");
                             } else {
                                 this.errors.push(
                                     "Une erreur s'est produite lors de l'enregistrement de votre réservation : " +
@@ -671,6 +669,47 @@ export default {
                         (error?.response?.data?.message || " Erreur inconnue")
                     );
                 });
+
+            await axios.post('api/users/update', {...this.formUser, _method: 'PUT' }, config)
+                        .then(
+                            (response) => {
+                                if (response.status === 200 || response.status === 201) {
+                                    console.log(this.form);
+                                    console.debug("response code: " + response.status);
+                                    this.resetForm();
+                                    return router.push("/reservation-confirmation");
+
+                                } else {
+                                    this.errors.push(
+                                        "Une erreur s'est produite lors de l'enregistrement de l'utilisateur : " +
+                                        (response?.data?.message || " Erreur inconnue")
+                                    );
+                                }
+                            }
+            ).catch((error) => { if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.log('Server error out of 2xx')
+                    console.log("response data error : ", error.response.data);
+                    console.log("response data status : ", error.response.status);
+                    console.log("response data headers : ",error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                    // http.ClientRequest in node.js
+                    console.log('No response was received to your request.')
+                    console.log("error.request : ", error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('3')
+                    console.log('An error occured : ', error.message);
+                }
+                console.log(error.config);
+                this.errors.push(
+                    "Une erreur s'est produite lors de l'enregistrement de votre réservation : " +
+                    (error?.response?.data?.message || " Erreur inconnue")
+                );
+            });
             }
         },
     },
