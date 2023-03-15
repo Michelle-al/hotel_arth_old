@@ -59,7 +59,7 @@
                             close-on-scroll
                             auto-apply placeholder="Select Date"
                             required prevent-min-max-navigation
-                            :locale="store.getLocale"
+                            :locale="globalStore.getLocale"
                             :format="formateDateForDatePicker"
                             :format-locale="fr"
                             :min-date="new Date()"
@@ -77,7 +77,7 @@
                             close-on-scroll
                             auto-apply placeholder="Select Date"
                             required prevent-min-max-navigation
-                            :locale="store.getLocale"
+                            :locale="globalStore.getLocale"
                             :format="formateDateForDatePicker"
                             :format-locale="fr"
                             :min-date="calculateMinCheckoutDate"
@@ -221,7 +221,7 @@
                 </p>
 
                 <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfStay') }}
-                    <span>580</span> <!-- TODO - Fake data, implement data from DB -->
+                    <span>{{ calculateTotalPrice }}</span> <!-- TODO - Fake data, implement data from DB -->
                     <span> €</span>
                 </p>
 
@@ -400,6 +400,7 @@
 import {useUserStore} from "../../../stores/userStore";
 import {useGlobalStore} from "../../../stores/globalStore";
 import {useRoomCategoriesStore} from "../../../stores/roomCategoriesStore";
+import {useOptionsStore} from "../../../stores/optionsStore";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import {enGB, fr} from 'date-fns/locale';
@@ -414,9 +415,10 @@ export default {
     setup() {
         const userStore = useUserStore();
         const roomCategoriesStore = useRoomCategoriesStore();
-        const store = useGlobalStore();
+        const optionsStore = useOptionsStore();
+        const globalStore = useGlobalStore();
         const maxDate = computed(() => addMonths(new Date(getYear(new Date()), getMonth(new Date())), 6));
-        return {userStore, roomCategoriesStore, store, fr, enGB, maxDate};
+        return {userStore, roomCategoriesStore, optionsStore, globalStore, fr, enGB, maxDate};
     },
     data() {
         return {
@@ -476,29 +478,40 @@ export default {
             let roomPrice = 0;
             if (this.formReservation.numberOfRooms > 0) {
                 roomPrice = (this.roomCategoriesStore.getRoomCategories.find(roomCategory => roomCategory.slug === this.formReservation.roomCategory).price) * this.formReservation.numberOfRooms;
+                // TODO - Bugfix - calculate rooms price en fonction du nombre de jours de la réservation
             }
             return roomPrice;
         },
         // Calculate options price
         calculateOptionsPrice() {
             let optionsPrice = 0;
-            console.log(this.roomCategoriesStore.getRoomCategories);
-            console.log(this.formReservation.roomCategory);
-            console.log(this.formReservation.numberOfRooms)
+            console.log(this.roomCategoriesStore.getOptions);
+            console.log(this.formReservation.formOptions);
             if (this.formReservation.formOptions.length > 0) {
                 this.formReservation.formOptions.forEach(option => {
-                    if(option === 1 || option === 2 || option === 3 || option === 4 || option === 5) {
-                        optionsPrice += (this.store.getOptions.find(option => option.id === option).price) * this.formReservation.numberOfPeople * this.formReservation.numberOfRooms;
+                    console.log('option' , typeof option)
+                    if(option === "1" || option === "2" || option === "3" || option === "4" || option === "5") {
+                        console.log(this.optionsStore.getOptions)
+                        console.log(this.optionsStore.getOptions.find(element => element.id.toString() === option))
+                        console.log(typeof this.optionsStore.getOptions[0].id)
+                        optionsPrice += (this.optionsStore.getOptions.find(element => element.id.toString() === option).price) * this.formReservation.numberOfPeople * this.formReservation.numberOfRooms;
+                        // TODO - Bugfix - calculate options price en fonction du nombre de jours de la réservation
                     }
-                    if(option === 6) {
-                        optionsPrice += (this.store.getOptions.find(option => option.id === option).price) * this.formReservation.numberOfPeople * this.formReservation.numberOfRooms;
+                    if(option === "6") {
+                        optionsPrice += (this.optionsStore.getOptions.find(element => element.id.toString() === option).price) * this.formReservation.numberOfRooms;
+                        // TODO - Bugfix - calculate options price en fonction du nombre de semaine de la réservation
                     }
-                    if(option === 7) {
-                        optionsPrice += (this.store.getOptions.find(option => option.id === option).price);
+                    if(option === "7") {
+                        optionsPrice += (this.optionsStore.getOptions.find(element => element.id.toString() === option).price);
                     }
                 });
             }
+            //console.log('Total :' , optionsPrice)
             return optionsPrice;
+        },
+        // Calculate total price of reservation
+        calculateTotalPrice() {
+            return this.calculateRoomPrice + this.calculateOptionsPrice;
         },
         // Calculate Minimum number of rooms depending of number of people
         calculateMinNumberOfRooms() {
@@ -523,7 +536,7 @@ export default {
         },
         // This method is only for component display
         formateDateForDatePicker() {
-            return this.store.getLocale === 'fr' ? 'dd/MM/yyyy' : 'MM/dd/yyyy'
+            return this.globalStore.getLocale === 'fr' ? 'dd/MM/yyyy' : 'MM/dd/yyyy'
         },
         // Formate checkin date for recap
         formateCheckinDate() {
@@ -544,7 +557,7 @@ export default {
         // This methods is called by the computed properties formateChekinDate() and formateCheckoutDate
         formateDateForRecap(input) {
             if (input) {
-                return input = input.toLocaleDateString(this.store.getLocale)
+                return input = input.toLocaleDateString(this.globalStore.getLocale)
             }
             return new Date
         },

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useGlobalStore = defineStore('options',{
+export const useOptionsStore = defineStore('options',{
 
     state: () =>({
         options: [
