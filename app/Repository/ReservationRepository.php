@@ -12,7 +12,6 @@ class ReservationRepository
 {
     static function calculateReservationPrice(array $validated, array $rooms) : float|int
     {
-        Log::info("We're in reservation price");
         // Calculating the price of the options if any
         if (isset($validated["formOptions"])) {
             $option_price = ReservationRepository::calculateOptionPrice($validated, count($rooms));
@@ -30,7 +29,6 @@ class ReservationRepository
 
     private static function calculateOptionPrice(array $validated, int $numberOfRooms) : float|int
     {
-        Log::info("Calculating option price : {$numberOfRooms}");
         $checkin = $validated["checkin"];
         $checkout = $validated["checkout"];
         $people = $validated["numberOfPeople"];

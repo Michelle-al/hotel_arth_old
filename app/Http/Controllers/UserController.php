@@ -6,7 +6,6 @@ use App\Http\Validators\UserControllerValidator;
 use App\Models\User;
 use App\Repository\UserRepository;
 use Exception;
-use http\Client\Response;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Nette\Schema\ValidationException;
+use Illuminate\Support\Facades\Response;
+
 
 class UserController extends Controller
 {
@@ -179,7 +179,7 @@ class UserController extends Controller
      * Update a user resource in the database.
      * @param Request $request
      */
-    function updateUserInfo(int $id, Request $request) {
+    function updateUserInfo(Request $request) {
         // Data Validation
         $validator = UserControllerValidator::updateUserValidator($request);
         if($validator->fails())
@@ -188,9 +188,9 @@ class UserController extends Controller
             return Response::json($validator->errors(), 502);
         }
         $validated = $validator->validated();
-        dd($validated);
+        Log::info("After validated data");
 
-        return UserRepository::updateUser(User::find($id), $validated);
+        return UserRepository::updateUser(User::find($validated["id"]), $validated);
     }
 
     /**

@@ -36,6 +36,7 @@ Route::middleware('setLocale')->group(function () {
     # Register route
     Route::post('/register', [AuthController::class, 'register']);
 
+    Route::put('users/update', [UserController::class, 'updateUserInfo']);
     # Users API routes 'api/users/'
     Route::middleware('auth:sanctum')->prefix('users')->group(function () {
         # Get a user
@@ -141,5 +142,3 @@ Route::middleware('setLocale')->prefix('reservation')->group(function () {
     Route::get('/options', [OptionController::class, 'index']);
     Route::put('/options/{id}', [OptionController::class, 'update']);
 });
-
-Route::put('users/{id}', [UserController::class, 'updateUserInfo']);

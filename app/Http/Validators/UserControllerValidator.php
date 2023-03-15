@@ -4,7 +4,6 @@ namespace App\Http\Validators;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
 class UserControllerValidator
@@ -12,7 +11,6 @@ class UserControllerValidator
 
     static function updateUserValidator(Request $request): \Illuminate\Contracts\Validation\Validator
     {
-        Log::info($request->all());
         return Validator::make($request->all(), [
 //            "id" => "required|int",
 //            "civility" => "required|in:mister,madame",
@@ -28,7 +26,7 @@ class UserControllerValidator
 //            "companyZipCode" => "required|numeric",
 //            "companyCity" => "required|string"
             "id" => "int",
-            "civility" => "in:mister,madame",
+            "civility" => "in:mister,madam",
             "firstname" => "string",
             "lastname" => "string",
             "email" => "email",
