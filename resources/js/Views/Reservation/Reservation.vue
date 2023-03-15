@@ -117,8 +117,8 @@
                         class="w-full max-w-md"
                        v-model="formReservation.numberOfRooms">
                 <!--                TODO - Mettre le texte issu de la bdd ? du fichier de traduction ?-->
-                <p class="mt-6 text-center text-red-600 font-bold">Résultat de l'algo de dispo</p>
-                <p class="text-center text-red-600 font-bold">Prix indicatif provisoire</p>
+                <p class="mt-6 text-center font-bold">{{ calculateRoomPrice }} € </p>
+                <p class="text-center text-red-600 font-bold italic">Prix indicatif provisoire</p>
 
                 <button type="button" @click="nextTab()" class="">
                     {{ $t('buttons.buttonBooking') }}
@@ -215,7 +215,12 @@
                     </label>
                 </div>
 
-                <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmount') }}
+                <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfOptions') }}
+                    <span>{{ calculateOptionsPrice }}</span> <!-- TODO - Fake data, implement data from DB -->
+                    <span> €</span>
+                </p>
+
+                <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfStay') }}
                     <span>580</span> <!-- TODO - Fake data, implement data from DB -->
                     <span> €</span>
                 </p>
@@ -394,28 +399,31 @@
 <script>
 import {useUserStore} from "../../../stores/userStore";
 import {useGlobalStore} from "../../../stores/globalStore";
+import {useRoomCategoriesStore} from "../../../stores/roomCategoriesStore";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import {enGB, fr} from 'date-fns/locale';
 import moment from "moment";
 import {computed} from "vue";
 import {addMonths, getMonth, getYear} from 'date-fns';
+import router from "../../router";
 
 export default {
     name: 'reservation',
     components: { VueDatePicker },
     setup() {
         const userStore = useUserStore();
+        const roomCategoriesStore = useRoomCategoriesStore();
         const store = useGlobalStore();
         const maxDate = computed(() => addMonths(new Date(getYear(new Date()), getMonth(new Date())), 6));
-        return {userStore, store, fr, enGB, maxDate};
+        return {userStore, roomCategoriesStore, store, fr, enGB, maxDate};
     },
     data() {
         return {
             formReservation : {
                 checkin: null,
                 checkout: null,
-                roomCategory: '',
+                roomCategory: null,
                 numberOfRooms: null,
                 numberOfPeople: null,
                 formOptions: [],
@@ -456,12 +464,42 @@ export default {
                     altEn: "Royal Suite",
                 }
             },
+            options: [1,2,3,4,5,6,7],
             allTabs: ["checkAvailability", "selectOption", "validateBooking"],
             activeTab: "checkAvailability",
             errors: [],
         }
     },
     computed: {
+        // Calculate room price
+        calculateRoomPrice() {
+            let roomPrice = 0;
+            if (this.formReservation.numberOfRooms > 0) {
+                roomPrice = (this.roomCategoriesStore.getRoomCategories.find(roomCategory => roomCategory.slug === this.formReservation.roomCategory).price) * this.formReservation.numberOfRooms;
+            }
+            return roomPrice;
+        },
+        // Calculate options price
+        calculateOptionsPrice() {
+            let optionsPrice = 0;
+            console.log(this.roomCategoriesStore.getRoomCategories);
+            console.log(this.formReservation.roomCategory);
+            console.log(this.formReservation.numberOfRooms)
+            if (this.formReservation.formOptions.length > 0) {
+                this.formReservation.formOptions.forEach(option => {
+                    if(option === 1 || option === 2 || option === 3 || option === 4 || option === 5) {
+                        optionsPrice += (this.store.getOptions.find(option => option.id === option).price) * this.formReservation.numberOfPeople * this.formReservation.numberOfRooms;
+                    }
+                    if(option === 6) {
+                        optionsPrice += (this.store.getOptions.find(option => option.id === option).price) * this.formReservation.numberOfPeople * this.formReservation.numberOfRooms;
+                    }
+                    if(option === 7) {
+                        optionsPrice += (this.store.getOptions.find(option => option.id === option).price);
+                    }
+                });
+            }
+            return optionsPrice;
+        },
         // Calculate Minimum number of rooms depending of number of people
         calculateMinNumberOfRooms() {
             const numberOfPeople = this.formReservation.numberOfPeople;
@@ -501,14 +539,6 @@ export default {
         },
     },
     methods: {
-        /*isTravelForWork() {
-            if (this.formReservation.isTravelForWork === false) {
-                return this.formReservation.isTravelForWork = "personal";
-            }
-            if (this.formReservation.isTravelForWork === true) {
-                return this.formReservation.isTravelForWork = "pro";
-            }
-        },*/
         //useUserStore, //TODO - Discomment this line if needed
         useGlobalStore,
         // This methods is called by the computed properties formateChekinDate() and formateCheckoutDate
@@ -555,8 +585,6 @@ export default {
         async submitBooking() {
             this.formateCheckinDateForRequest();
             this.formateCheckoutDateForRequest();
-
-            console.log(this.form);
 
             if (this.$refs.reservationForm.reportValidity()) {
                 const config = {
