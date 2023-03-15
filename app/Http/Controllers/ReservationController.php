@@ -60,7 +60,7 @@ class ReservationController extends Controller
         $reservation->checkin = $validated["checkin"];
         $reservation->checkout = $validated["checkout"];
         $reservation->number_of_people = $validated["numberOfPeople"];
-        $reservation->stay_type = $validated["isTravelForWork"];
+        $reservation->stay_type = $validated["isTravelForWork"] ? "pro" : "personal";
         $reservation->user_id = $validated["user_id"];
         $reservation->status = "validated";
         $reservation->save();

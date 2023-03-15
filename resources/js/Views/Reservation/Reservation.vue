@@ -317,11 +317,11 @@
                             <span class="label-text">{{ $t('validation.isTravelForWork') }}</span>
                             <input type="checkbox" id="isTravelForWork" name="isTravelForWork" class="checkbox"
                                    v-model="formReservation.isTravelForWork"
-                                   />
+                            />
                         </label>
                     </div>
 
-                    <div v-if="formReservation.isTravelForWork === (true || 'pro')">
+                    <div v-if="formReservation.isTravelForWork === true ">
                         <h2>{{ $t('validation.companyInformationsTitle') }}</h2>
                         <div class="form-control w-full">
                             <label for="companyName" class="label">
@@ -419,7 +419,7 @@ export default {
                 numberOfRooms: null,
                 numberOfPeople: null,
                 formOptions: [],
-                isTravelForWork: true ? "pro" : "personal", // TODO - Bugfix default value
+                isTravelForWork: false,
                 user_id: 1, // TODO - Fake Data - Remove this line when authentification will be implemented
                 //user_id: "userStore.user.id" // TODO - Discomment this line when it will be required
             },
@@ -501,16 +501,16 @@ export default {
         },
     },
     methods: {
-        //useUserStore, //TODO - Discomment this line if needed
-        useGlobalStore,
-        isTravelForWork() {
+        /*isTravelForWork() {
             if (this.formReservation.isTravelForWork === false) {
                 return this.formReservation.isTravelForWork = "personal";
             }
             if (this.formReservation.isTravelForWork === true) {
                 return this.formReservation.isTravelForWork = "pro";
             }
-        },
+        },*/
+        //useUserStore, //TODO - Discomment this line if needed
+        useGlobalStore,
         // This methods is called by the computed properties formateChekinDate() and formateCheckoutDate
         formateDateForRecap(input) {
             if (input) {
@@ -518,13 +518,13 @@ export default {
             }
             return new Date
         },
-        // This method formate date to match required format for request
+        // This method formate date to match required format for request. It's called at sumbit
         formateCheckinDateForRequest () {
             if (this.formReservation.checkin) {
                 return this.formReservation.checkin = moment(this.formReservation.checkin).format('YYYY-MM-DD');
             }
         },
-        // This method formate date to match required format for request
+        // This method formate date to match required format for request. It's called at sumbit
         formateCheckoutDateForRequest () {
             if (this.formReservation.checkout) {
                 return this.formReservation.checkout = moment(this.formReservation.checkout).format('YYYY-MM-DD');
