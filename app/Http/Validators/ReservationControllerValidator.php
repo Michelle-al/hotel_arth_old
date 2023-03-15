@@ -30,7 +30,7 @@ class ReservationControllerValidator
             'checkout' => 'required|date_format:Y-m-d|after:checkin',
             'numberOfPeople' => 'required|integer|min:1',
             'isTravelForWork' => 'required|in:personal,pro',
-            'numberOfRooms' => 'required|string',
+            'numberOfRooms' => 'required|numeric|max:10',
             'roomCategory' => 'required|in:classic,luxury,royal',
             'formOptions' => 'array',
             'user_id' => 'int',

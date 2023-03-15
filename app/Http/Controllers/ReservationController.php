@@ -49,7 +49,7 @@ class ReservationController extends Controller
                                          ->take($validated["numberOfRooms"])
                                          ->pluck("id");
 
-        $options = $validated["options"] ? explode(',', $validated["options"]) : null;
+        $options = $validated["formOptions"] || null;
 
         // Creating the reservation
         $reservation = new Reservation;

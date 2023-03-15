@@ -12,7 +12,7 @@ class ReservationRepository
     static function calculateReservationPrice(array $validated, array $rooms) : float|int
     {
         // Calculating the price of the options if any
-        if (isset($validated["options"])) {
+        if (isset($validated["formOptions"])) {
             $option_price = ReservationRepository::calculateOptionPrice($validated, count($rooms));
         }
 
@@ -35,7 +35,7 @@ class ReservationRepository
         $number_of_days = Carbon::parse($checkin)->diffInDays(Carbon::parse($checkout));
 
         $option_price = 0;
-        $options = explode(',', $validated["options"]);
+        $options = $validated["formOptions"];
         $options = Option::whereIn("id", $options)->select("id", "option_price")->get();
 
         foreach($options as $option) {
