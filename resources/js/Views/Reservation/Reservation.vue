@@ -52,7 +52,6 @@
                         <label for="checkin" class="label">
                             <span class="label-text">{{ $t('reservation.arrival') }}</span>
                         </label>
-                        <!--                        TODO - Bloquer la sélection de dates antérieures à la date du jour-->
                         <VueDatePicker
                             name="checkin"
                             v-model="formReservation.checkin"
@@ -71,7 +70,6 @@
                         <label for="checkout" class="label">
                             <span class="label-text">{{ $t('reservation.departure') }}</span>
                         </label>
-                        <!--                        TODO - Bloquer la sélection de dates antérieures à la date de check in-->
                         <VueDatePicker
                             name="checkout"
                             v-model="formReservation.checkout"
@@ -91,7 +89,6 @@
                 <label for="roomCategory-select" class="label">
                     <span class="label-text">{{ $t('reservation.roomCategory') }}</span>
                 </label>
-                <!--                TODO - Récupérer la valeur de form.roomCategory pour la récap-->
                 <select class="select select-bordered rounded-none" id="roomCategory-select" name="roomCategory"
                         v-model="formReservation.roomCategory">
                     <option disabled selected>{{ $t('reservation.selectInputHelp') }}</option>
@@ -121,7 +118,7 @@
                        v-model="formReservation.numberOfRooms">
                 <!--                TODO - Mettre le texte issu de la bdd ? du fichier de traduction ?-->
                 <p class="mt-6 text-center text-red-600 font-bold">Résultat de l'algo de dispo</p>
-                <p class="text-center text-red-600 font-bold">Prix provisoire</p>
+                <p class="text-center text-red-600 font-bold">Prix indicatif provisoire</p>
 
                 <button type="button" @click="nextTab()" class="">
                     {{ $t('buttons.buttonBooking') }}
@@ -143,7 +140,6 @@
                         {{ $t(('options.recapEndDate')) }}
                         {{ formateCheckoutDate }} <br>
                         {{ formReservation.numberOfRooms }} {{ $t(('options.recapRoom')) }}
-<!--TODO - Bugfix Not found 'reservation.' key in 'en' locale messages.-->
                         {{ $t((`reservation.${formReservation.roomCategory}`))}},
 
                         {{ formReservation.numberOfPeople }} {{ $t(('options.recapPeople')) }}
