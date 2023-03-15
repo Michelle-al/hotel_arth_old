@@ -20,7 +20,7 @@ export const useUserStore = defineStore('user', {
                 })
                 .catch((error) => {
                     if(error.response.status === 401 ){
-                        this.logout()
+                        localStorage.removeItem('isLogged')
                         // router.push({name: 'login'})
                     }
 
