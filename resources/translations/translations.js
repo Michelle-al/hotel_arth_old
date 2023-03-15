@@ -79,7 +79,8 @@ export const translations = {
             5:"All-inclusive pressing service €30 /person/day",
             6:"Unlimited access to the Canal+ channel €10 /week",
             7:"Access to the swimming pool 25€ per stay",
-            totalAmount: "Total amount of the stay : ",
+            totalAmountOfStay: "Total amount of the stay : ",
+            totalAmountOfOptions: "Total amount of the options : ",
         },
         validation: {
             mister: "Mister",
@@ -199,7 +200,8 @@ export const translations = {
             5:"Service de pressing tout compris 30€ /personne/jour",
             6:"Accès illimité à la chaîne Canal+ 10€ / semaine",
             7:"Accès à la piscine 25€ en une fois",
-            totalAmount: "Montant total du séjour : ",
+            totalAmountOfStay: "Montant total du séjour : ",
+            totalAmountOfOptions: "Montant total des options : ",
         },
         validation: {
             mister: "Monsieur",
