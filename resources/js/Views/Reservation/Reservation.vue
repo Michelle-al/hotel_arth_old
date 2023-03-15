@@ -321,7 +321,7 @@
                         </label>
                     </div>
 
-                    <div v-if="formReservation.isTravelForWork === true">
+                    <div v-if="formReservation.isTravelForWork === (true || 'pro')">
                         <h2>{{ $t('validation.companyInformationsTitle') }}</h2>
                         <div class="form-control w-full">
                             <label for="companyName" class="label">
@@ -419,10 +419,12 @@ export default {
                 numberOfRooms: null,
                 numberOfPeople: null,
                 formOptions: [],
-                isTravelForWork: false ? "personal" : "pro",
+                isTravelForWork: true ? "pro" : "personal", // TODO - Bugfix default value
+                user_id: 1, // TODO - Fake Data - Remove this line when authentification will be implemented
                 //user_id: "userStore.user.id" // TODO - Discomment this line when it will be required
             },
             formUser : {
+                id: 1, // TODO - Fake Data - Remove this line when authentification will be implemented
                 //id: "userStore.user.id", // TODO - Discomment this line when it will be required
                 civility: "",
                 firstname: "",
@@ -472,6 +474,7 @@ export default {
                 return minNumberOfRooms;
             }
         },
+        // Calculate minimum date of checkout depending of checkin date
         calculateMinCheckoutDate() {
             if (this.formReservation.checkin) {
                 const checkinDate = new Date(moment(this.formReservation.checkin, "DD MM YYYY"));
@@ -480,14 +483,17 @@ export default {
 
             }
         },
+        // This method is only for component display
         formateDateForDatePicker() {
             return this.store.getLocale === 'fr' ? 'dd/MM/yyyy' : 'MM/dd/yyyy'
         },
+        // Formate checkin date for recap
         formateCheckinDate() {
             if (this.formReservation.checkin) {
                 return this.formateDateForRecap(this.formReservation.checkin);
             }
         },
+        // Formate checkin date for recap
         formateCheckoutDate() {
             if (this.formReservation.checkout) {
             return this.formateDateForRecap(this.formReservation.checkout);
@@ -495,26 +501,35 @@ export default {
         },
     },
     methods: {
+        //useUserStore, //TODO - Discomment this line if needed
+        useGlobalStore,
+        isTravelForWork() {
+            if (this.formReservation.isTravelForWork === false) {
+                return this.formReservation.isTravelForWork = "personal";
+            }
+            if (this.formReservation.isTravelForWork === true) {
+                return this.formReservation.isTravelForWork = "pro";
+            }
+        },
+        // This methods is called by the computed properties formateChekinDate() and formateCheckoutDate
         formateDateForRecap(input) {
             if (input) {
-                console.log(input)
                 return input = input.toLocaleDateString(this.store.getLocale)
             }
             return new Date
         },
+        // This method formate date to match required format for request
         formateCheckinDateForRequest () {
             if (this.formReservation.checkin) {
-                console.log(moment(this.formReservation.checkin).format('YYYY-MM-DD'))
                 return this.formReservation.checkin = moment(this.formReservation.checkin).format('YYYY-MM-DD');
             }
         },
+        // This method formate date to match required format for request
         formateCheckoutDateForRequest () {
             if (this.formReservation.checkout) {
-                console.log(moment(this.formReservation.checkout).format('YYYY-MM-DD'))
                 return this.formReservation.checkout = moment(this.formReservation.checkout).format('YYYY-MM-DD');
             }
         },
-        useGlobalStore,
         setActiveTab(tabRef) {
             if (this.$refs.reservationForm.reportValidity()) {
                 this.activeTab = tabRef;
@@ -536,6 +551,7 @@ export default {
         resetForm() {
             this.$refs.reservationForm.reset();
         },
+        // Send request to create reservation
         async submitBooking() {
             this.formateCheckinDateForRequest();
             this.formateCheckoutDateForRequest();
