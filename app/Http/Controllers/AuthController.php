@@ -40,6 +40,9 @@ class AuthController extends Controller
             //Get remember token
             $rememberToken = $user->remember_token;
 
+            // Authenticate the user
+            Auth::login($user);
+
             $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([

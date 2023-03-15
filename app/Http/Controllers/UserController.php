@@ -23,6 +23,7 @@ class UserController extends Controller
     public function user($id)
     {
         $user = User::query()->find($id);
+
         return response()->json($user);
 
     }
@@ -51,18 +52,22 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $user = User::all();
+//        var_dump(Auth::user());
+//        $user = Auth::user();
+//        $admin = $users->where('role', '=', 'Admin');
+//       $admin = Auth::check();
+
         return response()->json($user);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return bool
      */
-    public function create()
+    public function create(User $user)
     {
-        //
+       //
     }
 
     /**

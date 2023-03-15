@@ -24,9 +24,11 @@ export default {
         checkUserConnection(){
             // Check if user is Authenticate
             const userStore = useUserStore();
-                userStore.getUser();
+            // if(userStore.logged) {
+                userStore.getUser()
+            // }
+        },
 
-        }
     }
 }
 </script>
