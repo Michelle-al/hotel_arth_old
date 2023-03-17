@@ -25,7 +25,6 @@ export default {
             // Check if user is Authenticate
             const userStore = useUserStore();
                 userStore.getUser()
-        },
     }
 }
 </script>

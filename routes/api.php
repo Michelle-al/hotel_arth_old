@@ -46,11 +46,10 @@ Route::middleware('setLocale')->group(function () {
             });
         });
     # Protected Users API routes 'api/users/'
-
     Route::middleware('auth:sanctum')->prefix('users')->group(function () {
 //        Route::get('/users', [UserController::class, 'index']);
         # Get a user
-//        Route::get('/{id}', [UserController::class, 'user']);
+        Route::get('/{id}', [UserController::class, 'user']);
         # Modify a user
         Route::put('/{id}', [UserController::class, 'update']);
         # Delete a user
@@ -80,11 +79,13 @@ Route::middleware('setLocale')->prefix('reservation')->group(function () {
 #######  Route reservations api/reservations
 Route::middleware('setLocale')->prefix('reservations')->group(function () {
     Route::put('/{id}', [ReservationController::class, 'update']);
-    Route::get('/availability', [ReservationController::class, 'getAvailableRoomsFromRequest']);
+    Route::get('/availability', [ReservationController::class, 'getAvailableRooms']);
     Route::get('/{id}', [ReservationController::class, 'show']);
     Route::post('/create', [ReservationController::class, 'createReservation']);
     Route::delete('/delete/{id}', [ReservationController::class, 'destroy']);
 }); #######  END Route reservations api/reservations
+
+
 
 # Routes '/api/home/' to display  the landing page
 Route::middleware('setLocale')->prefix('home')->group(function () {

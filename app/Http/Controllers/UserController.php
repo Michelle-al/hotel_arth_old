@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Nette\Schema\ValidationException;
+use function PHPUnit\Framework\throwException;
 use Illuminate\Support\Facades\Response;
 use Nette\Schema\ValidationException;
 use function PHPUnit\Framework\throwException;
@@ -48,6 +50,8 @@ class UserController extends Controller
         }else{
             abort('401');
         }
+
+
     }
 
 
@@ -99,7 +103,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateAvatar(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $user = User::query()->find($id);
         $dataToUpdate = $request->all();
@@ -116,19 +120,19 @@ class UserController extends Controller
                 // Puts the file in the storage directory
                 Storage::putFileAs('public/avatars', $file, $file_name);
 
-                // Stocker l'url de l'ancien avatar dans une variable
+                // Stocker l'url de l'ancienne video dans une variable
                 $old_avatar_url = $user->avatar_url;
 
-                // Stocker le chemin vers l'ancien avatar' dans une variable
+                // Stocker le chemin vers la nouvelle video dans une variable
                 $new_avatar_url = 'storage/avatars/' . $file_name;
 
                 // indiquer la colonne à modifier en BD et ce qu'on y stocke
                 $dataToUpdate['avatar'] = $new_avatar_url;
 
-                // Modifies the file path in order to allow the server to find the video in the storage/public/avatar
+                // Modifies the file path in order to allow the server to find the video in the storage/public/hero
                 $filepath = str_replace('storage/', 'public/', $old_avatar_url);
 
-                // Supprimer le lien vers l'ancien avatar
+                // Supprimer le lien vers l'ancienne vidéo
                 Storage::delete($filepath);
             }
         };
