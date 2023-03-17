@@ -58,9 +58,9 @@ export const translations = {
             numberOfRooms: "Number of rooms",
             selectInputHelp: "Select an option",
             roomCategory: "Type of room",
-            classic: "The Classic - 70€/person",
-            luxury: "The Luxury Room - 140€/person",
-            royal: "The Royal Suite - 280€/person",
+            classic: "The Classic - 70€/person/night",
+            luxury: "The Luxury Room - 140€/person/night",
+            royal: "The Royal Suite - 280€/person/night",
             Mister: "Mister",
             Madam: "Madam"
         },
@@ -72,14 +72,15 @@ export const translations = {
             recapEndDate: "to",
             recapRoom: "room(s)",
             recapPeople: "person",
-            optionPetitDejeuner:"Breakfast 9€ /person/day",
-            optionMidi:"Lunch formula 20€ /person/day",
-            optionSoir:"Evening formula 20€ /person/day",
-            optionMidiEtSoir:"Lunch and Evening formula 35€ /person/day",
-            optionPressing:"All-inclusive pressing service €30 /person/day",
-            optionCanalPlus:"Unlimited access to the Canal+ channel €10 /week",
-            optionSwimmingPool:"Access to the swimming pool 25€ per stay",
-            totalAmount: "Total amount of the stay : ",
+            1:"Breakfast 9€ /person/day",
+            2:"Lunch formula 20€ /person/day",
+            3:"Evening formula 20€ /person/day",
+            4:"Lunch and Evening formula 35€ /person/day",
+            5:"All-inclusive pressing service €30 /person/day",
+            6:"Unlimited access to the Canal+ channel €10 /week",
+            7:"Access to the swimming pool 25€ per stay",
+            totalAmountOfStay: "Total amount of the stay : ",
+            totalAmountOfOptions: "Total amount of the options : ",
         },
         validation: {
             mister: "Mister",
@@ -100,7 +101,8 @@ export const translations = {
             companyCity: "City",
             recapTitle: "Summary of your booking",
             annulationDelay: "The room can be canceled free of charge up to 24 hours before the start of the reservation.\n" +
-                "After this time, the room will be billed at 12:00 a.m., the day of arrival."
+                "After this time, the room will be billed at 12:00 a.m., the day of arrival.",
+            error: "An error occurred while saving your reservation. Please try again later or contact us by phone."
         },
         confirmation: {
             title: "Reservation Confirmation",
@@ -180,9 +182,9 @@ export const translations = {
             numberOfRooms: 'Nombre de chambres',
             selectInputHelp: "Sélectionner une option",
             roomCategory: "Type de chambre",
-            classic: "La Classique - 70€/ personne",
-            luxury: "La Chambre de Luxe - 140€/ personne",
-            royal: "La Suite Royale - 280€/ personne",
+            classic: "La Classique - 70€/ personne/ nuit",
+            luxury: "La Chambre de Luxe - 140€/ personne/ nuit",
+            royal: "La Suite Royale - 280€/ personne/ nuit",
         },
         options: {
             title: "Options",
@@ -192,14 +194,15 @@ export const translations = {
             recapEndDate: "au",
             recapRoom: "chambre(s)",
             recapPeople: "personne(s)",
-            optionPetitDejeuner:"Petit-déjeuner 9€ /personne/jour",
-            optionMidi:"Formule du midi 20€ /personne/jour",
-            optionSoir:"Formule du soir 20€ /personne/jour",
-            optionMidiEtSoir:"Formule midi et soir 35€ /personne/jour",
-            optionPressing:"Service de pressing tout compris 30€ /personne/jour",
-            optionCanalPlus:"Accès illimité à la chaîne Canal+ 10€ / semaine",
-            optionSwimmingPool:"Accès à la piscine 25€ en une fois",
-            totalAmount: "Montant total du séjour : ",
+            1:"Petit-déjeuner 9€ /personne/jour",
+            2:"Formule du midi 20€ /personne/jour",
+            3:"Formule du soir 20€ /personne/jour",
+            4:"Formule midi et soir 35€ /personne/jour",
+            5:"Service de pressing tout compris 30€ /personne/jour",
+            6:"Accès illimité à la chaîne Canal+ 10€ / semaine",
+            7:"Accès à la piscine 25€ en une fois",
+            totalAmountOfStay: "Montant total du séjour : ",
+            totalAmountOfOptions: "Montant total des options : ",
         },
         validation: {
             mister: "Monsieur",
@@ -219,8 +222,9 @@ export const translations = {
             companyZipCode: "Code postal",
             companyCity: "Ville",
             recapTitle: "Récapitulatif de votre réservation",
-            annulationDelay: "La chambre est annulable sans frais jusquà 24h avant le début de la réservation.\n" +
-                "Passé ce délai, la chambre sera facturée à 12h le jour de l’arrivée prévu."
+            annulationDelay: "La chambre est annulable sans frais jusqu'à 24h avant le début de la réservation.\n" +
+                "Passé ce délai, la chambre sera facturée à 12h le jour de l’arrivée prévu.",
+            error: "Une erreur est survenue,lors de l'enregistrement de votre réservation. Veuillez réessayer ultérieurement ou nous contacter par téléphone."
         },
         confirmation: {
             title: "Confirmation de votre réservation",

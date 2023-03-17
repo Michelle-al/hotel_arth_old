@@ -24,16 +24,16 @@ class ReservationControllerValidator
 
     static function createReservationValidator(Request $request) : \Illuminate\Contracts\Validation\Validator
     {
+        Log::info($request);
         return Validator::make($request->post(), [
             'checkin' => 'required|date_format:Y-m-d|after:yesterday',
             'checkout' => 'required|date_format:Y-m-d|after:checkin',
-            'number_of_people' => 'required|integer|min:1',
-            'has_options' => 'in:0,1',
-            'stay_type' => 'required|in:personal,pro',
-            'rooms' => 'required|string',
-            'options' => 'string',
+            'numberOfPeople' => 'required|integer|min:1',
+            'isTravelForWork' => 'required|boolean',
+            'numberOfRooms' => 'required|numeric|max:10',
+            'roomCategory' => 'required|in:classic,luxury,royal',
+            'formOptions' => 'array',
             'user_id' => 'int',
-            'status' => ""
         ], [
             'required' => 'The :attribute field is required.',
             'array' => 'The :attribute must be an array'
