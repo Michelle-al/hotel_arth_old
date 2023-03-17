@@ -98,6 +98,8 @@ class AuthController extends Controller
             // Create a new token if user isAdmin
             if($user->role == 'admin'){
                 $token = $user->createToken('auth_token')->plainTextToken;
+            }else{
+                $token = '';
             }
 
             return response()->json([
