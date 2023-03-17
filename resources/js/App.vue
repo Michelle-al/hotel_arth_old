@@ -21,10 +21,11 @@ export default {
     },
     methods: {
     // To pass user data in userStore after refresh of the page
-        checkUserConnection(){
+        checkUserConnection() {
             // Check if user is Authenticate
             const userStore = useUserStore();
-                userStore.getUser()
+            userStore.getUser()
+        }
     }
 }
 </script>
