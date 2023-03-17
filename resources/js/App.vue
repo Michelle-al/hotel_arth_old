@@ -11,7 +11,6 @@ import Footer from './Components/Footer.vue'
 import Navbar from "./Components/Navbar";
 import {useUserStore} from "../stores/userStore";
 
-
 export default {
     name: "App.vue",
     components: { Navbar, Footer },
@@ -21,10 +20,11 @@ export default {
     },
     methods: {
     // To pass user data in userStore after refresh of the page
-        checkUserConnection(){
+        checkUserConnection() {
             // Check if user is Authenticate
             const userStore = useUserStore();
-                userStore.getUser()
+            userStore.getUser()
+        }
     }
 }
 </script>
