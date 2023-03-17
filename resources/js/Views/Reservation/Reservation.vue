@@ -246,14 +246,14 @@
                 <div class="form-group flex justify-start gap-x-1">
                     <div class="form-control">
                         <label for="madam" class="label cursor-pointer">
-                            <input type="radio" name="civility" id="madam" class="radio radio-xs" value="Madam"
+                            <input type="radio" name="civility" id="madam" class="radio radio-xs" value="madam"
                                    v-model="formUser.civility"/>
                             <span class="label-text ml-2 mr-4">{{ $t('validation.madam') }}</span>
                         </label>
                     </div>
                     <div class="form-control">
                         <label for="mister" class="label cursor-pointer">
-                            <input type="radio" name="civility" id="mister" class="radio radio-xs" value="Mister"
+                            <input type="radio" name="civility" id="mister" class="radio radio-xs" value="mister"
                                    v-model="formUser.civility"/>
                             <span class="label-text ml-2">{{ $t('validation.mister') }}</span>
                         </label>
