@@ -222,7 +222,7 @@ export const translations = {
             companyZipCode: "Code postal",
             companyCity: "Ville",
             recapTitle: "Récapitulatif de votre réservation",
-            annulationDelay: "La chambre est annulable sans frais jusquà 24h avant le début de la réservation.\n" +
+            annulationDelay: "La chambre est annulable sans frais jusqu'à 24h avant le début de la réservation.\n" +
                 "Passé ce délai, la chambre sera facturée à 12h le jour de l’arrivée prévu.",
             error: "Une erreur est survenue,lors de l'enregistrement de votre réservation. Veuillez réessayer ultérieurement ou nous contacter par téléphone."
         },
