@@ -639,6 +639,8 @@ export default {
                     (response) => {
                             if (response.status === 200 || response.status === 201) {
                                 console.debug("response code: " + response.status);
+                                this.resetForm();
+                                return router.push("/reservation-confirmation");
                             } else {
                                 this.errors.push(
                                     "Une erreur s'est produite lors de l'enregistrement de votre réservation : " +
