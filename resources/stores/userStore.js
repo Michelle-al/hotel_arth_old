@@ -6,9 +6,10 @@ export const useUserStore = defineStore('user', {
     state: () =>({
         // token: localStorage.getItem('token'),
         user: null,
+        logged: localStorage.getItem('isLogged'),
     }),
     getters: {
-        getErrors: (state) => state.errors,
+        //
     },
     actions: {
         async getUser(){
@@ -19,9 +20,7 @@ export const useUserStore = defineStore('user', {
                 })
                 .catch((error) => {
                     if(error.response.status === 401 ){
-                        // this.errors = error
-                        // console.log(error)
-
+                        localStorage.removeItem('isLogged')
                         // router.push({name: 'login'})
                     }
 
@@ -32,6 +31,7 @@ export const useUserStore = defineStore('user', {
 
         async logout(){
             await axios.post('api/logout')
+            localStorage.removeItem('isLogged')
             this.user = null
             await router.push({name: 'landingPage'});
         }

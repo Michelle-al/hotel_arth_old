@@ -40,6 +40,9 @@ class AuthController extends Controller
             //Get remember token
             $rememberToken = $user->remember_token;
 
+            // Authenticate the user
+            Auth::login($user);
+
             $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
@@ -92,8 +95,12 @@ class AuthController extends Controller
             //Get remember token
             $rememberToken = $user->remember_token;
 
-            // Create a new token
-            $token = $user->createToken('auth_token')->plainTextToken;
+            // Create a new token if user isAdmin
+            if($user->role == 'admin'){
+                $token = $user->createToken('auth_token')->plainTextToken;
+            }else{
+                $token = '';
+            }
 
             return response()->json([
                 'token' => $token,

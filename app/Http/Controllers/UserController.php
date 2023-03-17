@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
-
+use Nette\Schema\ValidationException;
+use function PHPUnit\Framework\throwException;
 
 class UserController extends Controller
 {
@@ -27,6 +28,7 @@ class UserController extends Controller
     public function user($id)
     {
         $user = User::query()->find($id);
+
         return response()->json($user);
 
     }
@@ -38,12 +40,13 @@ class UserController extends Controller
      */
     public function me(Request $request)
     {
-        if(Auth::check()){
+        if(Auth::check() && $request->user()->role == 'admin'){
             $user = Auth::user();
             return response()->json([
                 'user'=> $user,
-                'isLogged'=> true
             ]);
+        }else{
+            abort('401');
         }
     }
 
@@ -52,21 +55,30 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws Exception
      */
     public function index(Request $request)
     {
-        $user = User::all();
-        return response()->json($user);
+        $user = Auth::user();
+//        if($user){
+            return response()->json($user);
+//        }else{
+//            throw new Exception('Non');
+//        }
+
+//        $admin = $users->where('role', '=', 'Admin');
+//       $admin = Auth::check();
+
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return bool
      */
-    public function create()
+    public function create(User $user)
     {
-        //
+       //
     }
 
     /**
