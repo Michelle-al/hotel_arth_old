@@ -49,7 +49,7 @@ Route::middleware('setLocale')->group(function () {
     Route::middleware('auth:sanctum')->prefix('users')->group(function () {
 //        Route::get('/users', [UserController::class, 'index']);
         # Get a user
-        Route::get('/{id}', [UserController::class, 'user']);
+//        Route::get('/{id}', [UserController::class, 'user']);
         # Modify a user
         Route::put('/{id}', [UserController::class, 'update']);
         # Delete a user

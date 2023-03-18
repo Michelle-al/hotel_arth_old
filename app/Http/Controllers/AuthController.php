@@ -43,7 +43,12 @@ class AuthController extends Controller
             // Authenticate the user
             Auth::login($user);
 
-            $token = $user->createToken('auth_token')->plainTextToken;
+            // Create a new token if user isAdmin
+            if($user->role == 'admin'){
+                $token = $user->createToken('auth_token')->plainTextToken;
+            }else{
+                $token = '';
+            }
 
             return response()->json([
                 'token' => $token,

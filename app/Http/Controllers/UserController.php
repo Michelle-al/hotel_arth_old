@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Validator;
 use Nette\Schema\ValidationException;
 use function PHPUnit\Framework\throwException;
 use Illuminate\Support\Facades\Response;
-use Nette\Schema\ValidationException;
-use function PHPUnit\Framework\throwException;
 
 class UserController extends Controller
 {
@@ -42,7 +40,7 @@ class UserController extends Controller
      */
     public function me(Request $request)
     {
-        if(Auth::check() && $request->user()->role == 'admin'){
+        if(Auth::check()){
             $user = Auth::user();
             return response()->json([
                 'user'=> $user,
@@ -50,8 +48,6 @@ class UserController extends Controller
         }else{
             abort('401');
         }
-
-
     }
 
 

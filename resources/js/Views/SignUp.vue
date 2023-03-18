@@ -107,12 +107,13 @@ export default {
                 await axios.get('/sanctum/csrf-cookie')
                 const response = await axios.post('api/register', this.user)
                 this.userStore.user = handleResponse(response)
+                this.userStore.isLogged = true
+                localStorage.setItem('isLogged', 'true')
                 await router.push({name: 'landingPage'})
 
             } catch (errors) {
                 this.errors = errors
             }
-
         },
 
     }
