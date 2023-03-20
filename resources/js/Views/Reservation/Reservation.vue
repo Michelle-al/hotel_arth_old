@@ -217,10 +217,10 @@
                 </div>
                 <!-- END - Options checkboxes -->
                 <!-- START - Options price - TODO - Remove this section after validate result is the same as back-end's result -->
-                <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfOptions') }}
-                    <span>{{ calculateOptionsPrice }}</span>
-                    <span> €</span>
-                </p>
+<!--                <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfOptions') }}-->
+<!--                    <span>{{ calculateOptionsPrice }}</span>-->
+<!--                    <span> €</span>-->
+<!--                </p>-->
                 <!-- END - Options price -->
 
                 <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfStay') }}
