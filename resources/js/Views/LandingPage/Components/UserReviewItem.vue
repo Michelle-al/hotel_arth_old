@@ -50,7 +50,7 @@
                 <p>{{ formatDate }}</p>
                 <blockquote>{{  review.body }}</blockquote>
                 <div class="card-actions justify-end">
-                    <div class="badge"><p>Client vérifié</p></div>
+                    <div class="badge"><p>{{ $t('reviews.badge') }}</p></div>
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@ export default {
     }
 
     .card-body {
-        @apply pt-0 h-max
+        @apply pt-0 h-max text-black
     }
 
     .card-title {
@@ -128,7 +128,7 @@ export default {
     }
 
     .badge {
-        @apply  border border-arth-yellow bg-white m-2 p-4 uppercase text-black
+        @apply  border border-arth-yellow bg-white m-2 p-4  text-black
     }
 
     .badge>p {
