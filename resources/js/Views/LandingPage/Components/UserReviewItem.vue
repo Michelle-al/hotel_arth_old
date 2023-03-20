@@ -96,7 +96,7 @@ export default {
 
 <style scoped>
     .review__card {
-        @apply w-11/12 h-full bg-base-100 shadow-xl mx-auto my-8 border border-arth-yellow
+        @apply w-11/12 h-full bg-base-100 shadow-xl mx-auto my-8 border border-arth-yellow bg-white
     }
 
     .review__card--header {
