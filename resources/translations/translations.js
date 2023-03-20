@@ -27,6 +27,7 @@ export const translations = {
         },
         reviews: {
             heading: "Clients reviews",
+            badge: "Verified review"
         },
         advantages: {
             heading: "What the Hotel Arth can offer"
@@ -150,7 +151,8 @@ export const translations = {
             heading: "Nos chambres"
         },
         reviews: {
-            heading: "Avis de nos clients"
+            heading: "Avis de nos clients",
+            badge: "Avis vérifié"
         },
         advantages: {
             heading: "Ce que l'Hôtel Arth vous propose"
