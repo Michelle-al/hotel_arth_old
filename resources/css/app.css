@@ -22,10 +22,6 @@ body,
     font-family: Tinos, serif;
 }
 
-body {
-    //@apply font-tinos;
-}
-
 h1 {
     @apply font-playfair font-bold text-4xl m-auto text-center;
 }
