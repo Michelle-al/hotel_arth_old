@@ -44,7 +44,7 @@ class ReservationController extends Controller
         $validated = $validator->validated();
 
         // Creating an array with room ids
-        $rooms = [ ...ReservationRepository::getAvailableRooms($validated["checkin"], $validated["checkout"])
+        $rooms = [ ...ReservationRepository::getAvailableRooms($validated["started_date"], $validated["end_date"])
                                          ->where("style", '==', $validated["roomCategory"])
                                          ->take($validated["numberOfRooms"])
                                          ->pluck("id") ];
@@ -52,8 +52,8 @@ class ReservationController extends Controller
         // Creating the reservation
         $reservation = new Reservation;
         $reservation->price = ReservationRepository::calculateReservationPrice($validated, $rooms);
-        $reservation->started_date = $validated["checkin"];
-        $reservation->end_date = $validated["checkout"];
+        $reservation->started_date = $validated["started_date"];
+        $reservation->end_date = $validated["end_date"];
         $reservation->number_of_people = $validated["numberOfPeople"];
         $reservation->stay_type = $validated["isTravelForWork"] ? "pro" : "personal";
         $reservation->user_id = $validated["user_id"];
@@ -122,8 +122,8 @@ class ReservationController extends Controller
         }
 
         $validated = $validator->validated();
-        $started_date = $validated["checkin"];
-        $end_date = $validated["checkout"];
+        $started_date = $validated["started_date"];
+        $end_date = $validated["end_date"];
 
         return ReservationRepository::getAvailableRooms($started_date, $end_date);
     }

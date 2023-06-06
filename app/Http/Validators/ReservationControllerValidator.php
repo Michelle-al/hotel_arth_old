@@ -13,8 +13,8 @@ class ReservationControllerValidator
     static function getAvailableRoomsValidator(Request $request): \Illuminate\Contracts\Validation\Validator
     {
         return Validator::make($request->all(), [
-            'checkin' => 'required|date_format:Y-m-d|after:yesterday',
-            'checkout' => 'required|date_format:Y-m-d|after:checkin'
+            'started_date' => 'required|date_format:Y-m-d|after:yesterday',
+            'end_date' => 'required|date_format:Y-m-d|after:checkin'
 
         ], [
             'required' => 'The :attribute field is required.',
@@ -26,8 +26,8 @@ class ReservationControllerValidator
     {
         Log::info($request);
         return Validator::make($request->post(), [
-            'checkin' => 'required|date_format:Y-m-d|after:yesterday',
-            'checkout' => 'required|date_format:Y-m-d|after:checkin',
+            'started_date' => 'required|date_format:Y-m-d|after:yesterday',
+            'end_date' => 'required|date_format:Y-m-d|after:checkin',
             'numberOfPeople' => 'required|integer|min:1',
             'isTravelForWork' => 'required|boolean',
             'numberOfRooms' => 'required|numeric|max:10',
