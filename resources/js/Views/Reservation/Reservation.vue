@@ -55,7 +55,7 @@
                         </label>
                         <VueDatePicker
                             name="checkin"
-                            v-model="formReservation.checkin"
+                            v-model="formReservation.started_date"
                             uid="checkin"
                             close-on-scroll
                             auto-apply placeholder="Select Date"
@@ -73,7 +73,7 @@
                         </label>
                         <VueDatePicker
                             name="checkout"
-                            v-model="formReservation.checkout"
+                            v-model="formReservation.end_date"
                             uid="checkout"
                             close-on-scroll
                             auto-apply placeholder="Select Date"
@@ -430,8 +430,8 @@ export default {
     data() {
         return {
             formReservation : {
-                checkin: null,
-                checkout: null,
+                started_date: null,
+                end_date: null,
                 roomCategory: null,
                 numberOfRooms: null,
                 numberOfPeople: null,
@@ -537,8 +537,8 @@ export default {
         },
         // Calculate minimum date of checkout depending on checkin date
         calculateMinCheckoutDate() {
-            if (this.formReservation.checkin) {
-                const checkinDate = new Date(moment(this.formReservation.checkin, "DD MM YYYY"));
+            if (this.formReservation.started_date) {
+                const checkinDate = new Date(moment(this.formReservation.started_date, "DD MM YYYY"));
                 const checkOutDate = new Date(moment(checkinDate).add(1, 'days'));
                 return checkOutDate;
 
@@ -550,14 +550,14 @@ export default {
         },
         // Formate checkin date for recap
         formateCheckinDate() {
-            if (this.formReservation.checkin) {
-                return this.formateDateForRecap(this.formReservation.checkin);
+            if (this.formReservation.started_date) {
+                return this.formateDateForRecap(this.formReservation.started_date);
             }
         },
         // Formate checkin date for recap
         formateCheckoutDate() {
-            if (this.formReservation.checkout) {
-            return this.formateDateForRecap(this.formReservation.checkout);
+            if (this.formReservation.end_date) {
+            return this.formateDateForRecap(this.formReservation.end_date);
             }
         },
     },
@@ -565,9 +565,9 @@ export default {
         //useUserStore, //TODO - Discomment this line if needed
         useGlobalStore,
         calculateNumberOfDays() {
-            if (this.formReservation.checkin && this.formReservation.checkout) {
-                const checkinDate = new Date(moment(this.formReservation.checkin, "DD MM YYYY"));
-                const checkoutDate = new Date(moment(this.formReservation.checkout, "DD MM YYYY"));
+            if (this.formReservation.started_date && this.formReservation.end_date) {
+                const checkinDate = new Date(moment(this.formReservation.started_date, "DD MM YYYY"));
+                const checkoutDate = new Date(moment(this.formReservation.end_date, "DD MM YYYY"));
                 const numberOfDays = moment(checkoutDate).diff(moment(checkinDate), 'days');
                 return numberOfDays;
             }
@@ -581,14 +581,14 @@ export default {
         },
         // This method formate date to match required format for request. It's called at sumbit
         formateCheckinDateForRequest () {
-            if (this.formReservation.checkin) {
-                return this.formReservation.checkin = moment(this.formReservation.checkin).format('YYYY-MM-DD');
+            if (this.formReservation.started_date) {
+                return this.formReservation.started_date = moment(this.formReservation.started_date).format('YYYY-MM-DD');
             }
         },
         // This method formate date to match required format for request. It's called at sumbit
         formateCheckoutDateForRequest () {
-            if (this.formReservation.checkout) {
-                return this.formReservation.checkout = moment(this.formReservation.checkout).format('YYYY-MM-DD');
+            if (this.formReservation.end_date) {
+                return this.formReservation.end_date = moment(this.formReservation.end_date).format('YYYY-MM-DD');
             }
         },
         setActiveTab(tabRef) {
