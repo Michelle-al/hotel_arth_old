@@ -22,7 +22,7 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     public $fillable = ['checkin', 'checkout', 'user_id', 'number_of_people', 'price', 'stay_type'];
     /**

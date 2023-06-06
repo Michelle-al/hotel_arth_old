@@ -52,8 +52,8 @@ class ReservationController extends Controller
         // Creating the reservation
         $reservation = new Reservation;
         $reservation->price = ReservationRepository::calculateReservationPrice($validated, $rooms);
-        $reservation->checkin = $validated["checkin"];
-        $reservation->checkout = $validated["checkout"];
+        $reservation->started_date = $validated["checkin"];
+        $reservation->end_date = $validated["checkout"];
         $reservation->number_of_people = $validated["numberOfPeople"];
         $reservation->stay_type = $validated["isTravelForWork"] ? "pro" : "personal";
         $reservation->user_id = $validated["user_id"];
@@ -122,10 +122,10 @@ class ReservationController extends Controller
         }
 
         $validated = $validator->validated();
-        $checkin = $validated["checkin"];
-        $checkout = $validated["checkout"];
+        $started_date = $validated["checkin"];
+        $end_date = $validated["checkout"];
 
-        return ReservationRepository::getAvailableRooms($checkin, $checkout);
+        return ReservationRepository::getAvailableRooms($started_date, $end_date);
     }
 
     /**
