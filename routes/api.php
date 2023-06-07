@@ -14,6 +14,7 @@ use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QRCodeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -190,3 +191,5 @@ Route::middleware(['auth:sanctum','role:admin'])->group(function () {
     });
 
 });#######  END Protected Route admin
+
+Route::get('qr/reservation/{id}', [QRCodeController::class, 'show']);
