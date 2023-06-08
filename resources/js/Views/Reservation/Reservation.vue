@@ -477,6 +477,7 @@ export default {
             allTabs: ["checkAvailability", "selectOption", "validateBooking"],
             activeTab: "checkAvailability",
             errors: [],
+            isLoading: false,
         }
     },
     computed: {
@@ -574,7 +575,9 @@ export default {
         },
         // This methods is called by the computed properties formateChekinDate() and formateCheckoutDate
         formateDateForRecap(input) {
-            if (input) {
+            console.log("coucou", typeof input);
+            if (input && !this.isLoading) {
+                console.log("dans if", typeof input);
                 return input = input.toLocaleDateString(this.globalStore.getLocale)
             }
             return new Date
@@ -588,7 +591,7 @@ export default {
         // This method formate date to match required format for request. It's called at sumbit
         formateCheckoutDateForRequest () {
             if (this.formReservation.end_date) {
-                return this.formReservation.end_date = moment(this.formReservation.end_date).format('YYYY-MM-DD');
+                return  this.formReservation.end_date = moment( this.formReservation.end_date ).format('YYYY-MM-DD');
             }
         },
         setActiveTab(tabRef) {
@@ -614,6 +617,8 @@ export default {
         },
         // Send request to create reservation
         async submitBooking() {
+            this.isLoading = true
+
             this.formateCheckinDateForRequest();
             this.formateCheckoutDateForRequest();
 
