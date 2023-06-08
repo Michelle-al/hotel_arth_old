@@ -27,6 +27,7 @@ export const translations = {
         },
         reviews: {
             heading: "Clients reviews",
+            badge: "Verified review"
         },
         advantages: {
             heading: "What the Hotel Arth can offer"
@@ -61,8 +62,7 @@ export const translations = {
             classic: "The Classic - 70€/person/night",
             luxury: "The Luxury Room - 140€/person/night",
             royal: "The Royal Suite - 280€/person/night",
-            Mister: "Mister",
-            Madam: "Madam"
+            totalPriceLegend: " Indicative price, the final price will be calculated at the end of the reservation process.",
         },
         options: {
             title: "Options",
@@ -150,7 +150,8 @@ export const translations = {
             heading: "Nos chambres"
         },
         reviews: {
-            heading: "Avis de nos clients"
+            heading: "Avis de nos clients",
+            badge: "Avis vérifié"
         },
         advantages: {
             heading: "Ce que l'Hôtel Arth vous propose"
@@ -185,6 +186,7 @@ export const translations = {
             classic: "La Classique - 70€/ personne/ nuit",
             luxury: "La Chambre de Luxe - 140€/ personne/ nuit",
             royal: "La Suite Royale - 280€/ personne/ nuit",
+            totalPriceLegend: " Prix indicatif provisoire, le prix définitif sera calculé à la fin du processus de réservation."
         },
         options: {
             title: "Options",

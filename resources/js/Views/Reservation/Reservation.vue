@@ -91,7 +91,7 @@
                     <span class="label-text">{{ $t('reservation.roomCategory') }}</span>
                 </label>
                 <select class="select select-bordered rounded-none" id="roomCategory-select" name="roomCategory"
-                        v-model="formReservation.roomCategory">
+                        v-model="formReservation.roomCategory" required>
                     <option disabled selected>{{ $t('reservation.selectInputHelp') }}</option>
                     <option value="classic">{{ $t('reservation.classic') }}</option>
                     <option value="luxury">{{ $t('reservation.luxury') }}</option>
@@ -106,19 +106,29 @@
                 <label for="numberOfPeople" class="label">
                     <span class="label-text">{{ $t('reservation.numberOfPeople') }}</span>
                 </label>
-                <input type="number" id="numberOfPeople" name="numberOfPeople" min="1" max="10" required
-                       v-model="formReservation.numberOfPeople" class="w-full max-w-md">
+                <input type="number"
+                        id="numberOfPeople"
+                        name="numberOfPeople"
+                        min="1"
+                        max="10"
+                        class="w-full max-w-md"
+                        v-model="formReservation.numberOfPeople"
+                        required
+                        >
 
                 <label for="numberOfRooms" class="label">
                     <span class="label-text">{{ $t('reservation.numberOfRooms') }}</span>
                 </label>
-                <input type="number" id="numberOfRooms" name="numberOfRooms"
-                       :min="calculateMinNumberOfRooms"
-                       :max="calculateMaxNumberOfRooms"
+                <input type="number"
+                        id="numberOfRooms"
+                        name="numberOfRooms"
+                        :min="calculateMinNumberOfRooms"
+                        :max="calculateMaxNumberOfRooms"
                         class="w-full max-w-md"
-                       v-model="formReservation.numberOfRooms">
-                <p class="mt-6 text-center font-bold">{{ calculateRoomPrice }} € </p>
-                <p class="text-center text-red-600 font-bold italic">Prix indicatif provisoire</p>
+                        v-model="formReservation.numberOfRooms"
+                        required>
+                <p class="mt-6 text-center font-bold text-lg">{{ calculateRoomPrice }} € </p>
+                <p class="text-center text-red-600 font-bold italic text-sm">{{ $t('reservation.totalPriceLegend')}}</p>
                 <!-- START - Navigation Button -->
                 <button type="button" @click="nextTab()" class="">
                     {{ $t('buttons.buttonBooking') }}
@@ -217,15 +227,14 @@
                 </div>
                 <!-- END - Options checkboxes -->
                 <!-- START - Options price - TODO - Remove this section after validate result is the same as back-end's result -->
-                <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfOptions') }}
-                    <span>{{ calculateOptionsPrice }}</span>
-                    <span> €</span>
-                </p>
+<!--                <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfOptions') }}-->
+<!--                    <span>{{ calculateOptionsPrice }}</span>-->
+<!--                    <span> €</span>-->
+<!--                </p>-->
                 <!-- END - Options price -->
 
                 <p class="mt-6 text-center text-red-600 font-bold">{{ $t('options.totalAmountOfStay') }}
-                    <span>{{ calculateTotalPrice }}</span>
-                    <span> €</span>
+                    <span class="font-bold">{{ calculateTotalPrice }} €</span>
                 </p>
                 <!-- START - Navigation button -->
                 <button type="button" @click="nextTab()" class="bg-arth-green w-full mt-6 mb-8">
@@ -247,14 +256,14 @@
                     <div class="form-control">
                         <label for="madam" class="label cursor-pointer">
                             <input type="radio" name="civility" id="madam" class="radio radio-xs" value="madam"
-                                   v-model="formUser.civility"/>
+                                   v-model="formUser.civility" required/>
                             <span class="label-text ml-2 mr-4">{{ $t('validation.madam') }}</span>
                         </label>
                     </div>
                     <div class="form-control">
                         <label for="mister" class="label cursor-pointer">
                             <input type="radio" name="civility" id="mister" class="radio radio-xs" value="mister"
-                                   v-model="formUser.civility"/>
+                                   v-model="formUser.civility" required/>
                             <span class="label-text ml-2">{{ $t('validation.mister') }}</span>
                         </label>
                     </div>
@@ -266,7 +275,7 @@
                             <span class="label-text">{{ $t('validation.lastname') }}</span>
                         </label>
                         <input type="text" id="lastname" name="lastname" placeholder=""
-                               class="input input-bordered w-full max-w-md" v-model="formUser.lastname"/>
+                               class="input input-bordered w-full max-w-md" v-model="formUser.lastname" required/>
                     </div>
 
                     <div class="form-control w-full">
@@ -274,7 +283,7 @@
                             <span class="label-text">{{ $t('validation.firstname') }}</span>
                         </label>
                         <input type="text" id="firstname" name="firstname" placeholder=""
-                               class="input input-bordered w-full max-w-md" v-model="formUser.firstname"/>
+                               class="input input-bordered w-full max-w-md" v-model="formUser.firstname" required/>
                     </div>
 
                     <div class="form-control w-full">
@@ -282,7 +291,7 @@
                             <span class="label-text">{{ $t('validation.email') }}</span>
                         </label>
                         <input type="email" id="email" name="email" placeholder=""
-                               class="input input-bordered w-full max-w-md" v-model="formUser.email"/>
+                               class="input input-bordered w-full max-w-md" v-model="formUser.email" required/>
                     </div>
 
                     <div class="form-control w-full">
@@ -291,7 +300,7 @@
                         </label>
                         <input type="tel" id="phoneNumber" name="phoneNumber" placeholder=""
                                class="input input-bordered w-full max-w-md"
-                               v-model="formUser.phoneNumber"/>
+                               v-model="formUser.phoneNumber" required/>
                     </div>
 
                     <div class="form-control w-full">
@@ -299,7 +308,7 @@
                             <span class="label-text">{{ $t('validation.address') }}</span>
                         </label>
                         <input type="text" id="address" name="address" placeholder=""
-                               class="input input-bordered w-full max-w-md" v-model="formUser.address"/>
+                               class="input input-bordered w-full max-w-md" v-model="formUser.address" required/>
                     </div>
 
                     <div class="form-control w-full">
@@ -307,7 +316,7 @@
                             <span class="label-text">{{ $t('validation.zipCode') }}</span>
                         </label>
                         <input type="text" id="zipCode" name="zipCode" placeholder=""
-                               class="input input-bordered w-full max-w-md" v-model="formUser.zipCode"/>
+                               class="input input-bordered w-full max-w-md" v-model="formUser.zipCode" required/>
                     </div>
 
                     <div class="form-control w-full">
@@ -315,7 +324,7 @@
                             <span class="label-text">{{ $t('validation.city') }}</span>
                         </label>
                         <input type="text" id="city" name="city" placeholder=""
-                               class="input input-bordered w-full max-w-md" v-model="formUser.city"/>
+                               class="input input-bordered w-full max-w-md" v-model="formUser.city" required/>
                     </div>
                 </div>
 
@@ -369,7 +378,7 @@
                     <div>
                         <h2>{{ $t('validation.recapTitle') }}</h2>
 
-                        <div class="booking__validation--recap">
+                        <div class="booking__validation--recap leading-6">
                             <p class="m-2">{{ $t(('options.recapTitle')) }} <br>
                                 {{ $t(('options.recapStartDate')) }} {{ formateCheckinDate }} {{
                                     $t(('options.recapEndDate'))
@@ -377,7 +386,7 @@
                                 {{ formReservation.numberOfRooms }} {{ $t(('options.recapRoom')) }}  {{ $t((`reservation.${formReservation.roomCategory}`))}},
                                 {{ formReservation.numberOfPeople }} {{ $t(('options.recapPeople')) }}
                             </p>
-                            <p class="m-2">Options : </p>
+                            <p v-if="formReservation.formOptions.length" class="m-2">Options : </p>
                             <ul class="m-2">
                                 <li v-for="(option) in formReservation.formOptions">{{ $t((`options.${option}`)) }}</li>
                             </ul>
@@ -438,11 +447,11 @@ export default {
                 formOptions: [],
                 isTravelForWork: false,
                 user_id: 1, // TODO - Fake Data - Remove this line when authentification will be implemented
-                //user_id: "userStore.user.id" // TODO - Discomment this line when it will be required
+                //user_id: "userStore.user.id" // TODO - Uncomment this line when it will be required
             },
             formUser : {
                 id: 1, // TODO - Fake Data - Remove this line when authentification will be implemented
-                // id: "userStore.user.id", // TODO - Discomment this line when it will be required
+                // id: "userStore.user.id", // TODO - Uncomment this line when it will be required
                 civility: "",
                 firstname: "",
                 lastname: "",
@@ -563,7 +572,7 @@ export default {
         },
     },
     methods: {
-        //useUserStore, //TODO - Discomment this line if needed
+        //useUserStore, //TODO - Uncomment this line if needed
         useGlobalStore,
         calculateNumberOfDays() {
             if (this.formReservation.started_date && this.formReservation.end_date) {
