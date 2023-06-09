@@ -425,6 +425,7 @@ import {computed} from "vue";
 import {addMonths, getMonth, getYear} from 'date-fns';
 import router from "../../router";
 import axios from "axios";
+import { mapState } from "pinia";
 
 export default {
     name: 'reservation',
@@ -448,7 +449,7 @@ export default {
                 formOptions: [],
                 isTravelForWork: false,
                 // user_id: 1, // TODO - Fake Data - Remove this line when authentification will be implemented
-                user_id: "userStore.user.id" // TODO - Uncomment this line when it will be required
+                // user_id: 7// TODO - Uncomment this line when it will be required
             },
             formUser : {
                 id: 1, // TODO - Fake Data - Remove this line when authentification will be implemented
@@ -570,7 +571,7 @@ export default {
             if (this.formReservation.end_date) {
             return this.formateDateForRecap(this.formReservation.end_date);
             }
-        },
+        }
     },
     methods: {
         //useUserStore, //TODO - Uncomment this line if needed
@@ -626,13 +627,10 @@ export default {
         // Send request to create reservation
         async submitBooking() {
             this.isLoading = true
-
             this.formateCheckinDateForRequest();
             this.formateCheckoutDateForRequest();
 
-            console.log("on est bien, on vérifie la validité")
             if (this.$refs.reservationForm.reportValidity()) {
-                console.log("reservationForm validity True!");
 
                 const config = {
                     headers: {
@@ -645,8 +643,6 @@ export default {
                     },
                 };
 
-                console.log("config configed, waiting the creation");
-
                 await axios.post("api/reservations/create",
                                 { ...this.formReservation, }, 
                                 config)
@@ -655,53 +651,24 @@ export default {
                            if (response.status === 200 || response.status === 201) {
                             this.resetForm();
                             return router.push("/reservation-confirmation");
-                            } else {
-                                console.log(response?.data?.message);
-                            }
+                            } 
+                            // else {
+                            //     this.errors.push(
+                            //         "Une erreur s'est produite lors de l'enregistrement de votre réservation : " +
+                            //         (response?.data?.message || " Erreur inconnue")
+                            //     );
+                            // }
                         }
-                    );
-            
-                // .then(
-                //     (response) => {
-                //             if (response.status === 200 || response.status === 201) {
-                //                 await axios.post"
-                //                 console.debug("response code: " + response.status);
-                //                 this.resetForm();
-                //                 return router.push("/reservation-confirmation");
-                //             } else {
-                //                 this.errors.push(
-                //                     "Une erreur s'est produite lors de l'enregistrement de votre réservation : " +
-                //                     (response?.data?.message || " Erreur inconnue")
-                //                 );
-                //             }
-                //         },
-                // )
-                // .catch((error) => {
-                //     if (error.response) {
-                //         // The request was made and the server responded with a status code
-                //         // that falls out of the range of 2xx
-                //         console.log('1')
-                //         console.log(error.response.data);
-                //         console.log(error.response.status);
-                //         console.log(error.response.headers);
-                //     } else if (error.request) {
-                //         // The request was made but no response was received
-                //         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                //         // http.ClientRequest in node.js
-                //         console.log('2')
-                //         console.log(error.request);
-                //     } else {
-                //         // Something happened in setting up the request that triggered an Error
-                //         console.log('3')
-                //         console.log('Error', error.message);
-                //     }
-                //     console.log(error.config);
-                //     this.errors.push(
-                //             "Une erreur s'est produite lors de l'enregistrement de votre réservation : " +
-                //         (error?.response?.data?.message || " Erreur inconnue")
-                //     );
-                // });
-
+                    )
+                    .catch((error) => {
+                        this.errors = [];
+                        this.errors.push(
+                                "Une erreur s'est produite lors de l'enregistrement de votre réservation : " +
+                            (error?.response?.data?.message || " Erreur inconnue")
+                        );
+                    });
+                    
+            // TODO : Bugfix - Mise à jour de l'utilisateur avec un put
             // await axios.post('api/users/update', {...this.formUser, _method: 'put' }, config)
             //             .then(
             //                 (response) => {
